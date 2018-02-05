@@ -9,22 +9,25 @@
 import Foundation
 import FacebookCore
 
+typealias JSONDictionary = [String: Any]
+
 class FacebookManager {
   
   let connection = GraphRequestConnection()
   
-  func getUserInfo() {
+  func getUserInfo(onSuccess: @escaping (JSONDictionary?) -> Void, onFailure: @escaping (Error?) -> Void) {
     connection.add(GraphRequest(graphPath: "/me")) { httpResponse, result in
       
       switch result {
-      case .success(let response):
-        print("Graph Request Succeeded: \(response)")
+        case .success(let response):
+          print("Graph Request Succeeded: \(response)")
+          onSuccess(response.dictionaryValue)
         
-      case .failed(let error):
-        print("Graph Request Failed: \(error)")
+        case .failed(let error):
+          print("Graph Request Failed: \(error)")
+          onFailure(error)
       }
     }
-    
     
     connection.start()
   }

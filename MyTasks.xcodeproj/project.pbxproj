@@ -15,6 +15,8 @@
 		5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F752028D197000FFA2B /* LaunchScreen.storyboard */; };
 		5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */; };
 		5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F812028E06B000FFA2B /* FacebookManager.swift */; };
+		5F9D3F852028ECDA000FFA2B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F842028ECDA000FFA2B /* User.swift */; };
+		5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F8820291421000FFA2B /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		5F9D3F782028D197000FFA2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5F9D3F812028E06B000FFA2B /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
+		5F9D3F842028ECDA000FFA2B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5F9D3F8820291421000FFA2B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 		5F9D3F682028D197000FFA2B /* MyTasks */ = {
 			isa = PBXGroup;
 			children = (
+				5F9D3F832028ECB2000FFA2B /* Models */,
 				5F9D3F7E2028D765000FFA2B /* Controllers */,
 				5F9D3F692028D197000FFA2B /* AppDelegate.swift */,
 				5F9D3F6D2028D197000FFA2B /* Main.storyboard */,
@@ -90,6 +95,7 @@
 				5F9D3F782028D197000FFA2B /* Info.plist */,
 				5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */,
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
+				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 			);
 			path = MyTasks;
 			sourceTree = "<group>";
@@ -100,6 +106,14 @@
 				5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5F9D3F832028ECB2000FFA2B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5F9D3F842028ECDA000FFA2B /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +199,8 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -193,6 +209,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -240,8 +258,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
+				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
+				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
