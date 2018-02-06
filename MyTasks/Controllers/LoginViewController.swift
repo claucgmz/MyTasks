@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     print(users)
     
     if let FBaccessToken = AccessToken.current {
-      
+      print(FBaccessToken)
     }
     else {
       addFBLoginButton()

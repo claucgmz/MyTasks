@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "You have 3 tasks to do today"; ObjectID = "GKH-cj-6DL"; */
+"GKH-cj-6DL.text" = "You have 3 tasks to do today";
+
+/* Class = "UILabel"; text = "Hello, Jane."; ObjectID = "NVn-wC-3Od"; */
+"NVn-wC-3Od.text" = "Hello, Jane.";
+
+/* Class = "UILabel"; text = "Lista"; ObjectID = "TMG-ky-SxG"; */
+"TMG-ky-SxG.text" = "Lista";
+
+/* Class = "UILabel"; text = "My tasks"; ObjectID = "Vnn-Wh-Sru"; */
+"Vnn-Wh-Sru.text" = "My tasks";
+
+/* Class = "UILabel"; text = "Today, September 12, 2017"; ObjectID = "jiX-22-sis"; */
+"jiX-22-sis.text" = "Today, September 12, 2017";
