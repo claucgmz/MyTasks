@@ -22,13 +22,14 @@ class LoginViewController: UIViewController {
     
     print(users)
     
-    if let FBaccessToken = AccessToken.current {
-      print(FBaccessToken)
-    }
-    else {
-      addFBLoginButton()
-    }
+    addFBLoginButton()
     
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if isLoggedIn() {
+    }
   }
   
   // MARK: -  Private methods
@@ -38,6 +39,14 @@ class LoginViewController: UIViewController {
     loginButton.center = view.center
     loginButton.delegate = self
     view.addSubview(loginButton)
+  }
+  
+  private func isLoggedIn() -> Bool {
+    return UserDefaults.standard.isLoggedIn()
+  }
+  
+  private func goToHome() {
+    self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
 
 }
@@ -59,6 +68,13 @@ extension LoginViewController: LoginButtonDelegate {
         print("create the new user")
       }
       
+      UserDefaults.standard.setIsLoggedIn(value: true)
+      
+      DispatchQueue.main.async {
+        self.goToHome()
+      }
+      
+      
     }, onFailure: { error in
       
         print(error)
@@ -66,6 +82,7 @@ extension LoginViewController: LoginButtonDelegate {
   }
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
+    UserDefaults.standard.setIsLoggedIn(value: false)
     print("user logged out")
   }
 }

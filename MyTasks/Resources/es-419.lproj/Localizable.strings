@@ -13,14 +13,13 @@
 "Today" = "Hoy";
 "Tomorrow" = "Mañana";
 
-"What's your list name?" = "Cual es el nombre de tu lista?"
-"What tasks are you planning to perform?" = "Que tareas planeas realizar?"
+"What's your list name?" = "Cual es el nombre de tu lista?";
+"What tasks are you planning to perform?" = "Que tareas planeas realizar?";
 
-"New list" = "Nueva lista"
-"Edit list" = "Editar lista"
+"New list" = "Nueva lista";
+"Edit list" = "Editar lista";
 
-"New task" = "Nueva tarea"
-"Edit task" = "Editar tarea"
+"New task" = "Nueva tarea";
+"Edit task" = "Editar tarea";
 
-"Save" = "Guardar"
-
+"Save" = "Guardar";
