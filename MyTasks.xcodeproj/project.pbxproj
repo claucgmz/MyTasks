@@ -24,6 +24,10 @@
 		5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0498B202A537F00B80ABC /* UserManager.swift */; };
 		5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCD202A7AFA008C1ECB /* TaskList.swift */; };
 		5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */; };
+		5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */; };
+		5FD49CD7202A7F3A008C1ECB /* TaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */; };
+		5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */; };
+		5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		5FC0498B202A537F00B80ABC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5FD49CCD202A7AFA008C1ECB /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCollectionCell.swift; sourceTree = "<group>"; };
+		5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListCollectionCell.xib; sourceTree = "<group>"; };
+		5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListCollectionCell.swift; sourceTree = "<group>"; };
+		5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTaskListCollectionCell.xib; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +112,7 @@
 		5F9D3F682028D197000FFA2B /* MyTasks */ = {
 			isa = PBXGroup;
 			children = (
+				5FD49CD1202A7F04008C1ECB /* Views */,
 				5FC04987202A3F6400B80ABC /* Helpers */,
 				5FC04986202A3F2B00B80ABC /* API */,
 				5FC04985202A3EF200B80ABC /* Resources */,
@@ -173,6 +182,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5FD49CD1202A7F04008C1ECB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */,
+				5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */,
+				5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */,
+				5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -236,10 +256,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */,
 				5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */,
 				5FC04976202A170400B80ABC /* Localizable.strings in Resources */,
 				5F9D3F742028D197000FFA2B /* Assets.xcassets in Resources */,
 				5F9D3F6F2028D197000FFA2B /* Main.storyboard in Resources */,
+				5FD49CD7202A7F3A008C1ECB /* TaskListCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,11 +344,13 @@
 				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
 				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
+				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */,
+				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
