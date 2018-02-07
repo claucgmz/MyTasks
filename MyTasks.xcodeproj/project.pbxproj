@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
-				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 				5FC0498B202A537F00B80ABC /* UserManager.swift */,
 			);
 			path = API;
@@ -174,6 +173,7 @@
 		5FC04987202A3F6400B80ABC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 				5FC04988202A3F7C00B80ABC /* Extensions */,
 			);
 			path = Helpers;

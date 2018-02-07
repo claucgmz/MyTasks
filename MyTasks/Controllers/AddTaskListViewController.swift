@@ -18,12 +18,7 @@ class AddTaskListViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: animated)
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,16 +28,15 @@ class AddTaskListViewController: UIViewController {
     }
   }
   
-  private func adjustForKeyboard(show: Bool, height: CGFloat) {
-    let height = show ? view.frame.height - height : view.frame.height + height
-    print(height)
-    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: height)
+  private func adjustForKeyboard(withHeight height: CGFloat, show: Bool) {
+    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
+    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
     view.frame = frame
   }
 }
 
 extension AddTaskListViewController: AddTaskListTableViewControllerDelegate {
   func addTaskListTableViewController(_ controller: AddTaskListTableViewController, keyboardWillShow show: Bool, withHeight height: CGFloat) {
-    adjustForKeyboard(show: show, height: height)
+    adjustForKeyboard(withHeight: height, show: show)
   }
 }
