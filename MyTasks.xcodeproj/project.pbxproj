@@ -28,6 +28,8 @@
 		5FD49CD7202A7F3A008C1ECB /* TaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */; };
 		5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */; };
 		5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */; };
+		5FD49CDF202A9AC7008C1ECB /* AddTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */; };
+		5FF0B0D6202B5D6500A7ADB8 /* AddTaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListCollectionCell.xib; sourceTree = "<group>"; };
 		5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListCollectionCell.swift; sourceTree = "<group>"; };
 		5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTaskListCollectionCell.xib; sourceTree = "<group>"; };
+		5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListViewController.swift; sourceTree = "<group>"; };
+		5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListTableViewController.swift; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +134,8 @@
 			children = (
 				5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */,
 				5FC0497A202A322800B80ABC /* MainViewController.swift */,
+				5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */,
+				5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -352,6 +358,8 @@
 				5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
+				5FF0B0D6202B5D6500A7ADB8 /* AddTaskListTableViewController.swift in Sources */,
+				5FD49CDF202A9AC7008C1ECB /* AddTaskListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
