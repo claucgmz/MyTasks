@@ -73,27 +73,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListCell" id="D7c-ki-1fC">
-                                        <rect key="frame" x="0.0" y="9.5" width="234" height="290"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="234" height="290"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lista" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMG-ky-SxG">
-                                                    <rect key="frame" x="20" y="173" width="52" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <size key="customSize" width="234" height="290"/>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="AaR-1V-Evv" id="k5N-CC-qf0"/>
                                     <outlet property="delegate" destination="AaR-1V-Evv" id="aqP-0S-CA8"/>
@@ -113,6 +93,7 @@
                     <navigationItem key="navigationItem" id="DZu-GP-Mea"/>
                     <connections>
                         <outlet property="dateLabel" destination="jiX-22-sis" id="rcs-FY-WRS"/>
+                        <outlet property="taskListCollectionView" destination="unn-2u-o18" id="8ry-ra-1bU"/>
                         <outlet property="todaySummaryLabel" destination="GKH-cj-6DL" id="Q2d-Ry-SvW"/>
                         <outlet property="userProfileImage" destination="Ajx-NF-AZe" id="ZtJ-oj-szU"/>
                         <outlet property="welcomeLabel" destination="NVn-wC-3Od" id="Ej1-8i-d3W"/>
