@@ -12,24 +12,18 @@ import FacebookCore
 import RealmSwift
 
 class LoginViewController: UIViewController {
-  var users: Results<User>!
   let realm = RealmService.shared.realm
   var user: User?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    users = realm.objects(User.self)
-    
-    print(users)
-    
     addFBLoginButton()
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if isLoggedIn() {
+      user = realm.object(ofType: User.self, forPrimaryKey: UserDefaults.standard.getUserId())
       goToHome()
     }
   }
@@ -53,8 +47,6 @@ class LoginViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "HomeSegue" {
-      print("the user")
-      print(user)
       let controller = segue.destination as! MainViewController
       controller.user = user
     }
@@ -65,20 +57,16 @@ class LoginViewController: UIViewController {
 // MARK: -  Logun Button Delegate methods
 extension LoginViewController: LoginButtonDelegate {
   func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-    print("user logged in")
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
-      let currentUser = User(with: data)
-      print(currentUser)
       
+      let currentUser = User(with: data)
       if let exist = self.realm.object(ofType: User.self, forPrimaryKey: currentUser.id) {
-        print("User exists")
         self.user = exist
         UserDefaults.standard.setUserId(with: exist.id)
       }
       else {
         RealmService.shared.create(currentUser)
-        print("create the new user")
         self.user = currentUser
         UserDefaults.standard.setUserId(with: currentUser.id)
       }
@@ -88,16 +76,15 @@ extension LoginViewController: LoginButtonDelegate {
       DispatchQueue.main.async {
         self.goToHome()
       }
-      
-      
+
     }, onFailure: { error in
-      
-      print(error)
+      if error != nil {
+        print("Erro: \(String(describing: error?.localizedDescription))")
+      }
     })
   }
   
   func loginButtonDidLogOut(_ loginButton: LoginButton) {
     UserDefaults.standard.setIsLoggedIn(value: false)
-    print("user logged out")
   }
 }

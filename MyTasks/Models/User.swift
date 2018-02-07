@@ -17,6 +17,10 @@ import RealmSwift
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   
+  var imageURL: String {
+    return "http://graph.facebook.com/\(id)/picture?type=large"
+  }
+  
   // MARK: - Init
   convenience init(with data: [String : Any]?) {
     self.init()
@@ -38,22 +42,5 @@ import RealmSwift
   // MARK: - Meta
   override class func primaryKey() -> String? {
     return "id"
-  }
-  
-  // MARK: - Etc
-  var imageURL: String {
-    return "http://graph.facebook.com/\(id)/picture?type=large"
-  }
-  
-  private static func createUser(in realm: Realm, with user: User) -> User {
-    try! realm.write {
-      realm.add(user)
-    }
-    
-    return user
-  }
-  
-  @discardableResult static func user(in realm: Realm, with user: User) -> User {
-    return realm.object(ofType: User.self, forPrimaryKey: user.id) ?? createUser(in: realm, with: user)
   }
 }

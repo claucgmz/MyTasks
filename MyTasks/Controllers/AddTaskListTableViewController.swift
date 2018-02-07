@@ -20,7 +20,6 @@ class AddTaskListTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    listNameTextField.becomeFirstResponder()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -55,13 +54,12 @@ class AddTaskListTableViewController: UITableViewController {
     let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
     let keyboardRectangle = keyboardFrame.cgRectValue
     let keyboardHeight = keyboardRectangle.height
-    
-    if notification.name == Notification.Name.UIKeyboardWillHide {
+
+    if notification.name.rawValue == "UIKeyboardWillHideNotification" {
       delegate?.addTaskListTableViewController(self, keyboardWillShow: false, withHeight: keyboardHeight)
     } else {
       delegate?.addTaskListTableViewController(self, keyboardWillShow: true, withHeight: keyboardHeight)
     }
-    
   }
 }
 

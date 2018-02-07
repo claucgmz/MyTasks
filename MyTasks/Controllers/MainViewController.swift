@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getUser()
     updateView()
     registerNibs()
     
@@ -53,12 +52,6 @@ class MainViewController: UIViewController {
     
     let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: addTaskItemCellId)
-  }
-  
-  private func getUser() {
-    print("id")
-    print(UserDefaults.standard.getUserId())
-    user = realm.object(ofType: User.self, forPrimaryKey: UserDefaults.standard.getUserId())
   }
   
   private func updateView() {
