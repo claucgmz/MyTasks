@@ -59,7 +59,6 @@ class MainViewController: UIViewController {
     print("id")
     print(UserDefaults.standard.getUserId())
     user = realm.object(ofType: User.self, forPrimaryKey: UserDefaults.standard.getUserId())
-    print(user)
   }
   
   private func updateView() {
@@ -80,6 +79,7 @@ class MainViewController: UIViewController {
   }
   
   private func setUserProfileImage() {
+    
     guard let imageURL = URL(string: "https://graph.facebook.com/10156546140303465/picture?type=large") else {
       return
     }
@@ -88,11 +88,15 @@ class MainViewController: UIViewController {
       guard let data = data else {
         return
       }
-      
-      self.userProfileImage.image = UIImage(data: data)
-      
+      DispatchQueue.main.async {
+        self.userProfileImage.image = UIImage(data: data)
+      }
+
     }, onFailure: { error in
-      print(error)
+      
+      if error != nil {
+        //print(error?.localizedDescription)
+      }
     })
     
     userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
@@ -105,10 +109,20 @@ class MainViewController: UIViewController {
     userProfileImage.layer.shouldRasterize = true
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  }
+  
 }
 
 extension MainViewController: UICollectionViewDelegate {
-  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if indexPath.row < lists.count {
+      
+    }
+    else {
+      performSegue(withIdentifier: "AddTaskList", sender: self)
+    }
+  }
 }
 
 extension MainViewController: UICollectionViewDataSource {
