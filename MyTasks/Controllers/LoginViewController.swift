@@ -12,12 +12,13 @@ import FacebookCore
 import RealmSwift
 
 class LoginViewController: UIViewController {
-  var users : Results<User>!
+  var users: Results<User>!
   let realm = RealmService.shared.realm
+  var user: User?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     users = realm.objects(User.self)
     
     print(users)
@@ -29,6 +30,7 @@ class LoginViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     if isLoggedIn() {
+      goToHome()
     }
   }
   
@@ -48,7 +50,16 @@ class LoginViewController: UIViewController {
   private func goToHome() {
     self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
-
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "HomeSegue" {
+      print("the user")
+      print(user)
+      let controller = segue.destination as! MainViewController
+      controller.user = user
+    }
+  }
+  
 }
 
 // MARK: -  Logun Button Delegate methods
@@ -57,15 +68,19 @@ extension LoginViewController: LoginButtonDelegate {
     print("user logged in")
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
-      let user = User(with: data)
-      print(user)
+      let currentUser = User(with: data)
+      print(currentUser)
       
-      if let exist = self.realm.object(ofType: User.self, forPrimaryKey: user.id) {
+      if let exist = self.realm.object(ofType: User.self, forPrimaryKey: currentUser.id) {
         print("User exists")
+        self.user = exist
+        UserDefaults.standard.setUserId(with: exist.id)
       }
       else {
-        RealmService.shared.create(user)
+        RealmService.shared.create(currentUser)
         print("create the new user")
+        self.user = currentUser
+        UserDefaults.standard.setUserId(with: currentUser.id)
       }
       
       UserDefaults.standard.setIsLoggedIn(value: true)
@@ -77,7 +92,7 @@ extension LoginViewController: LoginButtonDelegate {
       
     }, onFailure: { error in
       
-        print(error)
+      print(error)
     })
   }
   

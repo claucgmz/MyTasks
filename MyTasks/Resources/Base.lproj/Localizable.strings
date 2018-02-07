@@ -6,7 +6,7 @@
  Copyright © 2018 Claudia Carrillo. All rights reserved.
  */
 
-"Hello" = "Hello";
+"Hello, %@" = "Hello, %@";
 "You have %@ tasks to do today" = "You have %@ tasks to do today";
 
 "Tasks" = "Tasks";

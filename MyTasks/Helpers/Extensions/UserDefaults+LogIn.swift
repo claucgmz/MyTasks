@@ -12,6 +12,7 @@ extension UserDefaults {
   
   enum UserDefaultsKeys: String {
     case isLoggedIn
+    case userId
   }
   
   func setIsLoggedIn(value: Bool) {
@@ -21,5 +22,14 @@ extension UserDefaults {
   
   func isLoggedIn() -> Bool {
     return bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+  }
+  
+  func setUserId(with value: Int) {
+    set(value, forKey: UserDefaultsKeys.userId.rawValue)
+    synchronize()
+  }
+  
+  func getUserId() -> Int {
+    return integer(forKey: UserDefaultsKeys.userId.rawValue)
   }
 }

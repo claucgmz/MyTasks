@@ -16,7 +16,8 @@ class FacebookManager {
   let connection = GraphRequestConnection()
   
   func getUserInfo(onSuccess: @escaping (JSONDictionary?) -> Void, onFailure: @escaping (Error?) -> Void) {
-    connection.add(GraphRequest(graphPath: "/me")) { httpResponse, result in
+    
+    connection.add(GraphRequest(graphPath: "me", parameters: ["fields": "id, first_name, last_name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)) { httpResponse, result in
       
       switch result {
         case .success(let response):

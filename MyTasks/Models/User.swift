@@ -25,9 +25,14 @@ import RealmSwift
       self.id = (id as NSString).integerValue
     }
     
-    if let firstName = data?["name"] as? String {
+    if let firstName = data?["first_name"] as? String {
       self.firstName = firstName
     }
+    
+    if let lastName = data?["last_name"] as? String {
+      self.lastName = lastName
+    }
+
   }
   
   // MARK: - Meta
@@ -36,6 +41,9 @@ import RealmSwift
   }
   
   // MARK: - Etc
+  var imageURL: String {
+    return "http://graph.facebook.com/\(id)/picture?type=large"
+  }
   
   private static func createUser(in realm: Realm, with user: User) -> User {
     try! realm.write {
