@@ -15,7 +15,7 @@ class TaskListCollectionCell: UICollectionViewCell {
   @IBOutlet weak var progressBar: UIProgressView!
   
   func configure(withTaskList list: TaskList) {
-    iconImage.image = UIImage(named: list.iconName)
+    iconImage.image = UIImage(named: list.icon.rawValue)
     nameLabel.text = list.name
     counterLabel.text = "\(list.countUncheckedItems()) Tasks"
   }

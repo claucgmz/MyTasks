@@ -6,22 +6,21 @@
 //  Copyright © 2018 Claudia Carrillo. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TaskList {
   var name = ""
   var color = "white"
-  var iconName = "No Icon"
+  var icon: CategoryIcon
   var items = [TaskItem]()
   
-  static var icons = ["bam", "cherry", "christmastree", "christmastreestar", "coffeecup", "cupcake", "department", "doraemon", "dratini", "dwarf", "easteregg", "emptybox", "halloweencandy", "home", "penguin", "pennywise", "pie", "pin", "pokeball", "pokemon", "sphere", "stapler", "supermario", "taco", "thriller", "trainticket", "vampire", "vegetarianfood", "witchhat"]
-  
-  init(name: String) {
+  init(name: String, icon: CategoryIcon = .bam) {
     self.name = name
+    self.icon = icon
   }
   
   func countUncheckedItems() -> Int {
-    return items.reduce(0) {count, item in
+    return items.reduce(0) { count, item in
       count + (item.checked ? 0 : 1)
     }
   }

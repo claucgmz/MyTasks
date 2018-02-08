@@ -20,7 +20,7 @@ class AddTaskListTableViewController: UITableViewController {
   
   weak var delegate: AddTaskListTableViewControllerDelegate?
   let colors = UIColor.ColorPicker.all
-  let icons = TaskList.icons
+  let icons = CategoryIcon.all
   var selectedColorIndex: Int? = nil
   var selectedColor: UIColor? = nil
   

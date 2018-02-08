@@ -11,8 +11,8 @@ import UIKit
 class IconPickerCollectionCell: UICollectionViewCell {
   @IBOutlet weak var iconImage: UIImageView!
   
-  func configure(withIcon icon: String, color: UIColor?) {
-    if let icon = UIImage(named: icon) {
+  func configure(withIcon icon: CategoryIcon, color: UIColor?) {
+    if let icon = UIImage(named: icon.rawValue) {
       iconImage.image = icon
     }
     
