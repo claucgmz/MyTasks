@@ -14,6 +14,8 @@ class TaskList {
   var iconName = "No Icon"
   var items = [TaskItem]()
   
+  static var icons = ["bam", "cherry", "christmastree", "christmastreestar", "coffeecup", "cupcake", "department", "doraemon", "dratini", "dwarf", "easteregg", "emptybox", "halloweencandy", "home", "penguin", "pennywise", "pie", "pin", "pokeball", "pokemon", "sphere", "stapler", "supermario", "taco", "thriller", "trainticket", "vampire", "vegetarianfood", "witchhat"]
+  
   init(name: String) {
     self.name = name
   }
@@ -23,5 +25,4 @@ class TaskList {
       count + (item.checked ? 0 : 1)
     }
   }
-  
 }

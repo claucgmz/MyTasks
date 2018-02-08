@@ -73,33 +73,37 @@ class MainViewController: UIViewController {
   
   private func setUserProfileImage() {
     
-    guard let imageURL = URL(string: "https://graph.facebook.com/10156546140303465/picture?type=large") else {
-      return
-    }
-    UserManager.shared.getImageFromURL(request: imageURL, onSuccess: { data in
+    if let imageUrl = user?.imageURL {
       
-      guard let data = data else {
+      guard let imageURL = URL(string: imageUrl) else {
         return
       }
-      DispatchQueue.main.async {
-        self.userProfileImage.image = UIImage(data: data)
-      }
-
-    }, onFailure: { error in
       
-      if error != nil {
-        //print(error?.localizedDescription)
-      }
-    })
-    
-    userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
-    userProfileImage.clipsToBounds = true
-    userProfileImage.layer.shadowColor = UIColor.black.cgColor
-    userProfileImage.layer.shadowOpacity = 1
-    userProfileImage.layer.shadowOffset = CGSize.zero
-    userProfileImage.layer.shadowRadius = 10
-    userProfileImage.layer.shadowPath = UIBezierPath(rect: userProfileImage.bounds).cgPath
-    userProfileImage.layer.shouldRasterize = true
+      UserManager.shared.getImage(fromUrl: imageURL, onSuccess: { data in
+        
+        guard let data = data else {
+          return
+        }
+        DispatchQueue.main.async {
+          self.userProfileImage.image = UIImage(data: data)
+        }
+        
+      }, onFailure: { error in
+        
+        if error != nil {
+          //print(error?.localizedDescription)
+        }
+      })
+      
+      userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
+      userProfileImage.clipsToBounds = true
+      userProfileImage.layer.shadowColor = UIColor.black.cgColor
+      userProfileImage.layer.shadowOpacity = 1
+      userProfileImage.layer.shadowOffset = CGSize.zero
+      userProfileImage.layer.shadowRadius = 10
+      userProfileImage.layer.shadowPath = UIBezierPath(rect: userProfileImage.bounds).cgPath
+      userProfileImage.layer.shouldRasterize = true
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
