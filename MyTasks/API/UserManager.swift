@@ -13,10 +13,10 @@ class UserManager {
   private init() {}
   static let shared = UserManager()
   
-  func getImageFromURL(request: URL, onSuccess: @escaping (Data?) -> Void, onFailure: @escaping (Error?) -> Void){
+  func getImage(fromUrl url: URL, onSuccess: @escaping (Data?) -> Void, onFailure: @escaping (Error?) -> Void) {
     let session = URLSession.shared
     
-    let task = session.dataTask(with: request) { (data, response, error) in
+    let task = session.dataTask(with: url) { (data, response, error) in
       
       guard let data = data else{
         onFailure(error)
