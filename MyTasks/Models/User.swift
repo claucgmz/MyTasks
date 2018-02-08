@@ -18,7 +18,7 @@ import RealmSwift
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   
   var imageURL: String {
-    return "http://graph.facebook.com/\(id)/picture?type=large"
+    return "https://graph.facebook.com/\(id)/picture?type=large"
   }
   
   // MARK: - Init

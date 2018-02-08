@@ -18,6 +18,8 @@
 		5F9D3F852028ECDA000FFA2B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F842028ECDA000FFA2B /* User.swift */; };
 		5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F8820291421000FFA2B /* RealmService.swift */; };
 		5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FACC613202A67D5003D1957 /* Date+Format.swift */; };
+		5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACDF202CA6D60002C351 /* LayerContainerView.swift */; };
+		5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE1202CD0710002C351 /* UIView+Decoration.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
 		5FC0497B202A322800B80ABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* MainViewController.swift */; };
 		5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04989202A401F00B80ABC /* UserDefaults+LogIn.swift */; };
@@ -35,7 +37,7 @@
 		5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */; };
 		5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */; };
 		5FF0B0E4202BB86D00A7ADB8 /* IconPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */; };
-		5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Tint.swift */; };
+		5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		5F9D3F842028ECDA000FFA2B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5F9D3F8820291421000FFA2B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		5FACC613202A67D5003D1957 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		5FADACDF202CA6D60002C351 /* LayerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerContainerView.swift; sourceTree = "<group>"; };
+		5FADACE1202CD0710002C351 /* UIView+Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Decoration.swift"; sourceTree = "<group>"; };
 		5FC04979202A171800B80ABC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5FC0497A202A322800B80ABC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5FC04981202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -73,7 +77,7 @@
 		5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ColorPicker.swift"; sourceTree = "<group>"; };
 		5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionCell.swift; sourceTree = "<group>"; };
 		5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconPickerCollectionCell.xib; sourceTree = "<group>"; };
-		5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Tint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Tint.swift"; sourceTree = "<group>"; };
+		5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Decoration.swift"; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,7 +201,8 @@
 				5FC04989202A401F00B80ABC /* UserDefaults+LogIn.swift */,
 				5FACC613202A67D5003D1957 /* Date+Format.swift */,
 				5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */,
-				5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Tint.swift */,
+				5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */,
+				5FADACE1202CD0710002C351 /* UIView+Decoration.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */,
 				5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */,
 				5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */,
+				5FADACDF202CA6D60002C351 /* LayerContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,18 +371,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC0497B202A322800B80ABC /* MainViewController.swift in Sources */,
+				5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */,
 				5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */,
 				5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
 				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
-				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Tint.swift in Sources */,
+				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
+				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
