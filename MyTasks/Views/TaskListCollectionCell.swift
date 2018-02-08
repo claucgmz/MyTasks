@@ -19,5 +19,4 @@ class TaskListCollectionCell: UICollectionViewCell {
     nameLabel.text = list.name
     counterLabel.text = "\(list.countUncheckedItems()) Tasks"
   }
-
 }

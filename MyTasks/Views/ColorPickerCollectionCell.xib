@@ -5,30 +5,47 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colorPickerCell" id="gTV-IL-0wX" customClass="ColorPickerCollectionCell" customModule="MyTasks" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorPickerCollectionCell" id="gTV-IL-0wX" customClass="ColorPickerCollectionCell" customModule="MyTasks" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-x4-CHt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A5N-x4-CHt">
                         <rect key="frame" x="5" y="5" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.56470588239999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="FKb-a6-5dg"/>
+                            <constraint firstAttribute="width" constant="50" id="O4a-Rr-bak"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chr-kh-Fni">
+                        <rect key="frame" x="10" y="9" width="40" height="43"/>
+                        <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="centerY" secondItem="A5N-x4-CHt" secondAttribute="centerY" id="5tm-UZ-pZ9"/>
+                <constraint firstItem="A5N-x4-CHt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="DIG-Ub-cQf"/>
+                <constraint firstItem="A5N-x4-CHt" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="VR7-IV-YLk"/>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="height" secondItem="A5N-x4-CHt" secondAttribute="height" multiplier="0.85" id="VT4-uI-SAF"/>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="centerX" secondItem="A5N-x4-CHt" secondAttribute="centerX" id="YX6-mV-fUP"/>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="width" secondItem="A5N-x4-CHt" secondAttribute="width" multiplier="0.8" constant="0.84999999999999998" id="vOf-Ey-M3Z"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="colorView" destination="A5N-x4-CHt" id="S6T-uV-quc"/>
+                <outlet property="selectedView" destination="chr-kh-Fni" id="QR3-Ys-zaD"/>
             </connections>
         </collectionViewCell>
     </objects>

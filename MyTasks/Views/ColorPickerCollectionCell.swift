@@ -10,10 +10,12 @@ import UIKit
 
 class ColorPickerCollectionCell: UICollectionViewCell {
   @IBOutlet private weak var colorView: UIView!
+  @IBOutlet weak var selectedView: UIView!
   
   func configure(withColor color: UIColor) {
+    selectedView.isHidden = true
+    selectedView.roundCorners(withRadius: selectedView.frame.size.width / 2)
     colorView.backgroundColor = color
-    colorView.layer.cornerRadius = colorView.frame.size.width / 2
-    colorView.clipsToBounds = true
+    colorView.roundCorners(withRadius: colorView.frame.size.width / 2)
   }
 }

@@ -21,9 +21,9 @@ class AddTaskListTableViewController: UITableViewController {
   weak var delegate: AddTaskListTableViewControllerDelegate?
   let colors = UIColor.ColorPicker.all
   let icons = TaskList.icons
-  let colorPickerCellId = "colorPickerCell"
-  let iconPickerCellId = "iconPickerCell"
+  var selectedColorIndex: Int? = nil
   var selectedColor: UIColor? = nil
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,10 +39,10 @@ class AddTaskListTableViewController: UITableViewController {
   
   private func registerNibs() {
     let colorPickerCellNib = UINib(nibName: "ColorPickerCollectionCell", bundle: nil)
-    colorPickerView.register(colorPickerCellNib, forCellWithReuseIdentifier: colorPickerCellId)
+    colorPickerView.register(colorPickerCellNib, forCellWithReuseIdentifier: ColorPickerCollectionCell.reusableId)
     
     let iconPickerCellNib = UINib(nibName: "IconPickerCollectionCell", bundle: nil)
-    iconPickerView.register(iconPickerCellNib, forCellWithReuseIdentifier: iconPickerCellId)
+    iconPickerView.register(iconPickerCellNib, forCellWithReuseIdentifier: IconPickerCollectionCell.reusableId)
   }
   
   // MARK: - Table view data source
@@ -75,7 +75,9 @@ class AddTaskListTableViewController: UITableViewController {
   }
   
   //MARK: - Private methods
-  private func didSelectColor(color: UIColor) {
+  private func didSelectColor(index: Int) {
+    selectedColorIndex = index
+    let color = colors[index]
     selectedColor = color
     iconPickerView.reloadData()
   }
@@ -83,9 +85,10 @@ class AddTaskListTableViewController: UITableViewController {
 
 extension AddTaskListTableViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    listNameTextField.resignFirstResponder()
+    
     if collectionView === colorPickerView {
-      let color = colors[indexPath.row]
-      didSelectColor(color: color)
+      didSelectColor(index: indexPath.row)
     }
     else {
 
@@ -105,13 +108,13 @@ extension AddTaskListTableViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if collectionView === colorPickerView {
-      let cell = colorPickerView.dequeueReusableCell(withReuseIdentifier: colorPickerCellId, for: indexPath) as! ColorPickerCollectionCell
+      let cell = colorPickerView.dequeueReusableCell(withReuseIdentifier: ColorPickerCollectionCell.reusableId, for: indexPath) as! ColorPickerCollectionCell
       let color = colors[indexPath.row]
       cell.configure(withColor: color)
       return cell
     }
     else {
-      let cell = iconPickerView.dequeueReusableCell(withReuseIdentifier: iconPickerCellId, for: indexPath) as! IconPickerCollectionCell
+      let cell = iconPickerView.dequeueReusableCell(withReuseIdentifier: IconPickerCollectionCell.reusableId, for: indexPath) as! IconPickerCollectionCell
       let icon = icons[indexPath.row]
       cell.configure(withIcon: icon, color: selectedColor)
       return cell

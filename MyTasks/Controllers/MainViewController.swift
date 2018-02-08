@@ -18,8 +18,6 @@ class MainViewController: UIViewController {
   @IBOutlet private weak var dateLabel: UILabel!
   
   var lists = [TaskList]()
-  let taskItemCellId = "taskListCell"
-  let addTaskItemCellId = "addTaskListCell"
   let realm = RealmService.shared.realm
   var user: User?
   
@@ -48,10 +46,10 @@ class MainViewController: UIViewController {
   
   private func registerNibs() {
     let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
-    taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: taskItemCellId)
+    taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
 
     let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
-    taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: addTaskItemCellId)
+    taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
   }
   
   private func updateView() {
@@ -127,7 +125,7 @@ extension MainViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if indexPath.row < lists.count {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: taskItemCellId, for: indexPath) as! TaskListCollectionCell
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       let taskList = lists[indexPath.row]
       cell.configure(withTaskList: taskList)
@@ -135,7 +133,7 @@ extension MainViewController: UICollectionViewDataSource {
       return cell
     }
     else {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: addTaskItemCellId, for: indexPath) as! AddTaskListCollectionCell
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId, for: indexPath) as! AddTaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       return cell
     }
