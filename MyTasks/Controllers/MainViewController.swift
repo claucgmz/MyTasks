@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
   private func registerNibs() {
     let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: taskItemCellId)
-    
+
     let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: addTaskItemCellId)
   }
@@ -74,13 +74,15 @@ class MainViewController: UIViewController {
   private func setUserProfileImage() {
     
     if let imageUrl = user?.imageURL {
-      
+      print(imageUrl)
       guard let imageURL = URL(string: imageUrl) else {
         return
       }
       
+      print(imageURL)
+      
       UserManager.shared.getImage(fromUrl: imageURL, onSuccess: { data in
-        
+        print(data)
         guard let data = data else {
           return
         }
@@ -95,14 +97,9 @@ class MainViewController: UIViewController {
         }
       })
       
+      //userProfileImage.dropShadow(color: .darkGray, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
       userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
       userProfileImage.clipsToBounds = true
-      userProfileImage.layer.shadowColor = UIColor.black.cgColor
-      userProfileImage.layer.shadowOpacity = 1
-      userProfileImage.layer.shadowOffset = CGSize.zero
-      userProfileImage.layer.shadowRadius = 10
-      userProfileImage.layer.shadowPath = UIBezierPath(rect: userProfileImage.bounds).cgPath
-      userProfileImage.layer.shouldRasterize = true
     }
   }
   
@@ -131,7 +128,7 @@ extension MainViewController: UICollectionViewDataSource {
     
     if indexPath.row < lists.count {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: taskItemCellId, for: indexPath) as! TaskListCollectionCell
-      
+      cell.roundCorners(withRadius: 10)
       let taskList = lists[indexPath.row]
       cell.configure(withTaskList: taskList)
       
@@ -139,7 +136,16 @@ extension MainViewController: UICollectionViewDataSource {
     }
     else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: addTaskItemCellId, for: indexPath) as! AddTaskListCollectionCell
+      cell.roundCorners(withRadius: 10)
       return cell
     }
+  }
+  
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
   }
 }

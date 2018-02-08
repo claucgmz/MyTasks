@@ -18,16 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="280"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="754-Ty-Nln">
-                        <rect key="frame" x="69" y="207" width="63" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New List" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="754-Ty-Nln">
+                        <rect key="frame" x="20" y="104" width="160" height="72"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                        <color key="textColor" red="0.3803921569" green="0.37647058820000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="754-Ty-Nln" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="7e9-7c-Leo"/>
+                <constraint firstAttribute="trailing" secondItem="754-Ty-Nln" secondAttribute="trailing" constant="20" id="mVS-ia-M22"/>
+                <constraint firstItem="754-Ty-Nln" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="qpo-8A-N9p"/>
+                <constraint firstItem="754-Ty-Nln" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="t7B-0I-zKN"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
         </collectionViewCell>
     </objects>
