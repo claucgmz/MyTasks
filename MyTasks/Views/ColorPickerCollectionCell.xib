@@ -28,7 +28,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chr-kh-Fni">
-                        <rect key="frame" x="8" y="8.5" width="45" height="45"/>
+                        <rect key="frame" x="10" y="10.5" width="40" height="40"/>
                         <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
@@ -37,10 +37,10 @@
             <constraints>
                 <constraint firstItem="A5N-x4-CHt" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="DIG-Ub-cQf"/>
                 <constraint firstItem="A5N-x4-CHt" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="VR7-IV-YLk"/>
-                <constraint firstItem="chr-kh-Fni" firstAttribute="height" secondItem="A5N-x4-CHt" secondAttribute="height" multiplier="0.9" id="VT4-uI-SAF"/>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="height" secondItem="A5N-x4-CHt" secondAttribute="height" multiplier="0.8" id="VT4-uI-SAF"/>
                 <constraint firstItem="chr-kh-Fni" firstAttribute="centerX" secondItem="A5N-x4-CHt" secondAttribute="centerX" id="WZt-KP-Oxi"/>
                 <constraint firstItem="chr-kh-Fni" firstAttribute="centerY" secondItem="A5N-x4-CHt" secondAttribute="centerY" id="dwc-pj-IJb"/>
-                <constraint firstItem="chr-kh-Fni" firstAttribute="width" secondItem="A5N-x4-CHt" secondAttribute="width" multiplier="0.9" id="vOf-Ey-M3Z"/>
+                <constraint firstItem="chr-kh-Fni" firstAttribute="width" secondItem="A5N-x4-CHt" secondAttribute="width" multiplier="0.8" id="vOf-Ey-M3Z"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>

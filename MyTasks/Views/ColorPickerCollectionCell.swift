@@ -14,8 +14,15 @@ class ColorPickerCollectionCell: UICollectionViewCell {
   
   func configure(withColor color: UIColor, isSelected: Bool) {
     selectedView.isHidden = !isSelected
+    
+    if isSelected {
+      selectedView.backgroundColor = color
+      colorView.backgroundColor = color.withAlphaComponent(0.5)
+    } else {
+      colorView.backgroundColor = color
+    }
+    
     selectedView.roundCorners(withRadius: selectedView.frame.size.width / 2)
-    colorView.backgroundColor = color
     colorView.roundCorners(withRadius: colorView.frame.size.width / 2)
   }
   
