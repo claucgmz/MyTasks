@@ -1,5 +1,5 @@
 //
-//  AddTaskListTableViewController.swift
+//  TaskListDetailTableViewController.swift
 //  MyTasks
 //
 //  Created by Caludia Carrillo on 2/7/18.
@@ -9,12 +9,12 @@
 import UIKit
 import CoreGraphics
 
-protocol AddTaskListTableViewControllerDelegate: class {
-  func addTaskListTableViewController(_ controller: AddTaskListTableViewController, keyboardWillShow show: Bool, with height: CGFloat)
-  func addTaskListTableViewController(_ controller: AddTaskListTableViewController, didEnableButton enable: Bool)
+protocol TaskListDetailTableViewControllerDelegate: class {
+  func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, keyboardWillShow show: Bool, with height: CGFloat)
+  func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, didEnableButton enable: Bool)
 }
 
-class AddTaskListTableViewController: UITableViewController {
+class TaskListDetailTableViewController: UITableViewController {
   
   @IBOutlet private weak var colorPickerView: UICollectionView!
   @IBOutlet private weak var iconPickerView: UICollectionView!
@@ -23,7 +23,7 @@ class AddTaskListTableViewController: UITableViewController {
   private let colors = UIColor.ColorPicker.all
   private let icons = CategoryIcon.all
   
-  weak var delegate: AddTaskListTableViewControllerDelegate?
+  weak var delegate: TaskListDetailTableViewControllerDelegate?
   var selectedColor = UIColor.ColorPicker.americanRiver
   var selectedIcon: CategoryIcon = .bam
   var listNameText: String!
@@ -31,7 +31,7 @@ class AddTaskListTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    delegate?.addTaskListTableViewController(self, didEnableButton: false)
+    delegate?.taskListDetailTableViewController(self, didEnableButton: false)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -64,9 +64,9 @@ class AddTaskListTableViewController: UITableViewController {
     let keyboardHeight = keyboardRectangle.height
     
     if notification.name.rawValue == "UIKeyboardWillHideNotification" {
-      delegate?.addTaskListTableViewController(self, keyboardWillShow: false, with: keyboardHeight)
+      delegate?.taskListDetailTableViewController(self, keyboardWillShow: false, with: keyboardHeight)
     } else {
-      delegate?.addTaskListTableViewController(self, keyboardWillShow: true, with: keyboardHeight)
+      delegate?.taskListDetailTableViewController(self, keyboardWillShow: true, with: keyboardHeight)
     }
   }
   
@@ -92,7 +92,7 @@ class AddTaskListTableViewController: UITableViewController {
 }
 
 //MARK: - UICollection delegate methods
-extension AddTaskListTableViewController: UICollectionViewDelegate {
+extension TaskListDetailTableViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     listNameTextField.resignFirstResponder()
     
@@ -105,7 +105,7 @@ extension AddTaskListTableViewController: UICollectionViewDelegate {
 }
 
 //MARK: - UICollection dataSource methods
-extension AddTaskListTableViewController: UICollectionViewDataSource {
+extension TaskListDetailTableViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if collectionView === colorPickerView {
       return colors.count
@@ -129,13 +129,13 @@ extension AddTaskListTableViewController: UICollectionViewDataSource {
   }
 }
 
-extension AddTaskListTableViewController: UITextFieldDelegate {
+extension TaskListDetailTableViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     let oldText = textField.text!
     let stringRange = Range(range, in:oldText)!
     let newText = oldText.replacingCharacters(in: stringRange, with: string)
     listNameText = newText
-    delegate?.addTaskListTableViewController(self, didEnableButton: !listNameText.isEmpty)
+    delegate?.taskListDetailTableViewController(self, didEnableButton: !listNameText.isEmpty)
 
     return true
   }

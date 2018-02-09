@@ -23,7 +23,7 @@
 		5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */; };
 		5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
-		5FC0497B202A322800B80ABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* MainViewController.swift */; };
+		5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* HomeViewController.swift */; };
 		5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0498B202A537F00B80ABC /* UserManager.swift */; };
 		5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCD202A7AFA008C1ECB /* TaskList.swift */; };
 		5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */; };
@@ -31,8 +31,8 @@
 		5FD49CD7202A7F3A008C1ECB /* TaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */; };
 		5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */; };
 		5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */; };
-		5FD49CDF202A9AC7008C1ECB /* AddTaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */; };
-		5FF0B0D6202B5D6500A7ADB8 /* AddTaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */; };
+		5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */; };
+		5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */; };
 		5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */; };
 		5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */; };
 		5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */; };
@@ -60,7 +60,7 @@
 		5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+ReuseableId.swift"; sourceTree = "<group>"; };
 		5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIcon.swift; sourceTree = "<group>"; };
 		5FC04979202A171800B80ABC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5FC0497A202A322800B80ABC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5FC0497A202A322800B80ABC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5FC04981202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
 		5FC04982202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5FC04983202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -72,8 +72,8 @@
 		5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListCollectionCell.xib; sourceTree = "<group>"; };
 		5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListCollectionCell.swift; sourceTree = "<group>"; };
 		5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTaskListCollectionCell.xib; sourceTree = "<group>"; };
-		5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListViewController.swift; sourceTree = "<group>"; };
-		5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListTableViewController.swift; sourceTree = "<group>"; };
+		5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
+		5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailTableViewController.swift; sourceTree = "<group>"; };
 		5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionCell.swift; sourceTree = "<group>"; };
 		5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerCollectionCell.xib; sourceTree = "<group>"; };
 		5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ColorPicker.swift"; sourceTree = "<group>"; };
@@ -151,9 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */,
-				5FC0497A202A322800B80ABC /* MainViewController.swift */,
-				5FD49CDE202A9AC7008C1ECB /* AddTaskListViewController.swift */,
-				5FF0B0D5202B5D6500A7ADB8 /* AddTaskListTableViewController.swift */,
+				5FC0497A202A322800B80ABC /* HomeViewController.swift */,
+				5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */,
+				5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FC0497B202A322800B80ABC /* MainViewController.swift in Sources */,
+				5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */,
 				5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */,
 				5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */,
 				5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */,
@@ -392,8 +392,8 @@
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
-				5FF0B0D6202B5D6500A7ADB8 /* AddTaskListTableViewController.swift in Sources */,
-				5FD49CDF202A9AC7008C1ECB /* AddTaskListViewController.swift in Sources */,
+				5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */,
+				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,
 				5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */,
 				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift in Sources */,
 			);

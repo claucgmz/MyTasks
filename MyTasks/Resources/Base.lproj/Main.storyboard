@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="218" y="90"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="kFo-Zy-LSn">
             <objects>
-                <viewController id="AaR-1V-Evv" customClass="MainViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AaR-1V-Evv" customClass="HomeViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UJ1-eo-ABZ" customClass="LayerContainerView" customModule="MyTasks" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,17 +115,17 @@
                         <outlet property="todaySummaryLabel" destination="GKH-cj-6DL" id="Q2d-Ry-SvW"/>
                         <outlet property="userProfileImage" destination="Ajx-NF-AZe" id="ZtJ-oj-szU"/>
                         <outlet property="welcomeLabel" destination="NVn-wC-3Od" id="Ej1-8i-d3W"/>
-                        <segue destination="AGJ-DA-RdB" kind="show" identifier="AddTaskList" id="zAv-CS-9CG"/>
+                        <segue destination="AGJ-DA-RdB" kind="show" identifier="TaskListDetail" id="zAv-CS-9CG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mgf-vd-6Qu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1016.8" y="90.404797601199405"/>
         </scene>
-        <!--Add Task List View Controller-->
+        <!--Task List Detail View Controller-->
         <scene sceneID="AMk-aZ-ttR">
             <objects>
-                <viewController id="AGJ-DA-RdB" customClass="AddTaskListViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AGJ-DA-RdB" customClass="TaskListDetailViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aQI-Yk-MFb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,7 +133,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1r-WC-b4b">
                                 <rect key="frame" x="0.0" y="88" width="375" height="645"/>
                                 <connections>
-                                    <segue destination="Jj3-EJ-lbm" kind="embed" identifier="AddTaskListTable" id="L29-BP-26e"/>
+                                    <segue destination="Jj3-EJ-lbm" kind="embed" identifier="TaskListDetailTable" id="L29-BP-26e"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqZ-Qx-3Q0">
@@ -189,10 +189,10 @@
             </objects>
             <point key="canvasLocation" x="-668" y="90"/>
         </scene>
-        <!--Add Task List Table View Controller-->
+        <!--Task List Detail Table View Controller-->
         <scene sceneID="m4K-Ww-srs">
             <objects>
-                <tableViewController id="Jj3-EJ-lbm" customClass="AddTaskListTableViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Jj3-EJ-lbm" customClass="TaskListDetailTableViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SwG-yi-Ldp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="645"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

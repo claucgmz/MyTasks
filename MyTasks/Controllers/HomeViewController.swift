@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeViewController.swift
 //  MyTasks
 //
 //  Created by Caludia Carrillo on 2/6/18.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class MainViewController: UIViewController {
+class HomeViewController: UIViewController {
   
   @IBOutlet private weak var taskListCollectionView: UICollectionView!
   @IBOutlet private weak var userProfileImage: UIImageView!
@@ -102,26 +102,26 @@ class MainViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "AddTaskList" {
-      let controller = segue.destination as! AddTaskListViewController
+    if segue.identifier == "TaskListDetail" {
+      let controller = segue.destination as! TaskListDetailViewController
       controller.delegate = self
     }
   }
   
 }
 
-extension MainViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row < lists.count {
       
     }
     else {
-      performSegue(withIdentifier: "AddTaskList", sender: self)
+      performSegue(withIdentifier: "TaskListDetail", sender: self)
     }
   }
 }
 
-extension MainViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return lists.count + 1
   }
@@ -145,15 +145,15 @@ extension MainViewController: UICollectionViewDataSource {
   
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
   }
 }
 
-extension MainViewController: AddTaskListViewControllerDelegate {
-  func addTaskListTableViewController(_ controller: AddTaskListViewController, didFinishAdding tasklist: TaskList) {
+extension HomeViewController: TaskListDetailViewControllerDelegate {
+  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList) {
     lists.append(tasklist)
     taskListCollectionView.reloadData()
     navigationController?.popViewController(animated:true)
