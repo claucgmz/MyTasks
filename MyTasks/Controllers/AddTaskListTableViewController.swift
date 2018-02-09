@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 protocol AddTaskListTableViewControllerDelegate: class {
   func addTaskListTableViewController(_ controller: AddTaskListTableViewController, keyboardWillShow show: Bool, withHeight height: CGFloat)
@@ -21,10 +22,8 @@ class AddTaskListTableViewController: UITableViewController {
   weak var delegate: AddTaskListTableViewControllerDelegate?
   let colors = UIColor.ColorPicker.all
   let icons = CategoryIcon.all
-  var selectedColorIndex: Int? = nil
-  var selectedColor: UIColor? = nil
-  
-  
+  var selectedColor = UIColor.ColorPicker.americanRiver
+
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
@@ -75,10 +74,9 @@ class AddTaskListTableViewController: UITableViewController {
   }
   
   //MARK: - Private methods
-  private func didSelectColor(index: Int) {
-    selectedColorIndex = index
-    let color = colors[index]
-    selectedColor = color
+  private func didSelectColor(at indexPath: IndexPath) {
+    selectedColor = colors[indexPath.row]
+    colorPickerView.reloadData()
     iconPickerView.reloadData()
   }
 }
@@ -88,7 +86,7 @@ extension AddTaskListTableViewController: UICollectionViewDelegate {
     listNameTextField.resignFirstResponder()
     
     if collectionView === colorPickerView {
-      didSelectColor(index: indexPath.row)
+      didSelectColor(at: indexPath)
     }
     else {
 
@@ -110,7 +108,9 @@ extension AddTaskListTableViewController: UICollectionViewDataSource {
     if collectionView === colorPickerView {
       let cell = colorPickerView.dequeueReusableCell(withReuseIdentifier: ColorPickerCollectionCell.reusableId, for: indexPath) as! ColorPickerCollectionCell
       let color = colors[indexPath.row]
-      cell.configure(withColor: color)
+      print(color, selectedColor)
+      print(color == selectedColor)
+      cell.configure(withColor: color, isSelected: color == selectedColor)
       return cell
     }
     else {
