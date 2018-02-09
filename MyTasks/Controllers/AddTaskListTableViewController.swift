@@ -20,9 +20,12 @@ class AddTaskListTableViewController: UITableViewController {
   @IBOutlet private weak var listNameTextField: UITextField!
   
   weak var delegate: AddTaskListTableViewControllerDelegate?
+  
   let colors = UIColor.ColorPicker.all
   let icons = CategoryIcon.all
+  
   var selectedColor = UIColor.ColorPicker.americanRiver
+  var selectedIcon: CategoryIcon = .bam
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -79,6 +82,13 @@ class AddTaskListTableViewController: UITableViewController {
     colorPickerView.reloadData()
     iconPickerView.reloadData()
   }
+  
+  //MARK: - Private methods
+  private func didSelectIcon(at indexPath: IndexPath) {
+    selectedIcon = icons[indexPath.row]
+    iconPickerView.reloadData()
+  }
+  
 }
 
 extension AddTaskListTableViewController: UICollectionViewDelegate {
@@ -89,7 +99,7 @@ extension AddTaskListTableViewController: UICollectionViewDelegate {
       didSelectColor(at: indexPath)
     }
     else {
-
+      didSelectIcon(at: indexPath)
     }
   }
 }
@@ -108,15 +118,13 @@ extension AddTaskListTableViewController: UICollectionViewDataSource {
     if collectionView === colorPickerView {
       let cell = colorPickerView.dequeueReusableCell(withReuseIdentifier: ColorPickerCollectionCell.reusableId, for: indexPath) as! ColorPickerCollectionCell
       let color = colors[indexPath.row]
-      print(color, selectedColor)
-      print(color == selectedColor)
       cell.configure(withColor: color, isSelected: color == selectedColor)
       return cell
     }
     else {
       let cell = iconPickerView.dequeueReusableCell(withReuseIdentifier: IconPickerCollectionCell.reusableId, for: indexPath) as! IconPickerCollectionCell
       let icon = icons[indexPath.row]
-      cell.configure(withIcon: icon, color: selectedColor)
+      cell.configure(withIcon: icon, isSelected: icon == selectedIcon, color: selectedColor)
       return cell
     }
     

@@ -11,13 +11,17 @@ import UIKit
 class IconPickerCollectionCell: UICollectionViewCell {
   @IBOutlet weak var iconImage: UIImageView!
   
-  func configure(withIcon icon: CategoryIcon, color: UIColor?) {
+  func configure(withIcon icon: CategoryIcon, isSelected: Bool, color: UIColor) {
     if let icon = UIImage(named: icon.rawValue) {
       iconImage.image = icon
     }
     
-    if let color = color {
+    if isSelected {
       iconImage.tintImageColor(color: color)
+    } else {
+      iconImage.tintImageColor(color: color.withAlphaComponent(0.5))
     }
+    
+   
   }
 }
