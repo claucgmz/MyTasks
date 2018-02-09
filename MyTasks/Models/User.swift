@@ -23,18 +23,18 @@ import RealmSwift
   }
   
   // MARK: - Init
-  convenience init(with data: [String : Any]?) {
+  convenience init(with facebookData: [String : Any]?) {
     self.init()
     
-    if let id = data?["id"] as? String {
+    if let id = facebookData?["id"] as? String {
       self.id = (id as NSString).integerValue
     }
     
-    if let firstName = data?["first_name"] as? String {
+    if let firstName = facebookData?["first_name"] as? String {
       self.firstName = firstName
     }
     
-    if let lastName = data?["last_name"] as? String {
+    if let lastName = facebookData?["last_name"] as? String {
       self.lastName = lastName
     }
     
