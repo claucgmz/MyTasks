@@ -21,7 +21,5 @@ class IconPickerCollectionCell: UICollectionViewCell {
     } else {
       iconImage.tintImageColor(color: color.withAlphaComponent(0.5))
     }
-    
-   
   }
 }

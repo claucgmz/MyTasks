@@ -102,6 +102,10 @@ class MainViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "AddTaskList" {
+      let controller = segue.destination as! AddTaskListViewController
+      controller.delegate = self
+    }
   }
   
 }
@@ -145,5 +149,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
+  }
+}
+
+extension MainViewController: AddTaskListViewControllerDelegate {
+  func addTaskListTableViewController(_ controller: AddTaskListViewController, didFinishAdding tasklist: TaskList) {
+    lists.append(tasklist)
+    taskListCollectionView.reloadData()
+    navigationController?.popViewController(animated:true)
   }
 }
