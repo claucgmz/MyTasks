@@ -81,7 +81,6 @@ class MainViewController: UIViewController {
       print(imageURL)
       
       UserManager.shared.getImage(fromUrl: imageURL, onSuccess: { data in
-        print(data)
         guard let data = data else {
           return
         }
@@ -133,7 +132,7 @@ extension MainViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       let taskList = lists[indexPath.row]
-      cell.configure(withTaskList: taskList)
+      cell.configure(with: taskList)
       
       return cell
     }
