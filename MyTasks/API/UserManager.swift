@@ -12,7 +12,7 @@ class UserManager {
   
   private init() {}
   static let shared = UserManager()
-  
+
   func getImage(fromUrl url: URL, onSuccess: @escaping (Data?) -> Void, onFailure: @escaping (Error?) -> Void) {
     let session = URLSession.shared
     

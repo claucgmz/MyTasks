@@ -24,7 +24,6 @@
 		5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
 		5FC0497B202A322800B80ABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* MainViewController.swift */; };
-		5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC04989202A401F00B80ABC /* UserDefaults+LogIn.swift */; };
 		5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0498B202A537F00B80ABC /* UserManager.swift */; };
 		5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCD202A7AFA008C1ECB /* TaskList.swift */; };
 		5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */; };
@@ -66,7 +65,6 @@
 		5FC04982202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5FC04983202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5FC04984202A38A500B80ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5FC04989202A401F00B80ABC /* UserDefaults+LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LogIn.swift"; sourceTree = "<group>"; };
 		5FC0498B202A537F00B80ABC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5FD49CCD202A7AFA008C1ECB /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 		5FC04988202A3F7C00B80ABC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5FC04989202A401F00B80ABC /* UserDefaults+LogIn.swift */,
 				5FACC613202A67D5003D1957 /* Date+Format.swift */,
 				5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */,
 				5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */,
@@ -393,7 +390,6 @@
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
 				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
-				5FC0498A202A401F00B80ABC /* UserDefaults+LogIn.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
 				5FF0B0D6202B5D6500A7ADB8 /* AddTaskListTableViewController.swift in Sources */,

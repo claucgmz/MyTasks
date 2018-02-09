@@ -19,10 +19,11 @@ class MainViewController: UIViewController {
   
   var lists = [TaskList]()
   let realm = RealmService.shared.realm
-  var user: User?
+  var user: User!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    user = User.getLoggedUser()
     updateView()
     registerNibs()
     
