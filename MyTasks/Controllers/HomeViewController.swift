@@ -105,6 +105,10 @@ class HomeViewController: UIViewController {
     if segue.identifier == "TaskListDetail" {
       let controller = segue.destination as! TaskListDetailViewController
       controller.delegate = self
+      
+      if sender is TaskList {
+        controller.tasklistToEdit = sender as? TaskList
+      }
     }
   }
   
@@ -113,7 +117,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row < lists.count {
-      
+      let tasklist = lists[indexPath.row]
+      performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
     }
     else {
       performSegue(withIdentifier: "TaskListDetail", sender: self)
@@ -155,6 +160,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: TaskListDetailViewControllerDelegate {
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList) {
     lists.append(tasklist)
+    taskListCollectionView.reloadData()
+    navigationController?.popViewController(animated:true)
+  }
+  
+  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList) {
     taskListCollectionView.reloadData()
     navigationController?.popViewController(animated:true)
   }

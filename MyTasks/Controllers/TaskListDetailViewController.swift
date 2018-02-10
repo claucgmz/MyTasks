@@ -10,6 +10,7 @@ import UIKit
 
 protocol TaskListDetailViewControllerDelegate: class {
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList)
+  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList)
 }
 
 class TaskListDetailViewController: UIViewController {
@@ -19,10 +20,20 @@ class TaskListDetailViewController: UIViewController {
   private var taskListDetailTableViewController: TaskListDetailTableViewController?
   
   weak var delegate: TaskListDetailViewControllerDelegate?
+  var tasklistToEdit: TaskList?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
+    if tasklistToEdit != nil {
+      title = "Edit TaskList"
+      mainActionButton.isEnabled = true
+    }
+    else {
+      mainActionButton.isEnabled = false
+    }
+    
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +45,7 @@ class TaskListDetailViewController: UIViewController {
     if segue.identifier == "TaskListDetailTable" {
       let controller = segue.destination as! TaskListDetailTableViewController
       controller.delegate = self
+      controller.tasklistToEdit = tasklistToEdit
     }
   }
   
@@ -44,15 +56,23 @@ class TaskListDetailViewController: UIViewController {
   }
   
   @IBAction private func done() {
-
+    
     guard let name = taskListDetailTableViewController?.listNameText, let icon = taskListDetailTableViewController?.selectedIcon, let color = taskListDetailTableViewController?.selectedColor else {
       return
     }
     
-    let tasklist = TaskList(name: name, icon: icon)
-    tasklist.color = color
+    if let tasklistToEdit  = tasklistToEdit {
+      tasklistToEdit.color = color
+      tasklistToEdit.icon = icon
+      tasklistToEdit.name = name
+      delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
+    }
+    else {
+      let tasklist = TaskList(name: name, icon: icon)
+      tasklist.color = color
+      delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
+    }
     
-    delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
   }
 }
 

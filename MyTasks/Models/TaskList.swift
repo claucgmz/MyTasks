@@ -10,7 +10,7 @@ import UIKit
 
 class TaskList {
   var name = ""
-  var color: UIColor = .black
+  var color = UIColor.ColorPicker.americanRiver
   var icon: CategoryIcon
   var items = [TaskItem]()
   

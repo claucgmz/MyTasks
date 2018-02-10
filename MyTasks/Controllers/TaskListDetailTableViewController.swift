@@ -27,11 +27,18 @@ class TaskListDetailTableViewController: UITableViewController {
   var selectedColor = UIColor.ColorPicker.americanRiver
   var selectedIcon: CategoryIcon = .bam
   var listNameText: String!
-
+  var tasklistToEdit: TaskList?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    delegate?.taskListDetailTableViewController(self, didEnableButton: false)
+    
+    if let tasklistToEdit = tasklistToEdit {
+      selectedIcon = tasklistToEdit.icon
+      selectedColor = tasklistToEdit.color
+      listNameText = tasklistToEdit.name
+      listNameTextField.text = listNameText
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +48,7 @@ class TaskListDetailTableViewController: UITableViewController {
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
-
+  
   
   // MARK: - Table view data source
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -136,7 +143,7 @@ extension TaskListDetailTableViewController: UITextFieldDelegate {
     let newText = oldText.replacingCharacters(in: stringRange, with: string)
     listNameText = newText
     delegate?.taskListDetailTableViewController(self, didEnableButton: !listNameText.isEmpty)
-
+    
     return true
   }
 }
