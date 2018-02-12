@@ -9,13 +9,11 @@
 import Foundation
 import FacebookCore
 
-typealias JSONDictionary = [String: Any]
-
 class FacebookManager {
   
   let connection = GraphRequestConnection()
   
-  func getUserInfo(onSuccess: @escaping (JSONDictionary?) -> Void, onFailure: @escaping (Error?) -> Void) {
+  func getUserInfo(onSuccess: @escaping ([String: Any]?) -> Void, onFailure: @escaping (Error?) -> Void) {
     
     connection.add(GraphRequest(graphPath: "me", parameters: ["fields": "id, first_name, last_name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)) { httpResponse, result in
       
