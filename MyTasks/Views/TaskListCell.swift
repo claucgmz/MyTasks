@@ -1,5 +1,5 @@
 //
-//  IconCategoryCell.swift
+//  TaskListCell.swift
 //  MyTasks
 //
 //  Created by Caludia Carrillo on 2/12/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IconCategoryCell: UITableViewCell {
+class TaskListCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

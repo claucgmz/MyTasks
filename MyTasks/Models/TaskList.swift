@@ -12,7 +12,8 @@ import RealmSwift
 @objcMembers class TaskList: Object {
   
   // MARK: - Properties
-  dynamic var id = 0
+  //dynamic var user: User?
+  dynamic var id = UUID().uuidString
   dynamic var name = ""
   dynamic var hex = ""
   dynamic var categoryIcon = CategoryIcon.bam.rawValue
@@ -34,6 +35,7 @@ import RealmSwift
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
     self.init()
+   //self.user = User.getLoggedUser()
     self.name = name
     self.icon = icon
     self.hex = color.toHexString
@@ -42,6 +44,10 @@ import RealmSwift
   // MARK: - Meta
   override class func primaryKey() -> String? {
     return "id"
+  }
+  
+  override static func indexedProperties() -> [String] {
+    return ["user"]
   }
   
   func countUncheckedItems() -> Int {

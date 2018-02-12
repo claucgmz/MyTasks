@@ -26,7 +26,6 @@ class HomeViewController: UIViewController {
     let realm = RealmService.shared.realm
     user = User.getLoggedUser()
     tasklists = realm.objects(TaskList.self)
-    
     updateView()
     registerNibs()
   }
@@ -39,7 +38,7 @@ class HomeViewController: UIViewController {
   private func registerNibs() {
     let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
-
+    
     let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
   }
@@ -62,7 +61,6 @@ class HomeViewController: UIViewController {
   }
   
   private func setUserProfileImage() {
-    
     if let imageUrl = user?.imageURL {
       print(imageUrl)
       guard let imageURL = URL(string: imageUrl) else {
@@ -90,6 +88,25 @@ class HomeViewController: UIViewController {
       userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
       userProfileImage.clipsToBounds = true
     }
+  }
+  
+  @objc private func showMoreActionSheet(_ sender: UIButton) {
+    let index = sender.tag
+    let alert = UIAlertController(title: "What do you want to do?", message: "", preferredStyle: .actionSheet)
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    let editAction = UIAlertAction(title: "Edit", style: .default, handler: { action in
+      let tasklist = self.tasklists[index]
+      self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
+    })
+    
+    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: nil)
+    
+    alert.addAction(cancelAction)
+    alert.addAction(editAction)
+    alert.addAction(deleteAction)
+    
+    self.present(alert, animated: true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,7 +144,8 @@ extension HomeViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       let taskList = tasklists[indexPath.row]
-      cell.configure(with: taskList)
+      cell.configure(with: taskList, index: indexPath.row)
+      cell.moreButton.addTarget(self, action: #selector(showMoreActionSheet(_:)), for: .touchUpInside)
       
       return cell
     } else {
