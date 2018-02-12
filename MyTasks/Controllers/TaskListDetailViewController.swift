@@ -28,8 +28,7 @@ class TaskListDetailViewController: UIViewController {
     if tasklistToEdit != nil {
       title = "Edit TaskList"
       mainActionButton.isEnabled = true
-    }
-    else {
+    } else {
       mainActionButton.isEnabled = false
     }
     
@@ -66,8 +65,7 @@ class TaskListDetailViewController: UIViewController {
       tasklistToEdit.icon = icon
       tasklistToEdit.name = name
       delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
-    }
-    else {
+    } else {
       let tasklist = TaskList(name: name, icon: icon)
       tasklist.color = color
       delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)

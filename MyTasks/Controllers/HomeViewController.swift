@@ -119,8 +119,7 @@ extension HomeViewController: UICollectionViewDelegate {
     if indexPath.row < lists.count {
       let tasklist = lists[indexPath.row]
       performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
-    }
-    else {
+    } else {
       performSegue(withIdentifier: "TaskListDetail", sender: self)
     }
   }
@@ -140,8 +139,7 @@ extension HomeViewController: UICollectionViewDataSource {
       cell.configure(with: taskList)
       
       return cell
-    }
-    else {
+    } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId, for: indexPath) as! AddTaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       return cell
