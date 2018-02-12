@@ -7,18 +7,14 @@
 //
 
 import Foundation
+import RealmSwift
 
-class TaskItem {
-  var itemID: Int = 0
-  var text = ""
-  var checked = false
-  var dueDate = Date()
-  var shouldRemind = false
-  var deleted = false
-  
-  init() {
-    
-  }
+@objcMembers class TaskItem: Object {
+  dynamic var text = ""
+  dynamic var checked = false
+  dynamic var dueDate = Date()
+  dynamic var shouldRemind = false
+  dynamic var deleted = false
   
   func toogleCheckmark() {
     self.checked = !checked

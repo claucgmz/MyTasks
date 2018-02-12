@@ -31,8 +31,6 @@ class TaskListDetailViewController: UIViewController {
     } else {
       mainActionButton.isEnabled = false
     }
-    
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +59,11 @@ class TaskListDetailViewController: UIViewController {
     }
     
     if let tasklistToEdit  = tasklistToEdit {
-      tasklistToEdit.color = color
-      tasklistToEdit.icon = icon
-      tasklistToEdit.name = name
+      RealmService.shared.update(tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
       delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
-      let tasklist = TaskList(name: name, icon: icon)
-      tasklist.color = color
+      let tasklist = TaskList(name: name, icon: icon, color: color)
+      RealmService.shared.create(tasklist)
       delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
     }
     
