@@ -116,9 +116,7 @@ extension TaskDetailTableViewController: UITextFieldDelegate {
     let stringRange = Range(range, in:oldText)!
     let newText = oldText.replacingCharacters(in: stringRange, with: string)
     taskText = newText
-    
-    print(taskText)
-    //delegate?.taskListDetailTableViewController(self, didEnableButton: !listNameText.isEmpty)
+    delegate?.formWithButtonDelegate(self, didEnableButton: !taskText.isEmpty)
     
     return true
   }
