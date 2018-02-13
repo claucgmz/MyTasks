@@ -28,7 +28,7 @@ class TaskDetailViewController: UIViewController {
     taskDetailTableViewController = childViewControllers.first as? TaskDetailTableViewController
     if taskToEdit != nil {
       title = "Edit Task"
-      updateMainButton(enable: true)
+      mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
       if let date = taskToEdit?.dueDate {
         taskDetailTableViewController?.dueDate = date
@@ -40,7 +40,7 @@ class TaskDetailViewController: UIViewController {
       
     } else {
       title = "Add Task"
-      updateMainButton(enable: false)
+      mainActionButton.didEnable(false)
     }
   }
   
@@ -60,15 +60,6 @@ class TaskDetailViewController: UIViewController {
     let newHeight = show == true ? view.frame.height - height : view.frame.height + height
     let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
     view.frame = frame
-  }
-  
-  private func updateMainButton(enable: Bool) {
-    mainActionButton.isEnabled = enable
-    if enable {
-      mainActionButton.alpha = 1.0
-    } else {
-      mainActionButton.alpha = 0.6
-    }
   }
   
   @IBAction private func done() {
@@ -101,6 +92,6 @@ extension TaskDetailViewController: FormWithButtonDelegate {
   }
   
   func formWithButtonDelegate(_ controller: UIViewController, didEnableButton enable: Bool) {
-    updateMainButton(enable: enable)
+    mainActionButton.didEnable(enable)
   }
 }

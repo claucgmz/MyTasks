@@ -27,9 +27,10 @@ class TaskListDetailViewController: UIViewController {
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
     if tasklistToEdit != nil {
       title = "Edit TaskList"
-      mainActionButton.isEnabled = true
+      mainActionButton.didEnable(true)
     } else {
-      mainActionButton.isEnabled = false
+      mainActionButton.didEnable(false)
+      title = "Add TaskList"
     }
   }
   
@@ -72,12 +73,7 @@ class TaskListDetailViewController: UIViewController {
 
 extension TaskListDetailViewController: TaskListDetailTableViewControllerDelegate {
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, didEnableButton enable: Bool) {
-    mainActionButton.isEnabled = enable
-    if enable {
-      mainActionButton.alpha = 1.0
-    } else {
-      mainActionButton.alpha = 0.6
-    }
+    mainActionButton.didEnable(enable)
   }
   
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, keyboardWillShow show: Bool, with height: CGFloat) {
