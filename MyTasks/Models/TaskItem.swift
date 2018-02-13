@@ -24,7 +24,25 @@ import RealmSwift
   }
   
   func toogleCheckmark() {
-    self.checked = !checked
+    let realm = RealmService.shared.realm
+    do{
+      try realm.write {
+        self.checked = !checked
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func delete() {
+    let realm = RealmService.shared.realm
+    do{
+      try realm.write {
+        self.deleted = true
+      }
+    } catch {
+      print(error)
+    }
   }
   
 }

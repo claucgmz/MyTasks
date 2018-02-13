@@ -13,14 +13,26 @@ class TaskListViewController: UIViewController {
   
   @IBOutlet weak var tasksTableView: UITableView!
   var tasklist: TaskList?
-  var tasks: List<TaskItem>!
+  var tasks: Results<TaskItem>!
   var tasksbydate = [Results<TaskItem>]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    tasks = tasklist?.items
-    
+    filterTasks()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+  }
+  
+  private func registerNibs() {
+    let taskCellNib = UINib(nibName: "TaskCell", bundle: nil)
+    tasksTableView.register(taskCellNib, forCellReuseIdentifier: TaskCell.reusableId)
+  }
+  
+  private func filterTasks() {
+    tasks = tasklist?.items.filter("deleted = false")
     let today = Date()
     let todayStart = Calendar.current.startOfDay(for: today)
     let todayEnd: Date = {
@@ -52,15 +64,6 @@ class TaskListViewController: UIViewController {
     print(tasksbydate[2])
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-  }
-  
-  private func registerNibs() {
-    let taskCellNib = UINib(nibName: "TaskCell", bundle: nil)
-    tasksTableView.register(taskCellNib, forCellReuseIdentifier: TaskCell.reusableId)
-  }
-  
   @IBAction func addTaskButtonAction(_ sender: Any) {
    performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
@@ -79,7 +82,8 @@ class TaskListViewController: UIViewController {
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return tasksbydate.count
+    return 3
+    //return tasksbydate.count
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,6 +94,19 @@ extension TaskListViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
     let task = tasksbydate[indexPath.section][indexPath.row]
     cell.configure(with: task)
+    cell.checkboxView.addTapGestureRecognizer(action: {
+      cell.toogleCheckmark(with: !task.checked)
+      task.toogleCheckmark()
+    })
+    
+    cell.deleteView.addTapGestureRecognizer(action: {
+      task.delete()
+      self.filterTasks()
+      tableView.beginUpdates()
+      tableView.deleteRows(at: [indexPath], with: .fade)
+      tableView.endUpdates()
+    })
+    
     return cell
   }
   

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C18754A6517DCC0B2C7BC3B /* Pods_MyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */; };
+		5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
 		5F9D3F6F2028D197000FFA2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F6D2028D197000FFA2B /* Main.storyboard */; };
 		5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		2617ADFA3901667898F17FA5 /* Pods-MyTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.debug.xcconfig"; sourceTree = "<group>"; };
+		5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9D3F692028D197000FFA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F9D3F6E2028D197000FFA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				5FADACE1202CD0710002C351 /* UIView+Decoration.swift */,
 				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */,
 				5FF8308F2031F4A800FABDD8 /* UITableViewCell+ReusableId.swift */,
+				5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */,
 				5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */,
 				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
+				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
