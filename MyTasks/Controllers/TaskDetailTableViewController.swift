@@ -1,5 +1,5 @@
 //
-//  TaskListTableViewController.swift
+//  TaskDetailTableViewController.swift
 //  MyTasks
 //
 //  Created by Caludia Carrillo on 2/12/18.
@@ -13,7 +13,12 @@ class TaskDetailTableViewController: UITableViewController {
   
   @IBOutlet var mainTableView: UITableView!
   
-  var tasklists : Results<TaskList>!
+  private var tasklists : Results<TaskList>!
+  private var datePickerIsVisible = false
+  
+  weak var delegate: FormWithButtonDelegate?
+  var taskText = ""
+  var dueDate = Date()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,8 +26,12 @@ class TaskDetailTableViewController: UITableViewController {
     updateView()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
   
   //MARK: - Private methods
@@ -40,6 +49,26 @@ class TaskDetailTableViewController: UITableViewController {
   private func updateView() {
     let realm = RealmService.shared.realm
     tasklists = realm.objects(TaskList.self)
+  }
+  
+  @objc private func dateChanged(_ datePicker: UIDatePicker) {
+    dueDate = datePicker.date
+    print(dueDate)
+    //updateDueDateLabel()
+  }
+  
+  //MARK: - getKeyboardHeight method
+  @objc func adjustForKeyboard(notification: Notification) {
+    let userInfo:NSDictionary = notification.userInfo! as NSDictionary
+    let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+    let keyboardRectangle = keyboardFrame.cgRectValue
+    let keyboardHeight = keyboardRectangle.height
+    
+    if notification.name.rawValue == "UIKeyboardWillHideNotification" {
+      delegate?.formWithButtonDelegate(self, keyboardWillShow: false, with: keyboardHeight)
+    } else {
+      delegate?.formWithButtonDelegate(self, keyboardWillShow: true, with: keyboardHeight)
+    }
   }
   
   // MARK: - Table view data source
@@ -60,9 +89,11 @@ class TaskDetailTableViewController: UITableViewController {
     
     if section == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldCell.reusableId) as! TextFieldCell
+      cell.taskNameTextField.delegate = self
       return cell
     } else if section == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
+      cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as! TaskListCell
@@ -74,4 +105,18 @@ class TaskDetailTableViewController: UITableViewController {
   
   // MARK - Table view delegate
   
+}
+
+extension TaskDetailTableViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    let oldText = textField.text!
+    let stringRange = Range(range, in:oldText)!
+    let newText = oldText.replacingCharacters(in: stringRange, with: string)
+    taskText = newText
+    
+    print(taskText)
+    //delegate?.taskListDetailTableViewController(self, didEnableButton: !listNameText.isEmpty)
+    
+    return true
+  }
 }

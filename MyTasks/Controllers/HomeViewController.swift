@@ -92,15 +92,18 @@ class HomeViewController: UIViewController {
   
   @objc private func showMoreActionSheet(_ sender: UIButton) {
     let index = sender.tag
-    let alert = UIAlertController(title: "What do you want to do?", message: "", preferredStyle: .actionSheet)
+    let tasklist = self.tasklists[index]
+    let title = String(format: "What do you want to do with Tasklist: %@?", tasklist.name)
+    let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
     
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     let editAction = UIAlertAction(title: "Edit", style: .default, handler: { action in
-      let tasklist = self.tasklists[index]
       self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
     })
     
-    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: nil)
+    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+      action in
+    })
     
     alert.addAction(cancelAction)
     alert.addAction(editAction)
@@ -117,6 +120,13 @@ class HomeViewController: UIViewController {
       if sender is TaskList {
         controller.tasklistToEdit = sender as? TaskList
       }
+    } else if segue.identifier == "TaskDetail" {
+      let controller = segue.destination as! TaskDetailViewController
+      //controller.delegate = self
+      
+      if sender is TaskList {
+        controller.tasklist = sender as? TaskList
+      }
     }
   }
   
@@ -126,7 +136,7 @@ extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row < tasklists.count {
       let tasklist = tasklists[indexPath.row]
-      performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
+      performSegue(withIdentifier: "TaskDetail", sender: tasklist)
     } else {
       performSegue(withIdentifier: "TaskListDetail", sender: self)
     }

@@ -16,6 +16,13 @@ import RealmSwift
   dynamic var shouldRemind = false
   dynamic var deleted = false
   
+  // MARK: - Init
+  convenience init(text: String, date: Date) {
+    self.init()
+    self.text = text
+    self.dueDate = date
+  }
+  
   func toogleCheckmark() {
     self.checked = !checked
   }

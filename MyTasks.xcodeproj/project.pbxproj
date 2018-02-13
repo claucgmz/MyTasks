@@ -39,6 +39,15 @@
 		5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */; };
 		5FF0B0E4202BB86D00A7ADB8 /* IconPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */; };
 		5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */; };
+		5FF830802031F2B600FABDD8 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */; };
+		5FF830832031F3E700FABDD8 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830812031F3E700FABDD8 /* TextFieldCell.swift */; };
+		5FF830842031F3E700FABDD8 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF830822031F3E700FABDD8 /* TextFieldCell.xib */; };
+		5FF830892031F40B00FABDD8 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830872031F40B00FABDD8 /* DatePickerCell.swift */; };
+		5FF8308A2031F40B00FABDD8 /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF830882031F40B00FABDD8 /* DatePickerCell.xib */; };
+		5FF830902031F4A800FABDD8 /* UITableViewCell+ReusableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8308F2031F4A800FABDD8 /* UITableViewCell+ReusableId.swift */; };
+		5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */; };
+		5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8309320323DDA00FABDD8 /* TaskListCell.swift */; };
+		5FF8309620323DDA00FABDD8 /* TaskListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF8309420323DDA00FABDD8 /* TaskListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +89,15 @@
 		5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerCollectionCell.swift; sourceTree = "<group>"; };
 		5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconPickerCollectionCell.xib; sourceTree = "<group>"; };
 		5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Decoration.swift"; sourceTree = "<group>"; };
+		5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
+		5FF830812031F3E700FABDD8 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		5FF830822031F3E700FABDD8 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		5FF830872031F40B00FABDD8 /* DatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		5FF830882031F40B00FABDD8 /* DatePickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
+		5FF8308F2031F4A800FABDD8 /* UITableViewCell+ReusableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+ReusableId.swift"; sourceTree = "<group>"; };
+		5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		5FF8309320323DDA00FABDD8 /* TaskListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCell.swift; sourceTree = "<group>"; };
+		5FF8309420323DDA00FABDD8 /* TaskListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListCell.xib; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +172,8 @@
 				5FC0497A202A322800B80ABC /* HomeViewController.swift */,
 				5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */,
 				5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */,
+				5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */,
+				5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,6 +226,7 @@
 				5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */,
 				5FADACE1202CD0710002C351 /* UIView+Decoration.swift */,
 				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */,
+				5FF8308F2031F4A800FABDD8 /* UITableViewCell+ReusableId.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +243,12 @@
 				5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */,
 				5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */,
 				5FADACDF202CA6D60002C351 /* LayerContainerView.swift */,
+				5FF830812031F3E700FABDD8 /* TextFieldCell.swift */,
+				5FF830822031F3E700FABDD8 /* TextFieldCell.xib */,
+				5FF830872031F40B00FABDD8 /* DatePickerCell.swift */,
+				5FF830882031F40B00FABDD8 /* DatePickerCell.xib */,
+				5FF8309320323DDA00FABDD8 /* TaskListCell.swift */,
+				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,10 +318,13 @@
 			files = (
 				5FF0B0E4202BB86D00A7ADB8 /* IconPickerCollectionCell.xib in Resources */,
 				5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */,
+				5FF830842031F3E700FABDD8 /* TextFieldCell.xib in Resources */,
 				5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */,
+				5FF8309620323DDA00FABDD8 /* TaskListCell.xib in Resources */,
 				5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */,
 				5FC04976202A170400B80ABC /* Localizable.strings in Resources */,
 				5F9D3F742028D197000FFA2B /* Assets.xcassets in Resources */,
+				5FF8308A2031F40B00FABDD8 /* DatePickerCell.xib in Resources */,
 				5F9D3F6F2028D197000FFA2B /* Main.storyboard in Resources */,
 				5FD49CD7202A7F3A008C1ECB /* TaskListCollectionCell.xib in Resources */,
 			);
@@ -384,6 +414,7 @@
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
+				5FF830802031F2B600FABDD8 /* TaskDetailTableViewController.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
@@ -391,8 +422,13 @@
 				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,
+				5FF830892031F40B00FABDD8 /* DatePickerCell.swift in Sources */,
+				5FF830832031F3E700FABDD8 /* TextFieldCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
+				5FF830902031F4A800FABDD8 /* UITableViewCell+ReusableId.swift in Sources */,
 				5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */,
+				5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */,
+				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,
 				5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */,
 				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift in Sources */,

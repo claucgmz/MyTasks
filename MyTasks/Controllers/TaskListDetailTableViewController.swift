@@ -9,6 +9,11 @@
 import UIKit
 import CoreGraphics
 
+protocol FormWithButtonDelegate: class {
+  func formWithButtonDelegate(_ controller: UIViewController, keyboardWillShow show: Bool, with height: CGFloat)
+  func formWithButtonDelegate(_ controller: UIViewController, didEnableButton enable: Bool)
+}
+
 protocol TaskListDetailTableViewControllerDelegate: class {
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, keyboardWillShow show: Bool, with height: CGFloat)
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, didEnableButton enable: Bool)

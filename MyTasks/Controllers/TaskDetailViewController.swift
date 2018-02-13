@@ -1,5 +1,5 @@
 //
-//  TaskListViewController.swift
+//  TaskDetailViewController.swift
 //  MyTasks
 //
 //  Created by Caludia Carrillo on 2/12/18.
@@ -8,33 +8,83 @@
 
 import UIKit
 
-protocol TaskListViewControllerDelegate: class {
-  func taskListViewController(_ controller: TaskListViewController, didFinishAdding task: Task, in tasklist: TaskList)
-  func taskListViewController(_ controller: TaskListViewController, didFinishEditing task: Task, in tasklist: TaskList)
+protocol TaskDetailViewControllerDelegate: class {
+  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: TaskItem, in tasklist: TaskList)
+  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: TaskItem, in tasklist: TaskList)
 }
 
-class TaskListViewController: UIViewController {
+class TaskDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
   
-  private var taskListTableViewController: TaskListDetailTableViewController?
-
-  weak var delegate: TaskListViewControllerDelegate?
+  private var taskDetailTableViewController: TaskDetailTableViewController?
+  
+  weak var delegate: TaskDetailViewControllerDelegate?
+  
   var tasklist: TaskList?
+  var taskToEdit: TaskItem?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    taskListTableViewController = childViewControllers.first as? TaskListTableViewController
-    if tasklistToEdit != nil {
-      title = "Edit TaskList"
+    taskDetailTableViewController = childViewControllers.first as? TaskDetailTableViewController
+    if taskToEdit != nil {
+      title = "Edit Task"
       mainActionButton.isEnabled = true
     } else {
-      mainActionButton.isEnabled = false
+      title = "Add Task"
+      //mainActionButton.isEnabled = false
     }
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "TaskDetailTable" {
+      let controller = segue.destination as! TaskDetailTableViewController
+      controller.delegate = self
+      //controller.taskToEdit = taskToEdit
+    }
+  }
+  private func adjustForKeyboard(with height: CGFloat, show: Bool) {
+    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
+    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
+    view.frame = frame
+  }
+  
+  @IBAction private func done() {
+    guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate else {
+      return
+    }
+    
+    if let taskToEdit  = taskToEdit {
+      //RealmService.shared.update(tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
+      //delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
+    } else {
+      let task = TaskItem(text: text, date: date)
+      tasklist?.add(task: task)
+      print(task)
+      self.navigationController?.popViewController(animated:true)
+      //RealmService.shared.create(tasklist)
+      //delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
+    }
+  }
+}
+
+extension TaskDetailViewController: FormWithButtonDelegate {
+  func formWithButtonDelegate(_ controller: UIViewController, keyboardWillShow show: Bool, with height: CGFloat) {
+    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
+    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
+    view.frame = frame
+  }
+  
+  func formWithButtonDelegate(_ controller: UIViewController, didEnableButton enable: Bool) {
+    mainActionButton.isEnabled = enable
+    if enable {
+      mainActionButton.alpha = 1.0
+    } else {
+      mainActionButton.alpha = 0.6
+    }
   }
 }

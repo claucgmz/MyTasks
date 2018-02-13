@@ -56,7 +56,25 @@ import RealmSwift
     }
   }
   
-  func update() {
-    
+  func add(task: TaskItem) {
+    let realm = RealmService.shared.realm
+    do{
+      try realm.write {
+        items.append(task)
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func update(task: TaskItem, at index: Int) {
+    let realm = RealmService.shared.realm
+    do{
+      try realm.write {
+        items[index] = task
+      }
+    } catch {
+      print(error)
+    }
   }
 }
