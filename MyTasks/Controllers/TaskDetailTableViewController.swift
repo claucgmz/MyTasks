@@ -19,6 +19,7 @@ class TaskDetailTableViewController: UITableViewController {
   weak var delegate: FormWithButtonDelegate?
   var taskText = ""
   var dueDate = Date()
+  var taskToEdit: TaskItem?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -90,10 +91,12 @@ class TaskDetailTableViewController: UITableViewController {
     if section == 0 {
       let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldCell.reusableId) as! TextFieldCell
       cell.taskNameTextField.delegate = self
+      cell.taskNameTextField.text = taskText
       return cell
     } else if section == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
       cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+      cell.datePicker.setDate(dueDate, animated: false)
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as! TaskListCell

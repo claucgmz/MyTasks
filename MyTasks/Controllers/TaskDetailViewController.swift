@@ -29,6 +29,15 @@ class TaskDetailViewController: UIViewController {
     if taskToEdit != nil {
       title = "Edit Task"
       mainActionButton.isEnabled = true
+      taskDetailTableViewController?.taskToEdit = taskToEdit
+      if let date = taskToEdit?.dueDate {
+        taskDetailTableViewController?.dueDate = date
+      }
+      
+      if let text = taskToEdit?.text {
+        taskDetailTableViewController?.taskText = text
+      }
+
     } else {
       title = "Add Task"
       //mainActionButton.isEnabled = false
@@ -58,11 +67,14 @@ class TaskDetailViewController: UIViewController {
       return
     }
     
+    let task = TaskItem(text: text, date: date)
+    
     if let taskToEdit  = taskToEdit {
+      tasklist?.update(task: taskToEdit, with: task)
+      self.navigationController?.popViewController(animated:true)
       //RealmService.shared.update(tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
       //delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
-      let task = TaskItem(text: text, date: date)
       tasklist?.add(task: task)
       print(task)
       self.navigationController?.popViewController(animated:true)

@@ -68,11 +68,13 @@ import RealmSwift
     }
   }
   
-  func update(task: TaskItem, at index: Int) {
+  func update(task: TaskItem, with newTask: TaskItem) {
     let realm = RealmService.shared.realm
     do{
       try realm.write {
-        items[index] = task
+        if let index = items.index(of: task) {
+          items[index] = newTask
+        }
       }
     } catch {
       print(error)

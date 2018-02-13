@@ -20,6 +20,7 @@ class TaskListViewController: UIViewController {
     super.viewDidLoad()
     registerNibs()
     tasks = tasklist?.items
+    
     let today = Date()
     let todayStart = Calendar.current.startOfDay(for: today)
     let todayEnd: Date = {
@@ -115,7 +116,7 @@ extension TaskListViewController: UITableViewDataSource {
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasks[indexPath.row]
+    let task = tasksbydate[indexPath.section][indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
 }
