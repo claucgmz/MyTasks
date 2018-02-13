@@ -32,6 +32,20 @@ import RealmSwift
     }
   }
   
+  var tasks: Results<TaskItem> {
+    print(items.filter("deleted = 0"))
+    return items.filter("deleted = 0")
+  }
+  
+  func progressPercentage() -> Double {
+    let totalDone = tasks.filter("checked = 1").count
+    print(tasks.count)
+    if tasks.count > 0 {
+      return Double(totalDone) / Double(tasks.count)
+    }
+    return 0.0
+  }
+  
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
     self.init()
@@ -48,12 +62,6 @@ import RealmSwift
   
   override static func indexedProperties() -> [String] {
     return ["user"]
-  }
-  
-  func countUncheckedItems() -> Int {
-    return items.reduce(0) { count, item in
-      count + (item.checked ? 0 : 1)
-    }
   }
   
   func add(task: TaskItem) {

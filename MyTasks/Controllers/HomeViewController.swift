@@ -43,6 +43,11 @@ class HomeViewController: UIViewController {
     taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
   }
   
+  private func reloadTasks() {
+    taskListCollectionView.reloadData()
+    navigationController?.popViewController(animated:true)
+  }
+  
   private func updateView() {
     setUserProfileImage()
     if let firstName = user?.firstName {
@@ -107,7 +112,9 @@ class HomeViewController: UIViewController {
       
       let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
         tasklist.delete()
-        self.taskListCollectionView.reloadData()
+        
+        self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+        //self.taskListCollectionView.reloadData()
         print("Ok button tapped")
       })
       
@@ -196,12 +203,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: TaskListDetailViewControllerDelegate {
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList) {
-    taskListCollectionView.reloadData()
-    navigationController?.popViewController(animated:true)
+    reloadTasks()
   }
   
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList) {
-    taskListCollectionView.reloadData()
-    navigationController?.popViewController(animated:true)
+    reloadTasks()
   }
 }

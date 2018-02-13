@@ -81,6 +81,7 @@
                 <outlet property="moreButton" destination="iJG-ig-hDx" id="ccm-Iw-vx3"/>
                 <outlet property="nameLabel" destination="Lso-dM-4Xi" id="HBd-Rb-0BZ"/>
                 <outlet property="progressBar" destination="aiw-Fd-aLH" id="hcu-oy-d2H"/>
+                <outlet property="progressLabel" destination="NLu-Lk-pVZ" id="BwW-5G-Wmt"/>
             </connections>
         </collectionViewCell>
     </objects>
