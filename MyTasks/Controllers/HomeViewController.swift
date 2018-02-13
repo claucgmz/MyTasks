@@ -103,6 +103,22 @@ class HomeViewController: UIViewController {
     
     let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
       action in
+      let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+      
+      let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        tasklist.delete()
+        self.taskListCollectionView.reloadData()
+        print("Ok button tapped")
+      })
+      
+      let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        print("Cancel button tapped")
+      }
+
+      dialogMessage.addAction(ok)
+      dialogMessage.addAction(cancel)
+      
+      self.present(dialogMessage, animated: true, completion: nil)
     })
     
     alert.addAction(cancelAction)
@@ -129,13 +145,11 @@ class HomeViewController: UIViewController {
       }
     } else if segue.identifier == "TaskListItems" {
       let controller = segue.destination as! TaskListViewController
-      print(sender)
       if sender is TaskList {
         controller.tasklist = sender as? TaskList
       }
     }
   }
-  
 }
 
 extension HomeViewController: UICollectionViewDelegate {

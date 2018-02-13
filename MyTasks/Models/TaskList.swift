@@ -80,4 +80,8 @@ import RealmSwift
       print(error)
     }
   }
+  
+  func delete() {
+    RealmService.shared.delete(self)
+  }
 }
