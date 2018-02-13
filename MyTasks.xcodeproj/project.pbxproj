@@ -48,6 +48,9 @@
 		5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */; };
 		5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8309320323DDA00FABDD8 /* TaskListCell.swift */; };
 		5FF8309620323DDA00FABDD8 /* TaskListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF8309420323DDA00FABDD8 /* TaskListCell.xib */; };
+		5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830972032818B00FABDD8 /* TaskCell.swift */; };
+		5FF8309A2032818B00FABDD8 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF830982032818B00FABDD8 /* TaskCell.xib */; };
+		5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +101,9 @@
 		5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		5FF8309320323DDA00FABDD8 /* TaskListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCell.swift; sourceTree = "<group>"; };
 		5FF8309420323DDA00FABDD8 /* TaskListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListCell.xib; sourceTree = "<group>"; };
+		5FF830972032818B00FABDD8 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		5FF830982032818B00FABDD8 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +180,7 @@
 				5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */,
 				5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */,
 				5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */,
+				5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,6 +256,8 @@
 				5FF830882031F40B00FABDD8 /* DatePickerCell.xib */,
 				5FF8309320323DDA00FABDD8 /* TaskListCell.swift */,
 				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
+				5FF830972032818B00FABDD8 /* TaskCell.swift */,
+				5FF830982032818B00FABDD8 /* TaskCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */,
 				5FF830842031F3E700FABDD8 /* TextFieldCell.xib in Resources */,
 				5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */,
+				5FF8309A2032818B00FABDD8 /* TaskCell.xib in Resources */,
 				5FF8309620323DDA00FABDD8 /* TaskListCell.xib in Resources */,
 				5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */,
 				5FC04976202A170400B80ABC /* Localizable.strings in Resources */,
@@ -407,6 +417,8 @@
 				5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */,
 				5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */,
 				5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */,
+				5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */,
+				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
