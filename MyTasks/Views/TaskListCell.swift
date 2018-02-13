@@ -9,16 +9,13 @@
 import UIKit
 
 class TaskListCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
+  
+  @IBOutlet weak var iconImage: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  func configure(with tasklist: TaskList) {
+    iconImage.image = UIImage(named: tasklist.icon.rawValue)
+    nameLabel.text = tasklist.name
+  }
+  
 }

@@ -19,7 +19,7 @@ class TaskListCollectionCell: UICollectionViewCell {
     iconImage.image = UIImage(named: tasklist.icon.rawValue)
     iconImage.tintImageColor(color: tasklist.color)
     nameLabel.text = tasklist.name
-    counterLabel.text = "\(tasklist.countUncheckedItems()) Tasks"
+    counterLabel.text = "\(tasklist.items.count) Tasks"
     moreButton.tag = index
   }
 }
