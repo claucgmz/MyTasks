@@ -6,4 +6,10 @@
 //  Copyright © 2018 Claudia Carrillo. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UITableViewCell {
+  static var reusableId: String {
+    return String(describing: self)
+  }
+}
