@@ -61,6 +61,7 @@ import RealmSwift
     do{
       try realm.write {
         items.append(task)
+        print("add item to db")
       }
     } catch {
       print(error)
