@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import AlamofireImage
 
 class HomeViewController: UIViewController {
   
@@ -19,6 +20,7 @@ class HomeViewController: UIViewController {
   
   var tasklists : Results<TaskList>!
   var user: User!
+  let imageDownloader = ImageDownloader()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,7 +28,7 @@ class HomeViewController: UIViewController {
     let realm = RealmService.shared.realm
     user = User.getLoggedUser()
     tasklists = realm.objects(TaskList.self)
-    updateView()
+    setViewWithData()
     registerNibs()
   }
   
@@ -48,8 +50,37 @@ class HomeViewController: UIViewController {
     navigationController?.popViewController(animated:true)
   }
   
-  private func updateView() {
-    setUserProfileImage()
+  private func setProfileImage() {
+    if let url = user?.imageURL {
+      let imageCache = AutoPurgingImageCache()
+
+      guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
+        downloadImage(from: url, completionHandler: { image, urlRequest in
+          let avatarImage = image.af_imageRoundedIntoCircle()
+          imageCache.add(avatarImage, for: urlRequest, withIdentifier: "avatar")
+          self.userProfileImage.image = avatarImage
+        })
+        return
+      }
+      
+      userProfileImage.image = cachedAvatarImage
+    }
+  }
+  
+  private func downloadImage(from url: String, completionHandler: @escaping(Image, URLRequest) -> Void) {
+
+    let urlRequest = URLRequest(url: URL(string: url)!)
+
+    imageDownloader.download(urlRequest) { response in
+      if let image = response.result.value {
+        completionHandler(image, urlRequest)
+      }
+    }
+  }
+  
+  private func setViewWithData() {
+    setProfileImage()
+    
     if let firstName = user?.firstName {
       welcomeLabel.text = String.init(format: NSLocalizedString("Hello, %@", comment: ""), arguments: [firstName])
     }
@@ -63,36 +94,6 @@ class HomeViewController: UIViewController {
     }
     
     //todaySummaryLabel.text = String.init(format: NSLocalizedString("You have %@ tasks to do today", comment: ""), arguments: [3])
-  }
-  
-  private func setUserProfileImage() {
-    if let imageUrl = user?.imageURL {
-      print(imageUrl)
-      guard let imageURL = URL(string: imageUrl) else {
-        return
-      }
-      
-      print(imageURL)
-      
-      UserManager.shared.getImage(fromUrl: imageURL, onSuccess: { data in
-        guard let data = data else {
-          return
-        }
-        DispatchQueue.main.async {
-          self.userProfileImage.image = UIImage(data: data)
-        }
-        
-      }, onFailure: { error in
-        
-        if error != nil {
-          //print(error?.localizedDescription)
-        }
-      })
-      
-      //userProfileImage.dropShadow(color: .darkGray, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
-      userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
-      userProfileImage.clipsToBounds = true
-    }
   }
   
   private func showMoreActionSheet(index: Int) {
@@ -120,7 +121,7 @@ class HomeViewController: UIViewController {
       let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
         print("Cancel button tapped")
       }
-
+      
       dialogMessage.addAction(ok)
       dialogMessage.addAction(cancel)
       
