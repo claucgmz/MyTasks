@@ -16,10 +16,10 @@ extension Date {
     return dateFormatter.string(from: self)
   }
   
-  func toString(withLocale locale: String) -> String {
+  func toString(withLocale locale: String, timeStyle: DateFormatter.Style = .none ) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
-    dateFormatter.timeStyle = .none
+    dateFormatter.timeStyle = timeStyle
     dateFormatter.locale = Locale(identifier: locale)
     
     return dateFormatter.string(from: self)

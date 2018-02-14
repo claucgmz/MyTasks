@@ -30,6 +30,7 @@ class TaskDetailTableViewController: UITableViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    updateDueDateLabel()
     
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -41,6 +42,9 @@ class TaskDetailTableViewController: UITableViewController {
     let textFieldCellNib = UINib(nibName: "TextFieldCell", bundle: nil)
     mainTableView.register(textFieldCellNib, forCellReuseIdentifier: TextFieldCell.reusableId)
     
+    let dueDateCellNib = UINib(nibName: "DueDateCell", bundle: nil)
+    mainTableView.register(dueDateCellNib, forCellReuseIdentifier: DueDateCell.reusableId)
+    
     let datePickerCellNib = UINib(nibName: "DatePickerCell", bundle: nil)
     mainTableView.register(datePickerCellNib, forCellReuseIdentifier: DatePickerCell.reusableId)
     
@@ -51,10 +55,46 @@ class TaskDetailTableViewController: UITableViewController {
   private func updateView() {
     let realm = RealmService.shared.realm
     tasklists = realm.objects(TaskList.self)
+    updateDueDateLabel()
+  }
+  
+  private func showDatePicker() {
+    datePickerIsVisible = true
+    
+    let indexPathDateRow = IndexPath(row: 0, section: 1)
+    let indexPathDatePicker = IndexPath(row: 1, section: 1)
+    
+    tableView.beginUpdates()
+    tableView.insertRows(at: [indexPathDatePicker], with: .fade)
+    tableView.reloadRows(at: [indexPathDateRow], with: .none)
+    tableView.endUpdates()
+  
+  }
+  
+  private func hideDatePicker() {
+    if datePickerIsVisible {
+      datePickerIsVisible = false
+      
+      let indexPathDateRow = IndexPath(row: 0, section: 1)
+      let indexPathDatePicker = IndexPath(row: 1, section: 1)
+
+      tableView.beginUpdates()
+      tableView.reloadRows(at: [indexPathDateRow], with: .none)
+      tableView.deleteRows(at: [indexPathDatePicker], with: .fade)
+      tableView.endUpdates()
+    }
+  }
+  
+  private func updateDueDateLabel(){
+    let indexPathDateRow = IndexPath(row: 0, section: 1)
+    if let dueDateCell = tableView.cellForRow(at: indexPathDateRow) {
+      dueDateCell.detailTextLabel?.text = dueDate.toString(withFormat: "MMM d, h:mm a")
+    }
   }
   
   @objc private func dateChanged(_ datePicker: UIDatePicker) {
     dueDate = datePicker.date
+    updateDueDateLabel()
   }
   
   //MARK: - getKeyboardHeight method
@@ -77,7 +117,10 @@ class TaskDetailTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 2 {
+    
+    if section == 1 && datePickerIsVisible {
+      return 2
+    } else if section == 2 {
       return tasklists.count
     }
     
@@ -94,10 +137,17 @@ class TaskDetailTableViewController: UITableViewController {
       cell.taskNameTextField.text = taskText
       return cell
     } else if section == 1 {
-      let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
-      cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-      cell.datePicker.setDate(dueDate, animated: false)
-      return cell
+      if indexPath.row == 1{
+        let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
+        cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        cell.datePicker.setDate(dueDate, animated: false)
+        return cell
+      } else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: DueDateCell.reusableId) as! DueDateCell
+        cell.detailTextLabel?.text = dueDate.toString(withFormat: "MMM d, h:mm a")
+        return cell
+      }
+      
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as! TaskListCell
       let tlist = tasklists[indexPath.row]
@@ -108,7 +158,14 @@ class TaskDetailTableViewController: UITableViewController {
   
   // MARK - Table view delegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 2 {
+    if indexPath.section == 1 && indexPath.row == 0 {
+      if !datePickerIsVisible {
+        showDatePicker()
+      }
+      else {
+        hideDatePicker()
+      }
+    } else if indexPath.section == 2 {
       tasklist = tasklists[indexPath.row]
       tableView.reloadData()
     }

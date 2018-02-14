@@ -38,6 +38,8 @@
 		5FE0693A2034B53600121B9F /* TaskListProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE069392034B53600121B9F /* TaskListProgressView.xib */; };
 		5FE0693C2034C05400121B9F /* TaskListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE0693B2034C05400121B9F /* TaskListTableHeader.swift */; };
 		5FE0693E2034C09600121B9F /* TaskListTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE0693D2034C09600121B9F /* TaskListTableHeader.xib */; };
+		5FE069412034E9A400121B9F /* DueDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE0693F2034E9A400121B9F /* DueDateCell.swift */; };
+		5FE069422034E9A400121B9F /* DueDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE069402034E9A400121B9F /* DueDateCell.xib */; };
 		5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */; };
 		5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */; };
 		5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */; };
@@ -97,6 +99,8 @@
 		5FE069392034B53600121B9F /* TaskListProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListProgressView.xib; sourceTree = "<group>"; };
 		5FE0693B2034C05400121B9F /* TaskListTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableHeader.swift; sourceTree = "<group>"; };
 		5FE0693D2034C09600121B9F /* TaskListTableHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListTableHeader.xib; sourceTree = "<group>"; };
+		5FE0693F2034E9A400121B9F /* DueDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateCell.swift; sourceTree = "<group>"; };
+		5FE069402034E9A400121B9F /* DueDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DueDateCell.xib; sourceTree = "<group>"; };
 		5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailTableViewController.swift; sourceTree = "<group>"; };
 		5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionCell.swift; sourceTree = "<group>"; };
 		5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerCollectionCell.xib; sourceTree = "<group>"; };
@@ -267,6 +271,8 @@
 				5FF830812031F3E700FABDD8 /* TextFieldCell.swift */,
 				5FF830822031F3E700FABDD8 /* TextFieldCell.xib */,
 				5FF830872031F40B00FABDD8 /* DatePickerCell.swift */,
+				5FE0693F2034E9A400121B9F /* DueDateCell.swift */,
+				5FE069402034E9A400121B9F /* DueDateCell.xib */,
 				5FF830882031F40B00FABDD8 /* DatePickerCell.xib */,
 				5FF8309320323DDA00FABDD8 /* TaskListCell.swift */,
 				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
@@ -344,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FF0B0E4202BB86D00A7ADB8 /* IconPickerCollectionCell.xib in Resources */,
+				5FE069422034E9A400121B9F /* DueDateCell.xib in Resources */,
 				5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */,
 				5FF830842031F3E700FABDD8 /* TextFieldCell.xib in Resources */,
 				5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */,
@@ -449,6 +456,7 @@
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
 				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
+				5FE069412034E9A400121B9F /* DueDateCell.swift in Sources */,
 				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
