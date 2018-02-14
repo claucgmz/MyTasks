@@ -75,10 +75,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="checkbox" destination="wlR-gg-tA5" id="1jd-Gx-iMF"/>
-                <outlet property="checkboxView" destination="3ef-Ki-sda" id="Ji6-uY-GcH"/>
-                <outlet property="deleteView" destination="PU3-GC-Rfy" id="ewX-oz-Kfb"/>
-                <outlet property="taskTextLabel" destination="Qr0-S1-MCj" id="YyI-df-WrN"/>
+                <outlet property="checkbox" destination="wlR-gg-tA5" id="fZ6-5A-JCm"/>
+                <outlet property="checkboxView" destination="3ef-Ki-sda" id="8jS-kZ-7dr"/>
+                <outlet property="deleteView" destination="PU3-GC-Rfy" id="FoI-Sk-7wU"/>
+                <outlet property="taskTextLabel" destination="Qr0-S1-MCj" id="Ur9-xL-dIn"/>
             </connections>
         </tableViewCell>
     </objects>

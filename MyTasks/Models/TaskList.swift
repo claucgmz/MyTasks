@@ -33,13 +33,11 @@ import RealmSwift
   }
   
   var tasks: Results<TaskItem> {
-    print(items.filter("deleted = 0"))
     return items.filter("deleted = 0")
   }
   
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count
-    print(tasks.count)
     if tasks.count > 0 {
       return Double(totalDone) / Double(tasks.count)
     }

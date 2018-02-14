@@ -30,6 +30,9 @@ class TaskListViewController: UIViewController {
   private func registerNibs() {
     let taskCellNib = UINib(nibName: "TaskCell", bundle: nil)
     tasksTableView.register(taskCellNib, forCellReuseIdentifier: TaskCell.reusableId)
+    
+    let headerCellNib = UINib(nibName: "TaskListTableHeader", bundle: nil)
+    tasksTableView.register(headerCellNib, forHeaderFooterViewReuseIdentifier: "TaskListTableHeader")
   }
   
   private func filterTasks() {
@@ -86,18 +89,26 @@ class TaskListViewController: UIViewController {
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 4
-    //return tasksbydate.count
+    return 5
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tasksbydate[section].count
+    
+    if section == 0 {
+      return 0
+    }
+    
+    return tasksbydate[section-1].count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
-    let task = tasksbydate[indexPath.section][indexPath.row]
+    let task = tasksbydate[indexPath.section-1][indexPath.row]
+    
+    print(task.text)
     cell.configure(with: task)
+    
     cell.checkboxView.addTapGestureRecognizer(action: {
       cell.toogleCheckmark(with: !task.checked)
       task.toogleCheckmark()
@@ -115,13 +126,13 @@ extension TaskListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 0 {
+    if section == 1 {
       return "Today"
-    } else if section == 1 {
-      return "Tomorrow"
     } else if section == 2 {
+      return "Tomorrow"
+    } else if section == 3 {
       return "Later"
-    }  else if section == 3 {
+    }  else if section == 4 {
       return "Past"
     }
     
@@ -129,6 +140,11 @@ extension TaskListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    
+    if section == 0 {
+      return 180
+    }
+    
     return 30
   }
 
@@ -137,11 +153,29 @@ extension TaskListViewController: UITableViewDataSource {
   }
 }
 
+
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasksbydate[indexPath.section][indexPath.row]
+    let task = tasksbydate[indexPath.section-1][indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    
+    if section == 0 {
+      
+      let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TaskListTableHeader") as? TaskListTableHeader
+      
+      guard let tasklist = tasklist else {
+        return nil
+      }
+      header?.progressView.configure(with: tasklist)
+      return header
+    }
+    
+    return nil
+  }
+  
 }
 
 extension TaskListViewController: TaskDetailViewControllerDelegate {

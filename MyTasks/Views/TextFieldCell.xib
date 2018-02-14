@@ -19,13 +19,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What task are you planning to perform?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZC-qD-ezZ">
-                        <rect key="frame" x="30" y="30" width="267" height="18"/>
+                        <rect key="frame" x="30" y="15" width="267" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VGF-FL-Qag">
-                        <rect key="frame" x="30" y="53" width="260" height="47"/>
+                        <rect key="frame" x="30" y="38" width="260" height="62"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
@@ -34,7 +34,7 @@
                 <constraints>
                     <constraint firstItem="VGF-FL-Qag" firstAttribute="top" secondItem="4ZC-qD-ezZ" secondAttribute="bottom" constant="5" id="3si-8m-35H"/>
                     <constraint firstItem="VGF-FL-Qag" firstAttribute="leading" secondItem="4ZC-qD-ezZ" secondAttribute="leading" id="DdQ-yq-ruA"/>
-                    <constraint firstItem="4ZC-qD-ezZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="MVN-vD-mC1"/>
+                    <constraint firstItem="4ZC-qD-ezZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="MVN-vD-mC1"/>
                     <constraint firstAttribute="bottom" secondItem="VGF-FL-Qag" secondAttribute="bottom" id="eYx-tJ-dXs"/>
                     <constraint firstAttribute="trailing" secondItem="VGF-FL-Qag" secondAttribute="trailing" constant="30" id="mz3-Ye-zLf"/>
                     <constraint firstItem="4ZC-qD-ezZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="wxT-d1-hLW"/>
