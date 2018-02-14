@@ -68,7 +68,7 @@ class TaskDetailTableViewController: UITableViewController {
     tableView.insertRows(at: [indexPathDatePicker], with: .fade)
     tableView.reloadRows(at: [indexPathDateRow], with: .none)
     tableView.endUpdates()
-  
+    
   }
   
   private func hideDatePicker() {
@@ -77,7 +77,7 @@ class TaskDetailTableViewController: UITableViewController {
       
       let indexPathDateRow = IndexPath(row: 0, section: 1)
       let indexPathDatePicker = IndexPath(row: 1, section: 1)
-
+      
       tableView.beginUpdates()
       tableView.reloadRows(at: [indexPathDateRow], with: .none)
       tableView.deleteRows(at: [indexPathDatePicker], with: .fade)
