@@ -59,10 +59,7 @@ class TaskListViewController: UIViewController {
     tasksbydate.append(tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
     tasksbydate.append(tasks.filter("dueDate BETWEEN %@",[tomorrowStart, tomorrowEnd]))
     tasksbydate.append(tasks.filter("dueDate > %@", laterStart))
-    
-    print(tasksbydate[0])
-    print(tasksbydate[1])
-    print(tasksbydate[2])
+    tasksbydate.append(tasks.filter("dueDate < %@", todayStart))
   }
   
   private func reloadTasks() {
@@ -78,7 +75,6 @@ class TaskListViewController: UIViewController {
     if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
       controller.tasklist = tasklist
-      print(tasklist?.id)
       controller.delegate = self
 
       if sender is TaskItem {
@@ -90,7 +86,7 @@ class TaskListViewController: UIViewController {
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 3
+    return 4
     //return tasksbydate.count
   }
   
@@ -125,6 +121,8 @@ extension TaskListViewController: UITableViewDataSource {
       return "Tomorrow"
     } else if section == 2 {
       return "Later"
+    }  else if section == 3 {
+      return "Past"
     }
     
     return ""
