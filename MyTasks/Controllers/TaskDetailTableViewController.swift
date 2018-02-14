@@ -116,6 +116,19 @@ class TaskDetailTableViewController: UITableViewController {
     return 3
   }
   
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.section == 0 {
+      return 100
+    } else if indexPath.section == 1 {
+      if indexPath.row == 0 {
+        return 48
+      }
+      return 140
+    }
+    
+    return 44
+  }
+  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     if section == 1 && datePickerIsVisible {
