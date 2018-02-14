@@ -34,6 +34,11 @@ import RealmSwift
     }
   }
   
+  
+  func remove() {
+    RealmService.shared.delete(self)
+  }
+  
   func delete() {
     let realm = RealmService.shared.realm
     do{

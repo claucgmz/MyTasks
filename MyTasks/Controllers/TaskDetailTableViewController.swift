@@ -20,6 +20,7 @@ class TaskDetailTableViewController: UITableViewController {
   var taskText = ""
   var dueDate = Date()
   var taskToEdit: TaskItem?
+  var tasklist: TaskList?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,8 +55,6 @@ class TaskDetailTableViewController: UITableViewController {
   
   @objc private func dateChanged(_ datePicker: UIDatePicker) {
     dueDate = datePicker.date
-    print(dueDate)
-    //updateDueDateLabel()
   }
   
   //MARK: - getKeyboardHeight method
@@ -100,13 +99,19 @@ class TaskDetailTableViewController: UITableViewController {
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as! TaskListCell
-      let tasklist = tasklists[indexPath.row]
-      cell.configure(with: tasklist)
+      let tlist = tasklists[indexPath.row]
+      cell.configure(with: tlist, isSelected: tlist.id == tasklist?.id)
       return cell
     }
   }
   
   // MARK - Table view delegate
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.section == 2 {
+      tasklist = tasklists[indexPath.row]
+      tableView.reloadData()
+    }
+  }
   
 }
 

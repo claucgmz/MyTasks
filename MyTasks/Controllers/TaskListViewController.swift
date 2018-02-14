@@ -78,6 +78,7 @@ class TaskListViewController: UIViewController {
     if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
       controller.tasklist = tasklist
+      print(tasklist?.id)
       controller.delegate = self
 
       if sender is TaskItem {

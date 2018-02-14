@@ -22,10 +22,11 @@ class TaskDetailViewController: UIViewController {
   
   var tasklist: TaskList?
   var taskToEdit: TaskItem?
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     taskDetailTableViewController = childViewControllers.first as? TaskDetailTableViewController
+    taskDetailTableViewController?.tasklist = tasklist
     if taskToEdit != nil {
       title = "Edit Task"
       mainActionButton.didEnable(true)
@@ -37,7 +38,6 @@ class TaskDetailViewController: UIViewController {
       if let text = taskToEdit?.text {
         taskDetailTableViewController?.taskText = text
       }
-      
     } else {
       title = "Add Task"
       mainActionButton.didEnable(false)
@@ -53,6 +53,7 @@ class TaskDetailViewController: UIViewController {
     if segue.identifier == "TaskDetailTable" {
       let controller = segue.destination as! TaskDetailTableViewController
       controller.delegate = self
+      //controller.tasklist = tasklist
       //controller.taskToEdit = taskToEdit
     }
   }
@@ -67,22 +68,29 @@ class TaskDetailViewController: UIViewController {
       return
     }
     
+    let toTaskList = taskDetailTableViewController?.tasklist
     let task = TaskItem(text: text, date: date)
-    
-    if let taskToEdit  = taskToEdit {
-      tasklist?.update(task: taskToEdit, with: task)
-      
-      guard let tasklist = tasklist else {
-        return
+
+    if let taskToEdit = taskToEdit {
+      if tasklist?.id != toTaskList?.id {
+        toTaskList?.add(task: task)
+        taskToEdit.remove()
+      }
+      else {
+        tasklist = toTaskList
+        tasklist?.update(task: taskToEdit, with: task)
       }
       
-      delegate?.taskDetailViewController(self, didFinishEditing: task, in: tasklist)
+      if let tasklist = tasklist {
+        delegate?.taskDetailViewController(self, didFinishEditing: task, in: tasklist)
+      }
+      
     } else {
+      tasklist = toTaskList
       tasklist?.add(task: task)
-      guard let tasklist = tasklist else {
-        return
+      if let tasklist = tasklist {
+        delegate?.taskDetailViewController(self, didFinishAdding: task, in: tasklist)
       }
-      delegate?.taskDetailViewController(self, didFinishAdding: task, in: tasklist)
     }
   }
 }
