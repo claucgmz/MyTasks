@@ -181,7 +181,7 @@ extension HomeViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       let taskList = tasklists[indexPath.row]
-      cell.configure(with: taskList, index: indexPath.row)
+      cell.progressView.configure(with: taskList)
       cell.moreView.addTapGestureRecognizer(action: {
         self.showMoreActionSheet(index: indexPath.row)
       })

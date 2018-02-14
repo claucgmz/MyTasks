@@ -34,6 +34,8 @@
 		5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */; };
 		5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */; };
 		5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */; };
+		5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE069372034B51500121B9F /* TaskListProgressView.swift */; };
+		5FE0693A2034B53600121B9F /* TaskListProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE069392034B53600121B9F /* TaskListProgressView.xib */; };
 		5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */; };
 		5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */; };
 		5FF0B0DA202B92B500A7ADB8 /* ColorPickerCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */; };
@@ -89,6 +91,8 @@
 		5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListCollectionCell.swift; sourceTree = "<group>"; };
 		5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTaskListCollectionCell.xib; sourceTree = "<group>"; };
 		5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
+		5FE069372034B51500121B9F /* TaskListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListProgressView.swift; sourceTree = "<group>"; };
+		5FE069392034B53600121B9F /* TaskListProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskListProgressView.xib; sourceTree = "<group>"; };
 		5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailTableViewController.swift; sourceTree = "<group>"; };
 		5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCollectionCell.swift; sourceTree = "<group>"; };
 		5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerCollectionCell.xib; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
 				5FF830972032818B00FABDD8 /* TaskCell.swift */,
 				5FF830982032818B00FABDD8 /* TaskCell.xib */,
+				5FE069372034B51500121B9F /* TaskListProgressView.swift */,
+				5FE069392034B53600121B9F /* TaskListProgressView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				5FF830842031F3E700FABDD8 /* TextFieldCell.xib in Resources */,
 				5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */,
 				5FF8309A2032818B00FABDD8 /* TaskCell.xib in Resources */,
+				5FE0693A2034B53600121B9F /* TaskListProgressView.xib in Resources */,
 				5FF8309620323DDA00FABDD8 /* TaskListCell.xib in Resources */,
 				5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */,
 				5FC04976202A170400B80ABC /* Localizable.strings in Resources */,
@@ -435,6 +442,7 @@
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
 				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
+				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
 				5FF830802031F2B600FABDD8 /* TaskDetailTableViewController.swift in Sources */,
