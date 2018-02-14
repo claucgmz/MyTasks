@@ -21,7 +21,6 @@ class TaskCell: UITableViewCell {
   
   func configure(with task: TaskItem) {
     toogleCheckmark(with: task.checked)
-    taskTextLabel.text = task.text
   }
   
   func toogleCheckmark(with isChecked: Bool) {
