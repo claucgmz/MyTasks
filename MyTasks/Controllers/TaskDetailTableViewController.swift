@@ -84,6 +84,7 @@ class TaskDetailTableViewController: UITableViewController {
     return 1
   }
   
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let section = indexPath.section
     

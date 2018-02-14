@@ -105,12 +105,11 @@ extension TaskListViewController: UITableViewDataSource {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
     let task = tasksbydate[indexPath.section-1][indexPath.row]
-    
-    print(task.text)
+
     cell.configure(with: task)
     
     cell.checkboxView.addTapGestureRecognizer(action: {
-      cell.toogleCheckmark(with: !task.checked)
+      cell.configure(with: task)
       task.toogleCheckmark()
     })
     
@@ -145,14 +144,13 @@ extension TaskListViewController: UITableViewDataSource {
       return 180
     }
     
-    return 30
+    return 25
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 44.0
+    return 50.0
   }
 }
-
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
