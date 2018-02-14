@@ -10,7 +10,7 @@ import UIKit
 
 class TaskListCollectionCell: UICollectionViewCell {
   @IBOutlet weak var iconImage: UIImageView!
-  @IBOutlet weak var moreButton: UIButton!
+  @IBOutlet weak var moreView: UIView!
   @IBOutlet weak var counterLabel: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var progressBar: UIProgressView!
@@ -21,7 +21,6 @@ class TaskListCollectionCell: UICollectionViewCell {
     iconImage.tintImageColor(color: tasklist.color)
     nameLabel.text = tasklist.name
     counterLabel.text = "\(tasklist.tasks.count) Tasks"
-    moreButton.tag = index
     updateProgressBar(with: tasklist)
   }
   

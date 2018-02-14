@@ -95,8 +95,7 @@ class HomeViewController: UIViewController {
     }
   }
   
-  @objc private func showMoreActionSheet(_ sender: UIButton) {
-    let index = sender.tag
+  private func showMoreActionSheet(index: Int) {
     let tasklist = self.tasklists[index]
     let title = String(format: "What do you want to do with Tasklist: %@?", tasklist.name)
     let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
@@ -182,7 +181,9 @@ extension HomeViewController: UICollectionViewDataSource {
       cell.roundCorners(withRadius: 10)
       let taskList = tasklists[indexPath.row]
       cell.configure(with: taskList, index: indexPath.row)
-      cell.moreButton.addTarget(self, action: #selector(showMoreActionSheet(_:)), for: .touchUpInside)
+      cell.moreView.addTapGestureRecognizer(action: {
+        self.showMoreActionSheet(index: indexPath.row)
+      })
       
       return cell
     } else {
