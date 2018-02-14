@@ -65,6 +65,11 @@ class TaskListViewController: UIViewController {
     print(tasksbydate[2])
   }
   
+  private func reloadTasks() {
+    tasksTableView.reloadData()
+    navigationController?.popViewController(animated:true)
+  }
+  
   @IBAction func addTaskButtonAction(_ sender: Any) {
    performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
@@ -73,7 +78,8 @@ class TaskListViewController: UIViewController {
     if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
       controller.tasklist = tasklist
-      
+      controller.delegate = self
+
       if sender is TaskItem {
         controller.taskToEdit = sender as? TaskItem
       }
@@ -139,3 +145,12 @@ extension TaskListViewController: UITableViewDelegate {
   }
 }
 
+extension TaskListViewController: TaskDetailViewControllerDelegate {
+  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: TaskItem, in tasklist: TaskList) {
+    reloadTasks()
+  }
+  
+  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: TaskItem, in tasklist: TaskList) {
+    reloadTasks()
+  }
+}

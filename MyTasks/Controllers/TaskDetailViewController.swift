@@ -71,15 +71,18 @@ class TaskDetailViewController: UIViewController {
     
     if let taskToEdit  = taskToEdit {
       tasklist?.update(task: taskToEdit, with: task)
-      self.navigationController?.popViewController(animated:true)
-      //RealmService.shared.update(tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
-      //delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
+      
+      guard let tasklist = tasklist else {
+        return
+      }
+      
+      delegate?.taskDetailViewController(self, didFinishEditing: task, in: tasklist)
     } else {
       tasklist?.add(task: task)
-      print(task)
-      self.navigationController?.popViewController(animated:true)
-      //RealmService.shared.create(tasklist)
-      //delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
+      guard let tasklist = tasklist else {
+        return
+      }
+      delegate?.taskDetailViewController(self, didFinishAdding: task, in: tasklist)
     }
   }
 }
