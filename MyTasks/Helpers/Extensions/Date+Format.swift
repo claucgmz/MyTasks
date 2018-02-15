@@ -31,4 +31,18 @@ extension Date {
     
     return dateFormatter.weekdaySymbols[currentWeekday]
   }
+  
+  var startOfDay: Date {
+    return Calendar.current.startOfDay(for: self)
+  }
+  
+  var endOfDay: Date {
+    let components = DateComponents(day: 1, second: -1)
+    return Calendar.current.date(byAdding: components, to: self.startOfDay)!
+  }
+  
+  var nextDay: Date {
+    let components = DateComponents(day: 1)
+    return Calendar.current.date(byAdding: components, to: self)!
+  }
 }

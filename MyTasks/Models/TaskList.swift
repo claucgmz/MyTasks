@@ -12,7 +12,6 @@ import RealmSwift
 @objcMembers class TaskList: Object {
   
   // MARK: - Properties
-  //dynamic var user: User?
   dynamic var id = UUID().uuidString
   dynamic var name = ""
   dynamic var hex = ""
@@ -35,6 +34,26 @@ import RealmSwift
   var tasks: Results<TaskItem> {
     return items.filter("deleted = 0")
   }
+  
+  var tasksByDate: [Results<TaskItem>] {
+    var tasksbydate = [Results<TaskItem>]()
+    let today = Date()
+    let todayStart = today.startOfDay
+    let todayEnd = today.endOfDay
+    
+    let tomorrow = todayStart.nextDay
+    let tomorrowEnd = tomorrow.endOfDay
+    
+    let later = tomorrow.nextDay
+    
+    tasksbydate.append(tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
+    tasksbydate.append(tasks.filter("dueDate BETWEEN %@",[tomorrow, tomorrowEnd]))
+    tasksbydate.append(tasks.filter("dueDate > %@", later))
+    tasksbydate.append(tasks.filter("dueDate < %@", todayStart))
+    
+    return tasksbydate
+  }
+  
   
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count

@@ -72,6 +72,7 @@ class TaskDetailViewController: UIViewController {
     let task = TaskItem(text: text, date: date)
 
     if let taskToEdit = taskToEdit {
+        task.checked = taskToEdit.checked
       if tasklist?.id != toTaskList?.id {
         toTaskList?.add(task: task)
         taskToEdit.remove()
