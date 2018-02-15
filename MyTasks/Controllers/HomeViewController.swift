@@ -82,7 +82,7 @@ class HomeViewController: UIViewController {
     setProfileImage()
     
     if let firstName = user?.firstName {
-      welcomeLabel.text = String.init(format: NSLocalizedString("Hello, %@", comment: ""), arguments: [firstName])
+      welcomeLabel.text = "\(NSLocalizedString("greeting", comment: "")), \(firstName)"
     }
     
     let date = Date()
@@ -90,35 +90,33 @@ class HomeViewController: UIViewController {
     
     if let region = locale.regionCode {
       let dateString = date.toString(withLocale: region)
-      dateLabel.text = "\(NSLocalizedString("Today", comment: "")): \(dateString)".uppercased()
+      dateLabel.text = "\(NSLocalizedString("today", comment: "")): \(dateString)".uppercased()
     }
     
-    //todaySummaryLabel.text = String.init(format: NSLocalizedString("You have %@ tasks to do today", comment: ""), arguments: [3])
+    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""), "5")
   }
   
   private func showMoreActionSheet(index: Int) {
     let tasklist = self.tasklists[index]
-    let title = String(format: "What do you want to do with Tasklist: %@?", tasklist.name)
+    let title = String(format: NSLocalizedString("alert_title", comment:""), tasklist.name)
     let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
     
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    let editAction = UIAlertAction(title: "Edit", style: .default, handler: { action in
+    let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
+    let editAction = UIAlertAction(title: NSLocalizedString("edit_list", comment: ""), style: .default, handler: { action in
       self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
     })
     
-    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+    let deleteAction = UIAlertAction(title: NSLocalizedString("delete_list", comment: ""), style: .destructive, handler: {
       action in
-      let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+      let dialogMessage = UIAlertController(title: NSLocalizedString("confirm", comment: ""), message: NSLocalizedString("confirm_subtitle", comment: ""), preferredStyle: .alert)
       
-      let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+      let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: { (action) -> Void in
         tasklist.delete()
         
         self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-        print("Ok button tapped")
       })
       
       let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-        print("Cancel button tapped")
       }
       
       dialogMessage.addAction(ok)

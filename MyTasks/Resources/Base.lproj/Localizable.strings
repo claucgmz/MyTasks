@@ -6,20 +6,41 @@
  Copyright © 2018 Claudia Carrillo. All rights reserved.
  */
 
-"Hello, %@" = "Hello, %@";
-"You have %@ tasks to do today" = "You have %@ tasks to do today";
+//Home View
+"greeting" = "Hello";
+"tasks_for_today" = "You have %@ tasks to do today";
+"today" = "Today";
+"log_out" = "Log out";
+"tasks" = "Tasks";
 
-"Tasks" = "Tasks";
-"Today" = "Today";
-"Tomorrow" = "Tomorrow";
+//Actionsheet
+"alert_title" = "What do you want to do with %@?";
+"edit_list" = "Edit list";
+"delete_list" = "Delete list";
 
-"What's your list name?" = "Cual es el nombre de tu lista?";
-"What tasks are you planning to perform?" = "Que tareas planeas realizar?";
+//Delete confirmation
+"confirm" = "Confirm";
+"confirm_subtitle" = "Are you sure you want to delete this list?";
 
-"New list" = "Nueva lista";
-"Edit list" = "Editar lista";
+//Buttons
+"cancel" = "Cancel";
+"ok" = "OK";
 
-"New task" = "Nueva tarea";
-"Edit task" = "Editar tarea";
+//TaskListView
+"tomorrow" = "Tomorrow";
+"later" = "Later";
+"past" = "Past";
+"save" = "Save";
 
-"Save" = "Guardar";
+//TasklistDetailView
+"add_list" = "Add list";
+"edit_list" = "Edit list";
+"list_name" = "What's your list name?";
+"list_color" = "List color";
+"list_icon" = "List icon";
+
+//TaskItemDetailView
+"add_task" = "Add Task";
+"edit_task" = "Edit Task";
+"task_to_perform" = "What task are you planning to perform?";
+"due_date" = "Due date";

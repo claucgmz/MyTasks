@@ -5,3 +5,41 @@
  Created by Caludia Carrillo on 2/6/18.
  Copyright © 2018 Claudia Carrillo. All rights reserved.
  */
+//Home View
+"greeting" = "Hello";
+"tasks_for_today" = "You have %@ tasks to do today";
+"today" = "Today";
+"log_out" = "Log out";
+"tasks" = "Tasks";
+
+//Actionsheet
+"alert_title" = "What do you want to do with %@?";
+"edit_list" = "Edit list";
+"delete_list" = "Delete list";
+
+//Delete confirmation
+"confirm" = "Confirm";
+"confirm_subtitle" = "Are you sure you want to delete this list?";
+
+//Buttons
+"cancel" = "Cancel";
+"ok" = "OK";
+
+//TaskListView
+"tomorrow" = "Tomorrow";
+"later" = "Later";
+"past" = "Past";
+"save" = "Save";
+
+//TasklistDetailView
+"add_list" = "Add list";
+"edit_list" = "Edit list";
+"list_name" = "What's your list name?";
+"list_color" = "List color";
+"list_icon" = "List icon";
+
+//TaskItemDetailView
+"add_task" = "Add Task";
+"edit_task" = "Edit Task";
+"task_to_perform" = "What task are you planning to perform?";
+"due_date" = "Due date";
