@@ -1,0 +1,25 @@
+/*
+ Localizable.strings
+ MyTasks
+ 
+ Created by Caludia Carrillo on 2/6/18.
+ Copyright © 2018 Claudia Carrillo. All rights reserved.
+ */
+
+"Hello, %@" = "Hello, %@";
+"You have %@ tasks to do today" = "You have %@ tasks to do today";
+
+"Tasks" = "Tasks";
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+
+"What's your list name?" = "Cual es el nombre de tu lista?";
+"What tasks are you planning to perform?" = "Que tareas planeas realizar?";
+
+"New list" = "Nueva lista";
+"Edit list" = "Editar lista";
+
+"New task" = "Nueva tarea";
+"Edit task" = "Editar tarea";
+
+"Save" = "Guardar";
