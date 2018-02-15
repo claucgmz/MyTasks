@@ -87,10 +87,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSl-7g-lXx">
-                                <rect key="frame" x="231" y="84" width="80" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LogOut"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSl-7g-lXx">
+                                <rect key="frame" x="235" y="79" width="70" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="nB1-K7-yrC"/>
+                                </constraints>
+                                <state key="normal" title="Log out"/>
                                 <connections>
                                     <action selector="logOut:" destination="AaR-1V-Evv" eventType="touchUpInside" id="HPh-wr-pth"/>
                                 </connections>
@@ -102,11 +105,13 @@
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="leading" secondItem="Ajx-NF-AZe" secondAttribute="leading" id="4vh-qN-gIk"/>
                             <constraint firstItem="YDF-e7-CHq" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" constant="30" id="54f-a7-r37"/>
                             <constraint firstItem="jiX-22-sis" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" id="8nZ-sx-af2"/>
+                            <constraint firstItem="YDF-e7-CHq" firstAttribute="trailing" secondItem="fSl-7g-lXx" secondAttribute="trailing" constant="15" id="IKa-hW-24g"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="height" secondItem="UJ1-eo-ABZ" secondAttribute="height" multiplier="0.45" id="JDr-JA-FyI"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="top" secondItem="jiX-22-sis" secondAttribute="bottom" constant="10" id="PbD-cp-bOE"/>
                             <constraint firstItem="YDF-e7-CHq" firstAttribute="bottom" secondItem="unn-2u-o18" secondAttribute="bottom" constant="40" id="b38-vA-uOH"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="leading" secondItem="Ajx-NF-AZe" secondAttribute="leading" id="ieg-bz-uFv"/>
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" id="iiD-hR-3oA"/>
+                            <constraint firstItem="fSl-7g-lXx" firstAttribute="top" secondItem="YDF-e7-CHq" secondAttribute="top" constant="15" id="ith-uP-Bjy"/>
                             <constraint firstItem="Ajx-NF-AZe" firstAttribute="leading" secondItem="YDF-e7-CHq" secondAttribute="leading" constant="30" id="kFc-xP-Est"/>
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="top" secondItem="NVn-wC-3Od" secondAttribute="bottom" constant="15" id="nZV-Af-euq"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="trailing" secondItem="YDF-e7-CHq" secondAttribute="trailing" id="o8X-c0-ZqD"/>
