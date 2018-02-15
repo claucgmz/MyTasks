@@ -87,6 +87,14 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSl-7g-lXx">
+                                <rect key="frame" x="231" y="84" width="80" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LogOut"/>
+                                <connections>
+                                    <action selector="logOut:" destination="AaR-1V-Evv" eventType="touchUpInside" id="HPh-wr-pth"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.56470588235294117" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -121,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mgf-vd-6Qu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016.8" y="90.14778325123153"/>
+            <point key="canvasLocation" x="1016.25" y="89.788732394366193"/>
         </scene>
         <!--Task List View Controller-->
         <scene sceneID="Dhn-r4-fuR">

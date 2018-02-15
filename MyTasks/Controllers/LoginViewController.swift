@@ -48,8 +48,11 @@ extension LoginViewController: LoginButtonDelegate {
     
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
-      let user = User(with: data)
-      if !user.exists() {
+      var user = User(with: data)
+      
+      if let exists = user.exists() {
+        user = exists
+      } else {
         user.create()
       }
       

@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 import AlamofireImage
+import FacebookLogin
+import FacebookCore
 
 class HomeViewController: UIViewController {
   
@@ -18,16 +20,13 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   
-  var tasklists : Results<TaskList>!
-  var user: User!
+  var tasklists: List<TaskList>!
+  var user: User?
   let imageDownloader = ImageDownloader()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    let realm = RealmService.shared.realm
     user = User.getLoggedUser()
-    tasklists = realm.objects(TaskList.self)
     setViewWithData()
     registerNibs()
   }
@@ -35,6 +34,10 @@ class HomeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    
+    tasklists = user?.tasklists
+    
+    print(user)
   }
   
   private func registerNibs() {
@@ -53,7 +56,7 @@ class HomeViewController: UIViewController {
   private func setProfileImage() {
     if let url = user?.imageURL {
       let imageCache = AutoPurgingImageCache()
-
+      
       guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
         downloadImage(from: url, completionHandler: { image, urlRequest in
           let avatarImage = image.af_imageRoundedIntoCircle()
@@ -68,9 +71,8 @@ class HomeViewController: UIViewController {
   }
   
   private func downloadImage(from url: String, completionHandler: @escaping(Image, URLRequest) -> Void) {
-
     let urlRequest = URLRequest(url: URL(string: url)!)
-
+    
     imageDownloader.download(urlRequest) { response in
       if let image = response.result.value {
         completionHandler(image, urlRequest)
@@ -133,6 +135,12 @@ class HomeViewController: UIViewController {
     alert.addAction(deleteAction)
     
     self.present(alert, animated: true)
+  }
+  
+  
+  @IBAction func logOut(_ sender: Any) {
+    user?.logOut()
+    navigationController?.popViewController(animated: true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

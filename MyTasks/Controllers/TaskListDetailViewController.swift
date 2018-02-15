@@ -21,9 +21,11 @@ class TaskListDetailViewController: UIViewController {
   
   weak var delegate: TaskListDetailViewControllerDelegate?
   var tasklistToEdit: TaskList?
+  var user: User!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    user = User.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
     if tasklistToEdit != nil {
       title = "Edit TaskList"
@@ -54,20 +56,18 @@ class TaskListDetailViewController: UIViewController {
   }
   
   @IBAction private func done() {
-    
     guard let name = taskListDetailTableViewController?.listNameText, let icon = taskListDetailTableViewController?.selectedIcon, let color = taskListDetailTableViewController?.selectedColor else {
       return
     }
     
     if let tasklistToEdit  = tasklistToEdit {
-      RealmService.shared.update(tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
+      user.update(tasklist: tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
       delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
       let tasklist = TaskList(name: name, icon: icon, color: color)
-      RealmService.shared.create(tasklist)
+      user.add(tasklist: tasklist)
       delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
     }
-    
   }
 }
 

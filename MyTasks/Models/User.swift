@@ -17,6 +17,7 @@ import RealmSwift
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   dynamic var isLoggedIn = false
+  var tasklists = List<TaskList>()
   
   var imageURL: String {
     return "https://graph.facebook.com/\(id)/picture?type=large"
@@ -62,9 +63,9 @@ import RealmSwift
     realm.create(self)
   }
   
-  func exists() -> Bool {
+  func exists() -> User? {
     let realm = RealmService.shared.realm
-    return realm.object(ofType: User.self, forPrimaryKey: id) != nil
+    return realm.object(ofType: User.self, forPrimaryKey: id)
   }
   
   func logIn() {
@@ -85,4 +86,20 @@ import RealmSwift
     users.setValue(false, forKey: "isLoggedIn")
     try! realm.commitWrite()
   }
+  
+  func add(tasklist: TaskList) {
+    let realm = RealmService.shared.realm
+    do{
+      try realm.write {
+        tasklists.append(tasklist)
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func update(tasklist: TaskList, with data: [String: Any?]) {
+    RealmService.shared.update(tasklist, with: data )
+  }
+  
 }

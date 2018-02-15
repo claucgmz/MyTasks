@@ -34,7 +34,6 @@ import RealmSwift
     }
   }
   
-  
   func remove() {
     RealmService.shared.delete(self)
   }
