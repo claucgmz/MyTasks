@@ -27,17 +27,15 @@ class HomeViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     user = User.getLoggedUser()
-    setViewWithData()
+    updateUI()
     registerNibs()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    
     tasklists = user?.tasklists
-    
-    print(user)
+    taskListCollectionView.reloadData()
   }
   
   private func registerNibs() {
@@ -80,7 +78,7 @@ class HomeViewController: UIViewController {
     }
   }
   
-  private func setViewWithData() {
+  private func updateUI() {
     setProfileImage()
     
     if let firstName = user?.firstName {
@@ -116,7 +114,6 @@ class HomeViewController: UIViewController {
         tasklist.delete()
         
         self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-        //self.taskListCollectionView.reloadData()
         print("Ok button tapped")
       })
       
@@ -137,7 +134,6 @@ class HomeViewController: UIViewController {
     self.present(alert, animated: true)
   }
   
-  
   @IBAction func logOut(_ sender: Any) {
     user?.logOut()
     navigationController?.popViewController(animated: true)
@@ -153,7 +149,6 @@ class HomeViewController: UIViewController {
       }
     } else if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
-      //controller.delegate = self
       
       if sender is TaskList {
         controller.tasklist = sender as? TaskList
