@@ -23,6 +23,10 @@ import RealmSwift
     self.dueDate = date
   }
   
+  override static func indexedProperties() -> [String] {
+    return ["dueDate"]
+  }
+  
   func add(to tasklist: TaskList) {
     tasklist.add(task: self)
   }

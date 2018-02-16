@@ -35,23 +35,43 @@ import RealmSwift
     return items.filter("deleted = 0")
   }
   
-  var tasksByDate: [Results<TaskItem>] {
+  var tasksByDate: (order: [String], tasks: [Results<TaskItem>]) {
     var tasksbydate = [Results<TaskItem>]()
+    var orderby = [String]()
+    
     let today = Date()
     let todayStart = today.startOfDay
     let todayEnd = today.endOfDay
     
+    var filterTasks = tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd])
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("Today")
+    }
+    
     let tomorrow = todayStart.nextDay
     let tomorrowEnd = tomorrow.endOfDay
     
+    filterTasks = tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd])
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("Tomorrow")
+    }
+    
     let later = tomorrow.nextDay
+    filterTasks = tasks.filter("dueDate > %@", later)
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("Later")
+    }
     
-    tasksbydate.append(tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
-    tasksbydate.append(tasks.filter("dueDate BETWEEN %@",[tomorrow, tomorrowEnd]))
-    tasksbydate.append(tasks.filter("dueDate > %@", later))
-    tasksbydate.append(tasks.filter("dueDate < %@", todayStart))
+    filterTasks = tasks.filter("dueDate < %@", todayStart)
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("PastDueDate")
+    }
     
-    return tasksbydate
+    return (order: orderby, tasks: tasksbydate)
   }
   
   
@@ -75,16 +95,11 @@ import RealmSwift
   override class func primaryKey() -> String? {
     return "id"
   }
-  
-  override static func indexedProperties() -> [String] {
-    return ["user"]
-  }
-  
+
   func add(task: TaskItem) {
     do{
       try RealmService.shared.realm.write {
         items.append(task)
-        print("add item to db")
       }
     } catch {
       print(error)

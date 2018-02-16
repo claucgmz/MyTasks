@@ -13,18 +13,20 @@ class TaskListViewController: UIViewController {
   
   @IBOutlet weak var tasksTableView: UITableView!
   var tasklist: TaskList?
-  var tasksbydate = [Results<TaskItem>]()
+  var tasksOrder = [String]()
+  var tasks = [Results<TaskItem>]()
   var notificationToken: NotificationToken?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tasksbydate = tasklist?.tasksByDate ?? tasksbydate
     registerNibs()
     addNotification()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    updateTasksByDate()
+    tasksTableView.reloadData()
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
@@ -48,6 +50,12 @@ class TaskListViewController: UIViewController {
     }
   }
   
+  private func updateTasksByDate() {
+    let tasksbydate = tasklist?.tasksByDate
+    tasks = (tasksbydate?.tasks)!
+    tasksOrder = (tasksbydate?.order)!
+  }
+  
   @IBAction func addTaskButtonAction(_ sender: Any) {
     performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
@@ -67,22 +75,21 @@ class TaskListViewController: UIViewController {
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return tasks.count + 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     if section == 0 {
       return 0
     }
     
-    return tasksbydate[section-1].count
+    return tasks[section-1].count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
-    let task = tasksbydate[indexPath.section-1][indexPath.row]
+    let task = tasks[indexPath.section-1][indexPath.row]
     
     cell.configure(with: task)
     
@@ -93,8 +100,17 @@ extension TaskListViewController: UITableViewDataSource {
     
     cell.deleteView.addTapGestureRecognizer(action: {
       task.softDelete()
+      
       tableView.beginUpdates()
-      tableView.deleteRows(at: [indexPath], with: .automatic)
+      if tableView.numberOfRows(inSection: indexPath.section) == 1 {
+        let indexSet = IndexSet(arrayLiteral: indexPath.section)
+        tableView.deleteSections(indexSet, with: .automatic)
+        self.updateTasksByDate()
+      }
+      else {
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+      
       tableView.endUpdates()
     })
     
@@ -102,16 +118,10 @@ extension TaskListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 1 {
-      return "Today"
-    } else if section == 2 {
-      return "Tomorrow"
-    } else if section == 3 {
-      return "Later"
-    }  else if section == 4 {
-      return "Past"
+    if section > 0 && tasksOrder.count >= section {
+      let title = tasksOrder[section-1]
+      return title
     }
-    
     return ""
   }
   
@@ -131,7 +141,7 @@ extension TaskListViewController: UITableViewDataSource {
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasksbydate[indexPath.section-1][indexPath.row]
+    let task = tasks[indexPath.section-1][indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
   
