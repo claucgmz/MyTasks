@@ -92,7 +92,7 @@ extension TaskListViewController: UITableViewDataSource {
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
-      task.delete()
+      task.softDelete()
       tableView.beginUpdates()
       tableView.deleteRows(at: [indexPath], with: .automatic)
       tableView.endUpdates()

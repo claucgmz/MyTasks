@@ -66,7 +66,6 @@ import RealmSwift
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
     self.init()
-   //self.user = User.getLoggedUser()
     self.name = name
     self.icon = icon
     self.hex = color.toHexString
@@ -82,9 +81,8 @@ import RealmSwift
   }
   
   func add(task: TaskItem) {
-    let realm = RealmService.shared.realm
     do{
-      try realm.write {
+      try RealmService.shared.realm.write {
         items.append(task)
         print("add item to db")
       }
@@ -93,20 +91,54 @@ import RealmSwift
     }
   }
   
-  func update(task: TaskItem, with newTask: TaskItem) {
-    let realm = RealmService.shared.realm
+  func update(name: String, icon: CategoryIcon, color: UIColor) {
     do{
-      try realm.write {
-        if let index = items.index(of: task) {
-          items[index] = newTask
-        }
+      try RealmService.shared.realm.write {
+        self.name = name
+        self.hex = color.toHexString
+        self.icon = icon
+        
       }
     } catch {
       print(error)
     }
   }
   
-  func delete() {
-    RealmService.shared.delete(self)
+  func remove(task: TaskItem) {
+    do{
+      try RealmService.shared.realm.write {
+        let index = self.items.index(of: task)
+        self.items.remove(at: index!)
+      }
+    } catch {
+      print(error)
+    }
+  }
+
+}
+
+extension TaskList: BasicStorageFunctions {
+  func add() {
+    let user = User.getLoggedUser()
+    do{
+      try RealmService.shared.realm.write {
+        user?.tasklists.append(self)
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func hardDelete() {
+    do{
+      try RealmService.shared.realm.write {
+        for item in items {
+          realm?.delete(item)
+        }
+        realm?.delete(self)
+      }
+    } catch {
+      print(error)
+    }
   }
 }

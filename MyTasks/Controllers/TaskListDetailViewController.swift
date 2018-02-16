@@ -61,11 +61,11 @@ class TaskListDetailViewController: UIViewController {
     }
     
     if let tasklistToEdit  = tasklistToEdit {
-      user.update(tasklist: tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
+      tasklistToEdit.update(name: name, icon: icon, color: color)
       delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
       let tasklist = TaskList(name: name, icon: icon, color: color)
-      user.add(tasklist: tasklist)
+      tasklist.add()
       delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
     }
   }

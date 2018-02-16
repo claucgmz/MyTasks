@@ -59,6 +59,7 @@
 		5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF830972032818B00FABDD8 /* TaskCell.swift */; };
 		5FF8309A2032818B00FABDD8 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF830982032818B00FABDD8 /* TaskCell.xib */; };
 		5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */; };
+		5FFC81BC20373833007F018F /* BasicStorageFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC81BB20373833007F018F /* BasicStorageFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		5FF830972032818B00FABDD8 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		5FF830982032818B00FABDD8 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		5FFC81BB20373833007F018F /* BasicStorageFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStorageFunctions.swift; sourceTree = "<group>"; };
 		6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTasks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +210,7 @@
 				5FD49CCD202A7AFA008C1ECB /* TaskList.swift */,
 				5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */,
 				5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */,
+				5FFC81BB20373833007F018F /* BasicStorageFunctions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				5FF830902031F4A800FABDD8 /* UITableViewCell+ReusableId.swift in Sources */,
 				5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */,
 				5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */,
+				5FFC81BC20373833007F018F /* BasicStorageFunctions.swift in Sources */,
 				5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */,
 				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,

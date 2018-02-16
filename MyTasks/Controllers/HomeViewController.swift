@@ -20,13 +20,14 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   
-  var tasklists: List<TaskList>!
-  var user: User?
-  let imageDownloader = ImageDownloader()
+  private var tasklists = List<TaskList>()
+  private var user: User?
+  private let imageDownloader = ImageDownloader()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     user = User.getLoggedUser()
+    tasklists = (user?.tasklists)!
     updateUI()
     registerNibs()
   }
@@ -34,7 +35,7 @@ class HomeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    tasklists = user?.tasklists
+
     taskListCollectionView.reloadData()
   }
   
@@ -111,7 +112,7 @@ class HomeViewController: UIViewController {
       let dialogMessage = UIAlertController(title: NSLocalizedString("confirm", comment: ""), message: NSLocalizedString("confirm_subtitle", comment: ""), preferredStyle: .alert)
       
       let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: { (action) -> Void in
-        tasklist.delete()
+        tasklist.hardDelete()
         
         self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
       })

@@ -12,8 +12,8 @@ import FacebookCore
 import RealmSwift
 
 class LoginViewController: UIViewController {
-  let realm = RealmService.shared.realm
-  var user: User?
+  private let realm = RealmService.shared.realm
+  private var user: User?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,7 +29,6 @@ class LoginViewController: UIViewController {
   }
   
   // MARK: -  Private methods
-  
   private func addFBLoginButton() {
     let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
     loginButton.center = view.center
@@ -49,21 +48,21 @@ extension LoginViewController: LoginButtonDelegate {
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
       var user = User(with: data)
-      
       if let exists = user.exists() {
         user = exists
       } else {
-        user.create()
+        user.add()
       }
       
       user.logIn()
+
       DispatchQueue.main.async {
         self.goToHome()
       }
       
     }, onFailure: { error in
       if error != nil {
-        print("Erro: \(String(describing: error?.localizedDescription))")
+        print("Error: \(String(describing: error?.localizedDescription))")
       }
     })
   }
