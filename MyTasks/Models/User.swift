@@ -81,13 +81,6 @@ import RealmSwift
     }
   }
   
- /* private func logOutAll() {
-    let users = realm.objects(User.self)
-    realm.beginWrite()
-    users.setValue(false, forKey: "isLoggedIn")
-    try! realm.commitWrite()
-  }*/
-  
   func add(tasklist: TaskList) {
     do{
       try RealmService.shared.realm.write {
@@ -97,11 +90,6 @@ import RealmSwift
       print(error)
     }
   }
-  
-  func update(tasklist: TaskList, with data: [String: Any?]) {
-    //RealmService.shared.update(tasklist, with: data )
-  }
-  
 }
 
 extension User: BasicStorageFunctions {
@@ -116,6 +104,12 @@ extension User: BasicStorageFunctions {
   }
   
   func hardDelete() {
-    
+    do{
+      try RealmService.shared.realm.write {
+        realm?.delete(self)
+      }
+    } catch {
+      print(error)
+    }
   }
 }

@@ -97,7 +97,6 @@ import RealmSwift
         self.name = name
         self.hex = color.toHexString
         self.icon = icon
-        
       }
     } catch {
       print(error)
