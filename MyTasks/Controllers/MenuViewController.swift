@@ -15,9 +15,11 @@ class MenuViewController: UIViewController {
   var user: User?
   
   @IBOutlet weak var userProfileImage: UIImageView!
+  @IBOutlet weak var logoutButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    logoutButton.setTitle(NSLocalizedString("log_out", comment: ""), for: .normal)
     user = User.getLoggedUser()
   }
   

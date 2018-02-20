@@ -24,6 +24,8 @@
 //Buttons
 "cancel" = "Cancel";
 "ok" = "OK";
+"log_out" = "Log out";
+"log_in" = "Log in";
 
 //TaskListView
 "tomorrow" = "Tomorrow";

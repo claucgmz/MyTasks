@@ -10,7 +10,6 @@
 "greeting" = "Hola";
 "tasks_for_today" = "Tienes %@ tareas para hoy";
 "today" = "Hoy";
-"log_out" = "Cerrar sesión";
 "tasks" = "Tareas";
 
 //Actionsheet
@@ -25,6 +24,8 @@
 //Buttons
 "cancel" = "Cancelar";
 "ok" = "OK";
+"log_out" = "Cerrar sesión";
+"log_in" = "Iniciar sesión";
 
 //TaskListView
 "tomorrow" = "Mañana";

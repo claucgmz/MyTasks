@@ -10,7 +10,6 @@
 "greeting" = "Hello";
 "tasks_for_today" = "You have %@ tasks to do today";
 "today" = "Today";
-"log_out" = "Log out";
 "tasks" = "Tasks";
 
 //Actionsheet
@@ -25,6 +24,8 @@
 //Buttons
 "cancel" = "Cancel";
 "ok" = "OK";
+"log_out" = "Log out";
+"log_in" = "Log In";
 
 //TaskListView
 "tomorrow" = "Tomorrow";

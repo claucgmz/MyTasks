@@ -364,6 +364,7 @@
                         <viewLayoutGuide key="safeArea" id="nYx-LB-bJx"/>
                     </view>
                     <connections>
+                        <outlet property="logoutButton" destination="pgW-Fl-9f8" id="3zM-Qf-1va"/>
                         <outlet property="userProfileImage" destination="0Qt-VU-sXj" id="wyo-jt-Squ"/>
                     </connections>
                 </viewController>

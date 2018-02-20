@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
