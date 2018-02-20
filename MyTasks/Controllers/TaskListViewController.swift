@@ -44,7 +44,7 @@ class TaskListViewController: UIViewController {
   
   private func updateProgressView() {
     guard let tableView = tasksTableView else { return }
-    tableView.reloadSections([0,0], with: .fade)
+    tableView.reloadSections(IndexSet(integer: 0), with: .middle)
   }
   
   @IBAction func addTaskButtonAction(_ sender: Any) {
@@ -98,8 +98,8 @@ extension TaskListViewController: UITableViewDataSource {
       self.updateProgressView()
       
       if tableView.numberOfRows(inSection: indexPath.section) == 1 {
-        let indexSet = IndexSet(arrayLiteral: indexPath.section)
-        tableView.deleteSections(indexSet, with: .automatic)
+        let indexSet = IndexSet(integer: indexPath.section)
+        tableView.deleteSections(indexSet, with: .middle)
         self.updateTasksByDate()
       }
 
