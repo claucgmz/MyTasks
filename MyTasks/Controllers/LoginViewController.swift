@@ -30,13 +30,8 @@ class LoginViewController: UIViewController {
     }
   }
   
-  // MARK: -  Private methods
-  
-  private func goToHome() {
-    self.performSegue(withIdentifier: "HomeSegue", sender: self)
-  }
-  
-  @IBAction func loginButtonAction(_ sender: Any) {
+  // MARK: - Action methods
+  @IBAction private func loginButtonAction(_ sender: Any) {
     let loginManager = LoginManager()
     loginManager.logIn(readPermissions: [.publicProfile], viewController: self, completion: {
       loginResult in
@@ -50,6 +45,11 @@ class LoginViewController: UIViewController {
         self.loginUser()
       }
     })
+  }
+  
+  // MARK: -  Private methods
+  private func goToHome() {
+    self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
   
   private func loginUser() {
