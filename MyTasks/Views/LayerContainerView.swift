@@ -16,12 +16,16 @@ class LayerContainerView: UIView {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    
-    guard let gradientLayer = self.layer as? CAGradientLayer else { return }
-    gradientLayer.colors = [
+    let initialColors = [
       UIColor.ColorPicker.firstDate.cgColor,
       UIColor.ColorPicker.pinkGlamour.cgColor,
       UIColor.ColorPicker.orangeville.cgColor
     ]
+    setGradientLayer(colors: initialColors)
+  }
+  
+  func setGradientLayer(colors: [CGColor]) {
+    guard let gradientLayer = self.layer as? CAGradientLayer else { return }
+    gradientLayer.colors = colors
   }
 }

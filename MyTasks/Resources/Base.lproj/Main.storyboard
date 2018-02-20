@@ -135,6 +135,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="jiX-22-sis" id="rcs-FY-WRS"/>
+                        <outlet property="layerContainer" destination="UJ1-eo-ABZ" id="5tq-Kg-K8a"/>
                         <outlet property="taskListCollectionView" destination="unn-2u-o18" id="8ry-ra-1bU"/>
                         <outlet property="todaySummaryLabel" destination="GKH-cj-6DL" id="Q2d-Ry-SvW"/>
                         <outlet property="userProfileImage" destination="Ajx-NF-AZe" id="ZtJ-oj-szU"/>
