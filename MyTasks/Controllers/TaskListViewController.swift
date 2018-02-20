@@ -82,6 +82,7 @@ extension TaskListViewController: UITableViewDataSource {
     cell.checkboxView.addTapGestureRecognizer(action: {
       cell.configure(with: task)
       task.toogleCheckmark()
+      tableView.reloadRows(at: [indexPath], with: .automatic)
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
