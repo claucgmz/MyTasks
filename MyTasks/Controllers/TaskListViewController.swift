@@ -42,6 +42,11 @@ class TaskListViewController: UIViewController {
     tasksOrder = (tasksbydate?.order)!
   }
   
+  private func updateProgressView() {
+    guard let tableView = tasksTableView else { return }
+    tableView.reloadSections([0,1], with: .none)
+  }
+  
   @IBAction func addTaskButtonAction(_ sender: Any) {
     performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
@@ -83,6 +88,7 @@ extension TaskListViewController: UITableViewDataSource {
       cell.configure(with: task)
       task.toogleCheckmark()
       tableView.reloadRows(at: [indexPath], with: .automatic)
+      self.updateProgressView()
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
