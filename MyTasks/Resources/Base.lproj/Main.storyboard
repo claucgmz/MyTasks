@@ -103,17 +103,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSl-7g-lXx">
-                                <rect key="frame" x="235" y="79" width="70" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="nB1-K7-yrC"/>
-                                </constraints>
-                                <state key="normal" title="Log out"/>
-                                <connections>
-                                    <action selector="logOut:" destination="AaR-1V-Evv" eventType="touchUpInside" id="HPh-wr-pth"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.56470588235294117" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -121,13 +110,11 @@
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="leading" secondItem="Ajx-NF-AZe" secondAttribute="leading" id="4vh-qN-gIk"/>
                             <constraint firstItem="YDF-e7-CHq" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" constant="30" id="54f-a7-r37"/>
                             <constraint firstItem="jiX-22-sis" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" id="8nZ-sx-af2"/>
-                            <constraint firstItem="YDF-e7-CHq" firstAttribute="trailing" secondItem="fSl-7g-lXx" secondAttribute="trailing" constant="15" id="IKa-hW-24g"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="height" secondItem="UJ1-eo-ABZ" secondAttribute="height" multiplier="0.45" id="JDr-JA-FyI"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="top" secondItem="jiX-22-sis" secondAttribute="bottom" constant="10" id="PbD-cp-bOE"/>
                             <constraint firstItem="YDF-e7-CHq" firstAttribute="bottom" secondItem="unn-2u-o18" secondAttribute="bottom" constant="40" id="b38-vA-uOH"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="leading" secondItem="Ajx-NF-AZe" secondAttribute="leading" id="ieg-bz-uFv"/>
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="trailing" secondItem="NVn-wC-3Od" secondAttribute="trailing" id="iiD-hR-3oA"/>
-                            <constraint firstItem="fSl-7g-lXx" firstAttribute="top" secondItem="YDF-e7-CHq" secondAttribute="top" constant="15" id="ith-uP-Bjy"/>
                             <constraint firstItem="Ajx-NF-AZe" firstAttribute="leading" secondItem="YDF-e7-CHq" secondAttribute="leading" constant="30" id="kFc-xP-Est"/>
                             <constraint firstItem="GKH-cj-6DL" firstAttribute="top" secondItem="NVn-wC-3Od" secondAttribute="bottom" constant="15" id="nZV-Af-euq"/>
                             <constraint firstItem="unn-2u-o18" firstAttribute="trailing" secondItem="YDF-e7-CHq" secondAttribute="trailing" id="o8X-c0-ZqD"/>
@@ -339,10 +326,10 @@
             </objects>
             <point key="canvasLocation" x="-668" y="90"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="c4u-EV-uDZ">
             <objects>
-                <viewController storyboardIdentifier="Left" id="oks-kV-RwH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Left" id="oks-kV-RwH" customClass="MenuViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q7q-sz-RaU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,6 +340,9 @@
                                 <state key="normal" title="Log out">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logOut:" destination="oks-kV-RwH" eventType="touchUpInside" id="oCa-ox-mGn"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Qt-VU-sXj">
                                 <rect key="frame" x="135" y="35" width="50" height="50"/>
@@ -373,6 +363,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nYx-LB-bJx"/>
                     </view>
+                    <connections>
+                        <outlet property="userProfileImage" destination="0Qt-VU-sXj" id="wyo-jt-Squ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZR-RW-ubk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

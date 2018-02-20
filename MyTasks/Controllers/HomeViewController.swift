@@ -11,6 +11,7 @@ import RealmSwift
 import AlamofireImage
 import FacebookLogin
 import FacebookCore
+import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController {
   
@@ -22,7 +23,7 @@ class HomeViewController: UIViewController {
   
   private var tasklists = List<TaskList>()
   private var user: User?
-  private let imageDownloader = ImageDownloader()
+  let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,12 +54,12 @@ class HomeViewController: UIViewController {
   
   private func setProfileImage() {
     if let url = user?.imageURL {
-      let imageCache = AutoPurgingImageCache()
+      let urlRequest = URLRequest(url: URL(string: url)!)
       
-      guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
+      guard let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: "avatar") else {
         downloadImage(from: url, completionHandler: { image, urlRequest in
           let avatarImage = image.af_imageRoundedIntoCircle()
-          imageCache.add(avatarImage, for: urlRequest, withIdentifier: "avatar")
+          self.imageCache.add(avatarImage, withIdentifier: "avatar")
           self.userProfileImage.image = avatarImage
         })
         return
@@ -71,7 +72,7 @@ class HomeViewController: UIViewController {
   private func downloadImage(from url: String, completionHandler: @escaping(Image, URLRequest) -> Void) {
     let urlRequest = URLRequest(url: URL(string: url)!)
     
-    imageDownloader.download(urlRequest) { response in
+    ImageDownloader.default.download(urlRequest) { response in
       if let image = response.result.value {
         completionHandler(image, urlRequest)
       }
@@ -133,12 +134,8 @@ class HomeViewController: UIViewController {
   }
   
   @IBAction func openMenuAction(_ sender: Any) {
+    slideMenuController()?.delegate = self
     slideMenuController()?.openLeft()
-  }
-  
-  @IBAction func logOut(_ sender: Any) {
-    user?.logOut()
-    navigationController?.popViewController(animated: true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -215,5 +212,21 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
   
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList) {
     reloadTasks()
+  }
+}
+
+extension HomeViewController: SlideMenuControllerDelegate {
+  func leftWillClose() {
+    if user?.isLoggedIn == false {
+      navigationController?.popViewController(animated: true)
+    }
+  }
+  
+  func leftWillOpen() {
+    let controller = slideMenuController()?.leftViewController as? MenuViewController
+    guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
+      return
+    }
+    controller?.userProfileImage.image = cachedAvatarImage
   }
 }
