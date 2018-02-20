@@ -28,7 +28,6 @@
 		5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
 		5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* HomeViewController.swift */; };
-		5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0498B202A537F00B80ABC /* UserManager.swift */; };
 		5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCD202A7AFA008C1ECB /* TaskList.swift */; };
 		5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */; };
 		5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */; };
@@ -92,7 +91,6 @@
 		5FC04982202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5FC04983202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5FC04984202A38A500B80ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5FC0498B202A537F00B80ABC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5FD49CCD202A7AFA008C1ECB /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCollectionCell.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
-				5FC0498B202A537F00B80ABC /* UserManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -464,7 +461,6 @@
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
-				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,
 				5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */,
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
