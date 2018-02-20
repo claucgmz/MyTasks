@@ -22,8 +22,11 @@ protocol TaskListDetailTableViewControllerDelegate: class {
 class TaskListDetailTableViewController: UITableViewController {
   
   @IBOutlet private weak var colorPickerView: UICollectionView!
+  @IBOutlet private weak var listColorLabel: UILabel!
   @IBOutlet private weak var iconPickerView: UICollectionView!
+  @IBOutlet private weak var listIconLabel: UILabel!
   @IBOutlet private weak var listNameTextField: UITextField!
+  @IBOutlet private weak var listNameLabel: UILabel!
   
   private let colors = UIColor.ColorPicker.all
   private let icons = CategoryIcon.all
@@ -37,6 +40,8 @@ class TaskListDetailTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
+    
+    updateUILabels()
     
     if let tasklistToEdit = tasklistToEdit {
       selectedIcon = tasklistToEdit.icon
@@ -54,6 +59,11 @@ class TaskListDetailTableViewController: UITableViewController {
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
   
+  private func updateUILabels() {
+    listNameLabel.text = NSLocalizedString("list_name", comment: "")
+    listColorLabel.text = NSLocalizedString("list_color", comment: "")
+    listIconLabel.text = NSLocalizedString("list_icon", comment: "")
+  }
   
   // MARK: - Table view data source
   override func numberOfSections(in tableView: UITableView) -> Int {

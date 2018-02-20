@@ -25,14 +25,16 @@ class TaskListDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
     user = User.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
+    
     if tasklistToEdit != nil {
-      title = "Edit TaskList"
+      title = NSLocalizedString("edit_list", comment: "")
       mainActionButton.didEnable(true)
     } else {
       mainActionButton.didEnable(false)
-      title = "Add TaskList"
+      title = NSLocalizedString("add_list", comment: "")
     }
   }
   

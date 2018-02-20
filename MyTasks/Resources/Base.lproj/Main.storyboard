@@ -512,6 +512,9 @@
                     <connections>
                         <outlet property="colorPickerView" destination="vqE-0i-4pd" id="USd-uz-fwU"/>
                         <outlet property="iconPickerView" destination="91K-b2-jQe" id="UJC-Nh-1rm"/>
+                        <outlet property="listColorLabel" destination="ghd-7U-dhg" id="WXz-6H-s8S"/>
+                        <outlet property="listIconLabel" destination="h9s-EZ-VO3" id="NHO-k4-dLu"/>
+                        <outlet property="listNameLabel" destination="cDE-f6-lhG" id="eTH-me-tJ9"/>
                         <outlet property="listNameTextField" destination="KdC-BX-S5J" id="ZBX-Nf-CEt"/>
                     </connections>
                 </tableViewController>
