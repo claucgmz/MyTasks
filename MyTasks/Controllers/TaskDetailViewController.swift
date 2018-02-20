@@ -28,7 +28,7 @@ class TaskDetailViewController: UIViewController {
     taskDetailTableViewController = childViewControllers.first as? TaskDetailTableViewController
     taskDetailTableViewController?.tasklist = tasklist
     if taskToEdit != nil {
-      title = "Edit Task"
+      title = NSLocalizedString("edit_task", comment: "")
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
       if let date = taskToEdit?.dueDate {
@@ -39,9 +39,11 @@ class TaskDetailViewController: UIViewController {
         taskDetailTableViewController?.taskText = text
       }
     } else {
-      title = "Add Task"
+      title = NSLocalizedString("add_task", comment: "")
       mainActionButton.didEnable(false)
     }
+    
+    mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
