@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
   
   private var tasklists = List<TaskList>()
   private var user: User?
-  let imageCache = AutoPurgingImageCache()
+  private let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,6 +39,7 @@ class HomeViewController: UIViewController {
     taskListCollectionView.reloadData()
   }
   
+  // MARK: -  Private methods
   private func registerNibs() {
     let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
@@ -133,7 +134,7 @@ class HomeViewController: UIViewController {
     self.present(alert, animated: true)
   }
   
-  @IBAction func openMenuAction(_ sender: Any) {
+  @IBAction private func openMenuAction(_ sender: Any) {
     slideMenuController()?.delegate = self
     slideMenuController()?.openLeft()
   }
@@ -161,6 +162,7 @@ class HomeViewController: UIViewController {
   }
 }
 
+// MARK: -  Collection delegate methods
 extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row < tasklists.count {
@@ -172,6 +174,7 @@ extension HomeViewController: UICollectionViewDelegate {
   }
 }
 
+// MARK: -  Collection data source methods
 extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return tasklists.count + 1
@@ -198,9 +201,9 @@ extension HomeViewController: UICollectionViewDataSource {
   
 }
 
+// MARK: -  Collection flowlayout methods
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
     return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
   }
 }
@@ -215,6 +218,7 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
   }
 }
 
+// MARK: -  Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
     if user?.isLoggedIn == false {
