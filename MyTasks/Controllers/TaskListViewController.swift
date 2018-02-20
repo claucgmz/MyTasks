@@ -106,7 +106,7 @@ extension TaskListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if section > 0 && tasksOrder.count >= section {
-      let title = tasksOrder[section-1]
+      let title = NSLocalizedString(tasksOrder[section-1], comment: "")
       return title
     }
     return ""

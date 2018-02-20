@@ -45,3 +45,7 @@
 "edit_task" = "Editar Tarea";
 "task_to_perform" = "Que tarea planeas hacer?";
 "due_date" = "Fecha";
+
+//Days
+"later" = "Después";
+"past_due_date" = "Pasadas";

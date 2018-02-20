@@ -46,7 +46,7 @@ import RealmSwift
     var filterTasks = tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd])
     if filterTasks.count > 0 {
       tasksbydate.append(filterTasks)
-      orderby.append("Today")
+      orderby.append("today")
     }
     
     let tomorrow = todayStart.nextDay
@@ -55,20 +55,20 @@ import RealmSwift
     filterTasks = tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd])
     if filterTasks.count > 0 {
       tasksbydate.append(filterTasks)
-      orderby.append("Tomorrow")
+      orderby.append("tomorrow")
     }
     
     let later = tomorrow.nextDay
     filterTasks = tasks.filter("dueDate > %@", later)
     if filterTasks.count > 0 {
       tasksbydate.append(filterTasks)
-      orderby.append("Later")
+      orderby.append("later")
     }
     
     filterTasks = tasks.filter("dueDate < %@", todayStart)
     if filterTasks.count > 0 {
       tasksbydate.append(filterTasks)
-      orderby.append("PastDueDate")
+      orderby.append("past_due_date")
     }
     
     return (order: orderby, tasks: tasksbydate)

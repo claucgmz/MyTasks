@@ -45,3 +45,7 @@
 "edit_task" = "Edit Task";
 "task_to_perform" = "What task are you planning to perform?";
 "due_date" = "Due date";
+
+//Days
+"later" = "Later";
+"past_due_date" = "Past Due Date";
