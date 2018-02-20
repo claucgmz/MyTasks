@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
         self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
       })
       
-      let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+      let cancel = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel) { (action) -> Void in
       }
       
       dialogMessage.addAction(ok)
