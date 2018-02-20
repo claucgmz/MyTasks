@@ -34,8 +34,7 @@ class HomeViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: animated)
-
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
     taskListCollectionView.reloadData()
   }
   
@@ -131,6 +130,10 @@ class HomeViewController: UIViewController {
     alert.addAction(deleteAction)
     
     self.present(alert, animated: true)
+  }
+  
+  @IBAction func openMenuAction(_ sender: Any) {
+    slideMenuController()?.openLeft()
   }
   
   @IBAction func logOut(_ sender: Any) {

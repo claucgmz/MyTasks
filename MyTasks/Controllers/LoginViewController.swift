@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
   private let realm = RealmService.shared.realm
   private var user: User?
 
+  @IBOutlet private weak var loginButton: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     addFBLoginButton()
