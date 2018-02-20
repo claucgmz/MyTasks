@@ -61,6 +61,14 @@ import RealmSwift
     return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: id)
   }
   
+  var totalTasksForToday: Int {
+    var total = 0
+    for tasklist in tasklists {
+      total += tasklist.pendingTasksToday.count
+    }
+    return total
+  }
+  
   func logIn() {
     do{
       try RealmService.shared.realm.write {

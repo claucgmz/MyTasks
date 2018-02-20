@@ -15,6 +15,7 @@ import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController {
   
+  @IBOutlet private var layerContainer: LayerContainerView!
   @IBOutlet private weak var taskListCollectionView: UICollectionView!
   @IBOutlet private weak var userProfileImage: UIImageView!
   @IBOutlet private weak var welcomeLabel: UILabel!
@@ -29,6 +30,7 @@ class HomeViewController: UIViewController {
     super.viewDidLoad()
     user = User.getLoggedUser()
     tasklists = (user?.tasklists)!
+    setBackgroundColor()
     updateUI()
     registerNibs()
   }
@@ -37,6 +39,7 @@ class HomeViewController: UIViewController {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
     taskListCollectionView.reloadData()
+    updateTotalTasksForToday()
   }
   
   // MARK: -  Private methods
@@ -46,6 +49,26 @@ class HomeViewController: UIViewController {
     
     let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
+  }
+  
+  private func setBackgroundColor() {
+    let visibleItems = taskListCollectionView.indexPathsForVisibleItems
+    var indexPath = IndexPath(row: 0, section: 0)
+    
+    if visibleItems.count > 0 {
+      indexPath = visibleItems.first!
+    }
+    
+    for item in visibleItems {
+      if item.row < indexPath.row {
+        indexPath = item
+      }
+    }
+    
+    if indexPath.row < tasklists.count {
+      let list = tasklists[indexPath.row]
+      layerContainer.setGradientLayer(colors: [list.color.cgColor, list.color.withAlphaComponent(0.5).cgColor])
+    }
   }
   
   private func reloadTasks() {
@@ -95,7 +118,11 @@ class HomeViewController: UIViewController {
       dateLabel.text = "\(NSLocalizedString("today", comment: "")): \(dateString)".uppercased()
     }
     
-    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""), "5")
+    updateTotalTasksForToday()
+  }
+  
+  private func updateTotalTasksForToday() {
+    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""),"\(user?.totalTasksForToday ?? 0)")
   }
   
   private func showMoreActionSheet(index: Int) {
@@ -232,5 +259,11 @@ extension HomeViewController: SlideMenuControllerDelegate {
       return
     }
     controller?.userProfileImage.image = cachedAvatarImage
+  }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    setBackgroundColor()
   }
 }
