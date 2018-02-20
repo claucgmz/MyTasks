@@ -44,7 +44,7 @@ class TaskListViewController: UIViewController {
   
   private func updateProgressView() {
     guard let tableView = tasksTableView else { return }
-    tableView.reloadSections([0,1], with: .none)
+    tableView.reloadSections([0,0], with: .fade)
   }
   
   @IBAction func addTaskButtonAction(_ sender: Any) {
@@ -93,17 +93,16 @@ extension TaskListViewController: UITableViewDataSource {
     
     cell.deleteView.addTapGestureRecognizer(action: {
       task.softDelete()
-      
       tableView.beginUpdates()
+      tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.updateProgressView()
+      
       if tableView.numberOfRows(inSection: indexPath.section) == 1 {
         let indexSet = IndexSet(arrayLiteral: indexPath.section)
         tableView.deleteSections(indexSet, with: .automatic)
         self.updateTasksByDate()
       }
-      else {
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-      }
-      
+
       tableView.endUpdates()
     })
     
