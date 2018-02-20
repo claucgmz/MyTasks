@@ -11,6 +11,7 @@
 		5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */; };
 		5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2B12033B12B002667AC /* UIButton+State.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
+		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
 		5F9D3F6F2028D197000FFA2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F6D2028D197000FFA2B /* Main.storyboard */; };
 		5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */; };
@@ -68,6 +69,7 @@
 		5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
 		5F2FB2B12033B12B002667AC /* UIButton+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+State.swift"; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
+		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9D3F692028D197000FFA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F9D3F6E2028D197000FFA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */,
 				5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */,
 				5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */,
+				5F8AC266203BA88000B3E037 /* MenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */,
 				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
+				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FC0498C202A537F00B80ABC /* UserManager.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */,

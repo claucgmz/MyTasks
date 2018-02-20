@@ -14,12 +14,11 @@ import RealmSwift
 class LoginViewController: UIViewController {
   private let realm = RealmService.shared.realm
   private var user: User?
-
+  
   @IBOutlet private weak var loginButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    addFBLoginButton()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -31,22 +30,28 @@ class LoginViewController: UIViewController {
   }
   
   // MARK: -  Private methods
-  private func addFBLoginButton() {
-    let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
-    loginButton.center = view.center
-    loginButton.delegate = self
-    view.addSubview(loginButton)
-  }
   
   private func goToHome() {
     self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
-}
-
-// MARK: -  Logun Button Delegate methods
-extension LoginViewController: LoginButtonDelegate {
-  func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-    
+  
+  @IBAction func loginButtonAction(_ sender: Any) {
+    let loginManager = LoginManager()
+    loginManager.logIn(readPermissions: [.publicProfile], viewController: self, completion: {
+      loginResult in
+      switch loginResult {
+      case .failed(let error):
+        print(error)
+      case .cancelled:
+        print("User cancelled login.")
+      case .success:
+        print("Logged in!")
+        self.loginUser()
+      }
+    })
+  }
+  
+  private func loginUser() {
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
       var user = User(with: data)
@@ -57,7 +62,7 @@ extension LoginViewController: LoginButtonDelegate {
       }
       
       user.logIn()
-
+      
       DispatchQueue.main.async {
         self.goToHome()
       }
@@ -67,9 +72,5 @@ extension LoginViewController: LoginButtonDelegate {
         print("Error: \(String(describing: error?.localizedDescription))")
       }
     })
-  }
-  
-  func loginButtonDidLogOut(_ loginButton: LoginButton) {
-    user?.logOut()
-  }
+  }  
 }
