@@ -53,8 +53,7 @@ class TaskDetailTableViewController: UITableViewController {
   }
   
   private func updateView() {
-    let realm = RealmService.shared.realm
-    tasklists = realm.objects(TaskList.self)
+    tasklists = RealmService.shared.realm.objects(TaskList.self)
     updateDueDateLabel()
   }
   
@@ -183,7 +182,6 @@ class TaskDetailTableViewController: UITableViewController {
       tableView.reloadData()
     }
   }
-  
 }
 
 extension TaskDetailTableViewController: UITextFieldDelegate {

@@ -11,6 +11,7 @@ import RealmSwift
 import AlamofireImage
 import FacebookLogin
 import FacebookCore
+import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController {
   
@@ -20,26 +21,25 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   
-  var tasklists: List<TaskList>!
-  var user: User?
-  let imageDownloader = ImageDownloader()
+  private var tasklists = List<TaskList>()
+  private var user: User?
+  private let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     user = User.getLoggedUser()
-    setViewWithData()
+    tasklists = (user?.tasklists)!
+    updateUI()
     registerNibs()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    
-    tasklists = user?.tasklists
-    
-    print(user)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    taskListCollectionView.reloadData()
   }
   
+  // MARK: -  Private methods
   private func registerNibs() {
     let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
     taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
@@ -55,12 +55,12 @@ class HomeViewController: UIViewController {
   
   private func setProfileImage() {
     if let url = user?.imageURL {
-      let imageCache = AutoPurgingImageCache()
+      let urlRequest = URLRequest(url: URL(string: url)!)
       
-      guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
+      guard let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: "avatar") else {
         downloadImage(from: url, completionHandler: { image, urlRequest in
           let avatarImage = image.af_imageRoundedIntoCircle()
-          imageCache.add(avatarImage, for: urlRequest, withIdentifier: "avatar")
+          self.imageCache.add(avatarImage, withIdentifier: "avatar")
           self.userProfileImage.image = avatarImage
         })
         return
@@ -73,18 +73,18 @@ class HomeViewController: UIViewController {
   private func downloadImage(from url: String, completionHandler: @escaping(Image, URLRequest) -> Void) {
     let urlRequest = URLRequest(url: URL(string: url)!)
     
-    imageDownloader.download(urlRequest) { response in
+    ImageDownloader.default.download(urlRequest) { response in
       if let image = response.result.value {
         completionHandler(image, urlRequest)
       }
     }
   }
   
-  private func setViewWithData() {
+  private func updateUI() {
     setProfileImage()
     
     if let firstName = user?.firstName {
-      welcomeLabel.text = String.init(format: NSLocalizedString("Hello, %@", comment: ""), arguments: [firstName])
+      welcomeLabel.text = "\(NSLocalizedString("greeting", comment: "")), \(firstName)"
     }
     
     let date = Date()
@@ -92,36 +92,33 @@ class HomeViewController: UIViewController {
     
     if let region = locale.regionCode {
       let dateString = date.toString(withLocale: region)
-      dateLabel.text = "\(NSLocalizedString("Today", comment: "")): \(dateString)".uppercased()
+      dateLabel.text = "\(NSLocalizedString("today", comment: "")): \(dateString)".uppercased()
     }
     
-    //todaySummaryLabel.text = String.init(format: NSLocalizedString("You have %@ tasks to do today", comment: ""), arguments: [3])
+    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""), "5")
   }
   
   private func showMoreActionSheet(index: Int) {
     let tasklist = self.tasklists[index]
-    let title = String(format: "What do you want to do with Tasklist: %@?", tasklist.name)
+    let title = String(format: NSLocalizedString("alert_title", comment:""), tasklist.name)
     let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
     
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    let editAction = UIAlertAction(title: "Edit", style: .default, handler: { action in
+    let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
+    let editAction = UIAlertAction(title: NSLocalizedString("edit_list", comment: ""), style: .default, handler: { action in
       self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
     })
     
-    let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: {
+    let deleteAction = UIAlertAction(title: NSLocalizedString("delete_list", comment: ""), style: .destructive, handler: {
       action in
-      let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to delete this?", preferredStyle: .alert)
+      let dialogMessage = UIAlertController(title: NSLocalizedString("confirm", comment: ""), message: NSLocalizedString("confirm_subtitle", comment: ""), preferredStyle: .alert)
       
-      let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-        tasklist.delete()
+      let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: { (action) -> Void in
+        tasklist.hardDelete()
         
         self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-        //self.taskListCollectionView.reloadData()
-        print("Ok button tapped")
       })
       
-      let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-        print("Cancel button tapped")
+      let cancel = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel) { (action) -> Void in
       }
       
       dialogMessage.addAction(ok)
@@ -137,10 +134,9 @@ class HomeViewController: UIViewController {
     self.present(alert, animated: true)
   }
   
-  
-  @IBAction func logOut(_ sender: Any) {
-    user?.logOut()
-    navigationController?.popViewController(animated: true)
+  @IBAction private func openMenuAction(_ sender: Any) {
+    slideMenuController()?.delegate = self
+    slideMenuController()?.openLeft()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,7 +149,6 @@ class HomeViewController: UIViewController {
       }
     } else if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
-      //controller.delegate = self
       
       if sender is TaskList {
         controller.tasklist = sender as? TaskList
@@ -167,6 +162,7 @@ class HomeViewController: UIViewController {
   }
 }
 
+// MARK: -  Collection delegate methods
 extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     if indexPath.row < tasklists.count {
@@ -178,6 +174,7 @@ extension HomeViewController: UICollectionViewDelegate {
   }
 }
 
+// MARK: -  Collection data source methods
 extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return tasklists.count + 1
@@ -204,9 +201,9 @@ extension HomeViewController: UICollectionViewDataSource {
   
 }
 
+// MARK: -  Collection flowlayout methods
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
     return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
   }
 }
@@ -218,5 +215,22 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
   
   func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList) {
     reloadTasks()
+  }
+}
+
+// MARK: -  Slide menu delegate methods
+extension HomeViewController: SlideMenuControllerDelegate {
+  func leftWillClose() {
+    if user?.isLoggedIn == false {
+      navigationController?.popViewController(animated: true)
+    }
+  }
+  
+  func leftWillOpen() {
+    let controller = slideMenuController()?.leftViewController as? MenuViewController
+    guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
+      return
+    }
+    controller?.userProfileImage.image = cachedAvatarImage
   }
 }

@@ -20,7 +20,7 @@ class TaskCell: UITableViewCell {
   private let unchecked = UIImage(named: "unchecked")
   
   func configure(with task: TaskItem) {
-    checkbox.image = task.checked ? checked : unchecked
+    checkbox.image = task.checked == true ? checked : unchecked
     strikeThroughText(with: task.text, strike: task.checked)
     deleteView.isHidden = !task.checked
   }

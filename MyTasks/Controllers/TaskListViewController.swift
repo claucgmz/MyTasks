@@ -13,17 +13,18 @@ class TaskListViewController: UIViewController {
   
   @IBOutlet weak var tasksTableView: UITableView!
   var tasklist: TaskList?
-  var tasks: Results<TaskItem>!
-  var tasksbydate = [Results<TaskItem>]()
+  var tasksOrder = [String]()
+  var tasks = [Results<TaskItem>]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    filterTasks()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    updateTasksByDate()
+    tasksTableView.reloadData()
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
@@ -35,43 +36,19 @@ class TaskListViewController: UIViewController {
     tasksTableView.register(headerCellNib, forHeaderFooterViewReuseIdentifier: "TaskListTableHeader")
   }
   
-  private func filterTasks() {
-    tasks = tasklist?.items.filter("deleted = false")
-    let today = Date()
-    let todayStart = Calendar.current.startOfDay(for: today)
-    let todayEnd: Date = {
-      let components = DateComponents(day: 1, second: -1)
-      return Calendar.current.date(byAdding: components, to: todayStart)!
-    }()
-    
-    let tomorrowStart: Date = {
-      let components = DateComponents(day: 1)
-      return Calendar.current.date(byAdding: components, to: todayStart)!
-    }()
-    
-    let tomorrowEnd: Date = {
-      let components = DateComponents(day: 1)
-      return Calendar.current.date(byAdding: components, to: tomorrowStart)!
-    }()
-    
-    let laterStart: Date = {
-      let components = DateComponents(day: 1)
-      return Calendar.current.date(byAdding: components, to: tomorrowStart)!
-    }()
-    
-    tasksbydate.append(tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
-    tasksbydate.append(tasks.filter("dueDate BETWEEN %@",[tomorrowStart, tomorrowEnd]))
-    tasksbydate.append(tasks.filter("dueDate > %@", laterStart))
-    tasksbydate.append(tasks.filter("dueDate < %@", todayStart))
+  private func updateTasksByDate() {
+    let tasksbydate = tasklist?.tasksByDate
+    tasks = (tasksbydate?.tasks)!
+    tasksOrder = (tasksbydate?.order)!
   }
   
-  private func reloadTasks() {
-    tasksTableView.reloadData()
-    navigationController?.popViewController(animated:true)
+  private func updateProgressView() {
+    guard let tableView = tasksTableView else { return }
+    tableView.reloadSections(IndexSet(integer: 0), with: .middle)
   }
   
   @IBAction func addTaskButtonAction(_ sender: Any) {
-   performSegue(withIdentifier: "TaskDetail", sender: nil)
+    performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,7 +56,7 @@ class TaskListViewController: UIViewController {
       let controller = segue.destination as! TaskDetailViewController
       controller.tasklist = tasklist
       controller.delegate = self
-
+      
       if sender is TaskItem {
         controller.taskToEdit = sender as? TaskItem
       }
@@ -89,35 +66,43 @@ class TaskListViewController: UIViewController {
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return tasks.count + 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     if section == 0 {
       return 0
     }
     
-    return tasksbydate[section-1].count
+    return tasks[section-1].count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
-    let task = tasksbydate[indexPath.section-1][indexPath.row]
-
+    let task = tasks[indexPath.section-1][indexPath.row]
+    
     cell.configure(with: task)
     
     cell.checkboxView.addTapGestureRecognizer(action: {
       cell.configure(with: task)
       task.toogleCheckmark()
+      tableView.reloadRows(at: [indexPath], with: .automatic)
+      self.updateProgressView()
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
-      task.delete()
-      self.filterTasks()
+      task.softDelete()
       tableView.beginUpdates()
-      tableView.deleteRows(at: [indexPath], with: .fade)
+      tableView.deleteRows(at: [indexPath], with: .automatic)
+      self.updateProgressView()
+      
+      if tableView.numberOfRows(inSection: indexPath.section) == 1 {
+        let indexSet = IndexSet(integer: indexPath.section)
+        tableView.deleteSections(indexSet, with: .middle)
+        self.updateTasksByDate()
+      }
+
       tableView.endUpdates()
     })
     
@@ -125,16 +110,10 @@ extension TaskListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section == 1 {
-      return "Today"
-    } else if section == 2 {
-      return "Tomorrow"
-    } else if section == 3 {
-      return "Later"
-    }  else if section == 4 {
-      return "Past"
+    if section > 0 && tasksOrder.count >= section {
+      let title = NSLocalizedString(tasksOrder[section-1], comment: "")
+      return title
     }
-    
     return ""
   }
   
@@ -146,7 +125,7 @@ extension TaskListViewController: UITableViewDataSource {
     
     return 25
   }
-
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 50.0
   }
@@ -154,7 +133,7 @@ extension TaskListViewController: UITableViewDataSource {
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasksbydate[indexPath.section-1][indexPath.row]
+    let task = tasks[indexPath.section-1][indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
   
@@ -170,18 +149,20 @@ extension TaskListViewController: UITableViewDelegate {
       header?.progressView.configure(with: tasklist)
       return header
     }
-    
     return nil
   }
   
 }
 
+// MARK - TaskDetailViewController delegate methods
 extension TaskListViewController: TaskDetailViewControllerDelegate {
   func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: TaskItem, in tasklist: TaskList) {
-    reloadTasks()
+    self.navigationController?.popViewController(animated:true)
+    tasksTableView.reloadData()
   }
   
   func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: TaskItem, in tasklist: TaskList) {
-    reloadTasks()
+    self.navigationController?.popViewController(animated:true)
+    tasksTableView.reloadData()
   }
 }

@@ -25,12 +25,14 @@ PODS:
   - Realm/Headers (3.0.2)
   - RealmSwift (3.0.2):
     - Realm (= 3.0.2)
+  - SlideMenuControllerSwift (4.0.0)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.3)
   - FacebookCore
   - FacebookLogin
   - RealmSwift
+  - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -42,7 +44,8 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 56a057ca6822535ea0faa25f57a7c41edb697fd4
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
 
-PODFILE CHECKSUM: 1b9ced93920019604d4983b8230b6464a2d0c15d
+PODFILE CHECKSUM: 783e93ff7ad7231147abb149c2393b403c38fad3
 
 COCOAPODS: 1.3.1

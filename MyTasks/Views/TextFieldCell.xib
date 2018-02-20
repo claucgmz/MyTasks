@@ -43,9 +43,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="taskNameLabel" destination="4ZC-qD-ezZ" id="1Fq-dV-wDQ"/>
                 <outlet property="taskNameTextField" destination="VGF-FL-Qag" id="Nlp-1L-bzC"/>
             </connections>
-            <point key="canvasLocation" x="34" y="48"/>
+            <point key="canvasLocation" x="33" y="51"/>
         </tableViewCell>
     </objects>
 </document>

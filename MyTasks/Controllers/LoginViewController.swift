@@ -12,12 +12,14 @@ import FacebookCore
 import RealmSwift
 
 class LoginViewController: UIViewController {
-  let realm = RealmService.shared.realm
-  var user: User?
-
+  private let realm = RealmService.shared.realm
+  private var user: User?
+  
+  @IBOutlet private weak var loginButton: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    addFBLoginButton()
+    loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -28,47 +30,48 @@ class LoginViewController: UIViewController {
     }
   }
   
-  // MARK: -  Private methods
-  
-  private func addFBLoginButton() {
-    let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
-    loginButton.center = view.center
-    loginButton.delegate = self
-    view.addSubview(loginButton)
+  // MARK: - Action methods
+  @IBAction private func loginButtonAction(_ sender: Any) {
+    let loginManager = LoginManager()
+    loginManager.logIn(readPermissions: [.publicProfile], viewController: self, completion: {
+      loginResult in
+      switch loginResult {
+      case .failed(let error):
+        print(error)
+      case .cancelled:
+        print("User cancelled login.")
+      case .success:
+        print("Logged in!")
+        self.loginUser()
+      }
+    })
   }
   
+  // MARK: -  Private methods
   private func goToHome() {
     self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
-}
-
-// MARK: -  Logun Button Delegate methods
-extension LoginViewController: LoginButtonDelegate {
-  func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-    
+  
+  private func loginUser() {
     let facebookManager = FacebookManager()
     facebookManager.getUserInfo(onSuccess: { data in
       var user = User(with: data)
-      
       if let exists = user.exists() {
         user = exists
       } else {
-        user.create()
+        user.add()
       }
       
       user.logIn()
+      
       DispatchQueue.main.async {
         self.goToHome()
       }
       
     }, onFailure: { error in
       if error != nil {
-        print("Erro: \(String(describing: error?.localizedDescription))")
+        print("Error: \(String(describing: error?.localizedDescription))")
       }
     })
-  }
-  
-  func loginButtonDidLogOut(_ loginButton: LoginButton) {
-    user?.logOut()
-  }
+  }  
 }

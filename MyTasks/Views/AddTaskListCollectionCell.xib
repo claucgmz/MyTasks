@@ -34,6 +34,9 @@
                 <constraint firstItem="754-Ty-Nln" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="t7B-0I-zKN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="addText" destination="754-Ty-Nln" id="knt-BU-NJv"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

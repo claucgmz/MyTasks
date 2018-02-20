@@ -21,18 +21,20 @@ class TaskListDetailViewController: UIViewController {
   
   weak var delegate: TaskListDetailViewControllerDelegate?
   var tasklistToEdit: TaskList?
-  var user: User!
+  private var user: User!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
     user = User.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
+    
     if tasklistToEdit != nil {
-      title = "Edit TaskList"
+      title = NSLocalizedString("edit_list", comment: "")
       mainActionButton.didEnable(true)
     } else {
       mainActionButton.didEnable(false)
-      title = "Add TaskList"
+      title = NSLocalizedString("add_list", comment: "")
     }
   }
   
@@ -61,11 +63,11 @@ class TaskListDetailViewController: UIViewController {
     }
     
     if let tasklistToEdit  = tasklistToEdit {
-      user.update(tasklist: tasklistToEdit, with: ["hex": color.toHexString, "categoryIcon": icon.rawValue, "name": name])
+      tasklistToEdit.update(name: name, icon: icon, color: color)
       delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
       let tasklist = TaskList(name: name, icon: icon, color: color)
-      user.add(tasklist: tasklist)
+      tasklist.add()
       delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
     }
   }

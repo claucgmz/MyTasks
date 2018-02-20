@@ -23,10 +23,28 @@ import RealmSwift
     self.dueDate = date
   }
   
-  func toogleCheckmark() {
-    let realm = RealmService.shared.realm
+  override static func indexedProperties() -> [String] {
+    return ["dueDate"]
+  }
+  
+  func add(to tasklist: TaskList) {
+    tasklist.add(task: self)
+  }
+  
+  func update(text: String, date: Date) {
     do{
-      try realm.write {
+      try RealmService.shared.realm.write {
+        self.text = text
+        self.dueDate = date
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func toogleCheckmark() {
+    do{
+      try RealmService.shared.realm.write {
         self.checked = !checked
       }
     } catch {
@@ -34,14 +52,9 @@ import RealmSwift
     }
   }
   
-  func remove() {
-    RealmService.shared.delete(self)
-  }
-  
-  func delete() {
-    let realm = RealmService.shared.realm
+  func softDelete() {
     do{
-      try realm.write {
+      try RealmService.shared.realm.write {
         self.deleted = true
       }
     } catch {

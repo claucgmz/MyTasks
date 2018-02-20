@@ -13,5 +13,8 @@ target 'MyTasks' do
   
   #AlamofireImage is an image component library for Alamofire
   pod 'AlamofireImage', '~> 3.3'
+  
+  #iOS Slide Menu View based on Google+, iQON, Feedly, Ameba iOS app. It is written in pure swift.
+  pod 'SlideMenuControllerSwift'
 
 end

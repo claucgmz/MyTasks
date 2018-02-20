@@ -12,7 +12,6 @@ import RealmSwift
 @objcMembers class TaskList: Object {
   
   // MARK: - Properties
-  //dynamic var user: User?
   dynamic var id = UUID().uuidString
   dynamic var name = ""
   dynamic var hex = ""
@@ -36,6 +35,46 @@ import RealmSwift
     return items.filter("deleted = 0")
   }
   
+  var tasksByDate: (order: [String], tasks: [Results<TaskItem>]) {
+    var tasksbydate = [Results<TaskItem>]()
+    var orderby = [String]()
+    
+    let today = Date()
+    let todayStart = today.startOfDay
+    let todayEnd = today.endOfDay
+    
+    var filterTasks = tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd])
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("today")
+    }
+    
+    let tomorrow = todayStart.nextDay
+    let tomorrowEnd = tomorrow.endOfDay
+    
+    filterTasks = tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd])
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("tomorrow")
+    }
+    
+    let later = tomorrow.nextDay
+    filterTasks = tasks.filter("dueDate > %@", later)
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("later")
+    }
+    
+    filterTasks = tasks.filter("dueDate < %@", todayStart)
+    if filterTasks.count > 0 {
+      tasksbydate.append(filterTasks)
+      orderby.append("past_due_date")
+    }
+    
+    return (order: orderby, tasks: tasksbydate)
+  }
+  
+  
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count
     if tasks.count > 0 {
@@ -47,7 +86,6 @@ import RealmSwift
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
     self.init()
-   //self.user = User.getLoggedUser()
     self.name = name
     self.icon = icon
     self.hex = color.toHexString
@@ -57,37 +95,64 @@ import RealmSwift
   override class func primaryKey() -> String? {
     return "id"
   }
-  
-  override static func indexedProperties() -> [String] {
-    return ["user"]
-  }
-  
+
   func add(task: TaskItem) {
-    let realm = RealmService.shared.realm
     do{
-      try realm.write {
+      try RealmService.shared.realm.write {
         items.append(task)
-        print("add item to db")
       }
     } catch {
       print(error)
     }
   }
   
-  func update(task: TaskItem, with newTask: TaskItem) {
-    let realm = RealmService.shared.realm
+  func update(name: String, icon: CategoryIcon, color: UIColor) {
     do{
-      try realm.write {
-        if let index = items.index(of: task) {
-          items[index] = newTask
-        }
+      try RealmService.shared.realm.write {
+        self.name = name
+        self.hex = color.toHexString
+        self.icon = icon
       }
     } catch {
       print(error)
     }
   }
   
-  func delete() {
-    RealmService.shared.delete(self)
+  func remove(task: TaskItem) {
+    do{
+      try RealmService.shared.realm.write {
+        let index = self.items.index(of: task)
+        self.items.remove(at: index!)
+      }
+    } catch {
+      print(error)
+    }
+  }
+
+}
+
+extension TaskList: BasicStorageFunctions {
+  func add() {
+    let user = User.getLoggedUser()
+    do{
+      try RealmService.shared.realm.write {
+        user?.tasklists.append(self)
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func hardDelete() {
+    do{
+      try RealmService.shared.realm.write {
+        for item in items {
+          realm?.delete(item)
+        }
+        realm?.delete(self)
+      }
+    } catch {
+      print(error)
+    }
   }
 }

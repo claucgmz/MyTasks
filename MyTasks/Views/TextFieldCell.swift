@@ -9,5 +9,12 @@
 import UIKit
 
 class TextFieldCell: UITableViewCell {
+  
+  @IBOutlet weak var taskNameLabel: UILabel!
   @IBOutlet weak var taskNameTextField: UITextField!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    taskNameLabel.text = NSLocalizedString("task_to_perform", comment: "")
+  }
 }

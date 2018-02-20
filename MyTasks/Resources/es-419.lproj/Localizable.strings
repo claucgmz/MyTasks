@@ -6,20 +6,46 @@
  Copyright © 2018 Claudia Carrillo. All rights reserved.
  */
 
-"Hello" = "Hola";
-"You have %@ tasks to do today" = "Tienes %@ tareas para hoy";
+//Home View
+"greeting" = "Hola";
+"tasks_for_today" = "Tienes %@ tareas para hoy";
+"today" = "Hoy";
+"tasks" = "Tareas";
 
-"Tasks" = "Tareas";
-"Today" = "Hoy";
-"Tomorrow" = "Mañana";
+//Actionsheet
+"alert_title" = "Que deseas hacer con %@?";
+"edit_list" = "Editar lista";
+"delete_list" = "Eliminar lista";
 
-"What's your list name?" = "Cual es el nombre de tu lista?";
-"What tasks are you planning to perform?" = "Que tareas planeas realizar?";
+//Delete confirmation
+"confirm" = "Confirmar";
+"confirm_subtitle" = "Estas seguro que quieres eliminar esta lista?";
 
-"New list" = "Nueva lista";
-"Edit list" = "Editar lista";
+//Buttons
+"cancel" = "Cancelar";
+"ok" = "OK";
+"log_out" = "Cerrar sesión";
+"log_in" = "Iniciar sesión";
 
-"New task" = "Nueva tarea";
-"Edit task" = "Editar tarea";
+//TaskListView
+"tomorrow" = "Mañana";
+"later" = "Después";
+"past" = "Pasado";
+"save" = "Guardar";
 
-"Save" = "Guardar";
+//TasklistDetailView
+"add_list" = "Agregar Lista";
+"edit_list" = "Editar Lista";
+"list_name" = "Cual es el nombre de la lista?";
+"list_color" = "Selecciona un color";
+"list_icon" = "Selecciona un icono";
+
+//TaskItemDetailView
+"add_task" = "Agregar Tarea";
+"edit_task" = "Editar Tarea";
+"task_to_perform" = "Que tarea planeas hacer?";
+"due_date" = "Fecha";
+
+//Days
+"later" = "Después";
+"past_due_date" = "Pasadas";
