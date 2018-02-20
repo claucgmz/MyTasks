@@ -15,12 +15,10 @@ class TaskListViewController: UIViewController {
   var tasklist: TaskList?
   var tasksOrder = [String]()
   var tasks = [Results<TaskItem>]()
-  var notificationToken: NotificationToken?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    addNotification()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -30,24 +28,12 @@ class TaskListViewController: UIViewController {
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
-  deinit {
-    notificationToken?.invalidate()
-  }
-  
   private func registerNibs() {
     let taskCellNib = UINib(nibName: "TaskCell", bundle: nil)
     tasksTableView.register(taskCellNib, forCellReuseIdentifier: TaskCell.reusableId)
     
     let headerCellNib = UINib(nibName: "TaskListTableHeader", bundle: nil)
     tasksTableView.register(headerCellNib, forHeaderFooterViewReuseIdentifier: "TaskListTableHeader")
-  }
-  
-  private func addNotification() {
-    let results = tasklist?.tasks
-    notificationToken = results?.observe { [weak self] (changes: RealmCollectionChange) in
-      guard let tableView = self?.tasksTableView else { return }
-      tableView.reloadSections([0,1], with: .none)
-    }
   }
   
   private func updateTasksByDate() {
