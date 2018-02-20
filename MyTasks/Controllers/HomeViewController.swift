@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
     super.viewWillAppear(animated)
     self.navigationController?.setNavigationBarHidden(false, animated: animated)
     taskListCollectionView.reloadData()
+    updateTotalTasksForToday()
   }
   
   // MARK: -  Private methods
@@ -95,7 +96,11 @@ class HomeViewController: UIViewController {
       dateLabel.text = "\(NSLocalizedString("today", comment: "")): \(dateString)".uppercased()
     }
     
-    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""), "5")
+    updateTotalTasksForToday()
+  }
+  
+  private func updateTotalTasksForToday() {
+    todaySummaryLabel.text = String(format: NSLocalizedString("tasks_for_today", comment: ""),"\(user?.totalTasksForToday ?? 0)")
   }
   
   private func showMoreActionSheet(index: Int) {

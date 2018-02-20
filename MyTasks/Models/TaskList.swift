@@ -35,6 +35,14 @@ import RealmSwift
     return items.filter("deleted = 0")
   }
   
+  var pendingTasksToday: Results<TaskItem> {
+    let today = Date()
+    let todayStart = today.startOfDay
+    let todayEnd = today.endOfDay
+    
+    return items.filter("checked = 0 AND dueDate BETWEEN %@", [todayStart, todayEnd])
+  }
+  
   var tasksByDate: (order: [String], tasks: [Results<TaskItem>]) {
     var tasksbydate = [Results<TaskItem>]()
     var orderby = [String]()
