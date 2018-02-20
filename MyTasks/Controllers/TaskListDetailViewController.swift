@@ -21,7 +21,7 @@ class TaskListDetailViewController: UIViewController {
   
   weak var delegate: TaskListDetailViewControllerDelegate?
   var tasklistToEdit: TaskList?
-  var user: User!
+  private var user: User!
   
   override func viewDidLoad() {
     super.viewDidLoad()

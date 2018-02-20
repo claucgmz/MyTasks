@@ -126,8 +126,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="DZu-GP-Mea">
                         <barButtonItem key="leftBarButtonItem" image="menu" width="1" style="plain" id="I9L-V5-xj1">
-                            <inset key="imageInsets" minX="-15" minY="3" maxX="0.0" maxY="0.0"/>
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageInsets" minX="8" minY="3" maxX="0.0" maxY="0.0"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="openMenuAction:" destination="AaR-1V-Evv" id="uwE-Zc-wKN"/>
                             </connections>
@@ -352,7 +352,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Qt-VU-sXj" firstAttribute="centerX" secondItem="q7q-sz-RaU" secondAttribute="centerX" id="7QN-LD-AkS"/>
                             <constraint firstItem="nYx-LB-bJx" firstAttribute="trailing" secondItem="pgW-Fl-9f8" secondAttribute="trailing" constant="20" id="Bym-n1-gnY"/>
