@@ -9,10 +9,12 @@
 import UIKit
 
 class AddTaskListCollectionCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+  
+  @IBOutlet weak var addText: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    addText.text = NSLocalizedString("add_list", comment: "")
+  }
+  
 }

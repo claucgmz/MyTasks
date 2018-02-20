@@ -33,8 +33,8 @@
 "save" = "Guardar";
 
 //TasklistDetailView
-"add_list" = "Agregar lista";
-"edit_list" = "Editar lista";
+"add_list" = "Agregar Lista";
+"edit_list" = "Editar Lista";
 "list_name" = "Cual es el nombre de la lista?";
 "list_color" = "Selecciona un color";
 "list_icon" = "Selecciona un icono";

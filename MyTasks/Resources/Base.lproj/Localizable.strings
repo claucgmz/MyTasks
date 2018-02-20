@@ -33,14 +33,14 @@
 "save" = "Save";
 
 //TasklistDetailView
-"add_list" = "Add list";
-"edit_list" = "Edit list";
+"add_list" = "Add New List";
+"edit_list" = "Edit List";
 "list_name" = "What's your list name?";
 "list_color" = "List color";
 "list_icon" = "List icon";
 
 //TaskItemDetailView
-"add_task" = "Add Task";
+"add_task" = "Add New Task";
 "edit_task" = "Edit Task";
 "task_to_perform" = "What task are you planning to perform?";
 "due_date" = "Due date";
