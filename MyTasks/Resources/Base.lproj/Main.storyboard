@@ -19,16 +19,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My tasks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vnn-Wh-Sru">
-                                <rect key="frame" x="40" y="139" width="227" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY5-64-f5A">
-                                <rect key="frame" x="81.5" y="259" width="157" height="50"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="0DJ-BH-KfL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY5-64-f5A">
+                                <rect key="frame" x="69.5" y="259" width="181" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="oAs-Ld-V4s"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="14" maxY="5"/>
                                 <state key="normal" title="Iniciar Sesion" image="facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,11 +36,32 @@
                                     <action selector="loginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4xc-Jh-jNK"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="eM0-VC-iVP">
+                                <rect key="frame" x="135" y="149" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="PA9-Vw-niH"/>
+                                    <constraint firstAttribute="height" constant="50" id="gVD-wd-s59"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY TASKS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vnn-Wh-Sru">
+                                <rect key="frame" x="88" y="83" width="143" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dY5-64-f5A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KA0-xA-emq"/>
+                            <constraint firstItem="0DJ-BH-KfL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LsX-7C-I9M"/>
+                            <constraint firstItem="dY5-64-f5A" firstAttribute="top" secondItem="eM0-VC-iVP" secondAttribute="bottom" constant="60" id="O04-LF-zWx"/>
+                            <constraint firstItem="0DJ-BH-KfL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PNJ-Id-skz"/>
+                            <constraint firstItem="eM0-VC-iVP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dAI-Wo-lFy"/>
+                            <constraint firstItem="eM0-VC-iVP" firstAttribute="top" secondItem="Vnn-Wh-Sru" secondAttribute="bottom" constant="30" id="jxm-vc-Ofm"/>
+                            <constraint firstItem="0DJ-BH-KfL" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mka-wQ-hlG"/>
+                            <constraint firstItem="0DJ-BH-KfL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="taQ-F0-Jn8"/>
+                            <constraint firstItem="Vnn-Wh-Sru" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tnj-v8-3Hd"/>
                             <constraint firstItem="dY5-64-f5A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y9C-GF-rdX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -559,7 +580,9 @@
     </scenes>
     <resources>
         <image name="add" width="50" height="50"/>
+        <image name="bg" width="658" height="1170"/>
         <image name="facebook" width="50" height="50"/>
+        <image name="icon" width="100" height="100"/>
         <image name="menu" width="50" height="50"/>
     </resources>
 </document>
