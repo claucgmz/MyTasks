@@ -356,31 +356,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgW-Fl-9f8">
-                                <rect key="frame" x="20" y="115" width="280" height="39"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                <state key="normal" title="Log out">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOut:" destination="oks-kV-RwH" eventType="touchUpInside" id="oCa-ox-mGn"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Qt-VU-sXj">
-                                <rect key="frame" x="135" y="35" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ZsI-XV-3W9"/>
-                                    <constraint firstAttribute="width" constant="50" id="flO-in-ait"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-9p-sdq">
+                                <rect key="frame" x="0.0" y="50" width="320" height="188.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Qt-VU-sXj">
+                                        <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="flO-in-ait"/>
+                                            <constraint firstAttribute="height" constant="100" id="neb-3X-NSR"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clau Carrillo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BF-5o-91h">
+                                        <rect key="frame" x="102" y="115" width="116.5" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgW-Fl-9f8">
+                                        <rect key="frame" x="132.5" y="156.5" width="55" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <state key="normal" title="Log out">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOut:" destination="oks-kV-RwH" eventType="touchUpInside" id="oCa-ox-mGn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My tasks, by Clau Carrillo @ Nearsoft. © 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwX-hA-bIi">
+                                <rect key="frame" x="20" y="519.5" width="285" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="0Qt-VU-sXj" firstAttribute="centerX" secondItem="q7q-sz-RaU" secondAttribute="centerX" id="7QN-LD-AkS"/>
-                            <constraint firstItem="0Qt-VU-sXj" firstAttribute="top" secondItem="nYx-LB-bJx" secondAttribute="top" constant="15" id="deZ-sR-NdD"/>
-                            <constraint firstItem="pgW-Fl-9f8" firstAttribute="top" secondItem="0Qt-VU-sXj" secondAttribute="bottom" constant="30" id="iJf-Pr-nfb"/>
-                            <constraint firstItem="pgW-Fl-9f8" firstAttribute="centerX" secondItem="0Qt-VU-sXj" secondAttribute="centerX" id="jj1-2t-ET1"/>
-                            <constraint firstItem="pgW-Fl-9f8" firstAttribute="leading" secondItem="nYx-LB-bJx" secondAttribute="leading" constant="20" id="nvi-Z6-Xye"/>
+                            <constraint firstItem="rOx-9p-sdq" firstAttribute="leading" secondItem="nYx-LB-bJx" secondAttribute="leading" id="3so-TQ-5E1"/>
+                            <constraint firstItem="nYx-LB-bJx" firstAttribute="trailing" secondItem="OwX-hA-bIi" secondAttribute="trailing" constant="15" id="HHk-jv-wH1"/>
+                            <constraint firstItem="OwX-hA-bIi" firstAttribute="leading" secondItem="nYx-LB-bJx" secondAttribute="leading" constant="20" id="HSG-pD-54T"/>
+                            <constraint firstItem="rOx-9p-sdq" firstAttribute="top" secondItem="nYx-LB-bJx" secondAttribute="top" constant="30" id="Jzz-zb-Rbk"/>
+                            <constraint firstAttribute="bottom" secondItem="OwX-hA-bIi" secondAttribute="bottom" constant="15" id="mca-Jd-EXe"/>
+                            <constraint firstItem="nYx-LB-bJx" firstAttribute="trailing" secondItem="rOx-9p-sdq" secondAttribute="trailing" id="uB5-mg-HIe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nYx-LB-bJx"/>
                     </view>
