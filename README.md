@@ -22,11 +22,13 @@ Practice app for creating lists with tasks to be completed and managed.
 *   __SlideMenuControllerSwift__
 
 ## Screenshots
-<img src="/Screenshots/1.png?raw=true" width="270">
-<img src="/Screenshots/2.png?raw=true" width="270">
-<img src="/Screenshots/3png?raw=true" width="270">
-<img src="/Screenshots/4.png?raw=true" width="270">
-<img src="/Screenshots/5.png?raw=true" width="270">
-<img src="/Screenshots/6.png?raw=true" width="270">
-<img src="/Screenshots/7.png?raw=true" width="270">
-<img src="/Screenshots/8.png?raw=true" width="270">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/1.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/2.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/3.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/4.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/5.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/6.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/7.png?raw=true" height="460" style="margin-bottom: 10px">
+<img src="https://raw.githubusercontent.com/claucgmz/MyTasks/master/Screenshots/8.png?raw=true" height="460" style="margin-bottom: 10px">
+</div>
