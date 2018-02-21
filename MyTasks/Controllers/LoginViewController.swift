@@ -20,6 +20,9 @@ class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
+    loginButton.imageView?.contentMode = .scaleAspectFit
+    loginButton.imageEdgeInsets = UIEdgeInsetsMake(6.0, 0.0, 6.0, 5.0)
+    loginButton.roundCorners(withRadius: 5.0)
   }
   
   override func viewWillAppear(_ animated: Bool) {
