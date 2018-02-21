@@ -22,12 +22,11 @@ Practice app for creating lists with tasks to be completed and managed.
 *   __SlideMenuControllerSwift__
 
 ## Screenshots
-![Alt text](/Screenshots/1.png?raw=true | width=100)
-![Alt text](/Screenshots/2.png?raw=true | width=100)
-![Alt text](/Screenshots/3.png?raw=true | width=100)
-![Alt text](/Screenshots/4.png?raw=true | width=100)
-![Alt text](/Screenshots/5.png?raw=true | width=100)
-![Alt text](/Screenshots/6.png?raw=true | width=100)
-![Alt text](/Screenshots/7.png?raw=true | width=100)
-![Alt text](/Screenshots/8.png?raw=true | width=100)
-
+<img src="/Screenshots/1.png?raw=true" width="270">
+<img src="/Screenshots/2.png?raw=true" width="270">
+<img src="/Screenshots/3png?raw=true" width="270">
+<img src="/Screenshots/4.png?raw=true" width="270">
+<img src="/Screenshots/5.png?raw=true" width="270">
+<img src="/Screenshots/6.png?raw=true" width="270">
+<img src="/Screenshots/7.png?raw=true" width="270">
+<img src="/Screenshots/8.png?raw=true" width="270">
