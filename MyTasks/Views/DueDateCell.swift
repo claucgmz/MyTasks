@@ -9,7 +9,6 @@
 import UIKit
 
 class DueDateCell: UITableViewCell {
-  
   @IBOutlet weak var dueDateLabel: UILabel!
   
   override func awakeFromNib() {

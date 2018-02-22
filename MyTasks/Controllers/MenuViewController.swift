@@ -7,20 +7,17 @@
 //
 
 import UIKit
-import FacebookLogin
-import FacebookCore
 import AlamofireImage
 
 class MenuViewController: UIViewController {
-  var user: User?
+  private let facebookManager = FacebookManager()
   
   @IBOutlet weak var userProfileImage: UIImageView!
-  @IBOutlet weak var logoutButton: UIButton!
+  @IBOutlet private weak var logoutButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     logoutButton.setTitle(NSLocalizedString("log_out", comment: ""), for: .normal)
-    user = User.getLoggedUser()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -28,9 +25,10 @@ class MenuViewController: UIViewController {
   }
   
   @IBAction private func logOut(_ sender: Any) {
-    let loginManager = LoginManager()
-    loginManager.logOut()
-    user?.logOut()
+    if let user = User.getLoggedUser() {
+      facebookManager.logout(user: user)
+    }
+    
     slideMenuController()?.closeLeft()
     navigationController?.popViewController(animated: true)
   }

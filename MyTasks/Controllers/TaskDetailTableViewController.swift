@@ -25,7 +25,8 @@ class TaskDetailTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    updateView()
+    tasklists = RealmService.shared.realm.objects(TaskList.self)
+    updateDueDateLabel()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -50,11 +51,6 @@ class TaskDetailTableViewController: UITableViewController {
     
     let taskListCelllNib = UINib(nibName: "TaskListCell", bundle: nil)
     mainTableView.register(taskListCelllNib, forCellReuseIdentifier: TaskListCell.reusableId)
-  }
-  
-  private func updateView() {
-    tasklists = RealmService.shared.realm.objects(TaskList.self)
-    updateDueDateLabel()
   }
   
   private func showDatePicker() {

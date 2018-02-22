@@ -10,11 +10,10 @@ import UIKit
 import RealmSwift
 
 class TaskListViewController: UIViewController {
-  
-  @IBOutlet weak var tasksTableView: UITableView!
+  @IBOutlet private weak var tasksTableView: UITableView!
   var tasklist: TaskList?
-  var tasksOrder = [String]()
-  var tasks = [Results<TaskItem>]()
+  private var tasksOrder = [String]()
+  private var tasks = [Results<TaskItem>]()
   
   override func viewDidLoad() {
     super.viewDidLoad()

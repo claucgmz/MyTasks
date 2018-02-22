@@ -9,7 +9,6 @@
 import UIKit
 
 class LayerContainerView: UIView {
-  
   override public class var layerClass: Swift.AnyClass {
     return CAGradientLayer.self
   }

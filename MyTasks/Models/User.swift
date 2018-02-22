@@ -23,6 +23,14 @@ import RealmSwift
     return "https://graph.facebook.com/\(id)/picture?type=large"
   }
   
+  var totalTasksForToday: Int {
+    var total = 0
+    for tasklist in tasklists {
+      total += tasklist.pendingTasksToday.count
+    }
+    return total
+  }
+  
   // MARK: - Init
   convenience init(with facebookData: [String : Any]?) {
     self.init()
@@ -38,7 +46,6 @@ import RealmSwift
     if let lastName = facebookData?["last_name"] as? String {
       self.lastName = lastName
     }
-    
   }
   
   // MARK: - Meta
@@ -50,23 +57,19 @@ import RealmSwift
     return ["isLoggedIn"]
   }
   
-  // MARK: - etc
+  // MARK: - Manage user methods
   
   static func getLoggedUser() -> User? {
     let user = RealmService.shared.realm.objects(User.self).filter("isLoggedIn == true")
     return user.first
   }
   
-  func exists() -> User? {
-    return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: id)
-  }
-  
-  var totalTasksForToday: Int {
-    var total = 0
-    for tasklist in tasklists {
-      total += tasklist.pendingTasksToday.count
+  static func exists(with facebookData: [String : Any]?) -> User? {
+    if let id = facebookData?["id"] as? String {
+      return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: (id as NSString).integerValue)
     }
-    return total
+    
+    return nil
   }
   
   func logIn() {

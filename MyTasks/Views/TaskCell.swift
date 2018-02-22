@@ -9,7 +9,6 @@
 import UIKit
 
 class TaskCell: UITableViewCell {
-  
   @IBOutlet weak var checkboxView: UIView!
   @IBOutlet weak var deleteView: UIView!
   

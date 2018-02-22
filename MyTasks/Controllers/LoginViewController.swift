@@ -7,22 +7,18 @@
 //
 
 import UIKit
-import FacebookLogin
-import FacebookCore
 import RealmSwift
 
 class LoginViewController: UIViewController {
   private let realm = RealmService.shared.realm
   private var user: User?
+  private let facebookManager = FacebookManager()
   
   @IBOutlet private weak var loginButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
-    loginButton.imageView?.contentMode = .scaleAspectFit
-    loginButton.imageEdgeInsets = UIEdgeInsetsMake(6.0, 0.0, 6.0, 5.0)
-    loginButton.roundCorners(withRadius: 5.0)
+    updateButtonUI()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -35,38 +31,18 @@ class LoginViewController: UIViewController {
   
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
-    let loginManager = LoginManager()
-    loginManager.logIn(readPermissions: [.publicProfile], viewController: self, completion: {
-      loginResult in
-      switch loginResult {
-      case .failed(let error):
-        print(error)
-      case .cancelled:
-        print("User cancelled login.")
-      case .success:
-        print("Logged in!")
-        self.loginUser()
-      }
-    })
-  }
-  
-  // MARK: -  Private methods
-  private func goToHome() {
-    self.performSegue(withIdentifier: "HomeSegue", sender: self)
-  }
-  
-  private func loginUser() {
-    let facebookManager = FacebookManager()
-    facebookManager.getUserInfo(onSuccess: { data in
-      var user = User(with: data)
-      if let exists = user.exists() {
+    facebookManager.login(self, onSuccess: { data in
+      var user = User.exists(with: data)
+      
+      if let exists = user {
         user = exists
       } else {
-        user.add()
+        user = User(with: data)
+        user?.add()
       }
       
-      user.logIn()
-      
+      user?.logIn()
+
       DispatchQueue.main.async {
         self.goToHome()
       }
@@ -76,5 +52,17 @@ class LoginViewController: UIViewController {
         print("Error: \(String(describing: error?.localizedDescription))")
       }
     })
-  }  
+  }
+  
+  // MARK: -  Private methods
+  private func goToHome() {
+    self.performSegue(withIdentifier: "HomeSegue", sender: self)
+  }
+  
+  private func updateButtonUI() {
+    loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
+    loginButton.imageView?.contentMode = .scaleAspectFit
+    loginButton.imageEdgeInsets = UIEdgeInsetsMake(6.0, 0.0, 6.0, 5.0)
+    loginButton.roundCorners(withRadius: 5.0)
+  }
 }

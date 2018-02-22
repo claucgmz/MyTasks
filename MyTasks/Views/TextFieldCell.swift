@@ -9,7 +9,6 @@
 import UIKit
 
 class TextFieldCell: UITableViewCell {
-  
   @IBOutlet weak var taskNameLabel: UILabel!
   @IBOutlet weak var taskNameTextField: UITextField!
   

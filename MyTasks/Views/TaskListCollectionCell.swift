@@ -10,7 +10,6 @@ import UIKit
 import AlamofireImage
 
 class TaskListCollectionCell: UICollectionViewCell {
-  
   @IBOutlet weak var moreView: UIView!
   @IBOutlet weak var progressView: TaskListProgressView!
 }
