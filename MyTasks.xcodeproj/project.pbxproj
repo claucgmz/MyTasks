@@ -10,6 +10,7 @@
 		3C18754A6517DCC0B2C7BC3B /* Pods_MyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */; };
 		5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */; };
 		5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2B12033B12B002667AC /* UIButton+State.swift */; };
+		5F3C99C3203F727400760261 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C99C2203F727400760261 /* TaskListView.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
@@ -67,6 +68,7 @@
 		2617ADFA3901667898F17FA5 /* Pods-MyTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.debug.xcconfig"; sourceTree = "<group>"; };
 		5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
 		5F2FB2B12033B12B002667AC /* UIButton+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+State.swift"; sourceTree = "<group>"; };
+		5F3C99C2203F727400760261 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +217,7 @@
 				5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */,
 				5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */,
 				5FFC81BB20373833007F018F /* BasicStorageFunctions.swift */,
+				5F3C99C2203F727400760261 /* TaskListView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */,
 				5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */,
 				5FFC81BC20373833007F018F /* BasicStorageFunctions.swift in Sources */,
+				5F3C99C3203F727400760261 /* TaskListView.swift in Sources */,
 				5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */,
 				5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */,
 				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,

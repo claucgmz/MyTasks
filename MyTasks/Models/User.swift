@@ -60,31 +60,13 @@ import RealmSwift
   // MARK: - Manage user methods
   
   static func getLoggedUser() -> User? {
-    let user = RealmService.shared.realm.objects(User.self).filter("isLoggedIn == true")
+    let user = RealmService.realm.objects(User.self).filter("isLoggedIn == true")
     return user.first
   }
-  
-  static func exists(with facebookData: [String : Any]?) -> User? {
-    if let id = facebookData?["id"] as? String {
-      return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: (id as NSString).integerValue)
-    }
-    
-    return nil
-  }
-  
-  func logIn() {
-    do{
-      try RealmService.shared.realm.write {
-        self.isLoggedIn = true
-      }
-    } catch {
-      print(error)
-    }
-  }
-  
+
   func logOut() {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         self.isLoggedIn = false
       }
     } catch {
@@ -94,7 +76,7 @@ import RealmSwift
   
   func add(tasklist: TaskList) {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         tasklists.append(tasklist)
       }
     } catch {
@@ -105,22 +87,11 @@ import RealmSwift
 
 extension User: BasicStorageFunctions {
   func add() {
-    do{
-      try RealmService.shared.realm.write {
-        RealmService.shared.realm.add(self)
-      }
-    } catch {
-      print(error)
-    }
+    isLoggedIn = true
+    RealmService.add(object: self, update: true)
   }
   
   func hardDelete() {
-    do{
-      try RealmService.shared.realm.write {
-        realm?.delete(self)
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.hardDelete(object: self)
   }
 }

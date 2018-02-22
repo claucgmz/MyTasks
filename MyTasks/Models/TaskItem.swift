@@ -34,7 +34,7 @@ import RealmSwift
   
   func update(text: String, date: Date) {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         self.text = text
         self.dueDate = date
       }
@@ -45,7 +45,7 @@ import RealmSwift
   
   func toogleCheckmark() {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         self.checked = !checked
       }
     } catch {
@@ -55,7 +55,7 @@ import RealmSwift
   
   func softDelete() {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         self.deleted = true
       }
     } catch {

@@ -10,8 +10,7 @@ import UIKit
 import RealmSwift
 
 class LoginViewController: UIViewController {
-  private let realm = RealmService.shared.realm
-  private var user: User?
+  private let realm = RealmService.realm
   private let facebookManager = FacebookManager()
   
   @IBOutlet private weak var loginButton: UIButton!
@@ -32,17 +31,9 @@ class LoginViewController: UIViewController {
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
     facebookManager.login(self, onSuccess: { data in
-      var user = User.exists(with: data)
+      let user = User(with: data)
+      user.add()
       
-      if let exists = user {
-        user = exists
-      } else {
-        user = User(with: data)
-        user?.add()
-      }
-      
-      user?.logIn()
-
       DispatchQueue.main.async {
         self.goToHome()
       }

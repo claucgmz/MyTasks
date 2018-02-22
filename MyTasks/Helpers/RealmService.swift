@@ -12,5 +12,17 @@ import RealmSwift
 class RealmService {
   private init() {}
   static let shared = RealmService()
-  var realm = try! Realm()
+  static var realm = try! Realm()
+  
+  static func add(object: Object, update: Bool = false) {
+    try! realm.write {
+      realm.add(object, update: update)
+    }
+  }
+  
+  static func hardDelete(object: Object) {
+    try! realm.write {
+      realm.delete(object)
+    }
+  }
 }

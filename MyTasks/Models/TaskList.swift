@@ -101,7 +101,7 @@ import RealmSwift
   // MARK: - Manage tasklist methods
   func add(task: TaskItem) {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         items.append(task)
       }
     } catch {
@@ -111,7 +111,7 @@ import RealmSwift
   
   func remove(task: TaskItem) {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         let index = self.items.index(of: task)
         self.items.remove(at: index!)
       }
@@ -122,7 +122,7 @@ import RealmSwift
   
   func update(name: String, icon: CategoryIcon, color: UIColor) {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         self.name = name
         self.hex = color.toHexString
         self.icon = icon
@@ -137,7 +137,7 @@ extension TaskList: BasicStorageFunctions {
   func add() {
     let user = User.getLoggedUser()
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         user?.tasklists.append(self)
       }
     } catch {
@@ -147,7 +147,7 @@ extension TaskList: BasicStorageFunctions {
   
   func hardDelete() {
     do{
-      try RealmService.shared.realm.write {
+      try RealmService.realm.write {
         for item in items {
           realm?.delete(item)
         }
