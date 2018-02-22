@@ -27,10 +27,33 @@ class TaskDetailViewController: UIViewController {
     super.viewDidLoad()
     taskDetailTableViewController = childViewControllers.first as? TaskDetailTableViewController
     taskDetailTableViewController?.tasklist = tasklist
+    updateUI()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "TaskDetailTable" {
+      let controller = segue.destination as! TaskDetailTableViewController
+      controller.delegate = self
+    }
+  }
+  
+  private func adjustForKeyboard(with height: CGFloat, show: Bool) {
+    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
+    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
+    view.frame = frame
+  }
+  
+  private func updateUI() {
     if taskToEdit != nil {
       title = NSLocalizedString("edit_task", comment: "")
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
+      
       if let date = taskToEdit?.dueDate {
         taskDetailTableViewController?.dueDate = date
       }
@@ -46,25 +69,6 @@ class TaskDetailViewController: UIViewController {
     mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "TaskDetailTable" {
-      let controller = segue.destination as! TaskDetailTableViewController
-      controller.delegate = self
-      //controller.tasklist = tasklist
-      //controller.taskToEdit = taskToEdit
-    }
-  }
-  private func adjustForKeyboard(with height: CGFloat, show: Bool) {
-    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
-    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
-    view.frame = frame
-  }
-  
   @IBAction private func done() {
     guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate else {
       return
@@ -76,7 +80,6 @@ class TaskDetailViewController: UIViewController {
       if tasklist?.id != toTaskList?.id {
         toTaskList?.add(task: taskToEdit)
         tasklist?.remove(task: taskToEdit)
-        //tasklist = toTaskList
       }
       
       if let tasklist = tasklist {

@@ -13,7 +13,7 @@ class MenuViewController: UIViewController {
   private let facebookManager = FacebookManager()
   
   @IBOutlet weak var userProfileImage: UIImageView!
-  @IBOutlet weak var logoutButton: UIButton!
+  @IBOutlet private weak var logoutButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
