@@ -83,14 +83,6 @@ import RealmSwift
   }
   
   
-  func progressPercentage() -> Double {
-    let totalDone = tasks.filter("checked = 1").count
-    if tasks.count > 0 {
-      return Double(totalDone) / Double(tasks.count)
-    }
-    return 0.0
-  }
-  
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
     self.init()
@@ -103,11 +95,32 @@ import RealmSwift
   override class func primaryKey() -> String? {
     return "id"
   }
+  
+  // MARK: - Meta
+  func progressPercentage() -> Double {
+    let totalDone = tasks.filter("checked = 1").count
+    if tasks.count > 0 {
+      return Double(totalDone) / Double(tasks.count)
+    }
+    return 0.0
+  }
 
+  // MARK: - Manage tasklist methods
   func add(task: TaskItem) {
     do{
       try RealmService.shared.realm.write {
         items.append(task)
+      }
+    } catch {
+      print(error)
+    }
+  }
+  
+  func remove(task: TaskItem) {
+    do{
+      try RealmService.shared.realm.write {
+        let index = self.items.index(of: task)
+        self.items.remove(at: index!)
       }
     } catch {
       print(error)
@@ -125,18 +138,6 @@ import RealmSwift
       print(error)
     }
   }
-  
-  func remove(task: TaskItem) {
-    do{
-      try RealmService.shared.realm.write {
-        let index = self.items.index(of: task)
-        self.items.remove(at: index!)
-      }
-    } catch {
-      print(error)
-    }
-  }
-
 }
 
 extension TaskList: BasicStorageFunctions {
