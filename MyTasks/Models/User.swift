@@ -64,8 +64,12 @@ import RealmSwift
     return user.first
   }
   
-  func exists() -> User? {
-    return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: id)
+  static func exists(with facebookData: [String : Any]?) -> User? {
+    if let id = facebookData?["id"] as? String {
+      return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: (id as NSString).integerValue)
+    }
+    
+    return nil
   }
   
   func logIn() {
