@@ -34,6 +34,7 @@ class FacebookManager {
     loginManager.logOut()
     user.logOut()
   }
+  
   private func getUserInfo(onSuccess: @escaping ([String: Any]?) -> Void, onFailure: @escaping (Error?) -> Void) {
     let connection = GraphRequestConnection()
     
