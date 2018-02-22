@@ -27,6 +27,7 @@ import RealmSwift
     return ["dueDate"]
   }
   
+  // MARK: - Manage list methods
   func add(to tasklist: TaskList) {
     tasklist.add(task: self)
   }
@@ -61,6 +62,5 @@ import RealmSwift
       print(error)
     }
   }
-  
 }
 
