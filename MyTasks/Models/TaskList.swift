@@ -43,45 +43,38 @@ import RealmSwift
     return items.filter("checked = 0 AND dueDate BETWEEN %@", [todayStart, todayEnd])
   }
   
-  var tasksByDate: (order: [String], tasks: [Results<TaskItem>]) {
-    var tasksbydate = [Results<TaskItem>]()
-    var orderby = [String]()
-    
+  var tasksByDate: [TaskListView] {
+    var tasksbydate = [TaskListView]()
     let today = Date()
     let todayStart = today.startOfDay
     let todayEnd = today.endOfDay
     
-    var filterTasks = tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd])
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("today")
+    var filtered = TaskListView(type: .today, tasks: tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
     }
     
     let tomorrow = todayStart.nextDay
     let tomorrowEnd = tomorrow.endOfDay
     
-    filterTasks = tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd])
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("tomorrow")
+    filtered = TaskListView(type: .tomorrow, tasks: tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd]))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
     }
     
     let later = tomorrow.nextDay
-    filterTasks = tasks.filter("dueDate > %@", later)
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("later")
+    filtered = TaskListView(type: .later, tasks: tasks.filter("dueDate > %@", later))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
     }
     
-    filterTasks = tasks.filter("dueDate < %@", todayStart)
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("past_due_date")
+    filtered = TaskListView(type: .pastDueDate, tasks: tasks.filter("dueDate < %@", todayStart))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
     }
     
-    return (order: orderby, tasks: tasksbydate)
-  }
-  
+    return tasksbydate
+  }  
   
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
