@@ -9,7 +9,6 @@
 import UIKit
 
 class TaskListProgressView: UIView {
-  
   @IBOutlet var contentView: UIView!
   @IBOutlet weak var iconView: UIView!
   @IBOutlet weak var iconImage: UIImageView!

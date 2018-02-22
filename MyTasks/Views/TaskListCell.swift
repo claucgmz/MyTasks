@@ -9,7 +9,6 @@
 import UIKit
 
 class TaskListCell: UITableViewCell {
-  
   @IBOutlet weak var iconImage: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   
@@ -26,5 +25,4 @@ class TaskListCell: UITableViewCell {
       accessoryType = .none
     }
   }
-  
 }

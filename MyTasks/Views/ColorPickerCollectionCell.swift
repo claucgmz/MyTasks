@@ -25,5 +25,4 @@ class ColorPickerCollectionCell: UICollectionViewCell {
     selectedView.roundCorners(withRadius: selectedView.frame.size.width / 2)
     colorView.roundCorners(withRadius: colorView.frame.size.width / 2)
   }
-  
 }
