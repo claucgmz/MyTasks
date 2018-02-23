@@ -47,7 +47,5 @@ class LoginViewController: UIViewController {
   private func updateButtonUI() {
     loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
     loginButton.imageView?.contentMode = .scaleAspectFit
-    loginButton.imageEdgeInsets = UIEdgeInsetsMake(6.0, 0.0, 6.0, 5.0)
-    loginButton.roundCorners(withRadius: 5.0)
   }
 }
