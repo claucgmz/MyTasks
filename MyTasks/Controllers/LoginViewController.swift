@@ -12,18 +12,17 @@ import RealmSwift
 class LoginViewController: UIViewController {
   private let realm = RealmService.realm
   private let facebookManager = FacebookManager()
-  
   @IBOutlet private weak var loginButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print(Realm.Configuration.defaultConfiguration.fileURL!)
     updateButtonUI()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    if User.getLoggedUser() != nil {
+    if RealmService.getLoggedUser() != nil {
       goToHome()
     }
   }
@@ -33,23 +32,18 @@ class LoginViewController: UIViewController {
     facebookManager.login(self, onSuccess: { data in
       let user = User(with: data)
       user.add()
-      
       DispatchQueue.main.async {
         self.goToHome()
       }
-      
     }, onFailure: { error in
       if error != nil {
         print("Error: \(String(describing: error?.localizedDescription))")
       }
     })
   }
-  
-  // MARK: -  Private methods
   private func goToHome() {
     self.performSegue(withIdentifier: "HomeSegue", sender: self)
   }
-  
   private func updateButtonUI() {
     loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
     loginButton.imageView?.contentMode = .scaleAspectFit

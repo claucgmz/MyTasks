@@ -17,7 +17,7 @@ import RealmSwift
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   dynamic var isLoggedIn = false
-  var tasklists = List<TaskList>()
+  let tasklists = LinkingObjects(fromType: TaskList.self, property: "user")
   
   var imageURL: String {
     return "https://graph.facebook.com/\(id)/picture?type=large"
@@ -59,36 +59,14 @@ import RealmSwift
   
   // MARK: - Manage user methods
   
-  static func getLoggedUser() -> User? {
-    let user = RealmService.realm.objects(User.self).filter("isLoggedIn == true")
-    return user.first
-  }
-
   func logOut() {
-    do{
-      try RealmService.realm.write {
-        self.isLoggedIn = false
-      }
-    } catch {
-      print(error)
-    }
-  }
-  
-  func add(tasklist: TaskList) {
-    do{
-      try RealmService.realm.write {
-        tasklists.append(tasklist)
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.logOut(user: self)
   }
 }
 
 extension User: BasicStorageFunctions {
   func add() {
-    isLoggedIn = true
-    RealmService.add(object: self, update: true)
+    RealmService.add(object: self, set: { isLoggedIn = true }, update: true)
   }
   
   func hardDelete() {

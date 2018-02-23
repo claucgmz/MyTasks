@@ -22,14 +22,14 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   
-  private var tasklists = List<TaskList>()
+  private var tasklists: LinkingObjects<TaskList>!
   private var user: User?
   private let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    user = User.getLoggedUser()
-    tasklists = (user?.tasklists)!
+    user = RealmService.getLoggedUser()
+    tasklists = user?.tasklists
     setBackgroundColor()
     updateUI()
     registerNibs()

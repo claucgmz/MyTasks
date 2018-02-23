@@ -26,7 +26,7 @@ class TaskListDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
-    user = User.getLoggedUser()
+    user = RealmService.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
     
     if tasklistToEdit != nil {
