@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: instiateVC)
     
     if RealmService.getLoggedUser() != nil {
-      instiateVC = "Main"
+      instiateVC = "MyTasks"
       initialViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier: instiateVC)
     }
 

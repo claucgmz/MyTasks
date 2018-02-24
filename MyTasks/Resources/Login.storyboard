@@ -80,11 +80,11 @@
             </objects>
             <point key="canvasLocation" x="217.5" y="89.788732394366193"/>
         </scene>
-        <!--Main-->
+        <!--MyTasks-->
         <scene sceneID="dDd-HY-pvM">
             <objects>
+                <viewControllerPlaceholder storyboardName="MyTasks" referencedIdentifier="MyTasks" id="uIl-CB-36b" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGM-2d-YPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="MyTasks" referencedIdentifier="Main" id="uIl-CB-36b" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="726" y="89"/>
         </scene>
