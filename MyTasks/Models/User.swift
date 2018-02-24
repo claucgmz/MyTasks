@@ -12,7 +12,7 @@ import RealmSwift
 @objcMembers class User: Object {
   
   // MARK: - Properties
-  dynamic var id = 0
+  dynamic var id = ""
   dynamic var firstName = ""
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
@@ -36,7 +36,7 @@ import RealmSwift
     self.init()
     
     if let id = facebookData?["id"] as? String {
-      self.id = (id as NSString).integerValue
+      self.id = id
     }
     
     if let firstName = facebookData?["first_name"] as? String {

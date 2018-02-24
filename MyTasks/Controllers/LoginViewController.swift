@@ -21,10 +21,6 @@ class LoginViewController: UIViewController {
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    if RealmService.getLoggedUser() != nil {
-      goToHome()
-    }
   }
   
   // MARK: - Action methods
