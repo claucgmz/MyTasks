@@ -12,7 +12,7 @@
         <!--Login View Controller-->
         <scene sceneID="sKJ-C8-ikO">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="Dwf-0q-iEM" customClass="LoginViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="Dwf-0q-iEM" customClass="LoginViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EPv-Zh-AnH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

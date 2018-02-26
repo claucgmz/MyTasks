@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
   
   private func goToHome() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:"MyTasks")
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:SliderMenuViewController.reusableId)
   }
   
   private func updateButtonUI() {

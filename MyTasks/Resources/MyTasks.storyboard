@@ -259,7 +259,7 @@
         <!--Slider Menu View Controller-->
         <scene sceneID="azk-Vv-MYy">
             <objects>
-                <viewController storyboardIdentifier="MyTasks" id="U2x-gO-4ZP" customClass="SliderMenuViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SliderMenuViewController" id="U2x-gO-4ZP" customClass="SliderMenuViewController" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bjz-7A-J0c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
