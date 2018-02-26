@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class RealmService {
-  private init() {}
   static let shared = RealmService()
   static var realm = try! Realm()
   

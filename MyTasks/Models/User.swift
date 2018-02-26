@@ -58,7 +58,6 @@ import RealmSwift
   }
   
   // MARK: - Manage user methods
-  
   func logOut() {
     RealmService.logOut(user: self)
   }
