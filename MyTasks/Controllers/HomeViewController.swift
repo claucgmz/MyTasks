@@ -250,7 +250,7 @@ extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
     if user?.isLoggedIn == false {
       if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-        let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier:"LoginVC")
+        let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier:LoginViewController.reusableId)
         appDelegate.window?.rootViewController = rootController
       }
     }
