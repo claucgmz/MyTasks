@@ -42,7 +42,7 @@ class TaskListViewController: UIViewController {
   
   private func updateProgressView() {
     guard let tableView = tasksTableView else { return }
-    tableView.reloadSections(IndexSet(integer: 0), with: .middle)
+    tableView.reloadSections(IndexSet(integer: 0), with: .none)
   }
   
   @IBAction func addTaskButtonAction(_ sender: Any) {
@@ -83,25 +83,37 @@ extension TaskListViewController: UITableViewDataSource {
     cell.configure(with: task)
     
     cell.checkboxView.addTapGestureRecognizer(action: {
+      print("checkbox")
       cell.configure(with: task)
       task.complete()
-      tableView.reloadRows(at: [indexPath], with: .automatic)
-      self.updateProgressView()
+      
+      UIView.performWithoutAnimation {
+        print(indexPath.row)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        self.updateProgressView()
+      }
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
       task.softDelete()
-      tableView.beginUpdates()
-      tableView.deleteRows(at: [indexPath], with: .automatic)
-      self.updateProgressView()
       
       if tableView.numberOfRows(inSection: indexPath.section) == 1 {
-        let indexSet = IndexSet(integer: indexPath.section)
-        tableView.deleteSections(indexSet, with: .middle)
         self.updateTasksByDate()
+        UIView.performWithoutAnimation {
+          tableView.reloadData()
+        }
+        
       }
-
-      tableView.endUpdates()
+      else {
+        self.updateTasksByDate()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+      
+      UIView.performWithoutAnimation {
+        self.updateProgressView()
+      }
+      
+      
     })
     
     return cell
