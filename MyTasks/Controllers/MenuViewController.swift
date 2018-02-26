@@ -11,7 +11,6 @@ import AlamofireImage
 
 class MenuViewController: UIViewController {
   private let facebookManager = FacebookManager()
-  
   @IBOutlet weak var userProfileImage: UIImageView!
   @IBOutlet private weak var logoutButton: UIButton!
   
@@ -25,10 +24,9 @@ class MenuViewController: UIViewController {
   }
   
   @IBAction private func logOut(_ sender: Any) {
-    if let user = User.getLoggedUser() {
+    if let user = RealmService.getLoggedUser() {
       facebookManager.logout(user: user)
     }
-    
     slideMenuController()?.closeLeft()
     navigationController?.popViewController(animated: true)
   }

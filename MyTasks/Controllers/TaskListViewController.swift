@@ -12,8 +12,7 @@ import RealmSwift
 class TaskListViewController: UIViewController {
   @IBOutlet private weak var tasksTableView: UITableView!
   var tasklist: TaskList?
-  private var tasksOrder = [String]()
-  private var tasks = [Results<TaskItem>]()
+  private var tasks = [TaskListView]()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,14 +35,14 @@ class TaskListViewController: UIViewController {
   }
   
   private func updateTasksByDate() {
-    let tasksbydate = tasklist?.tasksByDate
-    tasks = (tasksbydate?.tasks)!
-    tasksOrder = (tasksbydate?.order)!
+    if let tasksbydate = tasklist?.tasksByDate {
+      tasks = tasksbydate
+    }
   }
   
   private func updateProgressView() {
     guard let tableView = tasksTableView else { return }
-    tableView.reloadSections(IndexSet(integer: 0), with: .middle)
+    tableView.reloadSections(IndexSet(integer: 0), with: .none)
   }
   
   @IBAction func addTaskButtonAction(_ sender: Any) {
@@ -73,44 +72,56 @@ extension TaskListViewController: UITableViewDataSource {
       return 0
     }
     
-    return tasks[section-1].count
+    return tasks[section-1].tasks.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
-    let task = tasks[indexPath.section-1][indexPath.row]
+    let task = tasks[indexPath.section-1].tasks[indexPath.row]
     
     cell.configure(with: task)
     
     cell.checkboxView.addTapGestureRecognizer(action: {
+      print("checkbox")
       cell.configure(with: task)
-      task.toogleCheckmark()
-      tableView.reloadRows(at: [indexPath], with: .automatic)
-      self.updateProgressView()
+      task.complete()
+      
+      UIView.performWithoutAnimation {
+        print(indexPath.row)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        self.updateProgressView()
+      }
     })
     
     cell.deleteView.addTapGestureRecognizer(action: {
       task.softDelete()
-      tableView.beginUpdates()
-      tableView.deleteRows(at: [indexPath], with: .automatic)
-      self.updateProgressView()
       
       if tableView.numberOfRows(inSection: indexPath.section) == 1 {
-        let indexSet = IndexSet(integer: indexPath.section)
-        tableView.deleteSections(indexSet, with: .middle)
         self.updateTasksByDate()
+        UIView.performWithoutAnimation {
+          tableView.reloadData()
+        }
+        
       }
-
-      tableView.endUpdates()
+      else {
+        self.updateTasksByDate()
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+      
+      UIView.performWithoutAnimation {
+        self.updateProgressView()
+      }
+      
+      
     })
     
     return cell
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section > 0 && tasksOrder.count >= section {
-      let title = NSLocalizedString(tasksOrder[section-1], comment: "")
+    if section > 0 {
+      let title = NSLocalizedString(tasks[section-1].type.rawValue, comment: "")
       return title
     }
     return ""
@@ -132,7 +143,7 @@ extension TaskListViewController: UITableViewDataSource {
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasks[indexPath.section-1][indexPath.row]
+    let task = tasks[indexPath.section-1].tasks[indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
   

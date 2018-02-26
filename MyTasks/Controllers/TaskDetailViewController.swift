@@ -70,26 +70,20 @@ class TaskDetailViewController: UIViewController {
   }
   
   @IBAction private func done() {
-    guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate else {
+    guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate,  let toTaskList = taskDetailTableViewController?.tasklist else {
       return
     }
-    let toTaskList = taskDetailTableViewController?.tasklist
     
     if let taskToEdit = taskToEdit {
-      taskToEdit.update(text: text, date: date)
-      if tasklist?.id != toTaskList?.id {
-        toTaskList?.add(task: taskToEdit)
-        tasklist?.remove(task: taskToEdit)
-      }
-      
+      taskToEdit.update(text: text, date: date, moveTo: (tasklist?.id != toTaskList.id ? toTaskList : tasklist))
       if let tasklist = tasklist {
         delegate?.taskDetailViewController(self, didFinishEditing: taskToEdit, in: tasklist)
       }
       
     } else {
       let task = TaskItem(text: text, date: date)
+      task.add(to: toTaskList)
       tasklist = toTaskList
-      tasklist?.add(task: task)
       if let tasklist = tasklist {
         delegate?.taskDetailViewController(self, didFinishAdding: task, in: tasklist)
       }

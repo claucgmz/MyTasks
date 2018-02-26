@@ -12,11 +12,12 @@ import RealmSwift
 @objcMembers class TaskList: Object {
   
   // MARK: - Properties
+  dynamic var user: User?
   dynamic var id = UUID().uuidString
   dynamic var name = ""
   dynamic var hex = ""
   dynamic var categoryIcon = CategoryIcon.bam.rawValue
-  var items = List<TaskItem>()
+  let taskItems = LinkingObjects(fromType: TaskItem.self, property: "tasklist")
   
   var color: UIColor {
     return UIColor(hex: hex)
@@ -32,56 +33,8 @@ import RealmSwift
   }
   
   var tasks: Results<TaskItem> {
-    return items.filter("deleted = 0")
+    return taskItems.filter("deleted = 0")
   }
-  
-  var pendingTasksToday: Results<TaskItem> {
-    let today = Date()
-    let todayStart = today.startOfDay
-    let todayEnd = today.endOfDay
-    
-    return items.filter("checked = 0 AND dueDate BETWEEN %@", [todayStart, todayEnd])
-  }
-  
-  var tasksByDate: (order: [String], tasks: [Results<TaskItem>]) {
-    var tasksbydate = [Results<TaskItem>]()
-    var orderby = [String]()
-    
-    let today = Date()
-    let todayStart = today.startOfDay
-    let todayEnd = today.endOfDay
-    
-    var filterTasks = tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd])
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("today")
-    }
-    
-    let tomorrow = todayStart.nextDay
-    let tomorrowEnd = tomorrow.endOfDay
-    
-    filterTasks = tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd])
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("tomorrow")
-    }
-    
-    let later = tomorrow.nextDay
-    filterTasks = tasks.filter("dueDate > %@", later)
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("later")
-    }
-    
-    filterTasks = tasks.filter("dueDate < %@", todayStart)
-    if filterTasks.count > 0 {
-      tasksbydate.append(filterTasks)
-      orderby.append("past_due_date")
-    }
-    
-    return (order: orderby, tasks: tasksbydate)
-  }
-  
   
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
@@ -96,6 +49,47 @@ import RealmSwift
     return "id"
   }
   
+  var pendingTasksToday: Results<TaskItem> {
+    let today = Date()
+    let todayStart = today.startOfDay
+    let todayEnd = today.endOfDay
+    
+    return taskItems.filter("checked = 0 AND dueDate BETWEEN %@", [todayStart, todayEnd])
+  }
+  
+  var tasksByDate: [TaskListView] {
+    var tasksbydate = [TaskListView]()
+    let today = Date()
+    let todayStart = today.startOfDay
+    let todayEnd = today.endOfDay
+    
+    var filtered = TaskListView(type: .today, tasks: tasks.filter("dueDate BETWEEN %@", [todayStart, todayEnd]))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
+    }
+    
+    let tomorrow = todayStart.nextDay
+    let tomorrowEnd = tomorrow.endOfDay
+    
+    filtered = TaskListView(type: .tomorrow, tasks: tasks.filter("dueDate BETWEEN %@", [tomorrow, tomorrowEnd]))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
+    }
+    
+    let later = tomorrow.nextDay
+    filtered = TaskListView(type: .later, tasks: tasks.filter("dueDate > %@", later))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
+    }
+    
+    filtered = TaskListView(type: .pastDueDate, tasks: tasks.filter("dueDate < %@", todayStart))
+    if filtered.tasks.count > 0 {
+      tasksbydate.append(filtered)
+    }
+    
+    return tasksbydate
+  }
+  
   // MARK: - Meta
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count
@@ -106,62 +100,27 @@ import RealmSwift
   }
 
   // MARK: - Manage tasklist methods
-  func add(task: TaskItem) {
-    do{
-      try RealmService.shared.realm.write {
-        items.append(task)
-      }
-    } catch {
-      print(error)
-    }
-  }
-  
-  func remove(task: TaskItem) {
-    do{
-      try RealmService.shared.realm.write {
-        let index = self.items.index(of: task)
-        self.items.remove(at: index!)
-      }
-    } catch {
-      print(error)
-    }
-  }
   
   func update(name: String, icon: CategoryIcon, color: UIColor) {
-    do{
-      try RealmService.shared.realm.write {
-        self.name = name
-        self.hex = color.toHexString
-        self.icon = icon
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.add(object: self, set: {
+      self.name = name
+      self.icon = icon
+      self.hex = color.toHexString
+    })
   }
 }
 
 extension TaskList: BasicStorageFunctions {
   func add() {
-    let user = User.getLoggedUser()
-    do{
-      try RealmService.shared.realm.write {
-        user?.tasklists.append(self)
-      }
-    } catch {
-      print(error)
+    guard let user = RealmService.getLoggedUser() else {
+      return
     }
+    RealmService.add(object: self, set: { self.user = user }, update: true)
   }
   
   func hardDelete() {
-    do{
-      try RealmService.shared.realm.write {
-        for item in items {
-          realm?.delete(item)
-        }
-        realm?.delete(self)
-      }
-    } catch {
-      print(error)
-    }
+    let items = RealmService.realm.objects(TaskItem.self).filter("tasklist = %@", self)
+    RealmService.hardDelete(objects: items)
+    RealmService.hardDelete(object: self)
   }
 }

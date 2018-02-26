@@ -10,10 +10,11 @@ import Foundation
 import RealmSwift
 
 @objcMembers class TaskItem: Object {
+  dynamic var tasklist: TaskList?
+  dynamic var id = UUID().uuidString
   dynamic var text = ""
-  dynamic var checked = false
   dynamic var dueDate = Date()
-  dynamic var shouldRemind = false
+  dynamic var checked = false
   dynamic var deleted = false
   
   // MARK: - Init
@@ -23,44 +24,39 @@ import RealmSwift
     self.dueDate = date
   }
   
+  // MARK: - Meta
+  override class func primaryKey() -> String? {
+    return "id"
+  }
+  
   override static func indexedProperties() -> [String] {
     return ["dueDate"]
   }
   
-  // MARK: - Manage list methods
   func add(to tasklist: TaskList) {
-    tasklist.add(task: self)
+    RealmService.add(object: self, set: { self.tasklist = tasklist }, update: true)
   }
   
-  func update(text: String, date: Date) {
-    do{
-      try RealmService.shared.realm.write {
-        self.text = text
-        self.dueDate = date
+  // MARK: - Manage list methods
+  func update(text: String, date: Date, moveTo tasklist: TaskList? = nil) {
+    RealmService.add(object: self, set: {
+      if let totasklist = tasklist {
+        self.tasklist = totasklist
       }
-    } catch {
-      print(error)
-    }
+      self.text = text
+      self.dueDate = date }, update: true)
   }
   
-  func toogleCheckmark() {
-    do{
-      try RealmService.shared.realm.write {
-        self.checked = !checked
-      }
-    } catch {
-      print(error)
-    }
+  func complete() {
+    RealmService.add(object: self, set: {
+      self.checked = !checked
+    }, update: true)
   }
   
   func softDelete() {
-    do{
-      try RealmService.shared.realm.write {
-        self.deleted = true
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.add(object: self, set: {
+      self.deleted = true
+    }, update: true)
   }
 }
 

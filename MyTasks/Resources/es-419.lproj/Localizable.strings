@@ -48,4 +48,4 @@
 
 //Days
 "later" = "Después";
-"past_due_date" = "Pasadas";
+"pastDueDate" = "Pasadas";

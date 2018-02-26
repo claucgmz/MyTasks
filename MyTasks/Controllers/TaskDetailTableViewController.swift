@@ -25,7 +25,7 @@ class TaskDetailTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    tasklists = RealmService.shared.realm.objects(TaskList.self)
+    tasklists = RealmService.realm.objects(TaskList.self)
     updateDueDateLabel()
   }
   

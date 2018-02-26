@@ -22,14 +22,14 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   
-  private var tasklists = List<TaskList>()
+  private var tasklists: LinkingObjects<TaskList>!
   private var user: User?
   private let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    user = User.getLoggedUser()
-    tasklists = (user?.tasklists)!
+    user = RealmService.getLoggedUser()
+    tasklists = user?.tasklists
     setBackgroundColor()
     updateUI()
     registerNibs()
@@ -249,7 +249,10 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
     if user?.isLoggedIn == false {
-      navigationController?.popViewController(animated: true)
+      if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+        let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier:LoginViewController.reusableId)
+        appDelegate.window?.rootViewController = rootController
+      }
     }
   }
   

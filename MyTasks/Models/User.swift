@@ -12,12 +12,12 @@ import RealmSwift
 @objcMembers class User: Object {
   
   // MARK: - Properties
-  dynamic var id = 0
+  dynamic var id = ""
   dynamic var firstName = ""
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   dynamic var isLoggedIn = false
-  var tasklists = List<TaskList>()
+  let tasklists = LinkingObjects(fromType: TaskList.self, property: "user")
   
   var imageURL: String {
     return "https://graph.facebook.com/\(id)/picture?type=large"
@@ -36,7 +36,7 @@ import RealmSwift
     self.init()
     
     if let id = facebookData?["id"] as? String {
-      self.id = (id as NSString).integerValue
+      self.id = id
     }
     
     if let firstName = facebookData?["first_name"] as? String {
@@ -58,69 +58,17 @@ import RealmSwift
   }
   
   // MARK: - Manage user methods
-  
-  static func getLoggedUser() -> User? {
-    let user = RealmService.shared.realm.objects(User.self).filter("isLoggedIn == true")
-    return user.first
-  }
-  
-  static func exists(with facebookData: [String : Any]?) -> User? {
-    if let id = facebookData?["id"] as? String {
-      return RealmService.shared.realm.object(ofType: User.self, forPrimaryKey: (id as NSString).integerValue)
-    }
-    
-    return nil
-  }
-  
-  func logIn() {
-    do{
-      try RealmService.shared.realm.write {
-        self.isLoggedIn = true
-      }
-    } catch {
-      print(error)
-    }
-  }
-  
   func logOut() {
-    do{
-      try RealmService.shared.realm.write {
-        self.isLoggedIn = false
-      }
-    } catch {
-      print(error)
-    }
-  }
-  
-  func add(tasklist: TaskList) {
-    do{
-      try RealmService.shared.realm.write {
-        tasklists.append(tasklist)
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.logOut(user: self)
   }
 }
 
 extension User: BasicStorageFunctions {
   func add() {
-    do{
-      try RealmService.shared.realm.write {
-        RealmService.shared.realm.add(self)
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.add(object: self, set: { isLoggedIn = true }, update: true)
   }
   
   func hardDelete() {
-    do{
-      try RealmService.shared.realm.write {
-        realm?.delete(self)
-      }
-    } catch {
-      print(error)
-    }
+    RealmService.hardDelete(object: self)
   }
 }
