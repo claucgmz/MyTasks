@@ -249,7 +249,18 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
     if user?.isLoggedIn == false {
-      navigationController?.popViewController(animated: true)
+      if let wd = UIApplication.shared.delegate?.window {
+        var vc = wd!.rootViewController
+        
+        if(vc is UINavigationController) {
+          vc = (vc as! UINavigationController).visibleViewController
+          print("sth else")
+        }
+        
+        if(vc is LoginViewController){
+          navigationController?.popViewController(animated: true)
+        }
+      }
     }
   }
   
