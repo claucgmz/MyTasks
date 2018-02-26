@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    let navigationBarAppearace = UINavigationBar.appearance()
-    navigationBarAppearace.isTranslucent = true
-    navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
-    navigationBarAppearace.shadowImage = UIImage()
+    let navigationBarAppearance = UINavigationBar.appearance()
+    navigationBarAppearance.isTranslucent = true
+    navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
+    navigationBarAppearance.shadowImage = UIImage()
     
     setInitialViewController()
     

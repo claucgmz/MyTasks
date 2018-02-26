@@ -19,10 +19,7 @@ class LoginViewController: UIViewController {
     print(Realm.Configuration.defaultConfiguration.fileURL!)
     updateButtonUI()
   }
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-  }
-  
+
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
     facebookManager.login(self, onSuccess: { data in
@@ -37,11 +34,12 @@ class LoginViewController: UIViewController {
       }
     })
   }
+  
   private func goToHome() {
-    let initialViewController = UIStoryboard(name: "MyTasks", bundle:nil).instantiateViewController(withIdentifier: "MyTasks") as! SliderMenuViewController
-    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
-    appDelegate.window?.rootViewController = initialViewController
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:"MyTasks")
   }
+  
   private func updateButtonUI() {
     loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
     loginButton.imageView?.contentMode = .scaleAspectFit

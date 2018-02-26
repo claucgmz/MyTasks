@@ -10,6 +10,11 @@ import UIKit
 import SlideMenuControllerSwift
 
 class SliderMenuViewController: SlideMenuController {
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.setNavigationBarHidden(false, animated: animated)
+  }
+  
   override func awakeFromNib() {
     if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
       self.mainViewController = controller
