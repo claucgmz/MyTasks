@@ -13,7 +13,8 @@ class LoginViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateButtonUI()
+    loginButton.setTitle("log_in".localized, for: .normal)
+    loginButton.imageView?.contentMode = .scaleAspectFit
   }
   
   // MARK: - private methods
@@ -21,15 +22,9 @@ class LoginViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:SliderMenuViewController.reusableId)
   }
-  
-  private func updateButtonUI() {
-    loginButton.setTitle("log_in".localized, for: .normal)
-    loginButton.imageView?.contentMode = .scaleAspectFit
-  }
-  
+
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
-    //DispatchQueue.main.async {
     UserManager().loginWithFacebook(viewController: self, onSuccess: { self.segueToHome() }, onFailure: { error in print(error?.localizedDescription ?? "Something went wrong") })
   }
 }
