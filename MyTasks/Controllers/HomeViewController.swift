@@ -127,13 +127,13 @@ class HomeViewController: UIViewController {
   
   private func showMoreActions(row: Int) {
     let tasklist = self.tasklists[row]
-    let actions = [AlertView.action(title: "cancel".localized, style: .cancel), AlertView.action(title: "edit_list".localized, style: .default, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }), AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
+    let actions = [AlertView.action(title: "cancel".localized, style: .cancel), AlertView.action(title: "edit_list".localized, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }), AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
 
     AlertView.show(view: self, title: String(format: "alert_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
   
   private func showConfirmationAlert(for tasklist: TaskList, row: Int) {
-    let actions = [AlertView.action(title: "ok".localized, style: .default, handler: { self.delete(tasklist: tasklist, row: row) }), AlertView.action(title: "cancel".localized, style: .cancel)]
+    let actions = [AlertView.action(title: "ok".localized,handler: { self.delete(tasklist: tasklist, row: row) }), AlertView.action(title: "cancel".localized, style: .cancel)]
     AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized, actions: actions, style: .alert)
   }
   

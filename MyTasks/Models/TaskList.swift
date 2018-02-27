@@ -77,7 +77,7 @@ import RealmSwift
     }
     
     let later = tomorrow.nextDay
-    filtered = TaskListView(type: .later, tasks: tasks.filter("dueDate > %@", later))
+    filtered = TaskListView(type: .later, tasks: tasks.filter("dueDate > %@", [later]))
     if filtered.tasks.count > 0 {
       tasksbydate.append(filtered)
     }
@@ -85,6 +85,7 @@ import RealmSwift
     filtered = TaskListView(type: .pastDueDate, tasks: tasks.filter("dueDate < %@", todayStart))
     if filtered.tasks.count > 0 {
       tasksbydate.append(filtered)
+      
     }
     
     return tasksbydate
@@ -97,6 +98,10 @@ import RealmSwift
       return Double(totalDone) / Double(tasks.count)
     }
     return 0.0
+  }
+  
+  private func filterTasks(with type: TaskListView.DateType, query: String, params: [Date]) -> TaskListView {
+    return TaskListView(type: type, tasks: tasks.filter(query, params))
   }
 
   // MARK: - Manage tasklist methods
