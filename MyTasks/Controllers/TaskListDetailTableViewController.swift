@@ -94,11 +94,8 @@ class TaskListDetailTableViewController: UITableViewController {
   
   //MARK: - Private methods
   private func registerNibs() {
-    let colorPickerCellNib = UINib(nibName: "ColorPickerCollectionCell", bundle: nil)
-    colorPickerView.register(colorPickerCellNib, forCellWithReuseIdentifier: ColorPickerCollectionCell.reusableId)
-    
-    let iconPickerCellNib = UINib(nibName: "IconPickerCollectionCell", bundle: nil)
-    iconPickerView.register(iconPickerCellNib, forCellWithReuseIdentifier: IconPickerCollectionCell.reusableId)
+    colorPickerView.register(UINib(nibName: ColorPickerCollectionCell.reusableId, bundle: nil), forCellWithReuseIdentifier: ColorPickerCollectionCell.reusableId)
+    iconPickerView.register(UINib(nibName: IconPickerCollectionCell.reusableId, bundle: nil), forCellWithReuseIdentifier: IconPickerCollectionCell.reusableId)
   }
   
   private func didSelectColor(at indexPath: IndexPath) {

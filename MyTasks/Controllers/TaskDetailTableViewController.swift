@@ -40,17 +40,10 @@ class TaskDetailTableViewController: UITableViewController {
   
   //MARK: - Private methods
   private func registerNibs() {
-    let textFieldCellNib = UINib(nibName: "TextFieldCell", bundle: nil)
-    mainTableView.register(textFieldCellNib, forCellReuseIdentifier: TextFieldCell.reusableId)
-    
-    let dueDateCellNib = UINib(nibName: "DueDateCell", bundle: nil)
-    mainTableView.register(dueDateCellNib, forCellReuseIdentifier: DueDateCell.reusableId)
-    
-    let datePickerCellNib = UINib(nibName: "DatePickerCell", bundle: nil)
-    mainTableView.register(datePickerCellNib, forCellReuseIdentifier: DatePickerCell.reusableId)
-    
-    let taskListCelllNib = UINib(nibName: "TaskListCell", bundle: nil)
-    mainTableView.register(taskListCelllNib, forCellReuseIdentifier: TaskListCell.reusableId)
+    mainTableView.register(UINib(nibName: TextFieldCell.reusableId, bundle: nil), forCellReuseIdentifier: TextFieldCell.reusableId)
+    mainTableView.register(UINib(nibName: DueDateCell.reusableId, bundle: nil), forCellReuseIdentifier: DueDateCell.reusableId)
+    mainTableView.register(UINib(nibName: DatePickerCell.reusableId, bundle: nil), forCellReuseIdentifier: DatePickerCell.reusableId)
+    mainTableView.register(UINib(nibName: TaskListCell.reusableId, bundle: nil), forCellReuseIdentifier: TaskListCell.reusableId)
   }
   
   private func showDatePicker() {

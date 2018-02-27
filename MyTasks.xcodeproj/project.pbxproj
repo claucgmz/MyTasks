@@ -18,6 +18,7 @@
 		5F896D29204604E800E51428 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D28204604E800E51428 /* UserManager.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
+		5F90BD9D2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
 		5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */; };
 		5F9D3F742028D197000FFA2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F732028D197000FFA2B /* Assets.xcassets */; };
@@ -29,7 +30,7 @@
 		5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FACC613202A67D5003D1957 /* Date+Format.swift */; };
 		5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACDF202CA6D60002C351 /* LayerContainerView.swift */; };
 		5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE1202CD0710002C351 /* UIView+Decoration.swift */; };
-		5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */; };
+		5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift */; };
 		5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
 		5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* HomeViewController.swift */; };
@@ -83,6 +84,7 @@
 		5F896D28204604E800E51428 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+ReusableId.swift"; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9D3F692028D197000FFA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F9D3F712028D197000FFA2B /* MyTasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyTasks.xcdatamodel; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		5FACC613202A67D5003D1957 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		5FADACDF202CA6D60002C351 /* LayerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerContainerView.swift; sourceTree = "<group>"; };
 		5FADACE1202CD0710002C351 /* UIView+Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Decoration.swift"; sourceTree = "<group>"; };
-		5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+ReuseableId.swift"; sourceTree = "<group>"; };
+		5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+ReusableId.swift"; sourceTree = "<group>"; };
 		5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIcon.swift; sourceTree = "<group>"; };
 		5FC04979202A171800B80ABC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5FC0497A202A322800B80ABC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -314,15 +316,16 @@
 			isa = PBXGroup;
 			children = (
 				5FACC613202A67D5003D1957 /* Date+Format.swift */,
+				5F896D1C2045C4D900E51428 /* String+Localizable.swift */,
+				5F2FB2B12033B12B002667AC /* UIButton+State.swift */,
+				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift */,
 				5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */,
 				5FF0B0E7202BC2E600A7ADB8 /* UIImageView+Decoration.swift */,
-				5FADACE1202CD0710002C351 /* UIView+Decoration.swift */,
-				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift */,
 				5FF8308F2031F4A800FABDD8 /* UITableViewCell+ReusableId.swift */,
+				5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */,
+				5FADACE1202CD0710002C351 /* UIView+Decoration.swift */,
 				5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */,
-				5F2FB2B12033B12B002667AC /* UIButton+State.swift */,
 				5FFF93792044C93F00941580 /* UIViewController+ReusableId.swift */,
-				5F896D1C2045C4D900E51428 /* String+Localizable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
+				5F90BD9D2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift in Sources */,
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
 				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
 				5F896D252045E09C00E51428 /* AlertView.swift in Sources */,
@@ -557,7 +561,7 @@
 				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,
 				5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */,
-				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReuseableId.swift in Sources */,
+				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift in Sources */,
 				5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

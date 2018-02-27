@@ -9,8 +9,7 @@
 import UIKit
 
 protocol TaskListDetailViewControllerDelegate: class {
-  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList)
-  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList)
+  func taskListDetailViewController(_ controller: TaskListDetailViewController)
 }
 
 class TaskListDetailViewController: UIViewController {
@@ -64,12 +63,12 @@ class TaskListDetailViewController: UIViewController {
     
     if let tasklistToEdit  = tasklistToEdit {
       tasklistToEdit.update(name: name, icon: icon, color: color)
-      delegate?.taskListDetailViewController(self, didFinishEditing: tasklistToEdit)
     } else {
       let tasklist = TaskList(name: name, icon: icon, color: color)
       tasklist.add()
-      delegate?.taskListDetailViewController(self, didFinishAdding: tasklist)
     }
+    
+    delegate?.taskListDetailViewController(self)
   }
 }
 

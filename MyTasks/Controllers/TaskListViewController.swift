@@ -27,11 +27,8 @@ class TaskListViewController: UIViewController {
   }
   
   private func registerNibs() {
-    let taskCellNib = UINib(nibName: "TaskCell", bundle: nil)
-    tasksTableView.register(taskCellNib, forCellReuseIdentifier: TaskCell.reusableId)
-    
-    let headerCellNib = UINib(nibName: "TaskListTableHeader", bundle: nil)
-    tasksTableView.register(headerCellNib, forHeaderFooterViewReuseIdentifier: "TaskListTableHeader")
+    tasksTableView.register(UINib(nibName: TaskCell.reusableId, bundle: nil), forCellReuseIdentifier: TaskCell.reusableId)
+    tasksTableView.register(UINib(nibName: TaskListTableHeader.reusableId, bundle: nil), forHeaderFooterViewReuseIdentifier: TaskListTableHeader.reusableId)
   }
   
   private func updateTasksByDate() {
