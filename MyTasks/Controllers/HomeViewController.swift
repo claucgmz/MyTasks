@@ -39,11 +39,8 @@ class HomeViewController: UIViewController {
   
   // MARK: -  Private methods
   private func registerNibs() {
-    let taskItemCellNib = UINib(nibName: "TaskListCollectionCell", bundle: nil)
-    taskListCollectionView.register(taskItemCellNib, forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
-    
-    let addTaskItemCellNib = UINib(nibName: "AddTaskListCollectionCell", bundle: nil)
-    taskListCollectionView.register(addTaskItemCellNib, forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
+    taskListCollectionView.register(UINib(nibName: "TaskListCollectionCell", bundle: nil), forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
+    taskListCollectionView.register(UINib(nibName: "AddTaskListCollectionCell", bundle: nil), forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
   }
   
   private func setBackgroundColor() {
