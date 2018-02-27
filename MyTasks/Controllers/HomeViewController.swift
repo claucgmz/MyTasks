@@ -8,12 +8,9 @@
 
 import UIKit
 import RealmSwift
-import FacebookLogin
-import FacebookCore
 import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController {
-  
   @IBOutlet private var layerContainer: LayerContainerView!
   @IBOutlet private weak var taskListCollectionView: UICollectionView!
   @IBOutlet private weak var userProfileImage: UIImageView!
@@ -23,19 +20,19 @@ class HomeViewController: UIViewController {
   
   private var tasklists: LinkingObjects<TaskList>!
   private var user: User?
+  private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    slideMenu = slideMenuController()
     user = RealmService.getLoggedUser()
     tasklists = user?.tasklists
-    setBackgroundColor()
-    updateUI()
     registerNibs()
+    updateUI()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
     taskListCollectionView.reloadData()
     updateTotalTasksForToday()
   }
@@ -52,51 +49,24 @@ class HomeViewController: UIViewController {
   private func setBackgroundColor() {
     let visibleItems = taskListCollectionView.indexPathsForVisibleItems
     var indexPath = IndexPath(row: 0, section: 0)
-    
-    if visibleItems.count > 0 {
-      indexPath = visibleItems.first!
-    }
-    
+    if visibleItems.count > 0 { indexPath = visibleItems.first! }
     for item in visibleItems {
-      if item.row < indexPath.row {
-        indexPath = item
-      }
+      if item.row < indexPath.row { indexPath = item }
     }
-    
     if indexPath.row < tasklists.count {
       let list = tasklists[indexPath.row]
       layerContainer.setGradientLayer(colors: [list.color.cgColor, list.color.withAlphaComponent(0.5).cgColor])
     }
   }
   
-  private func reloadTasks() {
-    taskListCollectionView.reloadData()
-    navigationController?.popViewController(animated:true)
-  }
-  
-  private func setUserImage(to imageView: UIImageView) {
-    if let url = user?.imageURL {
-      ImageManager.shared.get(from: url, completionHandler: { image in
-        imageView.image = image
-      })
-    }
-  }
-  
   private func updateUI() {
+    setBackgroundColor()
     setUserImage(to: userProfileImage)
-    
-    if let firstName = user?.firstName {
-      welcomeLabel.text = "\("greeting".localized), \(firstName)"
-    }
-    
-    let date = Date()
-    let locale = Locale.current
-    
-    if let region = locale.regionCode {
-      let dateString = date.toString(withLocale: region)
+    if let firstName = user?.firstName { welcomeLabel.text = "\("greeting".localized), \(firstName)" }
+    if let region = Locale.current.regionCode {
+      let dateString = Date().toString(withLocale: region)
       dateLabel.text = "\("today".localized): \(dateString)".uppercased()
     }
-    
     updateTotalTasksForToday()
   }
   
@@ -104,15 +74,21 @@ class HomeViewController: UIViewController {
     todaySummaryLabel.text = String(format: "tasks_for_today".localized,"\(user?.totalTasksForToday ?? 0)")
   }
   
+  private func setUserImage(to imageView: UIImageView) {
+    if let url = user?.imageURL { ImageManager.shared.get(from: url, completionHandler: { image in imageView.image = image }) }
+  }
+  
   private func showMoreActions(row: Int) {
     let tasklist = self.tasklists[row]
-    let actions = [AlertView.action(title: "cancel".localized, style: .cancel), AlertView.action(title: "edit_list".localized, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }), AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
-
+    let actions = [AlertView.action(title: "cancel".localized, style: .cancel),
+                   AlertView.action(title: "edit_list".localized, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }),
+                   AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
     AlertView.show(view: self, title: String(format: "alert_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
   
   private func showConfirmationAlert(for tasklist: TaskList, row: Int) {
-    let actions = [AlertView.action(title: "ok".localized,handler: { self.delete(tasklist: tasklist, row: row) }), AlertView.action(title: "cancel".localized, style: .cancel)]
+    let actions = [AlertView.action(title: "ok".localized,handler: { self.delete(tasklist: tasklist, row: row) }),
+                   AlertView.action(title: "cancel".localized, style: .cancel)]
     AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized, actions: actions, style: .alert)
   }
   
@@ -121,30 +97,30 @@ class HomeViewController: UIViewController {
     self.taskListCollectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
   }
   
+  private func segueToLoginViewController() {
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+      let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier:LoginViewController.reusableId)
+      appDelegate.window?.rootViewController = rootController
+    }
+  }
+  
+  // MARK: -  action methods
   @IBAction private func openMenuAction(_ sender: Any) {
-    slideMenuController()?.delegate = self
-    slideMenuController()?.openLeft()
+    slideMenu?.delegate = self
+    slideMenu?.openLeft()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskListDetail" {
       let controller = segue.destination as! TaskListDetailViewController
       controller.delegate = self
-      
-      if sender is TaskList {
-        controller.tasklistToEdit = sender as? TaskList
-      }
+      if sender is TaskList { controller.tasklistToEdit = sender as? TaskList }
     } else if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
-      
-      if sender is TaskList {
-        controller.tasklist = sender as? TaskList
-      }
+      if sender is TaskList { controller.tasklist = sender as? TaskList }
     } else if segue.identifier == "TaskListItems" {
       let controller = segue.destination as! TaskListViewController
-      if sender is TaskList {
-        controller.tasklist = sender as? TaskList
-      }
+      if sender is TaskList { controller.tasklist = sender as? TaskList }
     }
   }
 }
@@ -168,16 +144,12 @@ extension HomeViewController: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
     if indexPath.row < tasklists.count {
+      let taskList = tasklists[indexPath.row]
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
-      let taskList = tasklists[indexPath.row]
       cell.progressView.configure(with: taskList)
-      cell.moreView.addTapGestureRecognizer(action: {
-        self.showMoreActions(row: indexPath.row)
-      })
-      
+      cell.moreView.addTapGestureRecognizer(action: { self.showMoreActions(row: indexPath.row) })
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId, for: indexPath) as! AddTaskListCollectionCell
@@ -185,7 +157,6 @@ extension HomeViewController: UICollectionViewDataSource {
       return cell
     }
   }
-  
 }
 
 // MARK: -  Collection flowlayout methods
@@ -196,34 +167,24 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension HomeViewController: TaskListDetailViewControllerDelegate {
-  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishAdding tasklist: TaskList) {
-    reloadTasks()
-  }
-  
-  func taskListDetailViewController(_ controller: TaskListDetailViewController, didFinishEditing tasklist: TaskList) {
-    reloadTasks()
+  func taskListDetailViewController(_ controller: TaskListDetailViewController) {
+    taskListCollectionView.reloadData()
+    navigationController?.popViewController(animated:true)
   }
 }
 
 // MARK: -  Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if user?.isLoggedIn == false {
-      if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-        let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier:LoginViewController.reusableId)
-        appDelegate.window?.rootViewController = rootController
-      }
-    }
+    if user?.isLoggedIn == false { segueToLoginViewController() }
   }
-  
   func leftWillOpen() {
-    let controller = slideMenuController()?.leftViewController as? MenuViewController
-    if let imageView = controller?.userProfileImage {
-      setUserImage(to: imageView)
-    }
+    let controller = slideMenu?.leftViewController as? MenuViewController
+    if let imageView = controller?.userProfileImage { setUserImage(to: imageView) }
   }
 }
 
+// MARK: -  ScrollView delegate methods
 extension HomeViewController: UIScrollViewDelegate {
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     setBackgroundColor()
