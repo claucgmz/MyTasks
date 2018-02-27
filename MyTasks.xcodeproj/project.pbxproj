@@ -13,6 +13,7 @@
 		5F3B49552040E55E002567F5 /* MyTasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3B49542040E55E002567F5 /* MyTasks.storyboard */; };
 		5F3C99C3203F727400760261 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C99C2203F727400760261 /* TaskListView.swift */; };
 		5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D1C2045C4D900E51428 /* String+Localizable.swift */; };
+		5F896D252045E09C00E51428 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D242045E09C00E51428 /* AlertView.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
@@ -75,6 +76,7 @@
 		5F3B49542040E55E002567F5 /* MyTasks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTasks.storyboard; sourceTree = "<group>"; };
 		5F3C99C2203F727400760261 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		5F896D1C2045C4D900E51428 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
+		5F896D242045E09C00E51428 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,49 @@
 				BE9E592CC29464903ADF1E1F /* Pods-MyTasks.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5F896D1E2045DA7900E51428 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				5FE0693B2034C05400121B9F /* TaskListTableHeader.swift */,
+				5FE0693D2034C09600121B9F /* TaskListTableHeader.xib */,
+				5FF830812031F3E700FABDD8 /* TextFieldCell.swift */,
+				5FF830822031F3E700FABDD8 /* TextFieldCell.xib */,
+				5FF830872031F40B00FABDD8 /* DatePickerCell.swift */,
+				5FE0693F2034E9A400121B9F /* DueDateCell.swift */,
+				5FE069402034E9A400121B9F /* DueDateCell.xib */,
+				5FF830882031F40B00FABDD8 /* DatePickerCell.xib */,
+				5FF8309320323DDA00FABDD8 /* TaskListCell.swift */,
+				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
+				5FF830972032818B00FABDD8 /* TaskCell.swift */,
+				5FF830982032818B00FABDD8 /* TaskCell.xib */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		5F896D222045DA9A00E51428 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5F896D232045DAB000E51428 /* Collection */,
+				5F896D1E2045DA7900E51428 /* Table */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5F896D232045DAB000E51428 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */,
+				5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */,
+				5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */,
+				5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */,
+				5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */,
+				5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */,
+				5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */,
+				5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		5F9D3F5D2028D197000FFA2B = {
@@ -279,29 +324,11 @@
 		5FD49CD1202A7F04008C1ECB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */,
-				5FD49CD5202A7F3A008C1ECB /* TaskListCollectionCell.xib */,
-				5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */,
-				5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */,
-				5FF0B0D7202B92B500A7ADB8 /* ColorPickerCollectionCell.swift */,
-				5FF0B0D8202B92B500A7ADB8 /* ColorPickerCollectionCell.xib */,
-				5FF0B0E1202BB86D00A7ADB8 /* IconPickerCollectionCell.swift */,
-				5FF0B0E2202BB86D00A7ADB8 /* IconPickerCollectionCell.xib */,
+				5F896D222045DA9A00E51428 /* Cells */,
 				5FADACDF202CA6D60002C351 /* LayerContainerView.swift */,
-				5FF830812031F3E700FABDD8 /* TextFieldCell.swift */,
-				5FF830822031F3E700FABDD8 /* TextFieldCell.xib */,
-				5FF830872031F40B00FABDD8 /* DatePickerCell.swift */,
-				5FE0693F2034E9A400121B9F /* DueDateCell.swift */,
-				5FE069402034E9A400121B9F /* DueDateCell.xib */,
-				5FF830882031F40B00FABDD8 /* DatePickerCell.xib */,
-				5FF8309320323DDA00FABDD8 /* TaskListCell.swift */,
-				5FF8309420323DDA00FABDD8 /* TaskListCell.xib */,
-				5FF830972032818B00FABDD8 /* TaskCell.swift */,
-				5FF830982032818B00FABDD8 /* TaskCell.xib */,
 				5FE069372034B51500121B9F /* TaskListProgressView.swift */,
 				5FE069392034B53600121B9F /* TaskListProgressView.xib */,
-				5FE0693B2034C05400121B9F /* TaskListTableHeader.swift */,
-				5FE0693D2034C09600121B9F /* TaskListTableHeader.xib */,
+				5F896D242045E09C00E51428 /* AlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +532,7 @@
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
 				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
+				5F896D252045E09C00E51428 /* AlertView.swift in Sources */,
 				5FE0693C2034C05400121B9F /* TaskListTableHeader.swift in Sources */,
 				5F9D3F852028ECDA000FFA2B /* User.swift in Sources */,
 				5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */,

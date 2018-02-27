@@ -125,41 +125,23 @@ class HomeViewController: UIViewController {
     todaySummaryLabel.text = String(format: "tasks_for_today".localized,"\(user?.totalTasksForToday ?? 0)")
   }
   
-  private func showMoreActionSheet(index: Int) {
-    let tasklist = self.tasklists[index]
-    let title = String(format: "alert_title".localized, tasklist.name)
-    let alert = UIAlertController(title: title, message: "", preferredStyle: .actionSheet)
-    
-    let cancelAction = UIAlertAction(title: "cancel".localized, style: .cancel, handler: nil)
-    let editAction = UIAlertAction(title: "edit_list".localized, style: .default, handler: { action in
-      self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
-    })
-    
-    let deleteAction = UIAlertAction(title: "delete_list".localized, style: .destructive, handler: {
-      action in
-      let dialogMessage = UIAlertController(title: "confirm".localized, message: "confirm_subtitle".localized, preferredStyle: .alert)
-      
-      let ok = UIAlertAction(title: "ok".localized, style: .default, handler: { (action) -> Void in
-        tasklist.hardDelete()
-        
-        self.taskListCollectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
-      })
-      
-      let cancel = UIAlertAction(title: "cancel".localized, style: .cancel) { (action) -> Void in
-      }
-      
-      dialogMessage.addAction(ok)
-      dialogMessage.addAction(cancel)
-      
-      self.present(dialogMessage, animated: true, completion: nil)
-    })
-    
-    alert.addAction(cancelAction)
-    alert.addAction(editAction)
-    alert.addAction(deleteAction)
-    
-    self.present(alert, animated: true)
+  private func showMoreActions(row: Int) {
+    let tasklist = self.tasklists[row]
+    let actions = [AlertView.action(title: "cancel".localized, style: .cancel), AlertView.action(title: "edit_list".localized, style: .default, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }), AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
+
+    AlertView.show(view: self, title: String(format: "alert_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
+  
+  private func showConfirmationAlert(for tasklist: TaskList, row: Int) {
+    let actions = [AlertView.action(title: "ok".localized, style: .default, handler: { self.delete(tasklist: tasklist, row: row) }), AlertView.action(title: "cancel".localized, style: .cancel)]
+    AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized, actions: actions, style: .alert)
+  }
+  
+  private func delete(tasklist: TaskList, row: Int) {
+    tasklist.hardDelete()
+    self.taskListCollectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
+  }
+  
   
   @IBAction private func openMenuAction(_ sender: Any) {
     slideMenuController()?.delegate = self
@@ -215,7 +197,7 @@ extension HomeViewController: UICollectionViewDataSource {
       let taskList = tasklists[indexPath.row]
       cell.progressView.configure(with: taskList)
       cell.moreView.addTapGestureRecognizer(action: {
-        self.showMoreActionSheet(index: indexPath.row)
+        self.showMoreActions(row: indexPath.row)
       })
       
       return cell
