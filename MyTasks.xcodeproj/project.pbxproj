@@ -15,6 +15,7 @@
 		5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D1C2045C4D900E51428 /* String+Localizable.swift */; };
 		5F896D252045E09C00E51428 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D242045E09C00E51428 /* AlertView.swift */; };
 		5F896D272045EFAB00E51428 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D262045EFAB00E51428 /* ImageManager.swift */; };
+		5F896D29204604E800E51428 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D28204604E800E51428 /* UserManager.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		5F896D1C2045C4D900E51428 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		5F896D242045E09C00E51428 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		5F896D262045EFAB00E51428 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		5F896D28204604E800E51428 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,16 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		5F896D2A2046052D00E51428 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
+				5F896D28204604E800E51428 /* UserManager.swift */,
+				5F896D262045EFAB00E51428 /* ImageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		5F9D3F5D2028D197000FFA2B = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +248,6 @@
 			children = (
 				5FD49CD1202A7F04008C1ECB /* Views */,
 				5FC04987202A3F6400B80ABC /* Helpers */,
-				5FC04986202A3F2B00B80ABC /* API */,
 				5FC04985202A3EF200B80ABC /* Resources */,
 				5F9D3F832028ECB2000FFA2B /* Models */,
 				5F9D3F7E2028D765000FFA2B /* Controllers */,
@@ -288,21 +299,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5FC04986202A3F2B00B80ABC /* API */ = {
-			isa = PBXGroup;
-			children = (
-				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		5FC04987202A3F6400B80ABC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */,
-				5F896D262045EFAB00E51428 /* ImageManager.swift */,
 				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 				5FC04988202A3F7C00B80ABC /* Extensions */,
+				5F896D2A2046052D00E51428 /* Managers */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				5FE0565D2040CE8C00340E95 /* ButtonIBInspectable.swift in Sources */,
 				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
+				5F896D29204604E800E51428 /* UserManager.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
 				5FF830802031F2B600FABDD8 /* TaskDetailTableViewController.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,

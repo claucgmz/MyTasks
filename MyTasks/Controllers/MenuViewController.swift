@@ -24,9 +24,7 @@ class MenuViewController: UIViewController {
   }
   
   @IBAction private func logOut(_ sender: Any) {
-    if let user = RealmService.getLoggedUser() {
-      facebookManager.logout(user: user)
-    }
+    UserManager().logoutWithFacebook()
     slideMenuController()?.closeLeft()
     navigationController?.popViewController(animated: true)
   }

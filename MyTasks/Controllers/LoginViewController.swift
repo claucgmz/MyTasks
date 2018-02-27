@@ -7,35 +7,17 @@
 //
 
 import UIKit
-import RealmSwift
 
 class LoginViewController: UIViewController {
-  private let realm = RealmService.realm
-  private let facebookManager = FacebookManager()
   @IBOutlet private weak var loginButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(Realm.Configuration.defaultConfiguration.fileURL!)
     updateButtonUI()
   }
-
-  // MARK: - Action methods
-  @IBAction private func loginButtonAction(_ sender: Any) {
-    facebookManager.login(self, onSuccess: { data in
-      let user = User(with: data)
-      user.add()
-      DispatchQueue.main.async {
-        self.goToHome()
-      }
-    }, onFailure: { error in
-      if error != nil {
-        print("Error: \(String(describing: error?.localizedDescription))")
-      }
-    })
-  }
   
-  private func goToHome() {
+  // MARK: - private methods
+  private func segueToHome() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:SliderMenuViewController.reusableId)
   }
@@ -43,5 +25,11 @@ class LoginViewController: UIViewController {
   private func updateButtonUI() {
     loginButton.setTitle("log_in".localized, for: .normal)
     loginButton.imageView?.contentMode = .scaleAspectFit
+  }
+  
+  // MARK: - Action methods
+  @IBAction private func loginButtonAction(_ sender: Any) {
+    //DispatchQueue.main.async {
+    UserManager().loginWithFacebook(viewController: self, onSuccess: { self.segueToHome() }, onFailure: { error in print(error?.localizedDescription ?? "Something went wrong") })
   }
 }
