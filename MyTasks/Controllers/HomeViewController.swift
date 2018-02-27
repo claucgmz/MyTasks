@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import AlamofireImage
 import FacebookLogin
 import FacebookCore
 import SlideMenuControllerSwift
@@ -24,7 +23,6 @@ class HomeViewController: UIViewController {
   
   private var tasklists: LinkingObjects<TaskList>!
   private var user: User?
-  private let imageCache = AutoPurgingImageCache()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -76,35 +74,16 @@ class HomeViewController: UIViewController {
     navigationController?.popViewController(animated:true)
   }
   
-  private func setProfileImage() {
+  private func setUserImage(to imageView: UIImageView) {
     if let url = user?.imageURL {
-      let urlRequest = URLRequest(url: URL(string: url)!)
-      
-      guard let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: "avatar") else {
-        downloadImage(from: url, completionHandler: { image, urlRequest in
-          let avatarImage = image.af_imageRoundedIntoCircle()
-          self.imageCache.add(avatarImage, withIdentifier: "avatar")
-          self.userProfileImage.image = avatarImage
-        })
-        return
-      }
-      
-      userProfileImage.image = cachedAvatarImage
-    }
-  }
-  
-  private func downloadImage(from url: String, completionHandler: @escaping(Image, URLRequest) -> Void) {
-    let urlRequest = URLRequest(url: URL(string: url)!)
-    
-    ImageDownloader.default.download(urlRequest) { response in
-      if let image = response.result.value {
-        completionHandler(image, urlRequest)
-      }
+      ImageManager.shared.get(from: url, completionHandler: { image in
+        imageView.image = image
+      })
     }
   }
   
   private func updateUI() {
-    setProfileImage()
+    setUserImage(to: userProfileImage)
     
     if let firstName = user?.firstName {
       welcomeLabel.text = "\("greeting".localized), \(firstName)"
@@ -141,7 +120,6 @@ class HomeViewController: UIViewController {
     tasklist.hardDelete()
     self.taskListCollectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
   }
-  
   
   @IBAction private func openMenuAction(_ sender: Any) {
     slideMenuController()?.delegate = self
@@ -240,10 +218,9 @@ extension HomeViewController: SlideMenuControllerDelegate {
   
   func leftWillOpen() {
     let controller = slideMenuController()?.leftViewController as? MenuViewController
-    guard let cachedAvatarImage = imageCache.image(withIdentifier: "avatar") else {
-      return
+    if let imageView = controller?.userProfileImage {
+      setUserImage(to: imageView)
     }
-    controller?.userProfileImage.image = cachedAvatarImage
   }
 }
 
