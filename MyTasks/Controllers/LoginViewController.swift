@@ -25,6 +25,8 @@ class LoginViewController: UIViewController {
 
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
-    UserManager().loginWithFacebook(viewController: self, onSuccess: { self.segueToHome() }, onFailure: { error in print(error?.localizedDescription ?? "Something went wrong") })
+    
+    UserManager().loginWithFacebook(viewController: self, onSuccess: { DispatchQueue.main.async { self.segueToHome() } },
+                                    onFailure: { error in print(error?.localizedDescription ?? "Something went wrong") })
   }
 }
