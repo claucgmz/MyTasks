@@ -60,9 +60,9 @@ class TaskListDetailTableViewController: UITableViewController {
   }
   
   private func updateUILabels() {
-    listNameLabel.text = NSLocalizedString("list_name", comment: "")
-    listColorLabel.text = NSLocalizedString("list_color", comment: "")
-    listIconLabel.text = NSLocalizedString("list_icon", comment: "")
+    listNameLabel.text = "list_name".localized
+    listColorLabel.text = "list_color".localized
+    listIconLabel.text = "list_icon".localized
   }
   
   // MARK: - Table view data source

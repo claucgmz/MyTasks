@@ -121,7 +121,7 @@ extension TaskListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if section > 0 {
-      let title = NSLocalizedString(tasks[section-1].type.rawValue, comment: "")
+      let title = tasks[section-1].type.rawValue.localized
       return title
     }
     return ""

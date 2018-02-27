@@ -25,16 +25,16 @@ class TaskListDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
+    mainActionButton.setTitle("save".localized, for: .normal)
     user = RealmService.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
     
     if tasklistToEdit != nil {
-      title = NSLocalizedString("edit_list", comment: "")
+      title = "edit_list".localized
       mainActionButton.didEnable(true)
     } else {
       mainActionButton.didEnable(false)
-      title = NSLocalizedString("add_list", comment: "")
+      title = "add_list".localized
     }
   }
   

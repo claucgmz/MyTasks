@@ -14,6 +14,6 @@ class TextFieldCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    taskNameLabel.text = NSLocalizedString("task_to_perform", comment: "")
+    taskNameLabel.text = "task_to_perform".localized
   }
 }

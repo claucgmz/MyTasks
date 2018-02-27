@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
   }
   
   private func updateButtonUI() {
-    loginButton.setTitle(NSLocalizedString("log_in", comment: ""), for: .normal)
+    loginButton.setTitle("log_in".localized, for: .normal)
     loginButton.imageView?.contentMode = .scaleAspectFit
   }
 }

@@ -16,7 +16,7 @@ class MenuViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    logoutButton.setTitle(NSLocalizedString("log_out", comment: ""), for: .normal)
+    logoutButton.setTitle("log_out".localized, for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {

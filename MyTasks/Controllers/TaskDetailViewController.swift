@@ -50,7 +50,7 @@ class TaskDetailViewController: UIViewController {
   
   private func updateUI() {
     if taskToEdit != nil {
-      title = NSLocalizedString("edit_task", comment: "")
+      title = "edit_task".localized
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
       
@@ -62,11 +62,11 @@ class TaskDetailViewController: UIViewController {
         taskDetailTableViewController?.taskText = text
       }
     } else {
-      title = NSLocalizedString("add_task", comment: "")
+      title = "add_task".localized
       mainActionButton.didEnable(false)
     }
     
-    mainActionButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
+    mainActionButton.setTitle("save".localized, for: .normal)
   }
   
   @IBAction private func done() {
