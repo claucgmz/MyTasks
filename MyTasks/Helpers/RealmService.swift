@@ -34,9 +34,9 @@ class RealmService {
 }
 
 extension RealmService {
-  static func logOut(user: User) {
+  static func logOutUser() {
     try! realm.write {
-      user.isLoggedIn = false
+      RealmService.getLoggedUser()?.isLoggedIn = false
     }
   }
   

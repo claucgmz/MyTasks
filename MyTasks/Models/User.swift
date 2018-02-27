@@ -37,11 +37,6 @@ import RealmSwift
   override static func indexedProperties() -> [String] {
     return ["isLoggedIn"]
   }
-
-  // MARK: - Manage user methods
-  func logOut() {
-    RealmService.logOut(user: self)
-  }
 }
 
 extension User: BasicStorageFunctions {

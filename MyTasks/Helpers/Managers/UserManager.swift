@@ -18,6 +18,6 @@ class UserManager {
   }
   func logoutWithFacebook() {
     FacebookManager().logout()
-    RealmService.getLoggedUser()?.logOut()
+    RealmService.logOutUser()
   }
 }
