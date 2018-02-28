@@ -23,6 +23,17 @@ class TaskListDetailViewController: UIViewController {
     super.viewDidLoad()
     user = RealmService.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
+    updateUI()
+  }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "TaskListDetailTable" {
+      let controller = segue.destination as! TaskListDetailTableViewController
+      controller.delegate = self
+      controller.tasklistToEdit = tasklistToEdit
+    }
+  }
+  // MARK - private methods
+  private func updateUI() {
     mainActionButton.setTitle("save".localized, for: .normal)
     if tasklistToEdit != nil {
       title = "edit_list".localized
@@ -32,16 +43,7 @@ class TaskListDetailViewController: UIViewController {
       mainActionButton.didEnable(false)
     }
   }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "TaskListDetailTable" {
-      let controller = segue.destination as! TaskListDetailTableViewController
-      controller.delegate = self
-      controller.tasklistToEdit = tasklistToEdit
-    }
-  }
-  
-  // MARK - private methods
+  // MARK - action methods
   @IBAction private func done() {
     guard let name = taskListDetailTableViewController?.listNameText,
       let icon = taskListDetailTableViewController?.selectedIcon,
