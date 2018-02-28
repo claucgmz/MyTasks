@@ -15,15 +15,9 @@ protocol TaskListDetailViewControllerDelegate: class {
 class TaskListDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
   private var taskListDetailTableViewController: TaskListDetailTableViewController?
-  weak var delegate: TaskListDetailViewControllerDelegate?
-  var tasklistToEdit: TaskList?
   private var user: User!
-  
-  enum cellType: Int {
-    case taskName = 0
-    case taskColor = 1
-    case taskIcon = 2
-  }
+  var tasklistToEdit: TaskList?
+  weak var delegate: TaskListDetailViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,8 +28,8 @@ class TaskListDetailViewController: UIViewController {
       title = "edit_list".localized
       mainActionButton.didEnable(true)
     } else {
-      mainActionButton.didEnable(false)
       title = "add_list".localized
+      mainActionButton.didEnable(false)
     }
   }
   
@@ -47,24 +41,16 @@ class TaskListDetailViewController: UIViewController {
     }
   }
   
-  private func adjustForKeyboard(with height: CGFloat, show: Bool) {
-    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
-    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
-    view.frame = frame
-  }
-  
+  // MARK - private methods
   @IBAction private func done() {
-    guard let name = taskListDetailTableViewController?.listNameText, let icon = taskListDetailTableViewController?.selectedIcon, let color = taskListDetailTableViewController?.selectedColor else {
-      return
-    }
-    
-    if let tasklistToEdit  = tasklistToEdit {
+    guard let name = taskListDetailTableViewController?.listNameText,
+      let icon = taskListDetailTableViewController?.selectedIcon,
+      let color = taskListDetailTableViewController?.selectedColor else { return }
+    if let tasklistToEdit = tasklistToEdit {
       tasklistToEdit.update(name: name, icon: icon, color: color)
     } else {
-      let tasklist = TaskList(name: name, icon: icon, color: color)
-      tasklist.add()
+      TaskList(name: name, icon: icon, color: color).add()
     }
-    
     delegate?.taskListDetailViewController(self)
   }
 }
@@ -73,8 +59,7 @@ extension TaskListDetailViewController: TaskListDetailTableViewControllerDelegat
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, didEnableButton enable: Bool) {
     mainActionButton.didEnable(enable)
   }
-  
   func taskListDetailTableViewController(_ controller: TaskListDetailTableViewController, keyboardWillShow show: Bool, with height: CGFloat) {
-    adjustForKeyboard(with: height, show: show)
+    self.adjustView(with: height, visibleKeyboard: show)
   }
 }

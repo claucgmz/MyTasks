@@ -34,12 +34,6 @@ class TaskDetailViewController: UIViewController {
     }
   }
   
-  private func adjustForKeyboard(with height: CGFloat, show: Bool) {
-    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
-    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
-    view.frame = frame
-  }
-  
   private func updateUI() {
     if taskToEdit != nil {
       title = "edit_task".localized
@@ -82,9 +76,7 @@ class TaskDetailViewController: UIViewController {
 
 extension TaskDetailViewController: FormWithButtonDelegate {
   func formWithButtonDelegate(_ controller: UIViewController, keyboardWillShow show: Bool, with height: CGFloat) {
-    let newHeight = show == true ? view.frame.height - height : view.frame.height + height
-    let frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: view.frame.width, height: newHeight)
-    view.frame = frame
+    self.adjustView(with: height, visibleKeyboard: show)
   }
   
   func formWithButtonDelegate(_ controller: UIViewController, didEnableButton enable: Bool) {
