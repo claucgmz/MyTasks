@@ -20,19 +20,13 @@ class TaskDetailViewController: UIViewController {
     taskDetailTableViewController?.tasklist = tasklist
     updateUI()
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
-  }
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskDetailTable" {
       let controller = segue.destination as! TaskDetailTableViewController
       controller.delegate = self
     }
   }
-  
+  // MARK - private methods
   private func updateUI() {
     if taskToEdit != nil {
       title = "edit_task".localized
@@ -46,7 +40,7 @@ class TaskDetailViewController: UIViewController {
     }
     mainActionButton.setTitle("save".localized, for: .normal)
   }
-  
+  // MARK - action methods
   @IBAction private func done() {
     guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate,  let toTaskList = taskDetailTableViewController?.tasklist else {
       return
@@ -66,7 +60,6 @@ extension TaskDetailViewController: FormWithButtonDelegate {
   func formWithButtonDelegate(_ controller: UIViewController, keyboardWillShow show: Bool, with height: CGFloat) {
     self.adjustView(with: height, visibleKeyboard: show)
   }
-  
   func formWithButtonDelegate(_ controller: UIViewController, didEnableButton enable: Bool) {
     mainActionButton.didEnable(enable)
   }
