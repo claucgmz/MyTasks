@@ -13,21 +13,23 @@ protocol TaskListDetailViewControllerDelegate: class {
 }
 
 class TaskListDetailViewController: UIViewController {
-  
   @IBOutlet private weak var mainActionButton: UIButton!
-  
   private var taskListDetailTableViewController: TaskListDetailTableViewController?
-  
   weak var delegate: TaskListDetailViewControllerDelegate?
   var tasklistToEdit: TaskList?
   private var user: User!
   
+  enum cellType: Int {
+    case taskName = 0
+    case taskColor = 1
+    case taskIcon = 2
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    mainActionButton.setTitle("save".localized, for: .normal)
     user = RealmService.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
-    
+    mainActionButton.setTitle("save".localized, for: .normal)
     if tasklistToEdit != nil {
       title = "edit_list".localized
       mainActionButton.didEnable(true)
@@ -35,11 +37,6 @@ class TaskListDetailViewController: UIViewController {
       mainActionButton.didEnable(false)
       title = "add_list".localized
     }
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

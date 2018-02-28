@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class TaskListViewController: UIViewController {
   @IBOutlet private weak var tasksTableView: UITableView!
