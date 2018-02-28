@@ -8,18 +8,10 @@
 
 import UIKit
 
-protocol TaskDetailViewControllerDelegate: class {
-  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishAdding task: TaskItem, in tasklist: TaskList)
-  func taskDetailViewController(_ controller: TaskDetailViewController, didFinishEditing task: TaskItem, in tasklist: TaskList)
-}
-
 class TaskDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
   
   private var taskDetailTableViewController: TaskDetailTableViewController?
-  
-  weak var delegate: TaskDetailViewControllerDelegate?
-  
   var tasklist: TaskList?
   var taskToEdit: TaskItem?
 
@@ -76,18 +68,15 @@ class TaskDetailViewController: UIViewController {
     
     if let taskToEdit = taskToEdit {
       taskToEdit.update(text: text, date: date, moveTo: (tasklist?.id != toTaskList.id ? toTaskList : tasklist))
-      if let tasklist = tasklist {
-        delegate?.taskDetailViewController(self, didFinishEditing: taskToEdit, in: tasklist)
-      }
+      
       
     } else {
       let task = TaskItem(text: text, date: date)
       task.add(to: toTaskList)
       tasklist = toTaskList
-      if let tasklist = tasklist {
-        delegate?.taskDetailViewController(self, didFinishAdding: task, in: tasklist)
-      }
     }
+    
+    self.navigationController?.popViewController(animated:true)
   }
 }
 

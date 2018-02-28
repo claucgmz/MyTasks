@@ -16,6 +16,20 @@ import RealmSwift
   dynamic var dueDate = Date()
   dynamic var checked = false
   dynamic var deleted = false
+  
+  var dateType: TaskListView.DateType {
+    let today = Date(), todayStart = today.startOfDay, todayEnd = today.endOfDay, tomorrow = todayStart.nextDay
+    switch dueDate {
+    case ...todayStart:
+      return .pastDueDate
+    case todayStart...todayEnd:
+      return .today
+    case tomorrow...tomorrow.endOfDay:
+      return .tomorrow
+    default:
+      return .later
+    }
+  }
 
   // MARK: - Init
   convenience init(text: String, date: Date) {
@@ -53,4 +67,3 @@ import RealmSwift
     RealmService.add(object: self, set: { self.deleted = true }, update: true)
   }
 }
-
