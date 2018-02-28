@@ -10,7 +10,6 @@ import UIKit
 
 class TaskDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
-  
   private var taskDetailTableViewController: TaskDetailTableViewController?
   var tasklist: TaskList?
   var taskToEdit: TaskItem?
@@ -39,19 +38,12 @@ class TaskDetailViewController: UIViewController {
       title = "edit_task".localized
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
-      
-      if let date = taskToEdit?.dueDate {
-        taskDetailTableViewController?.dueDate = date
-      }
-      
-      if let text = taskToEdit?.text {
-        taskDetailTableViewController?.taskText = text
-      }
+      if let date = taskToEdit?.dueDate { taskDetailTableViewController?.dueDate = date }
+      if let text = taskToEdit?.text { taskDetailTableViewController?.taskText = text }
     } else {
       title = "add_task".localized
       mainActionButton.didEnable(false)
     }
-    
     mainActionButton.setTitle("save".localized, for: .normal)
   }
   
@@ -59,17 +51,13 @@ class TaskDetailViewController: UIViewController {
     guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate,  let toTaskList = taskDetailTableViewController?.tasklist else {
       return
     }
-    
     if let taskToEdit = taskToEdit {
       taskToEdit.update(text: text, date: date, moveTo: (tasklist?.id != toTaskList.id ? toTaskList : tasklist))
-      
-      
     } else {
       let task = TaskItem(text: text, date: date)
       task.add(to: toTaskList)
       tasklist = toTaskList
     }
-    
     self.navigationController?.popViewController(animated:true)
   }
 }
