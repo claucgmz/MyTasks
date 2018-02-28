@@ -13,6 +13,6 @@ class AddTaskListCollectionCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    addText.text = NSLocalizedString("add_list", comment: "")
+    addText.text = "add_list".localized
   }
 }

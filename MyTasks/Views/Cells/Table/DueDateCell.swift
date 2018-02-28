@@ -13,6 +13,6 @@ class DueDateCell: UITableViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    dueDateLabel.text = NSLocalizedString("due_date", comment: "")
+    dueDateLabel.text = "due_date".localized
   }
 }

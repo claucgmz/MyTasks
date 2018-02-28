@@ -29,7 +29,7 @@ class TaskListProgressView: UIView {
   
   func configure(with tasklist: TaskList) {
     configureIcon(with: tasklist.icon, color: tasklist.color)
-    tasksCounterLabel.text = "\(tasklist.tasks.count) \(NSLocalizedString("tasks", comment: ""))"
+    tasksCounterLabel.text = "\(tasklist.tasks.count) \("tasks".localized)"
     updateProgressBar(with: tasklist)
     taskListNameLabel.text = tasklist.name
   }
