@@ -11,6 +11,7 @@ import UIKit
 class MenuViewController: UIViewController {
   @IBOutlet weak var userProfileImage: UIImageView!
   @IBOutlet private weak var logoutButton: UIButton!
+  @IBOutlet weak var userName: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
