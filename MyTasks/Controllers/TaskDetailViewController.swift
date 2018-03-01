@@ -32,8 +32,12 @@ class TaskDetailViewController: UIViewController {
       title = "edit_task".localized
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
-      if let date = taskToEdit?.dueDate { taskDetailTableViewController?.dueDate = date }
-      if let text = taskToEdit?.text { taskDetailTableViewController?.taskText = text }
+      if let date = taskToEdit?.dueDate {
+        taskDetailTableViewController?.dueDate = date
+      }
+      if let text = taskToEdit?.text {
+        taskDetailTableViewController?.taskText = text
+      }
     } else {
       title = "add_task".localized
       mainActionButton.didEnable(false)

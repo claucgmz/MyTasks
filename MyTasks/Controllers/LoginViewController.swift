@@ -22,11 +22,16 @@ class LoginViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:SliderMenuViewController.reusableId)
   }
-
+  
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
-    
-    UserManager().loginWithFacebook(viewController: self, onSuccess: { DispatchQueue.main.async { self.segueToHome() } },
-                                    onFailure: { error in print(error?.localizedDescription ?? "Something went wrong") })
+    UserManager().loginWithFacebook(viewController: self, onSuccess: {
+      DispatchQueue.main.async {
+        self.segueToHome()
+      }
+    }, onFailure: {
+      error in
+      print(error?.localizedDescription ?? "Something went wrong")
+    })
   }
 }

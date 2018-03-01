@@ -17,15 +17,13 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var welcomeLabel: UILabel!
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
-  
   private var tasklists: LinkingObjects<TaskList>!
-  private var user: User?
+  private var user = RealmService.getLoggedUser()
   private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     slideMenu = slideMenuController()
-    user = RealmService.getLoggedUser()
     tasklists = user?.tasklists
     registerNibs()
     updateUI()
@@ -46,9 +44,13 @@ class HomeViewController: UIViewController {
   private func setBackgroundColor() {
     let visibleItems = taskListCollectionView.indexPathsForVisibleItems
     var indexPath = IndexPath(row: 0, section: 0)
-    if visibleItems.count > 0 { indexPath = visibleItems.first! }
+    if visibleItems.count > 0 {
+      indexPath = visibleItems.first!
+    }
     for item in visibleItems {
-      if item.row < indexPath.row { indexPath = item }
+      if item.row < indexPath.row {
+        indexPath = item
+      }
     }
     if indexPath.row < tasklists.count {
       let list = tasklists[indexPath.row]
@@ -58,8 +60,14 @@ class HomeViewController: UIViewController {
   
   private func updateUI() {
     setBackgroundColor()
-    setUserImage(to: userProfileImage)
-    if let firstName = user?.firstName { welcomeLabel.text = "\("greeting".localized), \(firstName)" }
+    if let imageUrl = user?.imageURL {
+      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+        self.userProfileImage.image = image
+      })
+    }
+    if let firstName = user?.firstName {
+      welcomeLabel.text = "\("greeting".localized), \(firstName)"
+    }
     if let region = Locale.current.regionCode {
       let dateString = Date().toString(withLocale: region)
       dateLabel.text = "\("today".localized): \(dateString)".uppercased()
@@ -70,16 +78,16 @@ class HomeViewController: UIViewController {
   private func updateTotalTasksForToday() {
     todaySummaryLabel.text = String(format: "tasks_for_today".localized,"\(user?.totalTasksForToday ?? 0)")
   }
-  
-  private func setUserImage(to imageView: UIImageView) {
-    if let url = user?.imageURL { ImageManager.shared.get(from: url, completionHandler: { image in imageView.image = image }) }
-  }
-  
+
   private func showMoreActions(row: Int) {
     let tasklist = self.tasklists[row]
     let actions = [AlertView.action(title: "cancel".localized, style: .cancel),
-                   AlertView.action(title: "edit_list".localized, handler: { self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist) }),
-                   AlertView.action(title: "delete_list".localized, style: .destructive, handler: { self.showConfirmationAlert(for: tasklist, row: row) })]
+                   AlertView.action(title: "edit_list".localized, handler: {
+                    self.performSegue(withIdentifier: "TaskListDetail", sender: tasklist)
+                   }),
+                   AlertView.action(title: "delete_list".localized, style: .destructive, handler: {
+                    self.showConfirmationAlert(for: tasklist, row: row)
+                   })]
     AlertView.show(view: self, title: String(format: "alert_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
   
@@ -111,13 +119,19 @@ class HomeViewController: UIViewController {
     if segue.identifier == "TaskListDetail" {
       let controller = segue.destination as! TaskListDetailViewController
       controller.delegate = self
-      if sender is TaskList { controller.tasklistToEdit = sender as? TaskList }
+      if sender is TaskList {
+        controller.tasklistToEdit = sender as? TaskList
+      }
     } else if segue.identifier == "TaskDetail" {
       let controller = segue.destination as! TaskDetailViewController
-      if sender is TaskList { controller.tasklist = sender as? TaskList }
+      if sender is TaskList {
+        controller.tasklist = sender as? TaskList
+      }
     } else if segue.identifier == "TaskListItems" {
       let controller = segue.destination as! TaskListViewController
-      if sender is TaskList { controller.tasklist = sender as? TaskList }
+      if sender is TaskList {
+        controller.tasklist = sender as? TaskList
+      }
     }
   }
 }
@@ -146,7 +160,9 @@ extension HomeViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as! TaskListCollectionCell
       cell.roundCorners(withRadius: 10)
       cell.progressView.configure(with: taskList)
-      cell.moreView.addTapGestureRecognizer(action: { self.showMoreActions(row: indexPath.row) })
+      cell.moreView.addTapGestureRecognizer(action: {
+        self.showMoreActions(row: indexPath.row)
+      })
       return cell
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId, for: indexPath) as! AddTaskListCollectionCell
@@ -173,12 +189,20 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 // MARK: -  Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if user?.isLoggedIn == false { segueToLoginViewController() }
+    if user?.isLoggedIn == false {
+      segueToLoginViewController()
+    }
   }
   func leftWillOpen() {
     let controller = slideMenu?.leftViewController as? MenuViewController
-    if let imageView = controller?.userProfileImage { setUserImage(to: imageView) }
-    if let firstName = user?.firstName, let lastName = user?.lastName { controller?.userName.text = "\(firstName) \(lastName)" }
+    if let imageView = controller?.userProfileImage, let imageUrl = user?.imageURL {
+      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+        imageView.image = image
+      })
+    }
+    if let firstName = user?.firstName, let lastName = user?.lastName {
+      controller?.userName.text = "\(firstName) \(lastName)"
+    }
   }
 }
 

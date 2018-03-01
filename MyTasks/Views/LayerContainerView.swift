@@ -12,7 +12,6 @@ class LayerContainerView: UIView {
   override public class var layerClass: Swift.AnyClass {
     return CAGradientLayer.self
   }
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     let initialColors = [

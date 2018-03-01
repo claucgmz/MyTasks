@@ -13,7 +13,7 @@ class RealmService {
   static let shared = RealmService()
   static var realm = try! Realm()
   
-  static func add(object: Object, set: () -> Void, update: Bool = false) {
+  static func performUpdate(object: Object, set: () -> Void, update: Bool = true) {
     try! realm.write {
       set()
       realm.add(object, update: update)
@@ -40,13 +40,14 @@ extension RealmService {
     }
   }
   
+  //que no sea opciona;l
   static func getLoggedUser() -> User? {
     let user = realm.objects(User.self).filter("isLoggedIn == true")
     return user.first
   }
   
   static func add(user: User, update: Bool = false) {
-    add(object: user, set: {
+    RealmService.performUpdate(object: user, set: {
       user.isLoggedIn = true
     }, update: update)
   }

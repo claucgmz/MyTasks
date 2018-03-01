@@ -104,8 +104,12 @@ extension TaskListViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
     let task = tasks[indexPath.section-1].tasks[indexPath.row]
     cell.configure(with: task)
-    cell.checkboxView.addTapGestureRecognizer(action: { self.complete(task: task) })
-    cell.deleteView.addTapGestureRecognizer(action: { self.delete(task: task) })
+    cell.checkboxView.addTapGestureRecognizer(action: {
+      self.complete(task: task)
+    })
+    cell.deleteView.addTapGestureRecognizer(action: {
+      self.delete(task: task)
+    })
     return cell
   }
   
@@ -133,7 +137,9 @@ extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     if section == cellType.progressHeader.rawValue {
       let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TaskListTableHeader.reusableId) as? TaskListTableHeader
-      guard let tasklist = tasklist else { return nil }
+      guard let tasklist = tasklist else {
+        return nil
+      }
       header?.progressView.configure(with: tasklist)
       return header
     }

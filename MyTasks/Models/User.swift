@@ -16,18 +16,29 @@ import RealmSwift
   dynamic var lastName = ""
   dynamic var timestamp = Date().timeIntervalSinceReferenceDate
   dynamic var isLoggedIn = false
-  
   let tasklists = LinkingObjects(fromType: TaskList.self, property: "user")
-  var imageURL: String { return "https://graph.facebook.com/\(id)/picture?type=large" }
+  var imageURL: URL {
+    return URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!
+  }
   
-  var totalTasksForToday: Int { return tasklists.reduce(0) { total, tasklist in tasklist.pendingTasksToday.count } }
+  var totalTasksForToday: Int {
+    return tasklists.reduce(0) {
+      total, tasklist in tasklist.pendingTasksToday.count
+    }
+  }
   
   // MARK: - Init
   convenience init(with facebookData: [String : Any]?) {
     self.init()
-    if let id = facebookData?["id"] as? String { self.id = id }
-    if let firstName = facebookData?["first_name"] as? String { self.firstName = firstName }
-    if let lastName = facebookData?["last_name"] as? String { self.lastName = lastName }
+    if let id = facebookData?["id"] as? String {
+      self.id = id
+    }
+    if let firstName = facebookData?["first_name"] as? String {
+      self.firstName = firstName
+    }
+    if let lastName = facebookData?["last_name"] as? String {
+      self.lastName = lastName
+    }
   }
   
   // MARK: - Meta
@@ -41,7 +52,7 @@ import RealmSwift
 
 extension User: BasicStorageFunctions {
   func add() {
-    RealmService.add(object: self, set: { isLoggedIn = true }, update: true)
+    RealmService.performUpdate(object: self, set: { isLoggedIn = true }, update: true)
   }
   func hardDelete() {
     RealmService.hardDelete(object: self)

@@ -16,7 +16,6 @@ class TaskListView {
     case later
     case pastDueDate
   }
-  
   var type: DateType = .today
   var tasks: Results<TaskItem>!
   

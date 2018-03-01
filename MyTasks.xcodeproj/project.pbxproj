@@ -15,7 +15,6 @@
 		5F4CE6B42047151B000DAB3D /* UIViewController+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CE6B32047151B000DAB3D /* UIViewController+View.swift */; };
 		5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D1C2045C4D900E51428 /* String+Localizable.swift */; };
 		5F896D252045E09C00E51428 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D242045E09C00E51428 /* AlertView.swift */; };
-		5F896D272045EFAB00E51428 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D262045EFAB00E51428 /* ImageManager.swift */; };
 		5F896D29204604E800E51428 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D28204604E800E51428 /* UserManager.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
@@ -35,6 +34,7 @@
 		5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FADACE5202CF9DE0002C351 /* CategoryIcon.swift */; };
 		5FC04976202A170400B80ABC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FC04978202A170400B80ABC /* Localizable.strings */; };
 		5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC0497A202A322800B80ABC /* HomeViewController.swift */; };
+		5FCC55762048AD4B00BB0D70 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC55752048AD4B00BB0D70 /* ImageManager.swift */; };
 		5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCD202A7AFA008C1ECB /* TaskList.swift */; };
 		5FD49CD0202A7B5B008C1ECB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */; };
 		5FD49CD6202A7F3A008C1ECB /* TaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */; };
@@ -82,7 +82,6 @@
 		5F4CE6B32047151B000DAB3D /* UIViewController+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+View.swift"; sourceTree = "<group>"; };
 		5F896D1C2045C4D900E51428 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		5F896D242045E09C00E51428 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		5F896D262045EFAB00E51428 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		5F896D28204604E800E51428 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +106,7 @@
 		5FC04982202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5FC04983202A387200B80ABC /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5FC04984202A38A500B80ABC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5FCC55752048AD4B00BB0D70 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		5FD49CCD202A7AFA008C1ECB /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		5FD49CCF202A7B5B008C1ECB /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		5FD49CD4202A7F3A008C1ECB /* TaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListCollectionCell.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 			children = (
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
 				5F896D28204604E800E51428 /* UserManager.swift */,
-				5F896D262045EFAB00E51428 /* ImageManager.swift */,
+				5FCC55752048AD4B00BB0D70 /* ImageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -526,7 +526,6 @@
 				5FD49CCE202A7AFA008C1ECB /* TaskList.swift in Sources */,
 				5FF830A02032B25500FABDD8 /* TaskListViewController.swift in Sources */,
 				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
-				5F896D272045EFAB00E51428 /* ImageManager.swift in Sources */,
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
@@ -563,6 +562,7 @@
 				5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */,
 				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,
+				5FCC55762048AD4B00BB0D70 /* ImageManager.swift in Sources */,
 				5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */,
 				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift in Sources */,
 				5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */,

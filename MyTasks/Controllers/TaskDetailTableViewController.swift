@@ -110,7 +110,9 @@ class TaskDetailTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case CellType.dueDate.rawValue:
-      if datePickerIsVisible == true { return 1 }
+      if datePickerIsVisible == true {
+        return 1
+      }
       return 2
     case CellType.tasklists.rawValue:
       return tasklists.count
@@ -125,7 +127,7 @@ class TaskDetailTableViewController: UITableViewController {
     return cell
   }
   private func drawDueDateCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 1{
+    if indexPath.row == 1 {
       let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
       cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
       cell.datePicker.setDate(dueDate, animated: false)

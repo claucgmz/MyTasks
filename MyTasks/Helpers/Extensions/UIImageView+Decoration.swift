@@ -29,4 +29,8 @@ extension UIImageView {
     shadowView.layer.cornerRadius = shadowView.frame.size.width / 2
     self.superview?.insertSubview(shadowView, belowSubview: self)
   }
+  
+  func setImage(from: URL) {
+    
+  }
 }
