@@ -178,6 +178,7 @@ extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillOpen() {
     let controller = slideMenu?.leftViewController as? MenuViewController
     if let imageView = controller?.userProfileImage { setUserImage(to: imageView) }
+    if let firstName = user?.firstName, let lastName = user?.lastName { controller?.userName.text = "\(firstName) \(lastName)" }
   }
 }
 

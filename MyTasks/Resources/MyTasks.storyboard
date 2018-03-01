@@ -289,8 +289,8 @@
                                             <constraint firstAttribute="height" constant="100" id="XqZ-E6-Pmu"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clau Carrillo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAp-so-BqR">
-                                        <rect key="frame" x="129.5" y="115" width="116.5" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAp-so-BqR">
+                                        <rect key="frame" x="134.5" y="115" width="106.5" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -327,6 +327,7 @@
                     </view>
                     <connections>
                         <outlet property="logoutButton" destination="ywH-kl-REd" id="pBB-03-Zid"/>
+                        <outlet property="userName" destination="zAp-so-BqR" id="eca-Iv-Vks"/>
                         <outlet property="userProfileImage" destination="1GF-oi-eOT" id="KCz-Cm-Wbz"/>
                     </connections>
                 </viewController>
@@ -521,7 +522,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gaI-px-iyY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mzr-Nt-nq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Main" automaticallyAdjustsScrollViewInsets="NO" id="t8f-Rp-0si" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Awp-b9-XqZ">
@@ -533,6 +533,7 @@
                         <segue destination="VWE-4J-A6G" kind="relationship" relationship="rootViewController" id="rxR-vp-hYi"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mzr-Nt-nq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="579" y="90"/>
         </scene>
