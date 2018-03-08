@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
                    AlertView.action(title: "delete_list".localized, style: .destructive, handler: {
                     self.showConfirmationAlert(for: tasklist, row: row)
                    })]
-    AlertView.show(view: self, title: String(format: "alert_title".localized, tasklist.name), actions: actions, style: .actionSheet)
+    AlertView.show(view: self, title: String(format: "alert_edit_list_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
   
   private func showConfirmationAlert(for tasklist: TaskList, row: Int) {

@@ -13,7 +13,7 @@
 "tasks" = "Tareas";
 
 //Actionsheet
-"alert_title" = "Que deseas hacer con %@?";
+"alert_edit_list_title" = "Que deseas hacer con %@?";
 "edit_list" = "Editar lista";
 "delete_list" = "Eliminar lista";
 
