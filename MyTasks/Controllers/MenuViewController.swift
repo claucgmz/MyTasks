@@ -19,7 +19,7 @@ class MenuViewController: UIViewController {
   }
   
   @IBAction private func logOut(_ sender: Any) {
-    UserManager().logoutWithFacebook()
+    UserManager().logout()
     slideMenuController()?.closeLeft()
   }
 }

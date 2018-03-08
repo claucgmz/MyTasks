@@ -13,7 +13,7 @@
 "tasks" = "Tareas";
 
 //Actionsheet
-"alert_title" = "Que deseas hacer con %@?";
+"alert_edit_list_title" = "Que deseas hacer con %@?";
 "edit_list" = "Editar lista";
 "delete_list" = "Eliminar lista";
 
@@ -32,6 +32,7 @@
 "later" = "Después";
 "past" = "Pasado";
 "save" = "Guardar";
+"no_tasks" = "No tienes tareas en esta lista";
 
 //TasklistDetailView
 "add_list" = "Agregar Lista";

@@ -18,12 +18,20 @@ import RealmSwift
   dynamic var hex = ""
   dynamic var categoryIcon = CategoryIcon.bam.rawValue
   let taskItems = LinkingObjects(fromType: TaskItem.self, property: "tasklist")
-  var color: UIColor { return UIColor(hex: hex) }
-  var icon: CategoryIcon {
-    get { return CategoryIcon(rawValue: categoryIcon)! }
-    set { categoryIcon = newValue.rawValue }
+  var color: UIColor {
+    return UIColor(hex: hex)
   }
-  var tasks: Results<TaskItem> { return taskItems.filter("deleted = 0") }
+  var icon: CategoryIcon {
+    get {
+      return CategoryIcon(rawValue: categoryIcon)!
+    }
+    set {
+      categoryIcon = newValue.rawValue
+    }
+  }
+  var tasks: Results<TaskItem> {
+    return taskItems.filter("deleted = 0")
+  }
   
   // MARK: - Init
   convenience init(name: String, icon: CategoryIcon, color: UIColor) {
@@ -47,14 +55,18 @@ import RealmSwift
     var tasksbydate = [TaskListView](), dateTypes: [TaskListView.DateType] = [.today, .tomorrow, .later, .pastDueDate]
     for dateType in dateTypes {
       let filtered = filterTasks(by: dateType)
-      if  filtered.count > 0 { tasksbydate.append(TaskListView(type: dateType, tasks: filtered.sorted(byKeyPath: "dueDate", ascending: true))) }
+      if !filtered.isEmpty {
+        tasksbydate.append(TaskListView(type: dateType, tasks: filtered.sorted(byKeyPath: "dueDate", ascending: true)))
+      }
     }
     return tasksbydate
   }
   
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count
-    if tasks.count > 0 { return Double(totalDone) / Double(tasks.count) }
+    if !tasks.isEmpty {
+      return Double(totalDone) / Double(tasks.count)
+    }
     return 0.0
   }
   
@@ -74,7 +86,7 @@ import RealmSwift
   
   // MARK: - Manage tasklist methods
   func update(name: String, icon: CategoryIcon, color: UIColor) {
-    RealmService.add(object: self, set: {
+    RealmService.performUpdate(object: self, set: {
       self.name = name
       self.icon = icon
       self.hex = color.toHexString
@@ -84,8 +96,10 @@ import RealmSwift
 
 extension TaskList: BasicStorageFunctions {
   func add() {
-    guard let user = RealmService.getLoggedUser() else { return }
-    RealmService.add(object: self, set: { self.user = user }, update: true)
+    guard let user = RealmService.getLoggedUser() else {
+      return
+    }
+    RealmService.performUpdate(object: self, set: { self.user = user }, update: true)
   }
   
   func hardDelete() {

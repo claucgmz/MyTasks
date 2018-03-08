@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIImageView {
-  func tintImageColor(color : UIColor) {
+  func tintImageColor(color: UIColor) {
     self.image = self.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
     self.tintColor = color
   }
@@ -28,5 +28,9 @@ extension UIImageView {
     shadowView.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     shadowView.layer.cornerRadius = shadowView.frame.size.width / 2
     self.superview?.insertSubview(shadowView, belowSubview: self)
+  }
+  
+  func setImage(from: URL) {
+    
   }
 }

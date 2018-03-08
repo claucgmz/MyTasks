@@ -22,27 +22,32 @@ class TaskDetailViewController: UIViewController {
   }
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskDetailTable" {
-      let controller = segue.destination as! TaskDetailTableViewController
+      let controller = (segue.destination as? TaskDetailTableViewController)!
       controller.delegate = self
     }
   }
-  // MARK - private methods
+  // MARK: private methods
   private func updateUI() {
     if taskToEdit != nil {
       title = "edit_task".localized
       mainActionButton.didEnable(true)
       taskDetailTableViewController?.taskToEdit = taskToEdit
-      if let date = taskToEdit?.dueDate { taskDetailTableViewController?.dueDate = date }
-      if let text = taskToEdit?.text { taskDetailTableViewController?.taskText = text }
+      if let date = taskToEdit?.dueDate {
+        taskDetailTableViewController?.dueDate = date
+      }
+      if let text = taskToEdit?.text {
+        taskDetailTableViewController?.taskText = text
+      }
     } else {
       title = "add_task".localized
       mainActionButton.didEnable(false)
     }
     mainActionButton.setTitle("save".localized, for: .normal)
   }
-  // MARK - action methods
+  // MARK: action methods
   @IBAction private func done() {
-    guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate,  let toTaskList = taskDetailTableViewController?.tasklist else {
+    guard let text = taskDetailTableViewController?.taskText, let date = taskDetailTableViewController?.dueDate,
+      let toTaskList = taskDetailTableViewController?.tasklist else {
       return
     }
     if let taskToEdit = taskToEdit {
@@ -52,7 +57,7 @@ class TaskDetailViewController: UIViewController {
       task.add(to: toTaskList)
       tasklist = toTaskList
     }
-    self.navigationController?.popViewController(animated:true)
+    self.navigationController?.popViewController(animated: true)
   }
 }
 

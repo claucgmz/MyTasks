@@ -11,7 +11,7 @@ import RealmSwift
 
 class TaskDetailTableViewController: UITableViewController {
   @IBOutlet var mainTableView: UITableView!
-  private var tasklists : Results<TaskList>!
+  private var tasklists: Results<TaskList>!
   private var datePickerIsVisible = false
   weak var delegate: FormWithButtonDelegate?
   var taskText = ""
@@ -40,7 +40,7 @@ class TaskDetailTableViewController: UITableViewController {
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
   
-  //MARK: - Private methods
+  // MARK: - Private methods
   private func registerNibs() {
     mainTableView.register(UINib(nibName: TextFieldCell.reusableId, bundle: nil), forCellReuseIdentifier: TextFieldCell.reusableId)
     mainTableView.register(UINib(nibName: DueDateCell.reusableId, bundle: nil), forCellReuseIdentifier: DueDateCell.reusableId)
@@ -67,7 +67,7 @@ class TaskDetailTableViewController: UITableViewController {
       tableView.endUpdates()
     }
   }
-  private func updateDueDateLabel(){
+  private func updateDueDateLabel() {
     let indexPathDateRow = IndexPath(row: 0, section: 1)
     if let dueDateCell = tableView.cellForRow(at: indexPathDateRow) {
       dueDateCell.detailTextLabel?.text = dueDate.toString(withFormat: "MMM d, h:mm a")
@@ -77,10 +77,10 @@ class TaskDetailTableViewController: UITableViewController {
     dueDate = datePicker.date
     updateDueDateLabel()
   }
-  //MARK: - getKeyboardHeight method
+  // MARK: - getKeyboardHeight method
   @objc func adjustForKeyboard(notification: Notification) {
-    let userInfo:NSDictionary = notification.userInfo! as NSDictionary
-    let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+    let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+    let keyboardFrame: NSValue = (userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue)!
     let keyboardRectangle = keyboardFrame.cgRectValue
     let keyboardHeight = keyboardRectangle.height
     if notification.name.rawValue == "UIKeyboardWillHideNotification" {
@@ -110,7 +110,9 @@ class TaskDetailTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case CellType.dueDate.rawValue:
-      if datePickerIsVisible == true { return 1 }
+      if datePickerIsVisible == true {
+        return 1
+      }
       return 2
     case CellType.tasklists.rawValue:
       return tasklists.count
@@ -119,25 +121,25 @@ class TaskDetailTableViewController: UITableViewController {
     }
   }
   private func drawTextFieldCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldCell.reusableId) as! TextFieldCell
+    let cell = (tableView.dequeueReusableCell(withIdentifier: TextFieldCell.reusableId) as? TextFieldCell)!
     cell.taskNameTextField.delegate = self
     cell.taskNameTextField.text = taskText
     return cell
   }
   private func drawDueDateCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 1{
-      let cell = tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as! DatePickerCell
+    if indexPath.row == 1 {
+      let cell = (tableView.dequeueReusableCell(withIdentifier: DatePickerCell.reusableId) as? DatePickerCell)!
       cell.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
       cell.datePicker.setDate(dueDate, animated: false)
       return cell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: DueDateCell.reusableId) as! DueDateCell
+      let cell = (tableView.dequeueReusableCell(withIdentifier: DueDateCell.reusableId) as? DueDateCell)!
       cell.detailTextLabel?.text = dueDate.toString(withFormat: "MMM d, h:mm a")
       return cell
     }
   }
   private func drawTaskListsCell(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as! TaskListCell
+    let cell = (tableView.dequeueReusableCell(withIdentifier: TaskListCell.reusableId) as? TaskListCell)!
     let tlist = tasklists[indexPath.row]
     cell.configure(with: tlist, isSelected: tlist.id == tasklist?.id)
     return cell
@@ -153,7 +155,7 @@ class TaskDetailTableViewController: UITableViewController {
     }
   }
   
-  // MARK - Table view delegate
+  // MARK: - Table view delegate
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if indexPath.section == 1 && indexPath.row == 0 {
       if !datePickerIsVisible {
@@ -171,7 +173,7 @@ class TaskDetailTableViewController: UITableViewController {
 extension TaskDetailTableViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     let oldText = textField.text!
-    let stringRange = Range(range, in:oldText)!
+    let stringRange = Range(range, in: oldText)!
     let newText = oldText.replacingCharacters(in: stringRange, with: string)
     taskText = newText
     delegate?.formWithButtonDelegate(self, didEnableButton: !taskText.isEmpty)

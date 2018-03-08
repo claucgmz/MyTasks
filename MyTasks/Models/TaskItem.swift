@@ -18,13 +18,13 @@ import RealmSwift
   dynamic var deleted = false
   
   var dateType: TaskListView.DateType {
-    let today = Date(), todayStart = today.startOfDay, todayEnd = today.endOfDay, tomorrow = todayStart.nextDay
+    let today = Date()
     switch dueDate {
-    case ...todayStart:
+    case ...today.startOfDay:
       return .pastDueDate
-    case todayStart...todayEnd:
+    case today.startOfDay...today.endOfDay:
       return .today
-    case tomorrow...tomorrow.endOfDay:
+    case today.nextDay.startOfDay...today.nextDay.endOfDay:
       return .tomorrow
     default:
       return .later
@@ -49,21 +49,30 @@ import RealmSwift
   
   // MARK: - Manage list methods
   func add(to tasklist: TaskList) {
-    RealmService.add(object: self, set: { self.tasklist = tasklist }, update: true)
+    RealmService.performUpdate(object: self, set: {
+      self.tasklist = tasklist
+    }, update: true)
   }
   
   func update(text: String, date: Date, moveTo tasklist: TaskList? = nil) {
-    RealmService.add(object: self, set: {
-      if let totasklist = tasklist { self.tasklist = totasklist }
+    RealmService.performUpdate(object: self, set: {
+      if let totasklist = tasklist {
+        self.tasklist = totasklist
+      }
       self.text = text
-      self.dueDate = date }, update: true)
+      self.dueDate = date
+    }, update: true)
   }
   
   func complete() {
-    RealmService.add(object: self, set: { self.checked = !checked }, update: true)
+    RealmService.performUpdate(object: self, set: {
+      self.checked = !checked
+    }, update: true)
   }
   
   func softDelete() {
-    RealmService.add(object: self, set: { self.deleted = true }, update: true)
+    RealmService.performUpdate(object: self, set: {
+      self.deleted = true
+    }, update: true)
   }
 }

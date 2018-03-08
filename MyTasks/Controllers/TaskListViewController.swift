@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class TaskListViewController: UIViewController {
   @IBOutlet private weak var tasksTableView: UITableView!
   var tasklist: TaskList?
   private var tasks = [TaskListView]()
   
-  enum cellType: Int {
+  enum CellType: Int {
     case progressHeader = 0
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    tasksTableView.emptyDataSetSource = self
+    tasksTableView.emptyDataSetDelegate = self
     registerNibs()
     getFilteredTasks()
   }
@@ -29,7 +32,7 @@ class TaskListViewController: UIViewController {
     tasksTableView.reloadData()
   }
   
-  // MARK - Private methods
+  // MARK: - Private methods
   private func registerNibs() {
     tasksTableView.register(UINib(nibName: TaskCell.reusableId, bundle: nil), forCellReuseIdentifier: TaskCell.reusableId)
     tasksTableView.register(UINib(nibName: TaskListTableHeader.reusableId, bundle: nil), forHeaderFooterViewReuseIdentifier: TaskListTableHeader.reusableId)
@@ -67,6 +70,8 @@ class TaskListViewController: UIViewController {
       getFilteredTasks()
       UIView.performWithoutAnimation { tasksTableView.deleteSections(IndexSet(integer: indexPath.section), with: .none) }
     }
+    
+    tasksTableView.reloadEmptyDataSet()
     UIView.performWithoutAnimation { self.updateProgressView() }
   }
   
@@ -76,14 +81,14 @@ class TaskListViewController: UIViewController {
     return IndexPath(row: row, section: section + 1)
   }
   
-  // MARK - action methods
+  // MARK: - action methods
   @IBAction func addTaskButtonAction(_ sender: Any) {
     performSegue(withIdentifier: "TaskDetail", sender: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskDetail" {
-      let controller = segue.destination as! TaskDetailViewController
+      let controller = (segue.destination as? TaskDetailViewController)!
       controller.tasklist = tasklist
       if sender is TaskItem { controller.taskToEdit = sender as? TaskItem }
     }
@@ -96,26 +101,30 @@ extension TaskListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == cellType.progressHeader.rawValue { return 0 }
+    if section == CellType.progressHeader.rawValue { return 0 }
     return tasks[section-1].tasks.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as! TaskCell
+    let cell = (tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as? TaskCell)!
     let task = tasks[indexPath.section-1].tasks[indexPath.row]
     cell.configure(with: task)
-    cell.checkboxView.addTapGestureRecognizer(action: { self.complete(task: task) })
-    cell.deleteView.addTapGestureRecognizer(action: { self.delete(task: task) })
+    cell.checkboxView.addTapGestureRecognizer(action: {
+      self.complete(task: task)
+    })
+    cell.deleteView.addTapGestureRecognizer(action: {
+      self.delete(task: task)
+    })
     return cell
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section > cellType.progressHeader.rawValue { return tasks[section-1].type.rawValue.localized }
+    if section > CellType.progressHeader.rawValue { return tasks[section-1].type.rawValue.localized }
     return ""
   }
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if section == cellType.progressHeader.rawValue { return 180 }
+    if section == CellType.progressHeader.rawValue { return 180 }
     return 25
   }
   
@@ -131,12 +140,29 @@ extension TaskListViewController: UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if section == cellType.progressHeader.rawValue {
+    if section == CellType.progressHeader.rawValue {
       let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TaskListTableHeader.reusableId) as? TaskListTableHeader
-      guard let tasklist = tasklist else { return nil }
+      guard let tasklist = tasklist else {
+        return nil
+      }
       header?.progressView.configure(with: tasklist)
       return header
     }
     return nil
+  }
+}
+
+extension TaskListViewController: DZNEmptyDataSetSource {
+  func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    return UIImage(named: "clipboard")
+  }
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "no_tasks".localized)
+  }
+}
+
+extension TaskListViewController: DZNEmptyDataSetDelegate {
+  func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+    return true
   }
 }

@@ -19,24 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     navigationBarAppearance.isTranslucent = true
     navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
     navigationBarAppearance.shadowImage = UIImage()
-    
     setInitialViewController()
-    
     return true
   }
   
   private func setInitialViewController() {
-    print(LoginViewController.reusableId)
     var initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: LoginViewController.reusableId)
-    
     if RealmService.getLoggedUser() != nil {
       initialViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
     }
-
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = initialViewController
     self.window?.makeKeyAndVisible()
   }
-
 }
-
