@@ -20,6 +20,7 @@ Practice app for creating lists with tasks to be completed and managed.
 *   __RealmSwift__
 *   __AlamofireImage__
 *   __SlideMenuControllerSwift__
+*   __DZNEmptyDataSet__
 
 ## Screenshots
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
