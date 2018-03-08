@@ -9,8 +9,8 @@
 import UIKit
 
 extension UIColor {
-  convenience init(r: Int, g:Int , b:Int) {
-    self.init(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: 1.0)
+  convenience init(red: Int, green: Int, blue: Int) {
+    self.init(red: CGFloat(red)/255, green: CGFloat(green)/255, blue: CGFloat(blue)/255, alpha: 1.0)
   }
   
   convenience init(hex: String) {
@@ -49,27 +49,29 @@ extension UIColor {
   }
   
   struct ColorPicker {
-    static var lightGreenishBlue: UIColor { return UIColor(r: 85, g: 239, b: 196) }
-    static var fadedPoster: UIColor { return UIColor(r: 129, g: 236, b: 236) }
-    static var greenDarnerTail: UIColor { return UIColor(r: 116, g: 185, b: 255) }
-    static var shyMoment: UIColor { return UIColor(r: 162, g: 155, b: 254) }
-    static var cityLights: UIColor { return UIColor(r: 223, g: 230, b: 233) }
-    static var mintLeaf: UIColor { return UIColor(r: 0, g: 184, b: 148) }
-    static var robinsEggBlue: UIColor { return UIColor(r: 0, g: 206, b: 201) }
-    static var electronBlue: UIColor { return UIColor(r: 9, g: 132, b: 227) }
-    static var exodusFruit: UIColor { return UIColor(r: 108, g: 92, b: 231) }
-    static var soothingBreeze: UIColor { return UIColor(r: 178, g: 190, b: 195) }
-    static var sourLemon: UIColor { return UIColor(r: 255, g: 234, b: 167) }
-    static var firstDate: UIColor { return UIColor(r: 250, g: 177, b: 160) }
-    static var pinkGlamour: UIColor { return UIColor(r: 255, g: 118, b: 117) }
-    static var picoPink: UIColor { return UIColor(r: 253, g: 121, b: 168) }
-    static var americanRiver: UIColor { return UIColor(r: 99, g: 110, b: 114) }
-    static var brightYarrow: UIColor { return UIColor(r: 253, g: 203, b: 110) }
-    static var orangeville: UIColor { return UIColor(r: 225, g: 112, b: 85) }
-    static var chiGong: UIColor { return UIColor(r: 214, g: 48, b: 49) }
-    static var prunusAvium: UIColor { return UIColor(r: 232, g: 67, b: 147) }
-    static var draculaOrchid: UIColor { return UIColor(r: 45, g: 52, b: 54) }
-    static var all: [UIColor] { return [lightGreenishBlue, fadedPoster, greenDarnerTail, shyMoment, cityLights, mintLeaf, robinsEggBlue, electronBlue, exodusFruit, soothingBreeze, sourLemon, firstDate, pinkGlamour, picoPink, americanRiver, brightYarrow, orangeville, chiGong, prunusAvium, draculaOrchid ]}
+    static var lightGreenishBlue: UIColor { return UIColor(red: 85, green: 239, blue: 196) }
+    static var fadedPoster: UIColor { return UIColor(red: 129, green: 236, blue: 236) }
+    static var greenDarnerTail: UIColor { return UIColor(red: 116, green: 185, blue: 255) }
+    static var shyMoment: UIColor { return UIColor(red: 162, green: 155, blue: 254) }
+    static var cityLights: UIColor { return UIColor(red: 223, green: 230, blue: 233) }
+    static var mintLeaf: UIColor { return UIColor(red: 0, green: 184, blue: 148) }
+    static var robinsEggBlue: UIColor { return UIColor(red: 0, green: 206, blue: 201) }
+    static var electronBlue: UIColor { return UIColor(red: 9, green: 132, blue: 227) }
+    static var exodusFruit: UIColor { return UIColor(red: 108, green: 92, blue: 231) }
+    static var soothingBreeze: UIColor { return UIColor(red: 178, green: 190, blue: 195) }
+    static var sourLemon: UIColor { return UIColor(red: 255, green: 234, blue: 167) }
+    static var firstDate: UIColor { return UIColor(red: 250, green: 177, blue: 160) }
+    static var pinkGlamour: UIColor { return UIColor(red: 255, green: 118, blue: 117) }
+    static var picoPink: UIColor { return UIColor(red: 253, green: 121, blue: 168) }
+    static var americanRiver: UIColor { return UIColor(red: 99, green: 110, blue: 114) }
+    static var brightYarrow: UIColor { return UIColor(red: 253, green: 203, blue: 110) }
+    static var orangeville: UIColor { return UIColor(red: 225, green: 112, blue: 85) }
+    static var chiGong: UIColor { return UIColor(red: 214, green: 48, blue: 49) }
+    static var prunusAvium: UIColor { return UIColor(red: 232, green: 67, blue: 147) }
+    static var draculaOrchid: UIColor { return UIColor(red: 45, green: 52, blue: 54) }
+    static var all: [UIColor] { return [lightGreenishBlue, fadedPoster, greenDarnerTail, shyMoment, cityLights,
+                                        mintLeaf, robinsEggBlue, electronBlue, exodusFruit, soothingBreeze, sourLemon,
+                                        firstDate, pinkGlamour, picoPink, americanRiver, brightYarrow, orangeville, chiGong,
+                                        prunusAvium, draculaOrchid ]}
   }
 }
-

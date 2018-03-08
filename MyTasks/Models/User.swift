@@ -22,13 +22,13 @@ import RealmSwift
   }
   
   var totalTasksForToday: Int {
-    return tasklists.reduce(0) {
-      total, tasklist in tasklist.pendingTasksToday.count
+    return tasklists.reduce(0) { _, tasklist in
+      tasklist.pendingTasksToday.count
     }
   }
   
   // MARK: - Init
-  convenience init(with facebookData: [String : Any]?) {
+  convenience init(with facebookData: [String: Any]?) {
     self.init()
     if let id = facebookData?["id"] as? String {
       self.id = id

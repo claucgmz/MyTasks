@@ -32,6 +32,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = initialViewController
     self.window?.makeKeyAndVisible()
   }
-
 }
-

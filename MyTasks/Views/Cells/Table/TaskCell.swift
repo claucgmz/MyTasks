@@ -25,7 +25,8 @@ class TaskCell: UITableViewCell {
   }
   
   private func strikeThroughText(with text: String, strike: Bool) {
-    let textRange = NSMakeRange(0, text.count)
+    
+    let textRange = NSRange(location: 0, length: text.count)
     let attributedText = NSMutableAttributedString(string: text)
     if strike == true {
       attributedText.addAttribute(.strikethroughStyle,

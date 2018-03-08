@@ -55,7 +55,7 @@ import RealmSwift
     var tasksbydate = [TaskListView](), dateTypes: [TaskListView.DateType] = [.today, .tomorrow, .later, .pastDueDate]
     for dateType in dateTypes {
       let filtered = filterTasks(by: dateType)
-      if  filtered.count > 0 {
+      if !filtered.isEmpty {
         tasksbydate.append(TaskListView(type: dateType, tasks: filtered.sorted(byKeyPath: "dueDate", ascending: true)))
       }
     }
@@ -64,7 +64,7 @@ import RealmSwift
   
   func progressPercentage() -> Double {
     let totalDone = tasks.filter("checked = 1").count
-    if tasks.count > 0 {
+    if !tasks.isEmpty {
       return Double(totalDone) / Double(tasks.count)
     }
     return 0.0

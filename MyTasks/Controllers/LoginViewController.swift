@@ -20,7 +20,8 @@ class LoginViewController: UIViewController {
   // MARK: - private methods
   private func segueToHome() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier:SliderMenuViewController.reusableId)
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil)
+      .instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
   }
   
   // MARK: - Action methods
@@ -29,9 +30,8 @@ class LoginViewController: UIViewController {
       DispatchQueue.main.async {
         self.segueToHome()
       }
-    }, onFailure: {
-      error in
-      print(error?.localizedDescription ?? "Something went wrong")
+    }, onFailure: { error in
+        print(error?.localizedDescription ?? "Something went wrong")
     })
   }
 }

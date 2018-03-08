@@ -15,8 +15,7 @@ class UserManager {
       User(with: data).add()
       FacebookManager().logout()
       onSuccess()
-    }, onFailure: {
-      error in
+    }, onFailure: { error in
       print("Error: \(String(describing: error?.localizedDescription))")
     })
   }

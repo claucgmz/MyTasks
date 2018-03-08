@@ -51,10 +51,10 @@ class TaskListDetailTableViewController: UITableViewController {
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
   }
-  //MARK: - getKeyboardHeight method
+  // MARK: - getKeyboardHeight method
   @objc func adjustForKeyboard(notification: Notification) {
-    let userInfo:NSDictionary = notification.userInfo! as NSDictionary
-    let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+    let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+    let keyboardFrame: NSValue = (userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue)!
     let keyboardRectangle = keyboardFrame.cgRectValue
     let keyboardHeight = keyboardRectangle.height
     if notification.name.rawValue == "UIKeyboardWillHideNotification" {
@@ -63,10 +63,12 @@ class TaskListDetailTableViewController: UITableViewController {
       delegate?.taskListDetailTableViewController(self, keyboardWillShow: true, with: keyboardHeight)
     }
   }
-  //MARK: - Private methods
+  // MARK: - Private methods
   private func registerNibs() {
-    colorPickerView.register(UINib(nibName: ColorPickerCollectionCell.reusableId, bundle: nil), forCellWithReuseIdentifier: ColorPickerCollectionCell.reusableId)
-    iconPickerView.register(UINib(nibName: IconPickerCollectionCell.reusableId, bundle: nil), forCellWithReuseIdentifier: IconPickerCollectionCell.reusableId)
+    colorPickerView.register(UINib(nibName: ColorPickerCollectionCell.reusableId, bundle: nil),
+                             forCellWithReuseIdentifier: ColorPickerCollectionCell.reusableId)
+    iconPickerView.register(UINib(nibName: IconPickerCollectionCell.reusableId, bundle: nil),
+                            forCellWithReuseIdentifier: IconPickerCollectionCell.reusableId)
   }
   private func updateUILabels() {
     listNameLabel.text = "list_name".localized
@@ -96,7 +98,7 @@ class TaskListDetailTableViewController: UITableViewController {
   }
 }
 
-//MARK: - UICollection delegate methods
+// MARK: - UICollection delegate methods
 extension TaskListDetailTableViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     listNameTextField.resignFirstResponder()
@@ -108,7 +110,7 @@ extension TaskListDetailTableViewController: UICollectionViewDelegate {
     }
   }
 }
-//MARK: - UICollection dataSource methods
+// MARK: - UICollection dataSource methods
 extension TaskListDetailTableViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     switch collectionView {
@@ -121,12 +123,12 @@ extension TaskListDetailTableViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch collectionView {
     case colorPickerView:
-      let cell = colorPickerView.dequeueReusableCell(withReuseIdentifier: ColorPickerCollectionCell.reusableId, for: indexPath) as! ColorPickerCollectionCell
+      let cell = (colorPickerView.dequeueReusableCell(withReuseIdentifier: ColorPickerCollectionCell.reusableId, for: indexPath) as? ColorPickerCollectionCell)!
       let color = colors[indexPath.row]
       cell.configure(withColor: color, isSelected: color == selectedColor)
       return cell
     default:
-      let cell = iconPickerView.dequeueReusableCell(withReuseIdentifier: IconPickerCollectionCell.reusableId, for: indexPath) as! IconPickerCollectionCell
+      let cell = (iconPickerView.dequeueReusableCell(withReuseIdentifier: IconPickerCollectionCell.reusableId, for: indexPath) as? IconPickerCollectionCell)!
       let icon = icons[indexPath.row]
       cell.configure(withIcon: icon, isSelected: icon == selectedIcon, color: selectedColor)
       return cell
@@ -137,7 +139,7 @@ extension TaskListDetailTableViewController: UICollectionViewDataSource {
 extension TaskListDetailTableViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     let oldText = textField.text!
-    let stringRange = Range(range, in:oldText)!
+    let stringRange = Range(range, in: oldText)!
     let newText = oldText.replacingCharacters(in: stringRange, with: string)
     listNameText = newText
     delegate?.taskListDetailTableViewController(self, didEnableButton: !listNameText.isEmpty)

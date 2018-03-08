@@ -44,6 +44,9 @@ enum CategoryIcon: String {
   }
   
   static var all: [CategoryIcon] {
-    return [.bam, .cherry, .christmastree, .christmastreestar, .coffeecup, .cupcake, .department, .doraemon, .dratini, .dwarf, .easteregg, .emptybox, .halloweencandy, .home, .penguin, .pennywise, .pie, .pin, .pokeball, .pokemon, .sphere, .stapler, .supermario, .taco, .thriller, .trainticket, .vampire, .vegetarianfood, .witchhat]
+    return [.bam, .cherry, .christmastree, .christmastreestar, .coffeecup, .cupcake, .department, .doraemon,
+            .dratini, .dwarf, .easteregg, .emptybox, .halloweencandy, .home, .penguin, .pennywise,
+            .pie, .pin, .pokeball, .pokemon, .sphere, .stapler, .supermario, .taco,
+            .thriller, .trainticket, .vampire, .vegetarianfood, .witchhat]
   }
 }
