@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class TaskListViewController: UIViewController {
   @IBOutlet private weak var tasksTableView: UITableView!
@@ -19,6 +20,8 @@ class TaskListViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    tasksTableView.emptyDataSetSource = self
+    tasksTableView.emptyDataSetDelegate = self
     registerNibs()
     getFilteredTasks()
   }
@@ -67,6 +70,8 @@ class TaskListViewController: UIViewController {
       getFilteredTasks()
       UIView.performWithoutAnimation { tasksTableView.deleteSections(IndexSet(integer: indexPath.section), with: .none) }
     }
+    
+    tasksTableView.reloadEmptyDataSet()
     UIView.performWithoutAnimation { self.updateProgressView() }
   }
   
@@ -144,5 +149,20 @@ extension TaskListViewController: UITableViewDelegate {
       return header
     }
     return nil
+  }
+}
+
+extension TaskListViewController: DZNEmptyDataSetSource {
+  func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    return UIImage(named: "clipboard")
+  }
+  func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    return NSAttributedString(string: "no_tasks".localized)
+  }
+}
+
+extension TaskListViewController: DZNEmptyDataSetDelegate {
+  func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+    return true
   }
 }

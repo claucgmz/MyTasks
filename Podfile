@@ -16,5 +16,7 @@ target 'MyTasks' do
   
   #iOS Slide Menu View based on Google+, iQON, Feedly, Ameba iOS app. It is written in pure swift.
   pod 'SlideMenuControllerSwift'
-
+  
+  #A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display
+  pod 'DZNEmptyDataSet'
 end

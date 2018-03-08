@@ -32,6 +32,7 @@
 "later" = "Later";
 "past" = "Past";
 "save" = "Save";
+"no_tasks" = "No tasks";
 
 //TasklistDetailView
 "add_list" = "Add New List";
