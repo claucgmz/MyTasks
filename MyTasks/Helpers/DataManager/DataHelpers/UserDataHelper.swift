@@ -11,22 +11,14 @@ import Firebase
 import FirebaseDatabase
 
 class UserDataHelper: DataHelperProtocol {
-  typealias T = UserData
+  typealias T = User
   static var databaseRef = Database.database().reference()
   
-  static func create(_ object: UserData) {
+  static func save(_ object: User) {
     databaseRef.child("users").child(object.id).setValue(object.toDictionary())
   }
-  
-  static func update(_ object: UserData) {
-    
-  }
-  
-  static func delete(_ object: UserData) {
-    
-  }
-  
-  static func getAll(completionHandler: @escaping ([UserData]) -> Void) {
+
+  static func delete(_ object: User) {
     
   }
   

@@ -11,28 +11,27 @@ import Firebase
 import FirebaseDatabase
 
 class TasklistDataHelper: DataHelperProtocol {
-  typealias T = TasklistData
+  typealias T = Tasklist
   static var databaseRef = Database.database().reference()
+  static var tasklistsRef = databaseRef.child("tasklists")
+  static var tasksRef = databaseRef.child("tasks")
   
-  static func create(_ object: TasklistData) {
+  static func save(_ object: Tasklist) {
     if let userId = UserBridge.current() {
-      databaseRef.child("tasklists").child(userId).child(object.id).setValue(object.toDictionary())
+     tasklistsRef.child(userId).child(object.id).setValue(object.toDictionary())
     }
   }
   
-  static func update(_ object: TasklistData) {
-  }
-  
-  static func delete(_ object: TasklistData) {
+  static func delete(_ object: Tasklist) {
     if let userId = UserBridge.current() {
-      databaseRef.child("tasklists").child(userId).child(object.id).removeValue()
-      databaseRef.child("tasks").child(object.id).removeValue()
+      tasklistsRef.child(userId).child(object.id).removeValue()
+      tasksRef.child(object.id).removeValue()
     }
   }
   
   static func getAll(completionHandler: @escaping ([String: Any]) -> Void) {
     if let userId = UserBridge.current() {
-      databaseRef.child("tasklists").child(userId).observe(.value, with: { snapshot in
+      tasklistsRef.child(userId).observe(.value, with: { snapshot in
         let data = snapshot.value as? [String: Any] ?? [:]
         completionHandler(data)
       })

@@ -26,11 +26,12 @@ struct User {
 //    }
   }
   
-  init(id: String, firstName: String, lastName: String, email: String) {
+  init(id: String, firstName: String, lastName: String, email: String, facebookId: String) {
     self.id = id
     self.firstName = firstName
     self.lastName = lastName
     self.email = email
+    self.facebookId = facebookId
   }
   
   init(with facebookData: [String: Any]?) {
@@ -43,5 +44,15 @@ struct User {
     if let lastName = facebookData?["last_name"] as? String {
       self.lastName = lastName
     }
+  }
+  
+  func toDictionary() -> [String: Any?] {
+    return [
+      "id": id,
+      "email": email,
+      "fistName": firstName,
+      "lastName": lastName,
+      "facebookId": facebookId
+    ]
   }
 }

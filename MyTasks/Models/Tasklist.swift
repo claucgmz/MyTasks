@@ -13,17 +13,46 @@ struct Tasklist {
   var name = ""
   var icon = CategoryIcon.bam
   var color = UIColor.ColorPicker.cityLights
-
-  init(name: String, icon: CategoryIcon, color: UIColor) {
-    self.name = name
-    self.icon = icon
-    self.color = color
-  }
   
   init(id: String, name: String, icon: CategoryIcon, color: UIColor) {
     self.id = id
     self.name = name
     self.icon = icon
     self.color = color
+  }
+  
+  init(name: String, icon: CategoryIcon, color: UIColor) {
+    self.name = name
+    self.icon = icon
+    self.color = color
+  }
+  
+  init(with data: [String: Any]) {
+    guard let id = data["id"] as? String else {
+      return
+    }
+    guard let name = data["name"] as? String else {
+      return
+    }
+    guard let icon = data["icon"] as? String else {
+      return
+    }
+    guard let hex = data["hex"] as? String else {
+      return
+    }
+    
+    self.id = id
+    self.name = name
+    self.icon = CategoryIcon(rawValue: icon)!
+    self.color = UIColor(hex: hex)
+  }
+  
+  func toDictionary() -> [String: Any] {
+    return [
+      "id": id,
+      "name": name,
+      "icon": icon.rawValue,
+      "hex": color.toHexString
+    ]
   }
 }

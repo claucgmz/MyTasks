@@ -21,10 +21,10 @@
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F90BD9D2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */; };
-		5F93EAF62052ED7200DBB170 /* TasklistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EAF52052ED7200DBB170 /* TasklistData.swift */; };
-		5F93EAF82052EE0400DBB170 /* TaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EAF72052EE0400DBB170 /* TaskData.swift */; };
+		5F93EAF62052ED7200DBB170 /* TasklistBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EAF52052ED7200DBB170 /* TasklistBridge.swift */; };
+		5F93EAF82052EE0400DBB170 /* TaskBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EAF72052EE0400DBB170 /* TaskBridge.swift */; };
 		5F93EAFC2052EF5900DBB170 /* TasklistDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EAFB2052EF5900DBB170 /* TasklistDataHelper.swift */; };
-		5F93EB012053033E00DBB170 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EB002053033E00DBB170 /* UserData.swift */; };
+		5F93EB012053033E00DBB170 /* UserBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EB002053033E00DBB170 /* UserBridge.swift */; };
 		5F93EB032053039C00DBB170 /* UserDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93EB022053039C00DBB170 /* UserDataHelper.swift */; };
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
 		5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */; };
@@ -96,10 +96,10 @@
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+ReusableId.swift"; sourceTree = "<group>"; };
-		5F93EAF52052ED7200DBB170 /* TasklistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasklistData.swift; sourceTree = "<group>"; };
-		5F93EAF72052EE0400DBB170 /* TaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskData.swift; sourceTree = "<group>"; };
+		5F93EAF52052ED7200DBB170 /* TasklistBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasklistBridge.swift; sourceTree = "<group>"; };
+		5F93EAF72052EE0400DBB170 /* TaskBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBridge.swift; sourceTree = "<group>"; };
 		5F93EAFB2052EF5900DBB170 /* TasklistDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasklistDataHelper.swift; sourceTree = "<group>"; };
-		5F93EB002053033E00DBB170 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		5F93EB002053033E00DBB170 /* UserBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBridge.swift; sourceTree = "<group>"; };
 		5F93EB022053039C00DBB170 /* UserDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataHelper.swift; sourceTree = "<group>"; };
 		5F9D3F662028D197000FFA2B /* MyTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F9D3F692028D197000FFA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -249,19 +249,19 @@
 			isa = PBXGroup;
 			children = (
 				5F93EAFD2052F16300DBB170 /* DataHelpers */,
-				5F93EAFA2052EF2900DBB170 /* DataModels */,
+				5F93EAFA2052EF2900DBB170 /* DataBridge */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
 		};
-		5F93EAFA2052EF2900DBB170 /* DataModels */ = {
+		5F93EAFA2052EF2900DBB170 /* DataBridge */ = {
 			isa = PBXGroup;
 			children = (
-				5F93EAF52052ED7200DBB170 /* TasklistData.swift */,
-				5F93EAF72052EE0400DBB170 /* TaskData.swift */,
-				5F93EB002053033E00DBB170 /* UserData.swift */,
+				5F93EAF52052ED7200DBB170 /* TasklistBridge.swift */,
+				5F93EAF72052EE0400DBB170 /* TaskBridge.swift */,
+				5F93EB002053033E00DBB170 /* UserBridge.swift */,
 			);
-			path = DataModels;
+			path = DataBridge;
 			sourceTree = "<group>";
 		};
 		5F93EAFD2052F16300DBB170 /* DataHelpers */ = {
@@ -599,7 +599,7 @@
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */,
 				5F9D3F722028D197000FFA2B /* MyTasks.xcdatamodeld in Sources */,
-				5F93EAF62052ED7200DBB170 /* TasklistData.swift in Sources */,
+				5F93EAF62052ED7200DBB170 /* TasklistBridge.swift in Sources */,
 				5F90BD9D2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift in Sources */,
 				5FACC614202A67D5003D1957 /* Date+Format.swift in Sources */,
 				5FADACE2202CD0710002C351 /* UIView+Decoration.swift in Sources */,
@@ -611,13 +611,13 @@
 				5F93EB032053039C00DBB170 /* UserDataHelper.swift in Sources */,
 				5FF830832031F3E700FABDD8 /* TextFieldCell.swift in Sources */,
 				5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */,
-				5F93EAF82052EE0400DBB170 /* TaskData.swift in Sources */,
+				5F93EAF82052EE0400DBB170 /* TaskBridge.swift in Sources */,
 				5FF830902031F4A800FABDD8 /* UITableViewCell+ReusableId.swift in Sources */,
 				5FF0B0D6202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift in Sources */,
 				5FF830922031FEC400FABDD8 /* TaskDetailViewController.swift in Sources */,
 				5F3C99C3203F727400760261 /* TaskListView.swift in Sources */,
 				5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */,
-				5F93EB012053033E00DBB170 /* UserData.swift in Sources */,
+				5F93EB012053033E00DBB170 /* UserBridge.swift in Sources */,
 				5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */,
 				5FF8309520323DDA00FABDD8 /* TaskListCell.swift in Sources */,
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,

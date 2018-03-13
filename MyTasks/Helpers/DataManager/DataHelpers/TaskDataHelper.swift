@@ -11,23 +11,20 @@ import Firebase
 import FirebaseDatabase
 
 class TaskDataHelper: DataHelperProtocol {
-  typealias T = TaskData
+  typealias T = Task
   static var databaseRef = Database.database().reference()
+  static var tasksRef = databaseRef.child("tasks")
 
-  static func create(_ object: TaskData) {
-    databaseRef.child("tasks").child(object.tasklistId).child(object.id).setValue(object.toDictionary())
+  static func save(_ object: Task) {
+    tasksRef.child(object.tasklistId).child(object.id).setValue(object.toDictionary())
   }
-  
-  static func update(_ object: TaskData) {
-    
-  }
-  
-  static func delete(_ object: TaskData) {
- 
+
+  static func delete(_ object: Task) {
+    tasksRef.child(object.tasklistId).child(object.id).removeValue()
   }
   
   static func get(from tasklistId: String, by dateType: DateType, completionHandler: @escaping ([String: Any]) -> Void) {
-    var dateRef = databaseRef.child("tasks").child(tasklistId).queryOrdered(byChild: "dueDate")
+    var dateRef = tasksRef.child(tasklistId).queryOrdered(byChild: "dueDate")
     let today = Date().startOfDay, tomorrow = today.nextDay
     
     switch dateType {
@@ -50,7 +47,7 @@ class TaskDataHelper: DataHelperProtocol {
   }
   
   static func get(from tasklistId: String, completionHandler: @escaping ([String: Any]) -> Void) {
-    databaseRef.child("tasks").child(tasklistId)
+    tasksRef.child(tasklistId)
       .queryOrdered(byChild: "deleted")
       .queryEqual(toValue: false)
       .observeSingleEvent(of: .value, with: { snapshot in

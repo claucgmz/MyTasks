@@ -9,7 +9,6 @@ import UIKit
 
 protocol DataHelperProtocol {
   associatedtype T
-  static func create(_ object: T)
-  static func update(_ object: T)
+  static func save(_ object: T)
   static func delete(_ object: T)
 }

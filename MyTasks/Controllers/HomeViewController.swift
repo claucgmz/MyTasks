@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   private var tasklists = [Tasklist]()
-  private var user = User(id: "0", firstName: "clau", lastName: "carrillo", email: "")
+  private var user = User(id: "0", firstName: "clau", lastName: "carrillo", email: "", facebookId: "")
   private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {

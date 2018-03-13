@@ -48,4 +48,38 @@ struct Task {
     self.dueDate = date
     self.tasklistId = tasklistId
   }
+  
+  init(with data: [String: Any]) {
+    guard let id = data["id"] as? String else {
+      return
+    }
+    guard let text = data["text"] as? String else {
+      return
+    }
+    guard let date = data["dueDate"] as? Double else {
+      return
+    }
+    guard let checked = data["checked"] as? Bool else {
+      return
+    }
+    guard let deleted = data["deleted"] as? Bool else {
+      return
+    }
+    
+    self.id = id
+    self.text = text
+    self.dueDate = Date(timeIntervalSince1970: date)
+    self.checked = checked
+    self.deleted = deleted
+  }
+  
+  func toDictionary() -> [String: Any] {
+    return [
+      "id": id,
+      "text": text,
+      "dueDate": dueDate.timeIntervalSince1970,
+      "checked": checked,
+      "deleted": deleted
+    ]
+  }
 }
