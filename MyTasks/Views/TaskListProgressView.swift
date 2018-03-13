@@ -52,8 +52,8 @@ class TaskListProgressView: UIView {
   
   private func updateProgressBar(with tasklist: Tasklist) {
     progressBar.progressTintColor = tasklist.color
-//    let progress = tasklist.progressPercentage()
-//    progressBar.setProgress(Float(progress), animated: true)
-//    progressLabel.text = "\(Int(progress * 100))%"
+    let progress = tasklist.progressPercentage
+    progressBar.setProgress(Float(progress), animated: true)
+    progressLabel.text = "\(Int(progress * 100))%"
   }
 }

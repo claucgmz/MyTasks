@@ -17,7 +17,7 @@ struct TaskBridge {
   
   static func get(tasklist: Tasklist, completionHandler: @escaping ([TaskListView]) -> Void) {
     TaskDataHelper.get(from: tasklist.id, completionHandler: { data in
-      var tasksViews = [TaskListView]()
+      let tasksViews = [TaskListView]()
       
       completionHandler(tasksViews)
     })

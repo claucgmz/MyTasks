@@ -24,7 +24,7 @@ class TaskDataHelper: DataHelperProtocol {
   }
   
   static func softDelete(_ object: Task) {
-    var deletedObject = object
+    let deletedObject = object
     deletedObject.deleted = true
     tasksRef.child(deletedObject.tasklistId).child("deleted").child(deletedObject.id).setValue(deletedObject.toDictionary())
   }
@@ -54,17 +54,25 @@ class TaskDataHelper: DataHelperProtocol {
       dateRef = dateRef.queryEnding(atValue: today.timeIntervalSince1970)
     }
     
-    dateRef.observeSingleEvent(of: .value, with: { snapshot in
+    dateRef.observe(.value, with: { snapshot in
       let data = snapshot.value as? [String: Any] ?? [:]
       completionHandler(data)
     })
   }
   
-  static func getTotal(_ object: Tasklist, completionHandler: @escaping (Int) -> Void) {
-    tasksRef.child(object.id)
-      .child("added")
-      .observe(.value, with: { snapshot in
-      completionHandler(Int(snapshot.childrenCount))
-    })
+  static func getTotal(_ object: Tasklist, totalType: TotalType, completionHandler: @escaping (Int) -> Void) {
+    if totalType == .checked {
+      tasksRef.child(object.id).child("added")
+        .queryOrdered(byChild: "checked")
+        .queryEqual(toValue: true)
+        .observe(.value, with: { snapshot in
+        completionHandler(Int(snapshot.childrenCount))
+      })
+    } else {
+      tasksRef.child(object.id).child("added")
+        .observe(.value, with: { snapshot in
+          completionHandler(Int(snapshot.childrenCount))
+        })
+    }
   }
 }

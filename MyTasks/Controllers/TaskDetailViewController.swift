@@ -51,7 +51,7 @@ class TaskDetailViewController: UIViewController {
       return
     }
     
-    var task = Task(text: text, date: date, tasklistId: toTaskList.id)
+    let task = Task(text: text, date: date, tasklistId: toTaskList.id)
     
     if let taskToEdit = taskToEdit {
       task.id = taskToEdit.id

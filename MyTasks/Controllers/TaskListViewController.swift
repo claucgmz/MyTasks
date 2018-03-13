@@ -40,36 +40,13 @@ class TaskListViewController: UIViewController {
     guard let tasklist = tasklist else {
       return
     }
-    
-    tasksViews = [TaskListView]()
-    
-    TaskBridge.get(tasklist: tasklist, by: .today, completionHandler: { tasks in
-      if !tasks.isEmpty {
-        self.tasksViews.append(TaskListView(type: .today, tasks: tasks))
+    let dateTypes: [DateType] = [.today, .tomorrow, .later, .pastDueDate]
+    for (index, dateType) in dateTypes.enumerated() {
+      tasklist.getTasks(for: dateType, order: index, completionHandler: { 
+        self.tasksViews = tasklist.tasksViews
         self.tasksTableView.reloadData()
-      }
-    })
-    
-    TaskBridge.get(tasklist: tasklist, by: .tomorrow, completionHandler: { tasks in
-      if !tasks.isEmpty {
-        self.tasksViews.append(TaskListView(type: .tomorrow, tasks: tasks))
-        self.tasksTableView.reloadData()
-      }
-    })
-    
-    TaskBridge.get(tasklist: tasklist, by: .later, completionHandler: { tasks in
-      if !tasks.isEmpty {
-        self.tasksViews.append(TaskListView(type: .later, tasks: tasks))
-        self.tasksTableView.reloadData()
-      }
-    })
-    
-    TaskBridge.get(tasklist: tasklist, by: .pastDueDate, completionHandler: { tasks in
-      if !tasks.isEmpty {
-        self.tasksViews.append(TaskListView(type: .pastDueDate, tasks: tasks))
-        self.tasksTableView.reloadData()
-      }
-    })
+      })
+    }
   }
   
   private func reloadRow(at indexPath: IndexPath, tableView: UITableView) {
@@ -86,14 +63,13 @@ class TaskListViewController: UIViewController {
   
   private func complete(task: Task) {
     guard let indexPath = getIndexPath(for: task) else { return }
+    task.checked = !task.checked
     TaskBridge.save(task)
     reloadRow(at: indexPath, tableView: tasksTableView)
   }
   
   private func delete(task: Task) {
-    TaskBridge.save(task)
-    getFilteredTasks()
-    tasksTableView.reloadEmptyDataSet()
+    TaskBridge.softDelete(task)
     //UIView.performWithoutAnimation { self.updateProgressView() }
   }
   
@@ -102,8 +78,8 @@ class TaskListViewController: UIViewController {
       tasklistView.type == task.dateType }) else {
         return nil
     }
-    guard let row = tasksViews[section.hashValue].tasks.index(where: { task in
-        task.id == task.id
+    guard let row = tasksViews[section.hashValue].tasks.index(where: { taskV in
+        return taskV.id == task.id
     }) else {
       return nil
     }
@@ -141,10 +117,9 @@ extension TaskListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = (tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as? TaskCell)!
-    var task = tasksViews[indexPath.section-1].tasks[indexPath.row]
+    let task = tasksViews[indexPath.section-1].tasks[indexPath.row]
     cell.configure(with: task)
     cell.checkboxView.addTapGestureRecognizer(action: {
-      task.checked = !task.checked
       self.complete(task: task)
     })
     cell.deleteView.addTapGestureRecognizer(action: {
