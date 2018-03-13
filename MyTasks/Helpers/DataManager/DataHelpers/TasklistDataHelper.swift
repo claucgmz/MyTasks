@@ -18,7 +18,7 @@ class TasklistDataHelper: DataHelperProtocol {
   
   static func save(_ object: Tasklist) {
     if let userId = UserBridge.current() {
-     tasklistsRef.child(userId).child(object.id).setValue(object.toDictionary())
+      tasklistsRef.child(userId).child(object.id).setValue(object.toDictionary())
     }
   }
   
@@ -37,5 +37,4 @@ class TasklistDataHelper: DataHelperProtocol {
       })
     }
   }
-
 }

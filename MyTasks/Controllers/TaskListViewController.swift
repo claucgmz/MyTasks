@@ -148,7 +148,6 @@ extension TaskListViewController: UITableViewDataSource {
       self.complete(task: task)
     })
     cell.deleteView.addTapGestureRecognizer(action: {
-      task.deleted = true
       self.delete(task: task)
     })
     return cell

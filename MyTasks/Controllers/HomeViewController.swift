@@ -27,12 +27,7 @@ class HomeViewController: UIViewController {
     registerNibs()
     updateUI()
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    taskListCollectionView.reloadData()
-  }
-  
+
   // MARK: - Private methods
   private func registerNibs() {
     taskListCollectionView.register(UINib(nibName: TaskListCollectionCell.reusableId, bundle: nil),
@@ -45,10 +40,6 @@ class HomeViewController: UIViewController {
     TasklistBridge.getAll(completionHandler: { tasklists in
       self.tasklists = tasklists
       self.taskListCollectionView.reloadData()
-    })
-    
-    TasklistBridge.getTotalToBeDoneToday(completionHandler: { total in
-      self.updateTotalTasksForToday(total: total)
     })
   }
   
@@ -104,7 +95,6 @@ class HomeViewController: UIViewController {
   
   private func delete(tasklist: Tasklist) {
     TasklistBridge.delete(tasklist)
-    getTasklists()
   }
   
   private func segueToLoginViewController() {
@@ -185,7 +175,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: TaskListDetailViewControllerDelegate {
   func taskListDetailViewController(_ controller: TaskListDetailViewController) {
-    getTasklists()
     navigationController?.popViewController(animated: true)
   }
 }

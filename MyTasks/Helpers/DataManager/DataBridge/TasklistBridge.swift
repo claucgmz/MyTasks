@@ -21,10 +21,18 @@ struct TasklistBridge {
       var tasklists = [Tasklist]()
       for snData in data {
         if let tasklistData = snData.value as? [String: Any] {
-          tasklists.append(Tasklist(with: tasklistData))
+          var tasklist = Tasklist(with: tasklistData)
+          tasklist.setTotal()
+          tasklists.append(tasklist)
         }
       }
       completionHandler(tasklists)
+    })
+  }
+  
+  static func getTotal(_ tasklist: Tasklist, completionHandler: @escaping(Int) -> Void) {
+    TaskDataHelper.getTotal(tasklist, completionHandler: { total in
+      completionHandler(total)
     })
   }
   

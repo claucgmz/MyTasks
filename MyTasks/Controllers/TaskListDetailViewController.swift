@@ -47,7 +47,7 @@ class TaskListDetailViewController: UIViewController {
     guard let name = taskListDetailTableViewController?.listNameText,
       let icon = taskListDetailTableViewController?.selectedIcon,
       let color = taskListDetailTableViewController?.selectedColor else { return }
-    var tasklist = Tasklist(name: name, icon: icon, color: color)
+    let tasklist = Tasklist(name: name, icon: icon, color: color)
     
     if tasklistToEdit != nil, let id = tasklistToEdit?.id {
       tasklist.id = id

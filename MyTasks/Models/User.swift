@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User {
+class User {
   var id = UUID().uuidString
   var firstName = ""
   var lastName = ""

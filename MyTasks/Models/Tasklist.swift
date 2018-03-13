@@ -8,11 +8,12 @@
 
 import UIKit
 
-struct Tasklist {
+class Tasklist {
   var id = UUID().uuidString
   var name = ""
   var icon = CategoryIcon.bam
   var color = UIColor.ColorPicker.cityLights
+  var totalTasks = 0
   
   init(id: String, name: String, icon: CategoryIcon, color: UIColor) {
     self.id = id
@@ -54,5 +55,11 @@ struct Tasklist {
       "icon": icon.rawValue,
       "hex": color.toHexString
     ]
+  }
+  
+  func setTotal() {
+    TasklistBridge.getTotal(self, completionHandler: { total in
+      self.totalTasks = total
+    })
   }
 }

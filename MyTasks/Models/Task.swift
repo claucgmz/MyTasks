@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Task {
+class Task {
   var id = UUID().uuidString
   var text = ""
   var dueDate = Date()
