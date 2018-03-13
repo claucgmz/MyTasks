@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class UserManager {
   func loginWithFacebook(viewController: UIViewController, onSuccess: @escaping() -> Void, onFailure: @escaping(Error?) -> Void) {
     FacebookManager().login(viewController, onSuccess: { data in
-      User(with: data).add()
       FacebookManager().logout()
       onSuccess()
     }, onFailure: { error in
@@ -20,6 +20,6 @@ class UserManager {
     })
   }
   func logout() {
-    RealmService.logOutUser()
+    //RealmService.logOutUser()
   }
 }

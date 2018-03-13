@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import RealmSwift
 
 class TaskDetailTableViewController: UITableViewController {
   @IBOutlet var mainTableView: UITableView!
-  private var tasklists: Results<TaskList>!
+  private var tasklists = [Tasklist]()
   private var datePickerIsVisible = false
   weak var delegate: FormWithButtonDelegate?
   var taskText = ""
   var dueDate = Date()
-  var taskToEdit: TaskItem?
-  var tasklist: TaskList?
+  var taskToEdit: Task?
+  var tasklist: Tasklist?
   
   enum CellType: Int {
     case textField = 0
@@ -28,7 +27,7 @@ class TaskDetailTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     registerNibs()
-    tasklists = RealmService.realm.objects(TaskList.self)
+    getTasklists()
     updateDueDateLabel()
   }
   
@@ -47,11 +46,18 @@ class TaskDetailTableViewController: UITableViewController {
     mainTableView.register(UINib(nibName: DatePickerCell.reusableId, bundle: nil), forCellReuseIdentifier: DatePickerCell.reusableId)
     mainTableView.register(UINib(nibName: TaskListCell.reusableId, bundle: nil), forCellReuseIdentifier: TaskListCell.reusableId)
   }
+  
+  private func getTasklists() {
+    TasklistBridge.getAll(completionHandler: { tasklists in
+      self.tasklists = tasklists
+      self.mainTableView.reloadData()
+    })
+  }
   private func showDatePicker() {
     datePickerIsVisible = true
     let indexPathDateRow = IndexPath(row: 0, section: 1)
     let indexPathDatePicker = IndexPath(row: 1, section: 1)
-    tableView.beginUpdates()
+    mainTableView.beginUpdates()
     tableView.insertRows(at: [indexPathDatePicker], with: .fade)
     tableView.reloadRows(at: [indexPathDateRow], with: .none)
     tableView.endUpdates()

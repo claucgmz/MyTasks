@@ -31,7 +31,7 @@ class TaskListDetailTableViewController: UITableViewController {
   var selectedColor = UIColor.ColorPicker.americanRiver
   var selectedIcon: CategoryIcon = .bam
   var listNameText: String!
-  var tasklistToEdit: TaskList?
+  var tasklistToEdit: Tasklist?
   weak var delegate: TaskListDetailTableViewControllerDelegate?
   
   override func viewDidLoad() {

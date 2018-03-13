@@ -9,8 +9,12 @@ target 'MyTasks' do
   pod 'FacebookLogin'
   
   # Realm is a mobile database: a replacement for Core Data & SQLite https://realm.io
-  pod 'RealmSwift'
+  #pod 'RealmSwift'
   
+  #Firebase gives you the tools to develop high-quality apps, grow your user base, and earn more money. We cover the essentials so you can monetize your business and focus on your users.
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   #AlamofireImage is an image component library for Alamofire
   pod 'AlamofireImage', '~> 3.3'
   

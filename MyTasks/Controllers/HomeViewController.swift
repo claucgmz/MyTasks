@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController {
@@ -17,14 +16,14 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var welcomeLabel: UILabel!
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
-  private var tasklists: LinkingObjects<TaskList>!
-  private var user = RealmService.getLoggedUser()
+  private var tasklists = [Tasklist]()
+  private var user = User(id: "0", firstName: "clau", lastName: "carrillo", email: "")
   private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     slideMenu = slideMenuController()
-    tasklists = user?.tasklists
+    getTasklists()
     registerNibs()
     updateUI()
   }
@@ -32,7 +31,6 @@ class HomeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     taskListCollectionView.reloadData()
-    updateTotalTasksForToday()
   }
   
   // MARK: - Private methods
@@ -41,6 +39,17 @@ class HomeViewController: UIViewController {
                                     forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
     taskListCollectionView.register(UINib(nibName: AddTaskListCollectionCell.reusableId, bundle: nil),
                                     forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
+  }
+  
+  private func getTasklists() {
+    TasklistBridge.getAll(completionHandler: { tasklists in
+      self.tasklists = tasklists
+      self.taskListCollectionView.reloadData()
+    })
+    
+    TasklistBridge.getTotalToBeDoneToday(completionHandler: { total in
+      self.updateTotalTasksForToday(total: total)
+    })
   }
   
   private func setBackgroundColor() {
@@ -60,23 +69,19 @@ class HomeViewController: UIViewController {
   
   private func updateUI() {
     setBackgroundColor()
-    if let imageUrl = user?.imageURL {
-      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
-        self.userProfileImage.image = image
-      })
-    }
-    if let firstName = user?.firstName {
-      welcomeLabel.text = "\("greeting".localized), \(firstName)"
-    }
+    ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
+      self.userProfileImage.image = image
+    })
+    
+     welcomeLabel.text = "\("greeting".localized), \(user.firstName)"
     if let region = Locale.current.regionCode {
       let dateString = Date().toString(withLocale: region)
       dateLabel.text = "\("today".localized): \(dateString)".uppercased()
     }
-    updateTotalTasksForToday()
   }
   
-  private func updateTotalTasksForToday() {
-    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(user?.totalTasksForToday ?? 0)")
+  private func updateTotalTasksForToday(total: Int) {
+    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(total)")
   }
 
   private func showMoreActions(row: Int) {
@@ -91,15 +96,15 @@ class HomeViewController: UIViewController {
     AlertView.show(view: self, title: String(format: "alert_edit_list_title".localized, tasklist.name), actions: actions, style: .actionSheet)
   }
   
-  private func showConfirmationAlert(for tasklist: TaskList, row: Int) {
-    let actions = [AlertView.action(title: "ok".localized, handler: { self.delete(tasklist: tasklist, row: row) }),
+  private func showConfirmationAlert(for tasklist: Tasklist, row: Int) {
+    let actions = [AlertView.action(title: "ok".localized, handler: { self.delete(tasklist: tasklist) }),
                    AlertView.action(title: "cancel".localized, style: .cancel)]
     AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized, actions: actions, style: .alert)
   }
   
-  private func delete(tasklist: TaskList, row: Int) {
-    tasklist.hardDelete()
-    self.taskListCollectionView.deleteItems(at: [IndexPath(row: row, section: 0)])
+  private func delete(tasklist: Tasklist) {
+    TasklistBridge.delete(tasklist)
+    getTasklists()
   }
   
   private func segueToLoginViewController() {
@@ -117,20 +122,19 @@ class HomeViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskListDetail" {
-      let controller = (segue.destination as? TaskListDetailViewController)!
-      controller.delegate = self
-      if sender is TaskList {
-        controller.tasklistToEdit = sender as? TaskList
+      guard let controller = segue.destination as? TaskListDetailViewController else {
+        return
       }
-    } else if segue.identifier == "TaskDetail" {
-      let controller = (segue.destination as? TaskDetailViewController)!
-      if sender is TaskList {
-        controller.tasklist = sender as? TaskList
+      controller.delegate = self
+      if sender is Tasklist {
+        controller.tasklistToEdit = sender as? Tasklist
       }
     } else if segue.identifier == "TaskListItems" {
-      let controller = (segue.destination as? TaskListViewController)!
-      if sender is TaskList {
-        controller.tasklist = sender as? TaskList
+      guard let controller = segue.destination as? TaskListViewController else {
+        return
+      }
+      if sender is Tasklist {
+        controller.tasklist = sender as? Tasklist
       }
     }
   }
@@ -181,7 +185,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: TaskListDetailViewControllerDelegate {
   func taskListDetailViewController(_ controller: TaskListDetailViewController) {
-    taskListCollectionView.reloadData()
+    getTasklists()
     navigationController?.popViewController(animated: true)
   }
 }
@@ -189,20 +193,17 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 // MARK: - Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if user?.isLoggedIn == false {
+    if UserDataHelper.current() != nil {
       segueToLoginViewController()
     }
   }
   func leftWillOpen() {
     let controller = slideMenu?.leftViewController as? MenuViewController
-    if let imageView = controller?.userProfileImage, let imageUrl = user?.imageURL {
-      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
-        imageView.image = image
-      })
-    }
-    if let firstName = user?.firstName, let lastName = user?.lastName {
-      controller?.userName.text = "\(firstName) \(lastName)"
-    }
+    ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
+      controller?.userProfileImage.image = image
+    })
+
+    controller?.userName.text = "\(user.firstName) \(user.lastName)"
   }
 }
 

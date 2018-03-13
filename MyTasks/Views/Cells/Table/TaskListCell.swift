@@ -12,7 +12,7 @@ class TaskListCell: UITableViewCell {
   @IBOutlet weak var iconImage: UIImageView!
   @IBOutlet weak var nameLabel: UILabel!
   
-  func configure(with tasklist: TaskList, isSelected: Bool) {
+  func configure(with tasklist: Tasklist, isSelected: Bool) {
     iconImage.image = UIImage(named: tasklist.icon.rawValue)
     nameLabel.text = tasklist.name
     setCurrent(isSelected)

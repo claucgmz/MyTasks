@@ -181,15 +181,32 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-## Realm
+## Firebase
 
-TABLE OF CONTENTS
+Copyright 2017 Google
 
-1. Apache License version 2.0
-2. Realm Components
-3. Export Compliance
+## FirebaseAnalytics
 
-1. -------------------------------------------------------------------------------
+Copyright 2017 Google
+
+## FirebaseAuth
+
+Copyright 2017 Google
+
+## FirebaseCore
+
+Copyright 2017 Google
+
+## FirebaseDatabase
+
+Copyright 2017 Google
+
+## FirebaseInstanceID
+
+Copyright 2017 Google
+
+## GTMSessionFetcher
+
 
                                  Apache License
                            Version 2.0, January 2004
@@ -366,82 +383,36 @@ TABLE OF CONTENTS
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
-2. -------------------------------------------------------------------------------
+   END OF TERMS AND CONDITIONS
 
-REALM COMPONENTS
+   APPENDIX: How to apply the Apache License to your work.
 
-This software contains components with separate copyright and license terms.
-Your use of these components is subject to the terms and conditions of the
-following licenses.
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
 
-For the Realm Platform Extensions component
+   Copyright [yyyy] [name of copyright owner]
 
-  Realm Platform Extensions License
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-  Copyright (c) 2011-2017 Realm Inc All rights reserved
+       http://www.apache.org/licenses/LICENSE-2.0
 
-  Redistribution and use in binary form, with or without modification, is
-  permitted provided that the following conditions are met:
-
-  1. You agree not to attempt to decompile, disassemble, reverse engineer or
-  otherwise discover the source code from which the binary code was derived.
-  You may, however, access and obtain a separate license for most of the
-  source code from which this Software was created, at
-  http://realm.io/pricing/.
-
-  2. Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-  3. Neither the name of the copyright holder nor the names of its
-  contributors may be used to endorse or promote products derived from this
-  software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGE.
-
-3. -------------------------------------------------------------------------------
-
-EXPORT COMPLIANCE
-
-You understand that the Software may contain cryptographic functions that may be
-subject to export restrictions, and you represent and warrant that you are not
-(i) located in a jurisdiction that is subject to United States economic
-sanctions (“Prohibited Jurisdiction”), including Cuba, Iran, North Korea,
-Sudan, Syria or the Crimea region, (ii) a person listed on any U.S. government
-blacklist (to include the List of Specially Designated Nationals and Blocked
-Persons or the Consolidated Sanctions List administered by the U.S. Department
-of the Treasury’s Office of Foreign Assets Control, or the Denied Persons List
-or Entity List administered by the U.S. Department of Commerce)
-(“Sanctioned Person”), or (iii) controlled or 50% or more owned by a Sanctioned
-Person.
-
-You agree to comply with all export, re-export and import restrictions and
-regulations of the U.S. Department of Commerce or other agency or authority of
-the United States or other applicable countries. You also agree not to transfer,
-or authorize the transfer of, directly or indirectly, of the Software to any
-Prohibited Jurisdiction, or otherwise in violation of any such restrictions or
-regulations.
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 
-## RealmSwift
+## GoogleToolboxForMac
 
-TABLE OF CONTENTS
-
-1. Apache License version 2.0
-2. Realm Components
-3. Export Compliance
-
-1. -------------------------------------------------------------------------------
 
                                  Apache License
                            Version 2.0, January 2004
@@ -618,71 +589,32 @@ TABLE OF CONTENTS
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
-2. -------------------------------------------------------------------------------
+   END OF TERMS AND CONDITIONS
 
-REALM COMPONENTS
+   APPENDIX: How to apply the Apache License to your work.
 
-This software contains components with separate copyright and license terms.
-Your use of these components is subject to the terms and conditions of the
-following licenses.
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
 
-For the Realm Platform Extensions component
+   Copyright [yyyy] [name of copyright owner]
 
-  Realm Platform Extensions License
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-  Copyright (c) 2011-2017 Realm Inc All rights reserved
+       http://www.apache.org/licenses/LICENSE-2.0
 
-  Redistribution and use in binary form, with or without modification, is
-  permitted provided that the following conditions are met:
-
-  1. You agree not to attempt to decompile, disassemble, reverse engineer or
-  otherwise discover the source code from which the binary code was derived.
-  You may, however, access and obtain a separate license for most of the
-  source code from which this Software was created, at
-  http://realm.io/pricing/.
-
-  2. Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-  3. Neither the name of the copyright holder nor the names of its
-  contributors may be used to endorse or promote products derived from this
-  software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGE.
-
-3. -------------------------------------------------------------------------------
-
-EXPORT COMPLIANCE
-
-You understand that the Software may contain cryptographic functions that may be
-subject to export restrictions, and you represent and warrant that you are not
-(i) located in a jurisdiction that is subject to United States economic
-sanctions (“Prohibited Jurisdiction”), including Cuba, Iran, North Korea,
-Sudan, Syria or the Crimea region, (ii) a person listed on any U.S. government
-blacklist (to include the List of Specially Designated Nationals and Blocked
-Persons or the Consolidated Sanctions List administered by the U.S. Department
-of the Treasury’s Office of Foreign Assets Control, or the Denied Persons List
-or Entity List administered by the U.S. Department of Commerce)
-(“Sanctioned Person”), or (iii) controlled or 50% or more owned by a Sanctioned
-Person.
-
-You agree to comply with all export, re-export and import restrictions and
-regulations of the U.S. Department of Commerce or other agency or authority of
-the United States or other applicable countries. You also agree not to transfer,
-or authorize the transfer of, directly or indirectly, of the Software to any
-Prohibited Jurisdiction, or otherwise in violation of any such restrictions or
-regulations.
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 
 ## SlideMenuControllerSwift
@@ -708,5 +640,60 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+
+## leveldb-library
+
+Copyright (c) 2011 The LevelDB Authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+## nanopb
+
+Copyright (c) 2011 Petteri Aimonen <jpa at nanopb.mail.kapsi.fi>
+
+This software is provided 'as-is', without any express or 
+implied warranty. In no event will the authors be held liable 
+for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any 
+purpose, including commercial applications, and to alter it and 
+redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you 
+   must not claim that you wrote the original software. If you use 
+   this software in a product, an acknowledgment in the product 
+   documentation would be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and 
+   must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source 
+   distribution.
 
 Generated by CocoaPods - https://cocoapods.org

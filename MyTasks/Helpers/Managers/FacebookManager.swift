@@ -9,6 +9,7 @@
 import Foundation
 import FacebookLogin
 import FacebookCore
+import Firebase
 
 class FacebookManager {
   func login(_ viewController: UIViewController, onSuccess: @escaping([String: Any]?) -> Void, onFailure: @escaping(Error?) -> Void) {
@@ -18,10 +19,25 @@ class FacebookManager {
         onFailure(error)
       case .cancelled:
         print("User cancelled login.")
-      case .success:
+      case .success(grantedPermissions: _, _, let token):
+        self.fireBaseLogin(token: token.authenticationToken)
         self.getUserInfo(onSuccess: onSuccess, onFailure: onFailure)
       }
     })
+  }
+  
+  func fireBaseLogin(token: String) {
+    let credential = FacebookAuthProvider.credential(withAccessToken: token)
+    Auth.auth().signIn(with: credential) { (user, error) in
+      if let error = error {
+        print(error)
+      } else {
+        if let user = user {
+          UserBridge.save(UserData(id: user.uid, email: "", firstName: "", lastName: "", facebookId: token))
+        }
+
+      }
+    }
   }
   
   func logout() {

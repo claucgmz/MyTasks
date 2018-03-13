@@ -11,8 +11,8 @@ import UIKit
 class TaskDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
   private var taskDetailTableViewController: TaskDetailTableViewController?
-  var tasklist: TaskList?
-  var taskToEdit: TaskItem?
+  var tasklist: Tasklist?
+  var taskToEdit: Task?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,13 +50,15 @@ class TaskDetailViewController: UIViewController {
       let toTaskList = taskDetailTableViewController?.tasklist else {
       return
     }
+    
+    var task = Task(text: text, date: date, tasklistId: toTaskList.id)
+    
     if let taskToEdit = taskToEdit {
-      taskToEdit.update(text: text, date: date, moveTo: (tasklist?.id != toTaskList.id ? toTaskList : tasklist))
-    } else {
-      let task = TaskItem(text: text, date: date)
-      task.add(to: toTaskList)
-      tasklist = toTaskList
+      task.id = taskToEdit.id
+      task.checked = taskToEdit.checked
     }
+    
+    TaskBridge.save(task)
     self.navigationController?.popViewController(animated: true)
   }
 }

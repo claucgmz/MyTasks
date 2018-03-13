@@ -7,19 +7,12 @@
 //
 
 import Foundation
-import RealmSwift
 
 class TaskListView {
-  enum DateType: String {
-    case today
-    case tomorrow
-    case later
-    case pastDueDate
-  }
   var type: DateType = .today
-  var tasks: Results<TaskItem>!
+  var tasks = [Task]()
   
-  init(type: DateType, tasks: Results<TaskItem>) {
+  init(type: DateType, tasks: [Task]) {
     self.type = type
     self.tasks = tasks
   }

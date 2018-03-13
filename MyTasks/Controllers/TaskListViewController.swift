@@ -11,8 +11,8 @@ import DZNEmptyDataSet
 
 class TaskListViewController: UIViewController {
   @IBOutlet private weak var tasksTableView: UITableView!
-  var tasklist: TaskList?
-  private var tasks = [TaskListView]()
+  var tasklist: Tasklist?
+  private var tasksViews = [TaskListView]()
   
   enum CellType: Int {
     case progressHeader = 0
@@ -20,16 +20,14 @@ class TaskListViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    getFilteredTasks()
     tasksTableView.emptyDataSetSource = self
     tasksTableView.emptyDataSetDelegate = self
     registerNibs()
-    getFilteredTasks()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    getFilteredTasks()
-    tasksTableView.reloadData()
   }
   
   // MARK: - Private methods
@@ -39,9 +37,39 @@ class TaskListViewController: UIViewController {
   }
   
   private func getFilteredTasks() {
-    if let tasksbydate = tasklist?.tasksByDate {
-      tasks = tasksbydate
+    guard let tasklist = tasklist else {
+      return
     }
+    
+    tasksViews = [TaskListView]()
+    
+    TaskBridge.get(tasklist: tasklist, by: .today, completionHandler: { tasks in
+      if !tasks.isEmpty {
+        self.tasksViews.append(TaskListView(type: .today, tasks: tasks))
+        self.tasksTableView.reloadData()
+      }
+    })
+    
+    TaskBridge.get(tasklist: tasklist, by: .tomorrow, completionHandler: { tasks in
+      if !tasks.isEmpty {
+        self.tasksViews.append(TaskListView(type: .tomorrow, tasks: tasks))
+        self.tasksTableView.reloadData()
+      }
+    })
+    
+    TaskBridge.get(tasklist: tasklist, by: .later, completionHandler: { tasks in
+      if !tasks.isEmpty {
+        self.tasksViews.append(TaskListView(type: .later, tasks: tasks))
+        self.tasksTableView.reloadData()
+      }
+    })
+    
+    TaskBridge.get(tasklist: tasklist, by: .pastDueDate, completionHandler: { tasks in
+      if !tasks.isEmpty {
+        self.tasksViews.append(TaskListView(type: .pastDueDate, tasks: tasks))
+        self.tasksTableView.reloadData()
+      }
+    })
   }
   
   private func reloadRow(at indexPath: IndexPath, tableView: UITableView) {
@@ -56,28 +84,30 @@ class TaskListViewController: UIViewController {
     tableView.reloadSections(IndexSet(integer: 0), with: .none)
   }
   
-  private func complete(task: TaskItem) {
+  private func complete(task: Task) {
     guard let indexPath = getIndexPath(for: task) else { return }
-    task.complete()
+    TaskBridge.save(task)
     reloadRow(at: indexPath, tableView: tasksTableView)
   }
   
-  private func delete(task: TaskItem) {
-    guard let indexPath = getIndexPath(for: task) else { return }
-    task.softDelete()
-    tasksTableView.deleteRows(at: [indexPath], with: .automatic)
-    if tasksTableView.numberOfRows(inSection: indexPath.section) == 0 {
-      getFilteredTasks()
-      UIView.performWithoutAnimation { tasksTableView.deleteSections(IndexSet(integer: indexPath.section), with: .none) }
-    }
-    
+  private func delete(task: Task) {
+    TaskBridge.save(task)
+    getFilteredTasks()
     tasksTableView.reloadEmptyDataSet()
-    UIView.performWithoutAnimation { self.updateProgressView() }
+    //UIView.performWithoutAnimation { self.updateProgressView() }
   }
   
-  func getIndexPath(for task: TaskItem) -> IndexPath? {
-    guard let section = tasks.index(where: { tasklistView in tasklistView.type == task.dateType }) else { return nil }
-    guard let row = tasks[section.hashValue].tasks.index(where: { taskItem in taskItem == task }) else { return nil }
+  func getIndexPath(for task: Task) -> IndexPath? {
+    guard let section = tasksViews.index(where: { tasklistView in
+      tasklistView.type == task.dateType }) else {
+        return nil
+    }
+    guard let row = tasksViews[section.hashValue].tasks.index(where: { task in
+        task.id == task.id
+    }) else {
+      return nil
+    }
+    
     return IndexPath(row: row, section: section + 1)
   }
   
@@ -88,38 +118,44 @@ class TaskListViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskDetail" {
-      let controller = (segue.destination as? TaskDetailViewController)!
+      guard let controller = segue.destination as? TaskDetailViewController else {
+        return
+      }
       controller.tasklist = tasklist
-      if sender is TaskItem { controller.taskToEdit = sender as? TaskItem }
+      if sender is Task {
+        controller.taskToEdit = sender as? Task
+      }
     }
   }
 }
 
 extension TaskListViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
-    return tasks.count + 1
+    return tasksViews.count + 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == CellType.progressHeader.rawValue { return 0 }
-    return tasks[section-1].tasks.count
+    return tasksViews[section-1].tasks.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = (tableView.dequeueReusableCell(withIdentifier: TaskCell.reusableId) as? TaskCell)!
-    let task = tasks[indexPath.section-1].tasks[indexPath.row]
+    var task = tasksViews[indexPath.section-1].tasks[indexPath.row]
     cell.configure(with: task)
     cell.checkboxView.addTapGestureRecognizer(action: {
+      task.checked = !task.checked
       self.complete(task: task)
     })
     cell.deleteView.addTapGestureRecognizer(action: {
+      task.deleted = true
       self.delete(task: task)
     })
     return cell
   }
   
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    if section > CellType.progressHeader.rawValue { return tasks[section-1].type.rawValue.localized }
+    if section > CellType.progressHeader.rawValue { return tasksViews[section-1].type.rawValue.localized }
     return ""
   }
   
@@ -135,7 +171,7 @@ extension TaskListViewController: UITableViewDataSource {
 
 extension TaskListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let task = tasks[indexPath.section-1].tasks[indexPath.row]
+    let task = tasksViews[indexPath.section-1].tasks[indexPath.row]
     performSegue(withIdentifier: "TaskDetail", sender: task)
   }
   

@@ -16,12 +16,11 @@ class TaskListDetailViewController: UIViewController {
   @IBOutlet private weak var mainActionButton: UIButton!
   private var taskListDetailTableViewController: TaskListDetailTableViewController?
   private var user: User!
-  var tasklistToEdit: TaskList?
+  var tasklistToEdit: Tasklist?
   weak var delegate: TaskListDetailViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    user = RealmService.getLoggedUser()
     taskListDetailTableViewController = childViewControllers.first as? TaskListDetailTableViewController
     updateUI()
   }
@@ -48,11 +47,12 @@ class TaskListDetailViewController: UIViewController {
     guard let name = taskListDetailTableViewController?.listNameText,
       let icon = taskListDetailTableViewController?.selectedIcon,
       let color = taskListDetailTableViewController?.selectedColor else { return }
-    if let tasklistToEdit = tasklistToEdit {
-      tasklistToEdit.update(name: name, icon: icon, color: color)
-    } else {
-      TaskList(name: name, icon: icon, color: color).add()
+    var tasklist = Tasklist(name: name, icon: icon, color: color)
+    
+    if tasklistToEdit != nil, let id = tasklistToEdit?.id {
+      tasklist.id = id
     }
+    TasklistBridge.save(tasklist)
     delegate?.taskListDetailViewController(self)
   }
 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    FirebaseApp.configure()
     let navigationBarAppearance = UINavigationBar.appearance()
     navigationBarAppearance.isTranslucent = true
     navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
@@ -25,9 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   private func setInitialViewController() {
     var initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: LoginViewController.reusableId)
-    if RealmService.getLoggedUser() != nil {
+    
+    if UserDataHelper.current() != nil {
       initialViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
     }
+    
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = initialViewController
     self.window?.makeKeyAndVisible()
