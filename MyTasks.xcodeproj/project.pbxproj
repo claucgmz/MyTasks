@@ -291,8 +291,9 @@
 				5F9D3F7E2028D765000FFA2B /* Controllers */,
 				5F93EAFD2052F16300DBB170 /* DataHelpers */,
 				5F9D3F832028ECB2000FFA2B /* DataModels */,
+				5F896D2A2046052D00E51428 /* Managers */,
 				5FF60E582051E8C800AA6B35 /* GoogleService-Info.plist */,
-				5FC04987202A3F6400B80ABC /* Helpers */,
+				5FC04987202A3F6400B80ABC /* Utilities */,
 				5F9D3F782028D197000FFA2B /* Info.plist */,
 				5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */,
 				5FC04985202A3EF200B80ABC /* Resources */,
@@ -340,15 +341,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5FC04987202A3F6400B80ABC /* Helpers */ = {
+		5FC04987202A3F6400B80ABC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */,
 				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 				5FC04988202A3F7C00B80ABC /* Extensions */,
-				5F896D2A2046052D00E51428 /* Managers */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		5FC04988202A3F7C00B80ABC /* Extensions */ = {
