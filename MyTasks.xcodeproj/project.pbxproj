@@ -11,6 +11,9 @@
 		5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */; };
 		5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1452058BE0000BF8B82 /* DataHelper.swift */; };
 		5F2CC1482058BE5600BF8B82 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1472058BE5600BF8B82 /* DataModel.swift */; };
+		5F2CC14A2058D0BF00BF8B82 /* DataHelper+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */; };
+		5F2CC14C2058D0D400BF8B82 /* DataHelper+Tasklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */; };
+		5F2CC14E2058D0E500BF8B82 /* DataHelper+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */; };
 		5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */; };
 		5F2FB2B22033B12B002667AC /* UIButton+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2B12033B12B002667AC /* UIButton+State.swift */; };
 		5F3B49552040E55E002567F5 /* MyTasks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3B49542040E55E002567F5 /* MyTasks.storyboard */; };
@@ -82,6 +85,9 @@
 		5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		5F2CC1452058BE0000BF8B82 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5F2CC1472058BE5600BF8B82 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+User.swift"; sourceTree = "<group>"; };
+		5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+Tasklist.swift"; sourceTree = "<group>"; };
+		5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+Task.swift"; sourceTree = "<group>"; };
 		5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
 		5F2FB2B12033B12B002667AC /* UIButton+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+State.swift"; sourceTree = "<group>"; };
 		5F3B49542040E55E002567F5 /* MyTasks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyTasks.storyboard; sourceTree = "<group>"; };
@@ -252,6 +258,9 @@
 			children = (
 				5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */,
 				5F2CC1452058BE0000BF8B82 /* DataHelper.swift */,
+				5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */,
+				5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */,
+				5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */,
 			);
 			path = DataHelpers;
 			sourceTree = "<group>";
@@ -555,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F2CC14C2058D0D400BF8B82 /* DataHelper+Tasklist.swift in Sources */,
 				5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */,
 				5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */,
 				5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */,
@@ -570,6 +580,7 @@
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
 				5FFF937A2044C93F00941580 /* UIViewController+ReusableId.swift in Sources */,
 				5FE069412034E9A400121B9F /* DueDateCell.swift in Sources */,
+				5F2CC14A2058D0BF00BF8B82 /* DataHelper+User.swift in Sources */,
 				5FE0565D2040CE8C00340E95 /* ButtonIBInspectable.swift in Sources */,
 				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
@@ -600,6 +611,7 @@
 				5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */,
 				5FCC55762048AD4B00BB0D70 /* ImageManager.swift in Sources */,
 				5FF0B0E3202BB86D00A7ADB8 /* IconPickerCollectionCell.swift in Sources */,
+				5F2CC14E2058D0E500BF8B82 /* DataHelper+Task.swift in Sources */,
 				5FADACE4202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift in Sources */,
 				5F3FA298205740DF00CB6465 /* DateType.swift in Sources */,
 				5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */,
