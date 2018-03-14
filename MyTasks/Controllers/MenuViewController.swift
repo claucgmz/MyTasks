@@ -19,7 +19,8 @@ class MenuViewController: UIViewController {
   }
   
   @IBAction private func logOut(_ sender: Any) {
-    UserManager().logout()
-    slideMenuController()?.closeLeft()
+    AuthServer.logout(completion: { _ in
+      self.slideMenuController()?.closeLeft()
+    })
   }
 }

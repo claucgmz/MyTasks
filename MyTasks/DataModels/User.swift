@@ -45,14 +45,14 @@ class User: DataModel {
     self.facebookId = facebookId
   }
   
-  init(with facebookData: [String: Any]?) {
-    if let facebookId = facebookData?["id"] as? String {
+  init(withFacebook data: [String: Any]?) {
+    if let facebookId = data?["id"] as? String {
       self.facebookId = facebookId
     }
-    if let firstName = facebookData?["first_name"] as? String {
+    if let firstName = data?["first_name"] as? String {
       self.firstName = firstName
     }
-    if let lastName = facebookData?["last_name"] as? String {
+    if let lastName = data?["last_name"] as? String {
       self.lastName = lastName
     }
   }

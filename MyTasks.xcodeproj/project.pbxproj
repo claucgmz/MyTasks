@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C18754A6517DCC0B2C7BC3B /* Pods_MyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */; };
+		5F12E3CC20598DB60065A965 /* AuthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12E3CB20598DB60065A965 /* AuthServer.swift */; };
 		5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */; };
 		5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1452058BE0000BF8B82 /* DataHelper.swift */; };
 		5F2CC1482058BE5600BF8B82 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1472058BE5600BF8B82 /* DataModel.swift */; };
@@ -22,7 +23,6 @@
 		5F4CE6B42047151B000DAB3D /* UIViewController+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4CE6B32047151B000DAB3D /* UIViewController+View.swift */; };
 		5F896D1D2045C4D900E51428 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D1C2045C4D900E51428 /* String+Localizable.swift */; };
 		5F896D252045E09C00E51428 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D242045E09C00E51428 /* AlertView.swift */; };
-		5F896D29204604E800E51428 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F896D28204604E800E51428 /* UserManager.swift */; };
 		5F8AC265203B94E800B3E037 /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */; };
 		5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8AC266203BA88000B3E037 /* MenuViewController.swift */; };
 		5F90BD9D2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */; };
@@ -82,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		2617ADFA3901667898F17FA5 /* Pods-MyTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.debug.xcconfig"; sourceTree = "<group>"; };
+		5F12E3CB20598DB60065A965 /* AuthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServer.swift; sourceTree = "<group>"; };
 		5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		5F2CC1452058BE0000BF8B82 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5F2CC1472058BE5600BF8B82 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		5F4CE6B32047151B000DAB3D /* UIViewController+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+View.swift"; sourceTree = "<group>"; };
 		5F896D1C2045C4D900E51428 /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		5F896D242045E09C00E51428 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		5F896D28204604E800E51428 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		5F8AC266203BA88000B3E037 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5F90BD9C2046177000A132DD /* UITableViewHeaderFooterView+ReusableId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewHeaderFooterView+ReusableId.swift"; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
-				5F896D28204604E800E51428 /* UserManager.swift */,
 				5FCC55752048AD4B00BB0D70 /* ImageManager.swift */,
+				5F12E3CB20598DB60065A965 /* AuthServer.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -584,8 +584,8 @@
 				5FE0565D2040CE8C00340E95 /* ButtonIBInspectable.swift in Sources */,
 				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,
-				5F896D29204604E800E51428 /* UserManager.swift in Sources */,
 				5FF0B0D9202B92B500A7ADB8 /* ColorPickerCollectionCell.swift in Sources */,
+				5F12E3CC20598DB60065A965 /* AuthServer.swift in Sources */,
 				5FF830802031F2B600FABDD8 /* TaskDetailTableViewController.swift in Sources */,
 				5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */,
 				5FADACE6202CF9DE0002C351 /* CategoryIcon.swift in Sources */,

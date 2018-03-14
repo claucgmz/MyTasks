@@ -18,20 +18,4 @@ extension DataHelper {
        })
     }
   }
-  
-  static func user() -> String? {
-    if let user = Auth.auth().currentUser {
-      return user.uid
-    }
-    return nil
-  }
-  
-  static func logOut() {
-    let firebaseAuth = Auth.auth()
-    do {
-      try firebaseAuth.signOut()
-    } catch let signOutError as NSError {
-      print ("Error signing out: %@", signOutError)
-    }
-  }
 }

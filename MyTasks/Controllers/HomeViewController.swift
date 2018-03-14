@@ -197,7 +197,7 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 // MARK: - Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if DataHelper.user() == nil {
+    if AuthServer.currentUser == nil {
       segueToLoginViewController()
     }
   }

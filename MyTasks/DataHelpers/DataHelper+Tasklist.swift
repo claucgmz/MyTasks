@@ -10,20 +10,20 @@ import Foundation
 
 extension DataHelper {
   static func save(_ tasklist: Tasklist) {
-    if let userId = user() {
+    if let userId = AuthServer.user() {
       databaseRef.child(tasklist.mainPath).child(userId).child(tasklist.id).setValue(tasklist.toDictionary())
     }
   }
   
   static func delete(_ tasklist: Tasklist) {
-    if let userId = user() {
+    if let userId = AuthServer.user() {
       databaseRef.child(tasklist.mainPath).child(userId).child(tasklist.id).removeValue()
       databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id).removeValue()
     }
   }
   
   static func getTasklists(completionHandler: @escaping ([Tasklist]) -> Void) {
-    if let userId = user() {
+    if let userId = AuthServer.user() {
       databaseRef.child(FirebasePath.tasklists.rawValue).child(userId).observe(.value, with: { snapshot in
         let data = snapshot.value as? [String: Any] ?? [:]
         var tasklists = [Tasklist]()

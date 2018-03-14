@@ -26,12 +26,18 @@ class LoginViewController: UIViewController {
   
   // MARK: - Action methods
   @IBAction private func loginButtonAction(_ sender: Any) {
-    UserManager().loginWithFacebook(viewController: self, onSuccess: {
-      DispatchQueue.main.async {
-        self.segueToHome()
-      }
+    FacebookManager().login(self, onSuccess: { token in
+      AuthServer.login(withFacebook: token, completion: { authResponse in
+        switch authResponse {
+        case .success:
+          FacebookManager().logout()
+          self.segueToHome()
+        case let .failure(message):
+          print("failed to log in: \(message)")
+        }
+      })
     }, onFailure: { error in
-        print(error?.localizedDescription ?? "Something went wrong")
+      print(error.localizedDescription)
     })
   }
 }

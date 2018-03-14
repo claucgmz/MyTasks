@@ -13,7 +13,7 @@ class ImageManager {
   static let shared = ImageManager()
   private let imageCache = AutoPurgingImageCache()
   
-  func get(from url: URL, completionHandler: @escaping(Image) -> Void) {
+  func get(from url: URL, completionHandler: @escaping (Image) -> Void) {
     let urlRequest = URLRequest(url: url)
     guard let cachedAvatarImage = imageCache.image(for: urlRequest, withIdentifier: "avatar") else {
       ImageDownloader.default.download(urlRequest) { response in

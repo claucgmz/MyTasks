@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private func setInitialViewController() {
     var initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: LoginViewController.reusableId)
     
-    if DataHelper.user() != nil {
+    if AuthServer.currentUser != nil {
       initialViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
     }
     
