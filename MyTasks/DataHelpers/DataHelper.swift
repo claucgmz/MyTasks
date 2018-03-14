@@ -80,7 +80,7 @@ extension DataHelper {
       .child(task.id).setValue(task.toDictionary())
   }
   
-  static func getTasks(from tasklist: Tasklist, by dateType: DateType, completionHandler: @escaping ([Task]) -> Void) {
+  static func getTasks(from tasklist: Tasklist, for dateType: DateType, completionHandler: @escaping ([Task]) -> Void) {
     var dateRef = databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id)
       .child(FirebasePath.added.rawValue).queryOrdered(byChild: FirebasePath.dueDate.rawValue)
     
@@ -113,7 +113,7 @@ extension DataHelper {
     })
   }
   
-  static func getTotalTasks(from tasklist: Tasklist, totalType: TotalType, completionHandler: @escaping (Int) -> Void) {
+  static func getTotalTasks(from tasklist: Tasklist, totalType: Tasklist.TotalType, completionHandler: @escaping (Int) -> Void) {
     if totalType == .checked {
       databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id).child(FirebasePath.added.rawValue)
         .queryOrdered(byChild: FirebasePath.checked.rawValue)

@@ -13,4 +13,17 @@ enum DateType: String {
   case tomorrow
   case later
   case pastDueDate
+  
+  func getPosition() -> Int {
+    switch self {
+    case .today:
+      return 0
+    case .tomorrow:
+      return 1
+    case .later:
+      return 2
+    case .pastDueDate:
+      return 3
+    }
+  }
 }

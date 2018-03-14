@@ -41,8 +41,8 @@ class TaskListViewController: UIViewController {
       return
     }
     let dateTypes: [DateType] = [.today, .tomorrow, .later, .pastDueDate]
-    for (index, dateType) in dateTypes.enumerated() {
-      tasklist.getTasks(for: dateType, order: index, completionHandler: { 
+    for dateType in dateTypes {
+      tasklist.getTasks(for: dateType, completionHandler: {
         self.tasksViews = tasklist.tasksViews
         self.tasksTableView.reloadData()
       })

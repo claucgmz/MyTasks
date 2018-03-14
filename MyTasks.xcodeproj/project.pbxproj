@@ -277,17 +277,17 @@
 		5F9D3F682028D197000FFA2B /* MyTasks */ = {
 			isa = PBXGroup;
 			children = (
-				5FF60E582051E8C800AA6B35 /* GoogleService-Info.plist */,
-				5F2CC1442058BD8300BF8B82 /* Common */,
-				5F93EAFD2052F16300DBB170 /* DataHelpers */,
-				5FD49CD1202A7F04008C1ECB /* Views */,
-				5FC04987202A3F6400B80ABC /* Helpers */,
-				5FC04985202A3EF200B80ABC /* Resources */,
-				5F9D3F832028ECB2000FFA2B /* DataModels */,
-				5F9D3F7E2028D765000FFA2B /* Controllers */,
 				5F9D3F692028D197000FFA2B /* AppDelegate.swift */,
+				5F2CC1442058BD8300BF8B82 /* Common */,
+				5F9D3F7E2028D765000FFA2B /* Controllers */,
+				5F93EAFD2052F16300DBB170 /* DataHelpers */,
+				5F9D3F832028ECB2000FFA2B /* DataModels */,
+				5FF60E582051E8C800AA6B35 /* GoogleService-Info.plist */,
+				5FC04987202A3F6400B80ABC /* Helpers */,
 				5F9D3F782028D197000FFA2B /* Info.plist */,
 				5F9D3F702028D197000FFA2B /* MyTasks.xcdatamodeld */,
+				5FC04985202A3EF200B80ABC /* Resources */,
+				5FD49CD1202A7F04008C1ECB /* Views */,
 			);
 			path = MyTasks;
 			sourceTree = "<group>";

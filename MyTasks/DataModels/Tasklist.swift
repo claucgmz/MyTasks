@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum TotalType {
-  case all
-  case checked
-  case today
-}
-
 class Tasklist: DataModel {
+  enum TotalType {
+    case all
+    case checked
+    case today
+  }
+  
   var mainPath: String = FirebasePath.tasklists.rawValue
   var id = UUID().uuidString
   var name = ""
@@ -80,17 +80,16 @@ class Tasklist: DataModel {
 
   }
   
-  func getTasks(for dateType: DateType, order: Int, completionHandler: @escaping () -> Void) {
-    DataHelper.getTasks(from: self, by: dateType, completionHandler: { tasks in
+  func getTasks(for dateType: DateType, completionHandler: @escaping () -> Void) {
+    DataHelper.getTasks(from: self, for: dateType, completionHandler: { tasks in
+      let position = dateType.getPosition()
       if !tasks.isEmpty {
         let view = TaskListView(type: dateType, tasks: tasks)
         let total = self.tasksViews.count
         if let index = self.getIndexPath(for: dateType) {
           self.tasksViews[index] = view
-        } else if total > order {
-          self.tasksViews.insert(view, at: order)
-        } else if !self.tasksViews.isEmpty && total == order {
-          self.tasksViews.insert(view, at: total-1)
+        } else if total >= position {
+          self.tasksViews.insert(view, at: position)
         } else {
           self.tasksViews.append(view)
         }
