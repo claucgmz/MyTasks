@@ -17,12 +17,13 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   private var tasklists = [Tasklist]()
-  private var user = User(firstName: "clau", lastName: "carrillo", email: "", facebookId: "")
+  private var user: User?
   private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     slideMenu = slideMenuController()
+    getUser()
     getTasklists()
     registerNibs()
     updateUI()
@@ -34,6 +35,13 @@ class HomeViewController: UIViewController {
                                     forCellWithReuseIdentifier: TaskListCollectionCell.reusableId)
     taskListCollectionView.register(UINib(nibName: AddTaskListCollectionCell.reusableId, bundle: nil),
                                     forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
+  }
+  
+  private func getUser() {
+    DataHelper.getUser(completionHandler: { user in
+      self.user = user
+      self.updateUserUI()
+    })
   }
   
   private func getTasklists() {
@@ -60,19 +68,25 @@ class HomeViewController: UIViewController {
   
   private func updateUI() {
     setBackgroundColor()
-    ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
-      self.userProfileImage.image = image
-    })
-    
-     welcomeLabel.text = "\("greeting".localized), \(user.firstName)"
     if let region = Locale.current.regionCode {
       let dateString = Date().toString(withLocale: region)
       dateLabel.text = "\("today".localized): \(dateString)".uppercased()
     }
   }
   
+  private func updateUserUI() {
+    if let imageUrl = user?.imageURL {
+      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+        self.userProfileImage.image = image
+      })
+    }
+    if let firstName = user?.firstName {
+      welcomeLabel.text = "\("greeting".localized), \(firstName)"
+    }
+  }
+  
   private func updateTotalTasksForToday() {
-    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(user.totalTasksForToday)")
+    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: user?.totalTasksForToday))")
   }
 
   private func showMoreActions(row: Int) {
@@ -183,17 +197,20 @@ extension HomeViewController: TaskListDetailViewControllerDelegate {
 // MARK: - Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if DataHelper.user() != nil {
+    if DataHelper.user() == nil {
       segueToLoginViewController()
     }
   }
   func leftWillOpen() {
     let controller = slideMenu?.leftViewController as? MenuViewController
-    ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
-      controller?.userProfileImage.image = image
-    })
-
-    controller?.userName.text = "\(user.firstName) \(user.lastName)"
+    if let imageView = controller?.userProfileImage, let imageUrl = user?.imageURL {
+      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+        imageView.image = image
+      })
+    }
+    if let firstName = user?.firstName, let lastName = user?.lastName {
+      controller?.userName.text = "\(firstName) \(lastName)"
+    }
   }
 }
 

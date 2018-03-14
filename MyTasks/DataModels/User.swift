@@ -10,17 +10,35 @@ import Foundation
 
 class User: DataModel {
   var mainPath: String = FirebasePath.users.rawValue
-  var id = UUID().uuidString
+  var id = ""
   var firstName = ""
   var lastName = ""
   var email = ""
   var facebookId = ""
   var totalTasksForToday = 0
   var imageURL: URL {
-    return URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!
+    return URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
   }
   
-  init(firstName: String, lastName: String, email: String, facebookId: String) {
+  init(with data: [String: Any]) {
+    print(data)
+    guard let id = data["id"] as? String else {
+      return
+    }
+    guard let firstName = data["firstName"] as? String else {
+      return
+    }
+    guard let lastName = data["lastName"] as? String else {
+      return
+    }
+    guard let email = data["email"] as? String else {
+      return
+    }
+    guard let facebookId = data["facebookId"] as? String else {
+      return
+    }
+    
+    self.id = id
     self.firstName = firstName
     self.lastName = lastName
     self.email = email
@@ -28,8 +46,8 @@ class User: DataModel {
   }
   
   init(with facebookData: [String: Any]?) {
-    if let id = facebookData?["id"] as? String {
-      self.id = id
+    if let facebookId = facebookData?["id"] as? String {
+      self.facebookId = facebookId
     }
     if let firstName = facebookData?["first_name"] as? String {
       self.firstName = firstName
@@ -43,7 +61,7 @@ class User: DataModel {
     return [
       "id": id,
       "email": email,
-      "fistName": firstName,
+      "firstName": firstName,
       "lastName": lastName,
       "facebookId": facebookId
     ]
