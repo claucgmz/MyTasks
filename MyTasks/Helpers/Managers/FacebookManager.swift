@@ -33,7 +33,7 @@ class FacebookManager {
         print(error)
       } else {
         if let user = user {
-          UserBridge.save(User(id: user.uid, firstName: "", lastName: "", email: "", facebookId: token))
+          DataHelper.save(User(firstName: "", lastName: "", email: "", facebookId: token))
         }
 
       }

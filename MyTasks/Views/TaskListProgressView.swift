@@ -29,9 +29,12 @@ class TaskListProgressView: UIView {
   
   func configure(with tasklist: Tasklist) {
     configureIcon(with: tasklist.icon, color: tasklist.color)
-    tasksCounterLabel.text = "\(tasklist.totalTasks) \("tasks".localized)"
-    updateProgressBar(with: tasklist)
     taskListNameLabel.text = tasklist.name
+    
+    tasklist.setTotal(completionHandler: {
+      self.tasksCounterLabel.text = "\(tasklist.totalTasks) \("tasks".localized)"
+      self.updateProgressBar(with: tasklist)
+    })
   }
   
   private func commonInit() {

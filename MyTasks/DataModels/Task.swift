@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Task {
+class Task: DataModel {
+  var mainPath: String = FirebasePath.tasks.rawValue
   var id = UUID().uuidString
   var text = ""
   var dueDate = Date()
@@ -28,19 +29,6 @@ class Task {
     default:
       return .later
     }
-  }
-  
-  init(id: String, text: String, date: Date) {
-    self.text = text
-    self.dueDate = date
-  }
-  
-  init(id: String, text: String, date: Date, checked: Bool, tasklistId: String) {
-    self.id = id
-    self.text = text
-    self.dueDate = date
-    self.checked = checked
-    self.tasklistId = tasklistId
   }
   
   init(text: String, date: Date, tasklistId: String) {

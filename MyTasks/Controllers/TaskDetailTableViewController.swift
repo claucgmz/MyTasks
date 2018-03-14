@@ -48,7 +48,7 @@ class TaskDetailTableViewController: UITableViewController {
   }
   
   private func getTasklists() {
-    TasklistBridge.getAll(completionHandler: { tasklists in
+    DataHelper.getTasklists(completionHandler: { tasklists in
       self.tasklists = tasklists
       self.mainTableView.reloadData()
     })

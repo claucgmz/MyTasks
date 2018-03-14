@@ -10,35 +10,26 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-class TaskDataHelper: DataHelperProtocol {
-  typealias T = Task
+class TaskDataHelper {
   static var databaseRef = Database.database().reference()
-  static var tasksRef = databaseRef.child("tasks")
+  static var tasksRef = databaseRef.child(FirebasePath.tasks.rawValue)
   
   static func save(_ object: Task) {
-    tasksRef.child(object.tasklistId).child("added").child(object.id).setValue(object.toDictionary())
+    tasksRef.child(object.tasklistId).child(FirebasePath.added.rawValue).child(object.id).setValue(object.toDictionary())
   }
-
+  
   static func delete(_ object: Task) {
-    tasksRef.child(object.tasklistId).child("added").child(object.id).removeValue()
+    tasksRef.child(object.tasklistId).child(FirebasePath.added.rawValue).child(object.id).removeValue()
   }
   
   static func softDelete(_ object: Task) {
-    let deletedObject = object
-    deletedObject.deleted = true
-    tasksRef.child(deletedObject.tasklistId).child("deleted").child(deletedObject.id).setValue(deletedObject.toDictionary())
+    TaskDataHelper.delete(object)
+    object.deleted = true
+    tasksRef.child(object.tasklistId).child(FirebasePath.deleted.rawValue).child(object.id).setValue(object.toDictionary())
   }
   
-  static func get(from tasklistId: String, completionHandler: @escaping ([String: Any]) -> Void) {
-    tasksRef.child(tasklistId).child("added").queryOrdered(byChild: "dueDate")
-    .observeSingleEvent(of: .value, with: { snapshot in
-      let data = snapshot.value as? [String: Any] ?? [:]
-      completionHandler(data)
-    })
-  }
-  
-  static func get(from tasklistId: String, by dateType: DateType, completionHandler: @escaping ([String: Any]) -> Void) {
-    var dateRef = tasksRef.child(tasklistId).child("added").queryOrdered(byChild: "dueDate")
+  static func get(tasklist: Tasklist, by dateType: DateType, completionHandler: @escaping ([Task]) -> Void) {
+    var dateRef = tasksRef.child(tasklist.id).child(FirebasePath.added.rawValue).queryOrdered(byChild: FirebasePath.dueDate.rawValue)
     let today = Date().startOfDay, tomorrow = today.nextDay
     
     switch dateType {
@@ -56,20 +47,28 @@ class TaskDataHelper: DataHelperProtocol {
     
     dateRef.observe(.value, with: { snapshot in
       let data = snapshot.value as? [String: Any] ?? [:]
-      completionHandler(data)
+      var tasks = [Task]()
+      for snData in data {
+        if let taskData = snData.value as? [String: Any] {
+          let task = Task(with: taskData)
+          task.tasklistId = tasklist.id
+          tasks.append(task)
+        }
+      }
+      completionHandler(tasks)
     })
   }
   
   static func getTotal(_ object: Tasklist, totalType: TotalType, completionHandler: @escaping (Int) -> Void) {
     if totalType == .checked {
-      tasksRef.child(object.id).child("added")
-        .queryOrdered(byChild: "checked")
+      tasksRef.child(object.id).child(FirebasePath.added.rawValue)
+        .queryOrdered(byChild: FirebasePath.checked.rawValue)
         .queryEqual(toValue: true)
         .observe(.value, with: { snapshot in
-        completionHandler(Int(snapshot.childrenCount))
-      })
+          completionHandler(Int(snapshot.childrenCount))
+        })
     } else {
-      tasksRef.child(object.id).child("added")
+      tasksRef.child(object.id).child(FirebasePath.added.rawValue)
         .observe(.value, with: { snapshot in
           completionHandler(Int(snapshot.childrenCount))
         })

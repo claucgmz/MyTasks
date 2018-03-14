@@ -64,13 +64,12 @@ class TaskListViewController: UIViewController {
   private func complete(task: Task) {
     guard let indexPath = getIndexPath(for: task) else { return }
     task.checked = !task.checked
-    TaskBridge.save(task)
+    DataHelper.save(task)
     reloadRow(at: indexPath, tableView: tasksTableView)
   }
   
   private func delete(task: Task) {
-    TaskBridge.softDelete(task)
-    //UIView.performWithoutAnimation { self.updateProgressView() }
+    DataHelper.softDelete(task)
   }
   
   func getIndexPath(for task: Task) -> IndexPath? {

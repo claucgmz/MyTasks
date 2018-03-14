@@ -8,26 +8,19 @@
 
 import Foundation
 
-class User {
+class User: DataModel {
+  var mainPath: String = FirebasePath.users.rawValue
   var id = UUID().uuidString
   var firstName = ""
   var lastName = ""
   var email = ""
   var facebookId = ""
-  
+  var totalTasksForToday = 0
   var imageURL: URL {
     return URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!
   }
   
-  var totalTasksForToday: Int {
-    return 0
-//    return tasklists.reduce(0) { _, tasklist in
-//      tasklist.pendingTasksToday.count
-//    }
-  }
-  
-  init(id: String, firstName: String, lastName: String, email: String, facebookId: String) {
-    self.id = id
+  init(firstName: String, lastName: String, email: String, facebookId: String) {
     self.firstName = firstName
     self.lastName = lastName
     self.email = email
@@ -46,7 +39,7 @@ class User {
     }
   }
   
-  func toDictionary() -> [String: Any?] {
+  func toDictionary() -> [String: Any] {
     return [
       "id": id,
       "email": email,

@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   private var tasklists = [Tasklist]()
-  private var user = User(id: "0", firstName: "clau", lastName: "carrillo", email: "", facebookId: "")
+  private var user = User(firstName: "clau", lastName: "carrillo", email: "", facebookId: "")
   private var slideMenu: SlideMenuController?
   
   override func viewDidLoad() {
@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
   }
   
   private func getTasklists() {
-    TasklistBridge.getAll(completionHandler: { tasklists in
+    DataHelper.getTasklists(completionHandler: { tasklists in
       self.tasklists = tasklists
       self.taskListCollectionView.reloadData()
     })
@@ -71,8 +71,8 @@ class HomeViewController: UIViewController {
     }
   }
   
-  private func updateTotalTasksForToday(total: Int) {
-    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(total)")
+  private func updateTotalTasksForToday() {
+    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(user.totalTasksForToday)")
   }
 
   private func showMoreActions(row: Int) {
@@ -94,7 +94,7 @@ class HomeViewController: UIViewController {
   }
   
   private func delete(tasklist: Tasklist) {
-    TasklistBridge.delete(tasklist)
+    DataHelper.delete(tasklist)
   }
   
   private func segueToLoginViewController() {
@@ -176,13 +176,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController: TaskListDetailViewControllerDelegate {
   func taskListDetailViewController(_ controller: TaskListDetailViewController) {
     navigationController?.popViewController(animated: true)
+    getTasklists()
   }
 }
 
 // MARK: - Slide menu delegate methods
 extension HomeViewController: SlideMenuControllerDelegate {
   func leftWillClose() {
-    if UserDataHelper.current() != nil {
+    if DataHelper.user() != nil {
       segueToLoginViewController()
     }
   }

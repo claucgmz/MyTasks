@@ -14,7 +14,8 @@ enum TotalType {
   case today
 }
 
-class Tasklist {
+class Tasklist: DataModel {
+  var mainPath: String = FirebasePath.tasklists.rawValue
   var id = UUID().uuidString
   var name = ""
   var icon = CategoryIcon.bam
@@ -22,19 +23,11 @@ class Tasklist {
   var totalTasks = 0
   var totalChecked = 0
   var tasksViews = [TaskListView]()
-  
   var progressPercentage: Double {
     if !tasksViews.isEmpty {
       return Double(totalChecked) / Double(totalTasks)
     }
     return 0.0
-  }
-  
-  init(id: String, name: String, icon: CategoryIcon, color: UIColor) {
-    self.id = id
-    self.name = name
-    self.icon = icon
-    self.color = color
   }
   
   init(name: String, icon: CategoryIcon, color: UIColor) {
@@ -72,18 +65,23 @@ class Tasklist {
     ]
   }
   
-  func setTotal() {
-    TasklistBridge.getTotal(self, totalType: .all, completionHandler: { total in
+  func setTotal(completionHandler: (() -> Void)?) {
+    DataHelper.getTotalTasks(from: self, totalType: .all, completionHandler: { total in
       self.totalTasks = total
+      guard let handler = completionHandler else { return }
+      handler()
     })
     
-    TasklistBridge.getTotal(self, totalType: .checked, completionHandler: { total in
+    DataHelper.getTotalTasks(from: self, totalType: .checked, completionHandler: { total in
       self.totalChecked = total
+      guard let handler = completionHandler else { return }
+      handler()
     })
+
   }
   
   func getTasks(for dateType: DateType, order: Int, completionHandler: @escaping () -> Void) {
-    TaskBridge.get(tasklist: self, by: dateType, completionHandler: { tasks in
+    DataHelper.getTasks(from: self, by: dateType, completionHandler: { tasks in
       if !tasks.isEmpty {
         let view = TaskListView(type: dateType, tasks: tasks)
         let total = self.tasksViews.count

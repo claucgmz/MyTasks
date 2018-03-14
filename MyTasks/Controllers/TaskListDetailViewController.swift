@@ -52,7 +52,8 @@ class TaskListDetailViewController: UIViewController {
     if tasklistToEdit != nil, let id = tasklistToEdit?.id {
       tasklist.id = id
     }
-    TasklistBridge.save(tasklist)
+    
+    DataHelper.save(tasklist)
     delegate?.taskListDetailViewController(self)
   }
 }

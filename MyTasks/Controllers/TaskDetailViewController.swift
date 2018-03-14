@@ -57,8 +57,8 @@ class TaskDetailViewController: UIViewController {
       task.id = taskToEdit.id
       task.checked = taskToEdit.checked
     }
-    
-    TaskBridge.save(task)
+
+    DataHelper.save(task)
     self.navigationController?.popViewController(animated: true)
   }
 }
