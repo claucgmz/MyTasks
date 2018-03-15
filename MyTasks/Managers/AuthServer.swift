@@ -23,32 +23,62 @@ class AuthServer {
     return auth?.currentUser
   }
   
-  static func createAccount(withEmail email: String, password: String) {
+  static func createAccount(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
     auth?.createUser(withEmail: email, password: password, completion: { user, error in
-      
+      if let user = user, let email = user.email {
+        let dbUser = User(id: user.uid, email: email)
+        DataHelper.save(dbUser)
+        completion(.success)
+      } else if let error = error {
+        completion(.failure(error.localizedDescription))
+      }
     })
   }
   
   static func login(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
     auth?.signIn(withEmail: email, password: password, completion: { user, error in
-      
+      if user != nil {
+        completion(.success)
+      } else if let error = error {
+        completion(.failure(error.localizedDescription))
+      }
     })
   }
-  
+
   static func login(withFacebook token: String, completion: @escaping (AuthResponse) -> Void) {
     let credential = FacebookAuthProvider.credential(withAccessToken: token)
     auth?.signIn(with: credential, completion: { user, error in
       if let error = error {
-        completion(AuthResponse.failure(error.localizedDescription))
+        let errorCode = error._code
+        switch errorCode {
+        case 17012:
+          print("Account exists with email")
+        default:
+          print("sth else")
+        }
+        completion(.failure(error.localizedDescription))
       } else if let user = user {
         FacebookManager().getUserInfo(onSuccess: { data in
           let dbUser = User(withFacebook: data)
           dbUser.id = user.uid
           DataHelper.save(dbUser)
-          completion(AuthResponse.success)
+          completion(.success)
         }, onFailure: { error in
-          completion(AuthResponse.failure(error.localizedDescription))
+          completion(.failure(error.localizedDescription))
         })
+      }
+    })
+  }
+  
+  static func linkAccount(withFacebook token: String) {
+    let credential = FacebookAuthProvider.credential(withAccessToken: token)
+    currentUser?.link(with: credential, completion: { user, error in
+      if let user = user {
+        print(user.uid)
+      }
+      
+      if let error = error {
+        print(error.localizedDescription)
       }
     })
   }

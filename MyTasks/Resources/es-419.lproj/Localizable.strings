@@ -26,6 +26,12 @@
 "ok" = "OK";
 "log_out" = "Cerrar sesión";
 "log_in" = "Iniciar sesión";
+"create_account" = "Crear cuenta";
+
+//Create Account
+"email" = "Correo Electrónico";
+"password" = "Contraseña";
+"or" = "o";
 
 //TaskListView
 "tomorrow" = "Mañana";

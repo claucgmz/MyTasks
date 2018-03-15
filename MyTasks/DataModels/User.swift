@@ -11,13 +11,19 @@ import Foundation
 class User: DataModel {
   var mainPath: String = FirebasePath.users.rawValue
   var id = ""
-  var firstName = ""
+  var firstName = "Guest"
   var lastName = ""
   var email = ""
   var facebookId = ""
   var totalTasksForToday = 0
+  
   var imageURL: URL {
     return URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
+  }
+  
+  init(id: String, email: String) {
+    self.id = id
+    self.email = email
   }
   
   init(with data: [String: Any]) {

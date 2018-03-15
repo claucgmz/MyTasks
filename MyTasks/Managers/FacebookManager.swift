@@ -41,4 +41,11 @@ class FacebookManager {
     }
     connection.start()
   }
+  
+  func getToken() -> String? {
+    if let token = AccessToken.current?.authenticationToken {
+      return token
+    }
+    return nil
+  }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C18754A6517DCC0B2C7BC3B /* Pods_MyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */; };
 		5F12E3CC20598DB60065A965 /* AuthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12E3CB20598DB60065A965 /* AuthServer.swift */; };
+		5F12E3CE2059CF590065A965 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12E3CD2059CF590065A965 /* String+Validation.swift */; };
 		5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */; };
 		5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1452058BE0000BF8B82 /* DataHelper.swift */; };
 		5F2CC1482058BE5600BF8B82 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1472058BE5600BF8B82 /* DataModel.swift */; };
@@ -49,6 +50,7 @@
 		5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */; };
 		5FD49CDB202A81B7008C1ECB /* AddTaskListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */; };
 		5FD49CDF202A9AC7008C1ECB /* TaskListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */; };
+		5FDBDCCE205AC1B80096B6E6 /* TextFieldIBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDBDCCD205AC1B80096B6E6 /* TextFieldIBInspectable.swift */; };
 		5FE0565D2040CE8C00340E95 /* ButtonIBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */; };
 		5FE0565F2040D60D00340E95 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FE0565E2040D60D00340E95 /* Login.storyboard */; };
 		5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE069372034B51500121B9F /* TaskListProgressView.swift */; };
@@ -83,6 +85,7 @@
 /* Begin PBXFileReference section */
 		2617ADFA3901667898F17FA5 /* Pods-MyTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.debug.xcconfig"; sourceTree = "<group>"; };
 		5F12E3CB20598DB60065A965 /* AuthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServer.swift; sourceTree = "<group>"; };
+		5F12E3CD2059CF590065A965 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		5F2CC1452058BE0000BF8B82 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5F2CC1472058BE5600BF8B82 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		5FD49CD8202A81B7008C1ECB /* AddTaskListCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskListCollectionCell.swift; sourceTree = "<group>"; };
 		5FD49CD9202A81B7008C1ECB /* AddTaskListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTaskListCollectionCell.xib; sourceTree = "<group>"; };
 		5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDetailViewController.swift; sourceTree = "<group>"; };
+		5FDBDCCD205AC1B80096B6E6 /* TextFieldIBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldIBInspectable.swift; sourceTree = "<group>"; };
 		5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonIBInspectable.swift; sourceTree = "<group>"; };
 		5FE0565E2040D60D00340E95 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5FE069372034B51500121B9F /* TaskListProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListProgressView.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */,
+				5FDBDCCD205AC1B80096B6E6 /* TextFieldIBInspectable.swift */,
 				5F9D3F8820291421000FFA2B /* RealmService.swift */,
 				5FC04988202A3F7C00B80ABC /* Extensions */,
 			);
@@ -356,6 +361,7 @@
 			children = (
 				5FACC613202A67D5003D1957 /* Date+Format.swift */,
 				5F896D1C2045C4D900E51428 /* String+Localizable.swift */,
+				5F12E3CD2059CF590065A965 /* String+Validation.swift */,
 				5F2FB2B12033B12B002667AC /* UIButton+State.swift */,
 				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift */,
 				5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */,
@@ -566,6 +572,7 @@
 			files = (
 				5F2CC14C2058D0D400BF8B82 /* DataHelper+Tasklist.swift in Sources */,
 				5FC0497B202A322800B80ABC /* HomeViewController.swift in Sources */,
+				5FDBDCCE205AC1B80096B6E6 /* TextFieldIBInspectable.swift in Sources */,
 				5FADACE0202CA6D60002C351 /* LayerContainerView.swift in Sources */,
 				5FF0B0DE202B93CF00A7ADB8 /* UIColor+ColorPicker.swift in Sources */,
 				5FD49CCE202A7AFA008C1ECB /* Tasklist.swift in Sources */,
@@ -573,6 +580,7 @@
 				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
+				5F12E3CE2059CF590065A965 /* String+Validation.swift in Sources */,
 				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* Task.swift in Sources */,
 				5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */,
