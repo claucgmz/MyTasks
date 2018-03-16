@@ -106,6 +106,8 @@ class LoginViewController: UIViewController {
         case let .failure(message):
           self.errorLabel.text = message
         }
+      }, completionLink: { email in
+        print(email)
       })
     }, onFailure: { error in
       self.errorLabel.text = error.localizedDescription

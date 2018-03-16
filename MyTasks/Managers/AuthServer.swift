@@ -10,10 +10,17 @@ import Foundation
 import Firebase
 
 class AuthServer {
+  
   enum AuthResponse {
     case success
     case failure(String)
   }
+  
+  enum AuthError: Error {
+    case emailExistsWithDifferentCredentials
+  }
+  
+  static var isLinkingAccount = false
   
   static var auth: Auth? {
     return Auth.auth()
@@ -23,8 +30,16 @@ class AuthServer {
     return auth?.currentUser
   }
   
+  static func activateListener(completion: @escaping () -> Void) {
+    auth?.addStateDidChangeListener { _, user in
+      if user != nil {
+        completion()
+      }
+    }
+  }
+  
   static func createAccount(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
-    auth?.createUser(withEmail: email, password: password, completion: { user, error in
+    auth?.createUser(withEmail: email, password: password) { user, error in
       if let user = user, let email = user.email {
         let dbUser = User(id: user.uid, email: email)
         DataHelper.save(dbUser)
@@ -32,29 +47,30 @@ class AuthServer {
       } else if let error = error {
         completion(.failure(error.localizedDescription))
       }
-    })
+    }
   }
   
   static func login(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
-    auth?.signIn(withEmail: email, password: password, completion: { user, error in
-      if user != nil {
-        completion(.success)
-      } else if let error = error {
+    auth?.signIn(withEmail: email, password: password) { user, error in
+      if let error = error {
         completion(.failure(error.localizedDescription))
       }
-    })
+    }
   }
 
-  static func login(withFacebook token: String, completion: @escaping (AuthResponse) -> Void) {
+  static func login(withFacebook token: String, completion: @escaping (AuthResponse) -> Void, completionLink: @escaping (String) -> Void) {
     let credential = FacebookAuthProvider.credential(withAccessToken: token)
-    auth?.signIn(with: credential, completion: { user, error in
+    auth?.signIn(with: credential) { user, error in
       if let error = error {
         let errorCode = error._code
         switch errorCode {
         case 17012:
-          print("Account exists with email")
+          if let email = (error as NSError).userInfo ["FIRAuthErrorUserInfoEmailKey"] as? String {
+            completionLink(email)
+          }
+          
         default:
-          print("sth else")
+          print("Nothing to do.")
         }
         completion(.failure(error.localizedDescription))
       } else if let user = user {
@@ -67,17 +83,20 @@ class AuthServer {
           completion(.failure(error.localizedDescription))
         })
       }
-    })
+    }
   }
   
-  static func linkAccount(withFacebook token: String) {
+  static func linkAccount(withFacebook token: String, completion: @escaping (AuthResponse) -> Void) {
     let credential = FacebookAuthProvider.credential(withAccessToken: token)
     currentUser?.link(with: credential, completion: { user, error in
       if let user = user {
         print(user.uid)
+        isLinkingAccount = false
+        completion(.success)
       }
       
       if let error = error {
+        completion(.failure(error.localizedDescription))
         print(error.localizedDescription)
       }
     })
@@ -101,5 +120,9 @@ class AuthServer {
     } catch let signOutError as NSError {
       completion(.failure(signOutError.localizedDescription))
     }
+  }
+  
+  private static func addToRepository() {
+    
   }
 }

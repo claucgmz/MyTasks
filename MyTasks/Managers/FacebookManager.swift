@@ -12,7 +12,7 @@ import FacebookCore
 
 class FacebookManager {
   func login(_ viewController: UIViewController, onSuccess: @escaping(String) -> Void, onFailure: @escaping(Error) -> Void) {
-    LoginManager().logIn(readPermissions: [.publicProfile], viewController: viewController, completion: { loginResult in
+    LoginManager().logIn(readPermissions: [.publicProfile, .email], viewController: viewController, completion: { loginResult in
       switch loginResult {
       case .failed(let error):
         onFailure(error)
