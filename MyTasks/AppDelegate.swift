@@ -13,7 +13,6 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
     IQKeyboardManager.sharedManager().enable = true
@@ -24,14 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     setInitialViewController()
     return true
   }
-  
   private func setInitialViewController() {
     var initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: MainLoginVC.reusableId)
-    
     if AuthServer.currentUser != nil {
       initialViewController = UIStoryboard(name: "MyTasks", bundle: nil).instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
     }
-    
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = initialViewController
     self.window?.makeKeyAndVisible()
