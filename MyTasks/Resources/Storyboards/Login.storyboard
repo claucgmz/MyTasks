@@ -150,10 +150,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2JB-1x-Bgn">
-                                        <rect key="frame" x="0.0" y="45.5" width="320" height="87"/>
+                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LRg-7Q-r1q" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="XdM-QR-UQT"/>
@@ -174,7 +174,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d4I-b7-AZh" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="51" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="51" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="hRA-Mv-QLY"/>
@@ -197,9 +197,10 @@
                                         <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddP-Lm-wVF" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="108" y="0.0" width="104" height="50"/>
+                                                <rect key="frame" x="70" y="0.0" width="180" height="50"/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="10K-4J-rki"/>
                                                     <constraint firstAttribute="height" constant="50" id="azk-8o-eIJ"/>
                                                 </constraints>
                                                 <state key="normal" title="Create cuentas">
@@ -215,8 +216,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsS-yp-mlW">
-                                                <rect key="frame" x="130" y="65" width="60" height="50"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="132" y="65" width="56" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -228,7 +229,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="2JB-1x-Bgn" firstAttribute="width" secondItem="yrC-Ax-If1" secondAttribute="width" id="VQr-PH-Tfp"/>
+                                    <constraint firstItem="2JB-1x-Bgn" firstAttribute="width" secondItem="yrC-Ax-If1" secondAttribute="width" multiplier="0.75" id="VQr-PH-Tfp"/>
                                     <constraint firstItem="gOd-PC-wRu" firstAttribute="width" secondItem="yrC-Ax-If1" secondAttribute="width" id="oJ8-mg-Sv1"/>
                                 </constraints>
                             </stackView>
@@ -277,10 +278,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vjq-he-a7H">
-                                        <rect key="frame" x="0.0" y="45.5" width="320" height="87"/>
+                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Kw-E3-QMu" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="xI6-bJ-f5V"/>
@@ -301,7 +302,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8a-jO-N0B" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="51" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="51" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="vAh-Zh-UGg"/>
@@ -324,10 +325,11 @@
                                         <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcv-NQ-VOG" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="116.5" y="0.0" width="87" height="50"/>
+                                                <rect key="frame" x="70" y="0.0" width="180" height="50"/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="nHg-h2-ygG"/>
+                                                    <constraint firstAttribute="width" constant="180" id="uEk-9D-Ele"/>
                                                 </constraints>
                                                 <state key="normal" title="Unir cuentas">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,8 +344,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfW-Yx-Mwc">
-                                                <rect key="frame" x="130" y="65" width="60" height="50"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="132" y="65" width="56" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -356,7 +358,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2ls-bg-yTW" firstAttribute="width" secondItem="ke2-PE-GGu" secondAttribute="width" id="HSW-JO-Fx9"/>
-                                    <constraint firstItem="vjq-he-a7H" firstAttribute="width" secondItem="ke2-PE-GGu" secondAttribute="width" id="qa4-sB-wOS"/>
+                                    <constraint firstItem="vjq-he-a7H" firstAttribute="width" secondItem="ke2-PE-GGu" secondAttribute="width" multiplier="0.75" id="qa4-sB-wOS"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -404,10 +406,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pvf-cP-ryI">
-                                        <rect key="frame" x="0.0" y="45.5" width="320" height="87"/>
+                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gi7-7r-tFI" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="mX0-XL-J0k"/>
@@ -428,7 +430,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQJ-lD-TsA" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="51" width="320" height="36"/>
+                                                <rect key="frame" x="0.0" y="51" width="240" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="fWc-Xy-9l0"/>
@@ -451,10 +453,11 @@
                                         <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ba-nj-ojs" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
-                                                <rect key="frame" x="116.5" y="0.0" width="87" height="50"/>
+                                                <rect key="frame" x="70" y="0.0" width="180" height="50"/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Sri-uV-nAC"/>
+                                                    <constraint firstAttribute="width" constant="180" id="reF-7b-DVP"/>
                                                 </constraints>
                                                 <state key="normal" title="Unir cuentas">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -469,8 +472,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQ6-mN-RDL">
-                                                <rect key="frame" x="130" y="65" width="60" height="50"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <rect key="frame" x="132" y="65" width="56" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -482,7 +485,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="pvf-cP-ryI" firstAttribute="width" secondItem="lMx-yf-6cA" secondAttribute="width" id="L05-9x-hNM"/>
+                                    <constraint firstItem="pvf-cP-ryI" firstAttribute="width" secondItem="lMx-yf-6cA" secondAttribute="width" multiplier="0.75" id="L05-9x-hNM"/>
                                     <constraint firstItem="aNY-sT-YEV" firstAttribute="width" secondItem="lMx-yf-6cA" secondAttribute="width" id="dxw-uy-ZWR"/>
                                 </constraints>
                             </stackView>
@@ -522,6 +525,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MAf-te-7xM">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
