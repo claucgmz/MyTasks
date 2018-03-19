@@ -13,7 +13,6 @@
 		5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */; };
 		5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1452058BE0000BF8B82 /* DataHelper.swift */; };
 		5F2CC1482058BE5600BF8B82 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1472058BE5600BF8B82 /* DataModel.swift */; };
-		5F2CC14A2058D0BF00BF8B82 /* DataHelper+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */; };
 		5F2CC14C2058D0D400BF8B82 /* DataHelper+Tasklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */; };
 		5F2CC14E2058D0E500BF8B82 /* DataHelper+Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */; };
 		5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */; };
@@ -93,7 +92,6 @@
 		5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		5F2CC1452058BE0000BF8B82 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5F2CC1472058BE5600BF8B82 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+User.swift"; sourceTree = "<group>"; };
 		5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+Tasklist.swift"; sourceTree = "<group>"; };
 		5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataHelper+Task.swift"; sourceTree = "<group>"; };
 		5F2FB2AF20337B1C002667AC /* UIView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 			children = (
 				5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */,
 				5F2CC1452058BE0000BF8B82 /* DataHelper.swift */,
-				5F2CC1492058D0BF00BF8B82 /* DataHelper+User.swift */,
 				5F2CC14B2058D0D400BF8B82 /* DataHelper+Tasklist.swift */,
 				5F2CC14D2058D0E500BF8B82 /* DataHelper+Task.swift */,
 			);
@@ -298,17 +295,16 @@
 		5F9D3F682028D197000FFA2B /* MyTasks */ = {
 			isa = PBXGroup;
 			children = (
-				5FEFB232205F9838005AC807 /* Servers */,
 				5FF60E582051E8C800AA6B35 /* GoogleService-Info.plist */,
 				5F9D3F782028D197000FFA2B /* Info.plist */,
 				5F9D3F692028D197000FFA2B /* AppDelegate.swift */,
-				5F2CC1442058BD8300BF8B82 /* Common */,
 				5F9D3F7E2028D765000FFA2B /* Controllers */,
 				5F93EAFD2052F16300DBB170 /* DataHelpers */,
-				5F9D3F832028ECB2000FFA2B /* DataModels */,
+				5F9D3F832028ECB2000FFA2B /* Models */,
 				5F896D2A2046052D00E51428 /* Managers */,
-				5FC04987202A3F6400B80ABC /* Utilities */,
 				5FC04985202A3EF200B80ABC /* Resources */,
+				5FEFB232205F9838005AC807 /* Servers */,
+				5FC04987202A3F6400B80ABC /* Utilities */,
 				5FD49CD1202A7F04008C1ECB /* Views */,
 			);
 			path = MyTasks;
@@ -317,20 +313,13 @@
 		5F9D3F7E2028D765000FFA2B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5FF6177B205FFC4C0047741F /* MyTasks */,
 				5FDBDCD2205B1E8A0096B6E6 /* Login */,
-				5FC0497A202A322800B80ABC /* HomeViewController.swift */,
-				5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */,
-				5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */,
-				5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */,
-				5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */,
-				5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */,
-				5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */,
-				5F8AC266203BA88000B3E037 /* MenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		5F9D3F832028ECB2000FFA2B /* DataModels */ = {
+		5F9D3F832028ECB2000FFA2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5F9D3F842028ECDA000FFA2B /* User.swift */,
@@ -338,7 +327,7 @@
 				5FD49CCF202A7B5B008C1ECB /* Task.swift */,
 				5F2CC1472058BE5600BF8B82 /* DataModel.swift */,
 			);
-			path = DataModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5FC04985202A3EF200B80ABC /* Resources */ = {
@@ -354,6 +343,7 @@
 		5FC04987202A3F6400B80ABC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5F2CC1442058BD8300BF8B82 /* Common */,
 				5FE0565C2040CE8C00340E95 /* ButtonIBInspectable.swift */,
 				5FDBDCCD205AC1B80096B6E6 /* TextFieldIBInspectable.swift */,
 				5F9D3F8820291421000FFA2B /* RealmService.swift */,
@@ -422,6 +412,21 @@
 				5F12E3CB20598DB60065A965 /* AuthServer.swift */,
 			);
 			path = Servers;
+			sourceTree = "<group>";
+		};
+		5FF6177B205FFC4C0047741F /* MyTasks */ = {
+			isa = PBXGroup;
+			children = (
+				5FC0497A202A322800B80ABC /* HomeViewController.swift */,
+				5FD49CDE202A9AC7008C1ECB /* TaskListDetailViewController.swift */,
+				5FF0B0D5202B5D6500A7ADB8 /* TaskListDetailTableViewController.swift */,
+				5FF8307F2031F2B600FABDD8 /* TaskDetailTableViewController.swift */,
+				5FF830912031FEC400FABDD8 /* TaskDetailViewController.swift */,
+				5FF8309F2032B25500FABDD8 /* TaskListViewController.swift */,
+				5F8AC264203B94E800B3E037 /* SliderMenuViewController.swift */,
+				5F8AC266203BA88000B3E037 /* MenuViewController.swift */,
+			);
+			path = MyTasks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,7 +639,6 @@
 				5FF0B0E8202BC2E600A7ADB8 /* UIImageView+Decoration.swift in Sources */,
 				5FFF937A2044C93F00941580 /* UIViewController+ReusableId.swift in Sources */,
 				5FE069412034E9A400121B9F /* DueDateCell.swift in Sources */,
-				5F2CC14A2058D0BF00BF8B82 /* DataHelper+User.swift in Sources */,
 				5FE0565D2040CE8C00340E95 /* ButtonIBInspectable.swift in Sources */,
 				5FE069382034B51500121B9F /* TaskListProgressView.swift in Sources */,
 				5FD49CDA202A81B7008C1ECB /* AddTaskListCollectionCell.swift in Sources */,

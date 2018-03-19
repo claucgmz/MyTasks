@@ -17,8 +17,15 @@ class LinkAccountVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    AuthServer.activateListener {
+      self.segueToHome()
+    }
     emailTextField.text = email
     setLocalize()
+  }
+  
+  deinit {
+    AuthServer.removeListener()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +43,12 @@ class LinkAccountVC: UIViewController {
   private func hideKeyboard() {
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
+  }
+  
+  private func segueToHome() {
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil)
+      .instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -11,14 +11,14 @@ import ObjectMapper
 
 extension DataHelper {
   static func save(_ tasklist: Tasklist) {
-    guard let userId = AuthServer.user() else {
+    guard let userId = AuthServer.userId() else {
       return
     }
     tasklistRef.child(userId).child(tasklist.id).setValue(tasklist.toDictionary())
   }
   
   static func delete(_ tasklist: Tasklist) {
-    guard let userId = AuthServer.user() else {
+    guard let userId = AuthServer.userId() else {
       return
     }
     tasklistRef.child(userId).child(tasklist.id).removeValue()
@@ -27,7 +27,7 @@ extension DataHelper {
   
   static func getTasklists(completionHandler: @escaping([Tasklist]) -> Void) {
     var tasklists = [Tasklist]()
-    guard let userId = AuthServer.user() else {
+    guard let userId = AuthServer.userId() else {
       completionHandler(tasklists)
       return
     }

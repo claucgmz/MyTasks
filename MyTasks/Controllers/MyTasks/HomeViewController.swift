@@ -17,14 +17,15 @@ class HomeViewController: UIViewController {
   @IBOutlet private weak var todaySummaryLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
   private var tasklists = [Tasklist]()
-  private var user: User?
+  private var user: User!
   private var slideMenu: SlideMenuController?
   var successMessage: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     slideMenu = slideMenuController()
-    getUser()
+    user = AuthServer.user()
+    self.updateUserUI()
     if let message = successMessage {
       self.showSnackbar(with: message)
     }
@@ -45,14 +46,7 @@ class HomeViewController: UIViewController {
     taskListCollectionView.register(UINib(nibName: AddTaskListCollectionCell.reusableId, bundle: nil),
                                     forCellWithReuseIdentifier: AddTaskListCollectionCell.reusableId)
   }
-  
-  private func getUser() {
-    DataHelper.getUser(completionHandler: { user in
-      self.user = user
-      self.updateUserUI()
-    })
-  }
-  
+
   private func getTasklists() {
     DataHelper.getTasklists(completionHandler: { tasklists in
       self.tasklists = tasklists
@@ -84,26 +78,19 @@ class HomeViewController: UIViewController {
   }
   
   private func updateUserUI() {
-    guard let authUser = AuthServer.currentUser else {
-      return
-    }
-    
-    if let facebookId = AuthServer.getProviderId(for: "facebook.com") {
-      let imageUrl = URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
-      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+    if !user.facebookId.isEmpty {
+      ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
         self.userProfileImage.image = image
       })
     } else {
       self.userProfileImage.image = UIImage(named: "generalavatar")
     }
     
-    if let firstName = authUser.displayName {
-      welcomeLabel.text = "\("greeting".localized), \(firstName)"
-    }
+    welcomeLabel.text = "\("greeting".localized), \(user.displayName)"
   }
   
   private func updateTotalTasksForToday() {
-    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: user?.totalTasksForToday))")
+    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: user.totalTasksForToday))")
   }
 
   private func showMoreActions(row: Int) {
@@ -220,14 +207,13 @@ extension HomeViewController: SlideMenuControllerDelegate {
   }
   func leftWillOpen() {
     let controller = slideMenu?.leftViewController as? MenuViewController
-    if let imageView = controller?.userProfileImage, let imageUrl = user?.imageURL {
-      ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
+    if let imageView = controller?.userProfileImage, !user.facebookId.isEmpty {
+      ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
         imageView.image = image
       })
     }
-    if let firstName = user?.firstName, let lastName = user?.lastName {
-      controller?.userName.text = "\(firstName) \(lastName)"
-    }
+    
+   controller?.userName.text = user.displayName
   }
 }
 

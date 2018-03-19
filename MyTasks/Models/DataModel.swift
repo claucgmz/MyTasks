@@ -9,7 +9,6 @@
 import Foundation
 
 protocol DataModel {
-  var mainPath: String { get }
   var id: String { get set }
   func toDictionary() -> [String: Any]
 }

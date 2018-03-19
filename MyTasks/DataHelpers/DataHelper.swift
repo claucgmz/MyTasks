@@ -15,8 +15,4 @@ class DataHelper {
   static let userRef = Database.database().reference(withPath: FirebasePath.users.rawValue)
   static let tasklistRef = Database.database().reference(withPath: FirebasePath.tasklists.rawValue)
   static let taskRef = Database.database().reference(withPath: FirebasePath.tasks.rawValue)
-  
-  static func save(_ object: DataModel) {
-    databaseRef.child(object.mainPath).child(object.id).setValue(object.toDictionary())
-  }
 }

@@ -28,6 +28,10 @@ class MainLoginVC: UIViewController {
     }
   }
   
+  deinit {
+    AuthServer.removeListener()
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: false)

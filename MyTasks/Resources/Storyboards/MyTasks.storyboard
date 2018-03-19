@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zkz-Uc-7mt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="generalavatar" translatesAutoresizingMaskIntoConstraints="NO" id="zkz-Uc-7mt">
                                 <rect key="frame" x="30" y="112" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GAc-8X-7b1"/>
@@ -282,7 +282,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rFd-z6-xR4">
                                 <rect key="frame" x="0.0" y="50" width="375" height="188.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1GF-oi-eOT">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="generalavatar" translatesAutoresizingMaskIntoConstraints="NO" id="1GF-oi-eOT">
                                         <rect key="frame" x="137.5" y="0.0" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="E5a-D1-Keh"/>
@@ -540,6 +540,7 @@
     </scenes>
     <resources>
         <image name="add" width="50" height="50"/>
+        <image name="generalavatar" width="50" height="50"/>
         <image name="menu" width="50" height="50"/>
     </resources>
 </document>
