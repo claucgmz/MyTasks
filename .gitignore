@@ -26,6 +26,10 @@ xcuserdata/
 *.xcscmblueprint
 .swiftlint.yml
 
+# OS generated files
+.DS_Store
+.DS_Store?
+
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
