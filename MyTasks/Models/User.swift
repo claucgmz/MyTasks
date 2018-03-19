@@ -13,8 +13,7 @@ class User {
   var displayName = "Stranger"
   var email = ""
   var facebookId = ""
-  var totalTasksForToday = 0
-  
+
   var imageURL: URL {
     return URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
   }

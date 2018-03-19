@@ -23,9 +23,10 @@ class Tasklist: DataModel {
   var color = UIColor.ColorPicker.cityLights
   var totalTasks = 0
   var totalChecked = 0
+  var totalPendingToday = 0
   var tasksViews = [TaskListView]()
   var progressPercentage: Double {
-    if !tasksViews.isEmpty {
+    if totalChecked > 0, totalTasks > 0 {
       return Double(totalChecked) / Double(totalTasks)
     }
     return 0.0
@@ -62,7 +63,15 @@ class Tasklist: DataModel {
       guard let handler = completionHandler else { return }
       handler()
     })
-
+    
+  }
+  
+  func setTotalToday(completionHandler: (() -> Void)?) {
+    DataHelper.getTotalTasks(from: self, totalType: .today, completionHandler: { total in
+      self.totalPendingToday = total
+      guard let handler = completionHandler else { return }
+      handler()
+    })
   }
   
   func getTasks(for dateType: DateType, completionHandler: @escaping () -> Void) {

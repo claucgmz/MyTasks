@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: false)
+    self.updateTotalTasksForToday()
   }
   
   // MARK: - Private methods
@@ -52,6 +53,7 @@ class HomeViewController: UIViewController {
     DataHelper.getTasklists(completionHandler: { tasklists in
       self.tasklists = tasklists
       self.taskListCollectionView.reloadData()
+      self.updateTotalTasksForToday()
     })
   }
   
@@ -91,7 +93,14 @@ class HomeViewController: UIViewController {
   }
   
   private func updateTotalTasksForToday() {
-    todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: user.totalTasksForToday))")
+    var total = 0
+    for tasklist in tasklists {
+      tasklist.setTotalToday(completionHandler: {
+        total += tasklist.totalPendingToday
+        self.todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: total))")
+      })
+    }
+    
   }
 
   private func showMoreActions(row: Int) {

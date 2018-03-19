@@ -70,6 +70,22 @@ extension DataHelper {
         .observe(.value, with: { snapshot in
           completionHandler(Int(snapshot.childrenCount))
         })
+    case .today:
+      let today = Date().startOfDay
+      taskRef.child(tasklist.id).child(FirebasePath.added.rawValue)
+        .queryOrdered(byChild: FirebasePath.dueDate.rawValue).queryStarting(atValue: today.timeIntervalSince1970)
+        .queryEnding(atValue: today.endOfDay.timeIntervalSince1970).observe(.value, with: { snapshot in
+          let data = snapshot.value as? [String: Any] ?? [:]
+          var totalPending = 0
+          for snData in data {
+            if var taskData = snData.value as? [String: Any] {
+              if taskData["checked"] as? Bool == false {
+                totalPending += 1
+              }
+            }
+          }
+          completionHandler(totalPending)
+        })
     default:
      taskRef.child(tasklist.id).child(FirebasePath.added.rawValue)
         .observe(.value, with: { snapshot in
