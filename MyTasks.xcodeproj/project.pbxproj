@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C18754A6517DCC0B2C7BC3B /* Pods_MyTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E59CB06CC792C3CC386024C /* Pods_MyTasks.framework */; };
 		5F12E3CC20598DB60065A965 /* AuthServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12E3CB20598DB60065A965 /* AuthServer.swift */; };
-		5F12E3CE2059CF590065A965 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F12E3CD2059CF590065A965 /* String+Validation.swift */; };
 		5F2CC1432058BACE00BF8B82 /* FirebasePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */; };
 		5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1452058BE0000BF8B82 /* DataHelper.swift */; };
 		5F2CC1482058BE5600BF8B82 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2CC1472058BE5600BF8B82 /* DataModel.swift */; };
@@ -87,7 +86,6 @@
 /* Begin PBXFileReference section */
 		2617ADFA3901667898F17FA5 /* Pods-MyTasks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTasks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyTasks/Pods-MyTasks.debug.xcconfig"; sourceTree = "<group>"; };
 		5F12E3CB20598DB60065A965 /* AuthServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServer.swift; sourceTree = "<group>"; };
-		5F12E3CD2059CF590065A965 /* String+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		5F2CC1422058BACE00BF8B82 /* FirebasePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePath.swift; sourceTree = "<group>"; };
 		5F2CC1452058BE0000BF8B82 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		5F2CC1472058BE5600BF8B82 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 			children = (
 				5FACC613202A67D5003D1957 /* Date+Format.swift */,
 				5F896D1C2045C4D900E51428 /* String+Localizable.swift */,
-				5F12E3CD2059CF590065A965 /* String+Validation.swift */,
 				5F2FB2B12033B12B002667AC /* UIButton+State.swift */,
 				5FADACE3202CF7EA0002C351 /* UICollectionViewCell+ReusableId.swift */,
 				5FF0B0DD202B93CF00A7ADB8 /* UIColor+ColorPicker.swift */,
@@ -629,7 +626,6 @@
 				5FF830992032818B00FABDD8 /* TaskCell.swift in Sources */,
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
-				5F12E3CE2059CF590065A965 /* String+Validation.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* Task.swift in Sources */,
 				5FD23E13205C2C970083F65E /* LoginVC.swift in Sources */,
 				5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */,

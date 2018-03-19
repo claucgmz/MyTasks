@@ -27,11 +27,9 @@ class MainLoginVC: UIViewController {
       }
     }
   }
-  
   deinit {
     AuthServer.removeListener()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: false)
@@ -43,13 +41,11 @@ class MainLoginVC: UIViewController {
     facebookLoginButton.setTitle("log_in".localized, for: .normal)
     facebookLoginButton.imageView?.contentMode = .scaleAspectFit
   }
-  
   private func segueToHome() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil)
       .instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
   }
-  
   private func linkAccount() {
     if let token = FacebookManager().getToken() {
       AuthServer.linkAccount(withFacebook: token, completion: { authResponse in
@@ -61,10 +57,8 @@ class MainLoginVC: UIViewController {
           self.showSnackbar(with: message)
         }
       })
-      
     }
   }
-  
   private func segueToLink() {
     performSegue(withIdentifier: SegueIdentifier.linkAccount.rawValue, sender: nil)
   }
@@ -73,7 +67,6 @@ class MainLoginVC: UIViewController {
     guard let identifier = segue.identifier else {
       return
     }
-    
     switch identifier {
     case SegueIdentifier.linkAccount.rawValue:
       guard let controller = segue.destination as? LinkAccountVC else {
@@ -89,7 +82,6 @@ class MainLoginVC: UIViewController {
       }
     }
   }
-  
   @IBAction private func facebookLoginAction(_ sender: Any) {
     FacebookManager().login(self, onSuccess: { token in
       AuthServer.login(withFacebook: token, completion: { authResponse in
