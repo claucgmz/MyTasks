@@ -27,11 +27,14 @@ class TaskListProgressView: UIView {
     commonInit()
   }
   
-  func configure(with tasklist: TaskList) {
+  func configure(with tasklist: Tasklist) {
     configureIcon(with: tasklist.icon, color: tasklist.color)
-    tasksCounterLabel.text = "\(tasklist.tasks.count) \("tasks".localized)"
-    updateProgressBar(with: tasklist)
     taskListNameLabel.text = tasklist.name
+    
+    tasklist.setTotal(completionHandler: {
+      self.tasksCounterLabel.text = "\(tasklist.totalTasks) \("tasks".localized)"
+      self.updateProgressBar(with: tasklist)
+    })
   }
   
   private func commonInit() {
@@ -50,9 +53,9 @@ class TaskListProgressView: UIView {
     iconView.roundCorners(withRadius: iconView.layer.bounds.width/2)
   }
   
-  private func updateProgressBar(with tasklist: TaskList) {
+  private func updateProgressBar(with tasklist: Tasklist) {
     progressBar.progressTintColor = tasklist.color
-    let progress = tasklist.progressPercentage()
+    let progress = tasklist.progressPercentage
     progressBar.setProgress(Float(progress), animated: true)
     progressLabel.text = "\(Int(progress * 100))%"
   }

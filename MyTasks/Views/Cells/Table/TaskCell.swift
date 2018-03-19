@@ -18,7 +18,7 @@ class TaskCell: UITableViewCell {
   private let checked = UIImage(named: "checked")
   private let unchecked = UIImage(named: "unchecked")
   
-  func configure(with task: TaskItem) {
+  func configure(with task: Task) {
     checkbox.image = task.checked == true ? checked : unchecked
     strikeThroughText(with: task.text, strike: task.checked)
     deleteView.isHidden = !task.checked

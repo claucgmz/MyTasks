@@ -7,54 +7,21 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objcMembers class User: Object {
-  // MARK: - Properties
-  dynamic var id = ""
-  dynamic var firstName = ""
-  dynamic var lastName = ""
-  dynamic var timestamp = Date().timeIntervalSinceReferenceDate
-  dynamic var isLoggedIn = false
-  let tasklists = LinkingObjects(fromType: TaskList.self, property: "user")
+class User {
+  var id = ""
+  var displayName = "Stranger"
+  var email = ""
+  var facebookId = ""
+
   var imageURL: URL {
-    return URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!
+    return URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
   }
   
-  var totalTasksForToday: Int {
-    return tasklists.reduce(0) { _, tasklist in
-      tasklist.pendingTasksToday.count
-    }
-  }
-  
-  // MARK: - Init
-  convenience init(with facebookData: [String: Any]?) {
-    self.init()
-    if let id = facebookData?["id"] as? String {
-      self.id = id
-    }
-    if let firstName = facebookData?["first_name"] as? String {
-      self.firstName = firstName
-    }
-    if let lastName = facebookData?["last_name"] as? String {
-      self.lastName = lastName
-    }
-  }
-  
-  // MARK: - Meta
-  override class func primaryKey() -> String? {
-    return "id"
-  }
-  override static func indexedProperties() -> [String] {
-    return ["isLoggedIn"]
-  }
-}
-
-extension User: BasicStorageFunctions {
-  func add() {
-    RealmService.performUpdate(object: self, set: { isLoggedIn = true }, update: true)
-  }
-  func hardDelete() {
-    RealmService.hardDelete(object: self)
+  init(id: String, email: String, displayName: String, facebookId: String) {
+    self.id = id
+    self.email = email
+    self.displayName = displayName
+    self.facebookId = facebookId
   }
 }
