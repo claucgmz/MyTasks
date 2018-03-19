@@ -48,11 +48,12 @@ class TaskDetailTableViewController: UITableViewController {
   }
   
   private func getTasklists() {
-//    DataHelper.getTasklists(completionHandler: { tasklists in
-//      self.tasklists = tasklists
-//      self.mainTableView.reloadData()
-//    })
+    DataHelper.getTasklists(completionHandler: { tasklists in
+      self.tasklists = tasklists
+      self.mainTableView.reloadData()
+    })
   }
+  
   private func showDatePicker() {
     datePickerIsVisible = true
     let indexPathDateRow = IndexPath(row: 0, section: 1)
@@ -116,7 +117,7 @@ class TaskDetailTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch section {
     case CellType.dueDate.rawValue:
-      if datePickerIsVisible == true {
+      if !datePickerIsVisible {
         return 1
       }
       return 2
