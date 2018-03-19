@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.endEditing(true)
     slideMenu = slideMenuController()
     user = AuthServer.user()
     self.updateUserUI()

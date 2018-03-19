@@ -29,7 +29,6 @@
 		5F9D3F6A2028D197000FFA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F692028D197000FFA2B /* AppDelegate.swift */; };
 		5F9D3F742028D197000FFA2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F732028D197000FFA2B /* Assets.xcassets */; };
 		5F9D3F772028D197000FFA2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F9D3F752028D197000FFA2B /* LaunchScreen.storyboard */; };
-		5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */; };
 		5F9D3F822028E06B000FFA2B /* FacebookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F812028E06B000FFA2B /* FacebookManager.swift */; };
 		5F9D3F852028ECDA000FFA2B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F842028ECDA000FFA2B /* User.swift */; };
 		5F9D3F8920291421000FFA2B /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9D3F8820291421000FFA2B /* RealmService.swift */; };
@@ -110,7 +109,6 @@
 		5F9D3F732028D197000FFA2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F9D3F762028D197000FFA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F9D3F782028D197000FFA2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5F9D3F812028E06B000FFA2B /* FacebookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookManager.swift; sourceTree = "<group>"; };
 		5F9D3F842028ECDA000FFA2B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5F9D3F8820291421000FFA2B /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -397,7 +395,6 @@
 		5FDBDCD2205B1E8A0096B6E6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5F9D3F7F2028D79E000FFA2B /* LoginViewController.swift */,
 				5FDBDCD3205B1EB00096B6E6 /* CreateAccountVC.swift */,
 				5FDBDCD5205B1EF30096B6E6 /* LinkAccountVC.swift */,
 				5FDBDCD7205B27FC0096B6E6 /* MainLoginVC.swift */,
@@ -633,7 +630,6 @@
 				5F2FB2B020337B1C002667AC /* UIView+Gestures.swift in Sources */,
 				5F8AC267203BA88000B3E037 /* MenuViewController.swift in Sources */,
 				5F12E3CE2059CF590065A965 /* String+Validation.swift in Sources */,
-				5F9D3F802028D79E000FFA2B /* LoginViewController.swift in Sources */,
 				5FD49CD0202A7B5B008C1ECB /* Task.swift in Sources */,
 				5FD23E13205C2C970083F65E /* LoginVC.swift in Sources */,
 				5F2CC1462058BE0000BF8B82 /* DataHelper.swift in Sources */,

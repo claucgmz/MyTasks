@@ -34,6 +34,10 @@ class LinkAccountVC: UIViewController {
     navigationController?.setNavigationBarHidden(false, animated: false)
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
+  }
+  
   private func setLocalize() {
     titleLabel.text = "link_account".localized
     linkButton.setTitle("link_account".localized, for: .normal)
@@ -53,11 +57,7 @@ class LinkAccountVC: UIViewController {
       .instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
   }
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    hideKeyboard()
-  }
-  
-  @IBAction func linkButtonAction(_ sender: Any) {
+  @IBAction private func linkButtonAction(_ sender: Any) {
     guard let email = emailTextField.text, let password = passwordTextField.text else {
       return
     }

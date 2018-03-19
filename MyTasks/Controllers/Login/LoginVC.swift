@@ -25,12 +25,21 @@ class LoginVC: UIViewController {
     navigationController?.setNavigationBarHidden(false, animated: false)
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
+  }
+  
   private func setLocalize() {
     titleLabel.text = "log_in".localized
     loginButton.setTitle("log_in".localized, for: .normal)
     cancelButton.setTitle("cancel".localized, for: .normal)
     emailTextField.placeholder = "email".localized
     passwordTextField.placeholder = "password".localized
+  }
+  
+  private func hideKeyboard() {
+    emailTextField.resignFirstResponder()
+    passwordTextField.resignFirstResponder()
   }
   
   @IBAction private func loginAccountAction(_ sender: Any) {

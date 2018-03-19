@@ -25,6 +25,10 @@ class CreateAccountVC: UIViewController {
     navigationController?.setNavigationBarHidden(false, animated: false)
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
+  }
+  
   private func setLocalize() {
     titleLabel.text = "create_account".localized
     createButton.setTitle("create_account".localized, for: .normal)
@@ -36,10 +40,6 @@ class CreateAccountVC: UIViewController {
   private func hideKeyboard() {
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
-  }
-  
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    hideKeyboard()
   }
   
   @IBAction private func createAccountAction(_ sender: Any) {
