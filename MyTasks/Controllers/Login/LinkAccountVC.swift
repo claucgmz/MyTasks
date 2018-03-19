@@ -15,7 +15,6 @@ class LinkAccountVC: UIViewController {
   @IBOutlet private weak var linkButton: UIButton!
   @IBOutlet private weak var cancelButton: UIButton!
   var email = ""
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     AuthServer.activateListener {
@@ -33,11 +32,9 @@ class LinkAccountVC: UIViewController {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: false)
   }
-  
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     hideKeyboard()
   }
-  
   private func setLocalize() {
     titleLabel.text = "link_account".localized
     linkButton.setTitle("link_account".localized, for: .normal)
@@ -45,18 +42,15 @@ class LinkAccountVC: UIViewController {
     emailTextField.placeholder = "email".localized
     passwordTextField.placeholder = "password".localized
   }
-  
   private func hideKeyboard() {
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
   }
-  
   private func segueToHome() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate?.window?.rootViewController = UIStoryboard(name: "MyTasks", bundle: nil)
       .instantiateViewController(withIdentifier: SliderMenuViewController.reusableId)
   }
-  
   @IBAction private func linkButtonAction(_ sender: Any) {
     guard let email = emailTextField.text, let password = passwordTextField.text else {
       return
@@ -68,9 +62,7 @@ class LinkAccountVC: UIViewController {
       }
       self.showSnackbar(with: message)
     })
-    
   }
-  
   @IBAction private func cancelButton(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }

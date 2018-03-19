@@ -14,21 +14,17 @@ class CreateAccountVC: UIViewController {
   @IBOutlet private weak var passwordTextField: UITextField!
   @IBOutlet private weak var createButton: UIButton!
   @IBOutlet private weak var cancelButton: UIButton!
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setLocalize()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: false)
   }
-  
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     hideKeyboard()
   }
-  
   private func setLocalize() {
     titleLabel.text = "create_account".localized
     createButton.setTitle("create_account".localized, for: .normal)
@@ -36,12 +32,10 @@ class CreateAccountVC: UIViewController {
     emailTextField.placeholder = "email".localized
     passwordTextField.placeholder = "password".localized
   }
-  
   private func hideKeyboard() {
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
   }
-  
   @IBAction private func createAccountAction(_ sender: Any) {
     guard let email = emailTextField.text, let password = passwordTextField.text else {
       return
@@ -53,7 +47,6 @@ class CreateAccountVC: UIViewController {
       self.showSnackbar(with: message)
     })
   }
-  
   @IBAction private func cancelButton(_ sender: Any) {
     navigationController?.popViewController(animated: true)
   }

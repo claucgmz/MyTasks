@@ -20,7 +20,6 @@ class HomeViewController: UIViewController {
   private var user: User!
   private var slideMenu: SlideMenuController?
   var successMessage: String?
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.endEditing(true)
@@ -34,13 +33,11 @@ class HomeViewController: UIViewController {
     registerNibs()
     updateUI()
   }
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(false, animated: false)
     self.updateTotalTasksForToday()
   }
-  
   // MARK: - Private methods
   private func registerNibs() {
     taskListCollectionView.register(UINib(nibName: TaskListCollectionCell.reusableId, bundle: nil),
@@ -71,7 +68,6 @@ class HomeViewController: UIViewController {
       layerContainer.setGradientLayer(colors: [list.color.cgColor, list.color.withAlphaComponent(0.5).cgColor])
     }
   }
-  
   private func updateUI() {
     setBackgroundColor()
     if let region = Locale.current.regionCode {
@@ -79,7 +75,6 @@ class HomeViewController: UIViewController {
       dateLabel.text = "\("today".localized): \(dateString)".uppercased()
     }
   }
-  
   private func updateUserUI() {
     if !user.facebookId.isEmpty {
       ImageManager.shared.get(from: user.imageURL, completionHandler: { (image) in
@@ -88,10 +83,8 @@ class HomeViewController: UIViewController {
     } else {
       self.userProfileImage.image = UIImage(named: "generalavatar")
     }
-    
     welcomeLabel.text = "\("greeting".localized), \(user.displayName)"
   }
-  
   private func updateTotalTasksForToday() {
     var total = 0
     for tasklist in tasklists {
@@ -100,7 +93,6 @@ class HomeViewController: UIViewController {
         self.todaySummaryLabel.text = String(format: "tasks_for_today".localized, "\(String(describing: total))")
       })
     }
-    
   }
 
   private func showMoreActions(row: Int) {
@@ -112,32 +104,30 @@ class HomeViewController: UIViewController {
                    AlertView.action(title: "delete_list".localized, style: .destructive, handler: {
                     self.showConfirmationAlert(for: tasklist, row: row)
                    })]
-    AlertView.show(view: self, title: String(format: "alert_edit_list_title".localized, tasklist.name), actions: actions, style: .actionSheet)
+    AlertView.show(view: self, title: String(format: "alert_edit_list_title".localized, tasklist.name),
+                   actions: actions, style: .actionSheet)
   }
-  
   private func showConfirmationAlert(for tasklist: Tasklist, row: Int) {
     let actions = [AlertView.action(title: "ok".localized, handler: { self.delete(tasklist: tasklist) }),
                    AlertView.action(title: "cancel".localized, style: .cancel)]
-    AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized, actions: actions, style: .alert)
+    AlertView.show(view: self, title: "confirm".localized, message: "confirm_subtitle".localized,
+                   actions: actions, style: .alert)
   }
-  
   private func delete(tasklist: Tasklist) {
     DataHelper.delete(tasklist)
   }
-  
   private func segueToLoginViewController() {
     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-      let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier: MainLoginVC.reusableId)
+      let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main)
+        .instantiateViewController(withIdentifier: MainLoginVC.reusableId)
       appDelegate.window?.rootViewController = rootController
     }
   }
-  
   // MARK: - action methods
   @IBAction private func openMenuAction(_ sender: Any) {
     slideMenu?.delegate = self
     slideMenu?.openLeft()
   }
-  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "TaskListDetail" {
       guard let controller = segue.destination as? TaskListDetailViewController else {
@@ -175,11 +165,11 @@ extension HomeViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return tasklists.count + 1
   }
-  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.row < tasklists.count {
       let taskList = tasklists[indexPath.row]
-      let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId, for: indexPath) as? TaskListCollectionCell)!
+      let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: TaskListCollectionCell.reusableId,
+                                                     for: indexPath) as? TaskListCollectionCell)!
       cell.roundCorners(withRadius: 10)
       cell.progressView.configure(with: taskList)
       cell.moreView.addTapGestureRecognizer(action: {
@@ -187,7 +177,8 @@ extension HomeViewController: UICollectionViewDataSource {
       })
       return cell
     } else {
-      let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId, for: indexPath) as? AddTaskListCollectionCell)!
+      let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: AddTaskListCollectionCell.reusableId,
+                                                     for: indexPath) as? AddTaskListCollectionCell)!
       cell.roundCorners(withRadius: 10)
       return cell
     }
@@ -196,7 +187,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
 // MARK: - Collection flowlayout methods
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: collectionView.frame.width*0.8, height: collectionView.frame.height)
   }
 }
@@ -222,7 +214,6 @@ extension HomeViewController: SlideMenuControllerDelegate {
         imageView.image = image
       })
     }
-    
    controller?.userName.text = user.displayName
   }
 }
