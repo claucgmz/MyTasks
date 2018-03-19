@@ -19,6 +19,11 @@ class LoginVC: UIViewController {
     setLocalize()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: false)
+  }
+  
   private func setLocalize() {
     loginButton.setTitle("log_in".localized, for: .normal)
     cancelButton.setTitle("cancel".localized, for: .normal)

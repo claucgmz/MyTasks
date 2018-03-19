@@ -13,7 +13,7 @@
         <!--Main LoginVC-->
         <scene sceneID="sKJ-C8-ikO">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="Dwf-0q-iEM" customClass="MainLoginVC" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Dwf-0q-iEM" customClass="MainLoginVC" customModule="MyTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EPv-Zh-AnH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

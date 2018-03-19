@@ -32,7 +32,12 @@ class HomeViewController: UIViewController {
     registerNibs()
     updateUI()
   }
-
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: false)
+  }
+  
   // MARK: - Private methods
   private func registerNibs() {
     taskListCollectionView.register(UINib(nibName: TaskListCollectionCell.reusableId, bundle: nil),
@@ -119,7 +124,7 @@ class HomeViewController: UIViewController {
   
   private func segueToLoginViewController() {
     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-      let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier: LoginViewController.reusableId)
+      let rootController =  UIStoryboard(name: "Login", bundle: Bundle.main).instantiateViewController(withIdentifier: MainLoginVC.reusableId)
       appDelegate.window?.rootViewController = rootController
     }
   }

@@ -28,6 +28,11 @@ class MainLoginVC: UIViewController {
     }
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: false)
+  }
+  
   private func setLocalize() {
     createAccountButton.setTitle("create_account".localized, for: .normal)
     loginButton.setTitle("log_in".localized, for: .normal)
