@@ -31,6 +31,15 @@ class CreateAccountVC: UIViewController {
     passwordTextField.placeholder = "password".localized
   }
   
+  private func hideKeyboard() {
+    emailTextField.resignFirstResponder()
+    passwordTextField.resignFirstResponder()
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
+  }
+  
   @IBAction private func createAccountAction(_ sender: Any) {
     guard let email = emailTextField.text, let password = passwordTextField.text else {
       return

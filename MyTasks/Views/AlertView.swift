@@ -18,6 +18,6 @@ class AlertView: NSObject {
   }
   
   class func action(title: String, style: UIAlertActionStyle = .default, handler: (() -> Void)? = nil) -> UIAlertAction {
-    return UIAlertAction(title: title, style: style, handler: handler != nil ? { action in handler!() }: nil)
+    return UIAlertAction(title: title, style: style, handler: handler != nil ? { _ in handler!() }: nil)
   }
 }

@@ -58,6 +58,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
+  - IQKeyboardManagerSwift (5.0.7)
   - leveldb-library (1.20)
   - MaterialComponents/AnimationTiming (43.1.1)
   - MaterialComponents/Buttons (43.1.1):
@@ -128,6 +129,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - IQKeyboardManagerSwift
   - MaterialComponents/Snackbar
   - ObjectMapper (~> 3.1)
   - SlideMenuControllerSwift
@@ -149,6 +151,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MaterialComponents: 98a62516fedb2aa2a6efc18d74a744229f2408d3
   MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
@@ -157,6 +160,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
 
-PODFILE CHECKSUM: 221427e7984cd575fb8b9be9d47a9a434d0ba28b
+PODFILE CHECKSUM: 5817149be8c32283203dea3136424ffa02c85c77
 
 COCOAPODS: 1.3.1
