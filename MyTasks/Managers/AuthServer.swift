@@ -32,15 +32,28 @@ class AuthServer {
   
   static func activateListener(completion: @escaping () -> Void) {
     auth?.addStateDidChangeListener { _, user in
-      if user != nil {
+      if let user = user {
+        debugPrint(user)
         completion()
       }
     }
+  }
+  static func getProviderId(for provider: String) -> String? {
+    guard let providerData = currentUser?.providerData else {
+      return nil
+    }
+    for providerInfo in providerData where providerInfo.providerID == "facebook.com" {
+     return providerInfo.uid
+    }
+    
+    return nil
   }
   
   static func createAccount(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
     auth?.createUser(withEmail: email, password: password) { user, error in
       if let user = user, let email = user.email {
+        debugPrint(user)
+        debugPrint(user.providerData)
         let dbUser = User(id: user.uid, email: email)
         DataHelper.save(dbUser)
         completion(.success)
