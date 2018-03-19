@@ -59,6 +59,59 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
   - leveldb-library (1.20)
+  - MaterialComponents/AnimationTiming (43.1.1)
+  - MaterialComponents/Buttons (43.1.1):
+    - MaterialComponents/Buttons/ColorThemer (= 43.1.1)
+    - MaterialComponents/Buttons/Component (= 43.1.1)
+    - MaterialComponents/Buttons/TitleColorAccessibilityMutator (= 43.1.1)
+    - MaterialComponents/private/Math
+  - MaterialComponents/Buttons/ColorThemer (43.1.1):
+    - MaterialComponents/Buttons/Component
+    - MaterialComponents/private/Math
+    - MaterialComponents/Themes
+  - MaterialComponents/Buttons/Component (43.1.1):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Buttons/TitleColorAccessibilityMutator (43.1.1):
+    - MaterialComponents/Buttons/Component
+    - MaterialComponents/private/Math
+    - MDFTextAccessibility
+  - MaterialComponents/Ink (43.1.1):
+    - MaterialComponents/Ink/ColorThemer (= 43.1.1)
+    - MaterialComponents/Ink/Component (= 43.1.1)
+  - MaterialComponents/Ink/ColorThemer (43.1.1):
+    - MaterialComponents/Ink/Component
+    - MaterialComponents/Themes
+  - MaterialComponents/Ink/Component (43.1.1):
+    - MaterialComponents/private/Math
+  - MaterialComponents/OverlayWindow (43.1.1):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Application (43.1.1)
+  - MaterialComponents/private/KeyboardWatcher (43.1.1):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Math (43.1.1)
+  - MaterialComponents/private/Overlay (43.1.1)
+  - MaterialComponents/ShadowElevations (43.1.1)
+  - MaterialComponents/ShadowLayer (43.1.1):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Snackbar (43.1.1):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/OverlayWindow
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Overlay
+    - MaterialComponents/Typography
+  - MaterialComponents/Themes (43.1.1)
+  - MaterialComponents/Typography (43.1.1):
+    - MaterialComponents/private/Application
+  - MDFInternationalization (1.0.4)
+  - MDFTextAccessibility (1.2.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -74,6 +127,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - MaterialComponents/Snackbar
   - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
@@ -94,9 +148,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  MaterialComponents: 98a62516fedb2aa2a6efc18d74a744229f2408d3
+  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
 
-PODFILE CHECKSUM: 6c1c06e5735c6d203256b520dfaa6660c6cb7b0b
+PODFILE CHECKSUM: 9ce73e6ae6ad10aa82e3976237fc9774613edd1b
 
 COCOAPODS: 1.3.1

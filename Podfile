@@ -23,4 +23,6 @@ target 'MyTasks' do
   
   #A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display
   pod 'DZNEmptyDataSet'
+  #Snackbars provide brief feedback about an operation through a message at the bottom of the screen. Snackbars contain up to two lines of text directly related to the operation performed. They may contain a text action, but no icons.
+  pod 'MaterialComponents/Snackbar'
 end

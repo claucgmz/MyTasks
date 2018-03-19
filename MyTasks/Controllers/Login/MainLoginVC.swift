@@ -13,6 +13,7 @@ class MainLoginVC: UIViewController {
   @IBOutlet private weak var createAccountButton: UIButton!
   @IBOutlet private weak var loginButton: UIButton!
   private var email = ""
+  private var wasLinked = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,6 +22,7 @@ class MainLoginVC: UIViewController {
       if AuthServer.isLinkingAccount {
         self.linkAccount()
       } else {
+        self.view.endEditing(true)
         self.segueToHome()
       }
     }
@@ -44,9 +46,10 @@ class MainLoginVC: UIViewController {
       AuthServer.linkAccount(withFacebook: token, completion: { authResponse in
         switch authResponse {
         case .success:
+          self.wasLinked = true
           self.segueToHome()
         case .failure(let message):
-          print(message)
+          self.showSnackbar(with: message)
         }
       })
       
@@ -61,11 +64,20 @@ class MainLoginVC: UIViewController {
     guard let identifier = segue.identifier else {
       return
     }
-    if identifier == SegueIdentifier.linkAccount.rawValue {
+    
+    switch identifier {
+    case SegueIdentifier.linkAccount.rawValue:
       guard let controller = segue.destination as? LinkAccountVC else {
         return
       }
       controller.email = email
+    default:
+      guard let controller = segue.destination as? HomeViewController else {
+        return
+      }
+      if wasLinked {
+        controller.successMessage = "Tu cuenta de facebook ha sido ligada."
+      }
     }
   }
   
@@ -75,13 +87,13 @@ class MainLoginVC: UIViewController {
         guard case .failure(let message) = authResponse else {
           return
         }
-        print(message)
+        self.showSnackbar(with: message)
       }, completionLink: { email in
         self.email = email
         self.segueToLink()
       })
     }, onFailure: { error in
-      print(error.localizedDescription)
+      self.showSnackbar(with: error.localizedDescription)
     })
   }
 }

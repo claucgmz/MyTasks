@@ -34,7 +34,7 @@ class LoginVC: UIViewController {
       guard case .failure(let message) = authResponse else {
         return
       }
-      print(message)
+      self.showSnackbar(with: message)
     })
   }
   

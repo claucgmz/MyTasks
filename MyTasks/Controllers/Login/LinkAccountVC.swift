@@ -17,19 +17,6 @@ class LinkAccountVC: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    AuthServer.activateListener {
-//      if !self.isLinked, let token = FacebookManager().getToken() {
-//        AuthServer.linkAccount(withFacebook: token, completion: { authResponse in
-//          guard case .failure(let message) = authResponse else {
-//            return
-//          }
-//          print(message)
-//        })
-//      } else if self.isLinked == true {
-//        print("segue to home")
-//        //self.segueToHome()
-//      }
-    }
     emailTextField.text = email
     setLocalize()
   }
@@ -41,9 +28,13 @@ class LinkAccountVC: UIViewController {
     passwordTextField.placeholder = "password".localized
   }
   
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  private func hideKeyboard() {
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    hideKeyboard()
   }
   
   @IBAction func linkButtonAction(_ sender: Any) {
@@ -55,6 +46,7 @@ class LinkAccountVC: UIViewController {
       guard case .failure(let message) = authResponse else {
         return
       }
+      self.showSnackbar(with: message)
     })
     
   }

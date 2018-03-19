@@ -19,11 +19,15 @@ class HomeViewController: UIViewController {
   private var tasklists = [Tasklist]()
   private var user: User?
   private var slideMenu: SlideMenuController?
+  var successMessage: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     slideMenu = slideMenuController()
     getUser()
+    if let message = successMessage {
+      self.showSnackbar(with: message)
+    }
     getTasklists()
     registerNibs()
     updateUI()
@@ -79,8 +83,7 @@ class HomeViewController: UIViewController {
       ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
         self.userProfileImage.image = image
       })
-    }
-    else {
+    } else {
       self.userProfileImage.image = UIImage(named: "generalavatar")
     }
     if let firstName = user?.firstName {

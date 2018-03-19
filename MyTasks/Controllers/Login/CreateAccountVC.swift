@@ -26,7 +26,6 @@ class CreateAccountVC: UIViewController {
     passwordTextField.placeholder = "password".localized
   }
   
-
   @IBAction private func createAccountAction(_ sender: Any) {
     guard let email = emailTextField.text, let password = passwordTextField.text else {
       return
@@ -35,7 +34,7 @@ class CreateAccountVC: UIViewController {
       guard case .failure(let message) = authResponse else {
         return
       }
-      print(message)
+      self.showSnackbar(with: message)
     })
   }
   
