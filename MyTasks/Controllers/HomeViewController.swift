@@ -84,14 +84,20 @@ class HomeViewController: UIViewController {
   }
   
   private func updateUserUI() {
-    if let _ = user?.facebookId, let imageUrl = user?.imageURL {
+    guard let authUser = AuthServer.currentUser else {
+      return
+    }
+    
+    if let facebookId = AuthServer.getProviderId(for: "facebook.com") {
+      let imageUrl = URL(string: "https://graph.facebook.com/\(facebookId)/picture?type=large")!
       ImageManager.shared.get(from: imageUrl, completionHandler: { (image) in
         self.userProfileImage.image = image
       })
     } else {
       self.userProfileImage.image = UIImage(named: "generalavatar")
     }
-    if let firstName = user?.firstName {
+    
+    if let firstName = authUser.displayName {
       welcomeLabel.text = "\("greeting".localized), \(firstName)"
     }
   }

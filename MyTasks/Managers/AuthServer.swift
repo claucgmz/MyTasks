@@ -38,11 +38,12 @@ class AuthServer {
       }
     }
   }
+  
   static func getProviderId(for provider: String) -> String? {
     guard let providerData = currentUser?.providerData else {
       return nil
     }
-    for providerInfo in providerData where providerInfo.providerID == "facebook.com" {
+    for providerInfo in providerData where providerInfo.providerID == provider {
      return providerInfo.uid
     }
     
@@ -52,10 +53,6 @@ class AuthServer {
   static func createAccount(withEmail email: String, password: String, completion: @escaping (AuthResponse) -> Void) {
     auth?.createUser(withEmail: email, password: password) { user, error in
       if let user = user, let email = user.email {
-        debugPrint(user)
-        debugPrint(user.providerData)
-        let dbUser = User(id: user.uid, email: email)
-        DataHelper.save(dbUser)
         completion(.success)
       } else if let error = error {
         completion(.failure(error.localizedDescription))
@@ -86,15 +83,8 @@ class AuthServer {
           print("Nothing to do.")
         }
         completion(.failure(error.localizedDescription))
-      } else if let user = user {
-        FacebookManager().getUserInfo(onSuccess: { data in
-          let dbUser = User(withFacebook: data)
-          dbUser.id = user.uid
-          DataHelper.save(dbUser)
-          completion(.success)
-        }, onFailure: { error in
-          completion(.failure(error.localizedDescription))
-        })
+      } else {
+         completion(.success)
       }
     }
   }
@@ -102,8 +92,7 @@ class AuthServer {
   static func linkAccount(withFacebook token: String, completion: @escaping (AuthResponse) -> Void) {
     let credential = FacebookAuthProvider.credential(withAccessToken: token)
     currentUser?.link(with: credential, completion: { user, error in
-      if let user = user {
-        print(user.uid)
+      if user != nil {
         isLinkingAccount = false
         completion(.success)
       }
@@ -133,9 +122,5 @@ class AuthServer {
     } catch let signOutError as NSError {
       completion(.failure(signOutError.localizedDescription))
     }
-  }
-  
-  private static func addToRepository() {
-    
   }
 }
