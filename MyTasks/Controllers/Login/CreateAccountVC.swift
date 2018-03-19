@@ -9,6 +9,7 @@
 import UIKit
 
 class CreateAccountVC: UIViewController {
+  @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var emailTextField: UITextField!
   @IBOutlet private weak var passwordTextField: UITextField!
   @IBOutlet private weak var createButton: UIButton!
@@ -25,6 +26,7 @@ class CreateAccountVC: UIViewController {
   }
   
   private func setLocalize() {
+    titleLabel.text = "create_account".localized
     createButton.setTitle("create_account".localized, for: .normal)
     cancelButton.setTitle("cancel".localized, for: .normal)
     emailTextField.placeholder = "email".localized

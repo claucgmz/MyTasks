@@ -9,6 +9,7 @@
 import UIKit
 
 class LoginVC: UIViewController {
+  @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var emailTextField: UITextField!
   @IBOutlet private weak var passwordTextField: UITextField!
   @IBOutlet private weak var loginButton: UIButton!
@@ -25,6 +26,7 @@ class LoginVC: UIViewController {
   }
   
   private func setLocalize() {
+    titleLabel.text = "log_in".localized
     loginButton.setTitle("log_in".localized, for: .normal)
     cancelButton.setTitle("cancel".localized, for: .normal)
     emailTextField.placeholder = "email".localized

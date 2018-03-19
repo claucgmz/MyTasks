@@ -27,6 +27,7 @@
 "log_out" = "Cerrar sesión";
 "log_in" = "Iniciar sesión";
 "create_account" = "Crear cuenta";
+"link_account" = "Unir cuenta";
 
 //Create Account
 "email" = "Correo Electrónico";
@@ -56,3 +57,6 @@
 //Days
 "later" = "Después";
 "pastDueDate" = "Pasadas";
+
+//Messages
+"link_account_success_message" = "Tu cuenta de facebook ha sido ligada"

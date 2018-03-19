@@ -27,6 +27,7 @@
 "log_out" = "Log out";
 "log_in" = "Log In";
 "create_account" = "Create Account";
+"link_account" = "Link Account";
 
 //Create Account
 "email" = "E-mail";
@@ -56,3 +57,6 @@
 //Days
 "later" = "Later";
 "pastDueDate" = "Past Due Date";
+
+//Messages
+"link_account_success_message" = "Your facebook account has been linked"

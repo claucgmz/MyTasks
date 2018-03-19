@@ -9,6 +9,7 @@
 import UIKit
 
 class LinkAccountVC: UIViewController {
+  @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var emailTextField: UITextField!
   @IBOutlet private weak var passwordTextField: UITextField!
   @IBOutlet private weak var linkButton: UIButton!
@@ -34,7 +35,8 @@ class LinkAccountVC: UIViewController {
   }
   
   private func setLocalize() {
-    //linkButton.setTitle("link_account".localized, for: .normal)
+    titleLabel.text = "link_account".localized
+    linkButton.setTitle("link_account".localized, for: .normal)
     cancelButton.setTitle("cancel".localized, for: .normal)
     emailTextField.placeholder = "email".localized
     passwordTextField.placeholder = "password".localized

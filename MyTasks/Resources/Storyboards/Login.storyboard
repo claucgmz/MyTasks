@@ -141,16 +141,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="yrC-Ax-If1">
-                                <rect key="frame" x="0.0" y="148" width="320" height="272.5"/>
+                                <rect key="frame" x="0.0" y="146.5" width="320" height="276"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crear cuenta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUE-Dx-15d">
-                                        <rect key="frame" x="110.5" y="0.0" width="99" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="104.5" y="0.0" width="111.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2JB-1x-Bgn">
-                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
+                                        <rect key="frame" x="40" y="49" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LRg-7Q-r1q" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -194,7 +194,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-PC-wRu">
-                                        <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
+                                        <rect key="frame" x="0.0" y="161" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddP-Lm-wVF" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="70" y="0.0" width="180" height="50"/>
@@ -251,6 +251,7 @@
                         <outlet property="createButton" destination="ddP-Lm-wVF" id="Noz-cT-Mv6"/>
                         <outlet property="emailTextField" destination="LRg-7Q-r1q" id="A9e-FZ-AVd"/>
                         <outlet property="passwordTextField" destination="d4I-b7-AZh" id="hWk-Pl-wnb"/>
+                        <outlet property="titleLabel" destination="GUE-Dx-15d" id="mdx-OV-DQ1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THf-y5-HTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,16 +270,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ke2-PE-GGu">
-                                <rect key="frame" x="0.0" y="148" width="320" height="272.5"/>
+                                <rect key="frame" x="0.0" y="146.5" width="320" height="276"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iniciar sesion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R9-o4-Ma3">
-                                        <rect key="frame" x="110.5" y="0.0" width="99.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="103.5" y="0.0" width="113" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vjq-he-a7H">
-                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
+                                        <rect key="frame" x="40" y="49" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Kw-E3-QMu" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -322,7 +323,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2ls-bg-yTW">
-                                        <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
+                                        <rect key="frame" x="0.0" y="161" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcv-NQ-VOG" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="70" y="0.0" width="180" height="50"/>
@@ -331,7 +332,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="nHg-h2-ygG"/>
                                                     <constraint firstAttribute="width" constant="180" id="uEk-9D-Ele"/>
                                                 </constraints>
-                                                <state key="normal" title="Unir cuentas">
+                                                <state key="normal" title="Iniciar sesion">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -379,6 +380,7 @@
                         <outlet property="emailTextField" destination="1Kw-E3-QMu" id="nbA-FG-hMQ"/>
                         <outlet property="loginButton" destination="vcv-NQ-VOG" id="hDL-dm-oAY"/>
                         <outlet property="passwordTextField" destination="D8a-jO-N0B" id="JfG-Vp-3dE"/>
+                        <outlet property="titleLabel" destination="5R9-o4-Ma3" id="YoP-A8-avZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNt-3I-DL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -397,16 +399,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="lMx-yf-6cA">
-                                <rect key="frame" x="0.0" y="148" width="320" height="272.5"/>
+                                <rect key="frame" x="0.0" y="146.5" width="320" height="276"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unir Cuentas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9j-Wb-gjg">
-                                        <rect key="frame" x="110" y="0.0" width="100" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="103.5" y="0.0" width="113.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pvf-cP-ryI">
-                                        <rect key="frame" x="40" y="45.5" width="240" height="87"/>
+                                        <rect key="frame" x="40" y="49" width="240" height="87"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gi7-7r-tFI" customClass="TextFieldIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -450,7 +452,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aNY-sT-YEV">
-                                        <rect key="frame" x="0.0" y="157.5" width="320" height="115"/>
+                                        <rect key="frame" x="0.0" y="161" width="320" height="115"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ba-nj-ojs" customClass="ButtonIBInspectable" customModule="MyTasks" customModuleProvider="target">
                                                 <rect key="frame" x="70" y="0.0" width="180" height="50"/>
@@ -511,6 +513,7 @@
                         <outlet property="emailTextField" destination="gi7-7r-tFI" id="lPE-n1-9Vo"/>
                         <outlet property="linkButton" destination="2Ba-nj-ojs" id="eiG-AK-tos"/>
                         <outlet property="passwordTextField" destination="RQJ-lD-TsA" id="Jky-cu-FBt"/>
+                        <outlet property="titleLabel" destination="s9j-Wb-gjg" id="vlr-gS-US9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qq-Hf-YWl" userLabel="First Responder" sceneMemberID="firstResponder"/>

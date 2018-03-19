@@ -85,7 +85,7 @@ class MainLoginVC: UIViewController {
         return
       }
       if wasLinked {
-        controller.successMessage = "Tu cuenta de facebook ha sido ligada."
+        controller.successMessage = "link_account_success_message".localized
       }
     }
   }
