@@ -55,11 +55,12 @@ class Task: DataModel {
 
 extension Task: Mappable {
   func mapping(map: Map) {
-    id      <- map["id"]
-    text    <- map["text"]
-    dueDate <- (map["dueDate"], DateTransform())
+    tasklistId <- map["tasklistId"]
+    id         <- map["id"]
+    text       <- map["text"]
+    dueDate    <- (map["dueDate"], DateTransform())
     //map[dueDate]= Date(timeIntervalSince1970: date)
-    checked <- map["checked"]
-    deleted <- map["deleted"]
+    checked    <- map["checked"]
+    deleted    <- map["deleted"]
   }
 }

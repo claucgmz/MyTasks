@@ -51,7 +51,8 @@ extension DataHelper {
       let data = snapshot.value as? [String: Any] ?? [:]
       var taskDictArray: [[String: Any]] = []
       for snData in data {
-        if let taskData = snData.value as? [String: Any] {
+        if var taskData = snData.value as? [String: Any] {
+          taskData["tasklistId"] = tasklist.id
           taskDictArray.append(taskData)
         }
       }
