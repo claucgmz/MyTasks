@@ -7,35 +7,41 @@
 //
 
 import Foundation
+import ObjectMapper
 
 extension DataHelper {
   static func save(_ tasklist: Tasklist) {
-    if let userId = AuthServer.user() {
-      databaseRef.child(tasklist.mainPath).child(userId).child(tasklist.id).setValue(tasklist.toDictionary())
+    guard let userId = AuthServer.user() else {
+      return
     }
+    tasklistRef.child(userId).child(tasklist.id).setValue(tasklist.toDictionary())
   }
   
   static func delete(_ tasklist: Tasklist) {
-    if let userId = AuthServer.user() {
-      databaseRef.child(tasklist.mainPath).child(userId).child(tasklist.id).removeValue()
-      databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id).removeValue()
+    guard let userId = AuthServer.user() else {
+      return
     }
+    tasklistRef.child(userId).child(tasklist.id).removeValue()
+    taskRef.child(tasklist.id).removeValue()
   }
   
-  static func getTasklists(completionHandler: @escaping ([Tasklist]) -> Void) {
-    if let userId = AuthServer.user() {
-      databaseRef.child(FirebasePath.tasklists.rawValue).child(userId).observe(.value, with: { snapshot in
-        let data = snapshot.value as? [String: Any] ?? [:]
-        var tasklists = [Tasklist]()
-        for snData in data {
-          if let tasklistData = snData.value as? [String: Any] {
-            let tasklist = Tasklist(with: tasklistData)
-            tasklist.setTotal(completionHandler: nil)
-            tasklists.append(tasklist)
-          }
-        }
-        completionHandler(tasklists)
-      })
+  static func getTasklists(completionHandler: @escaping([Tasklist]) -> Void) {
+    var tasklists = [Tasklist]()
+    guard let userId = AuthServer.user() else {
+      completionHandler(tasklists)
+      return
     }
+    tasklistRef.child(userId).observe(.value, with: { snapshot in
+      let data = snapshot.value as? [String: Any] ?? [:]
+      var tasklistDictArray: [[String: Any]] = []
+      for snData in data {
+        if let tasklistData = snData.value as? [String: Any] {
+          tasklistDictArray.append(tasklistData)
+        }
+      }
+      tasklists = Mapper<Tasklist>().mapArray(JSONArray: tasklistDictArray)
+      completionHandler(tasklists)
+    })
+    
   }
 }

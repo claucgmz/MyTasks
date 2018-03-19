@@ -48,10 +48,10 @@ class TaskDetailTableViewController: UITableViewController {
   }
   
   private func getTasklists() {
-    DataHelper.getTasklists(completionHandler: { tasklists in
-      self.tasklists = tasklists
-      self.mainTableView.reloadData()
-    })
+//    DataHelper.getTasklists(completionHandler: { tasklists in
+//      self.tasklists = tasklists
+//      self.mainTableView.reloadData()
+//    })
   }
   private func showDatePicker() {
     datePickerIsVisible = true

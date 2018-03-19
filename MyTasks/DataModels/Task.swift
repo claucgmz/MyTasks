@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class Task: DataModel {
   var mainPath: String = FirebasePath.tasks.rawValue
@@ -31,34 +32,14 @@ class Task: DataModel {
     }
   }
   
+  required init?(map: Map) {
+    
+  }
+  
   init(text: String, date: Date, tasklistId: String) {
     self.text = text
     self.dueDate = date
     self.tasklistId = tasklistId
-  }
-  
-  init(with data: [String: Any]) {
-    guard let id = data["id"] as? String else {
-      return
-    }
-    guard let text = data["text"] as? String else {
-      return
-    }
-    guard let date = data["dueDate"] as? Double else {
-      return
-    }
-    guard let checked = data["checked"] as? Bool else {
-      return
-    }
-    guard let deleted = data["deleted"] as? Bool else {
-      return
-    }
-    
-    self.id = id
-    self.text = text
-    self.dueDate = Date(timeIntervalSince1970: date)
-    self.checked = checked
-    self.deleted = deleted
   }
   
   func toDictionary() -> [String: Any] {
@@ -69,5 +50,16 @@ class Task: DataModel {
       "checked": checked,
       "deleted": deleted
     ]
+  }
+}
+
+extension Task: Mappable {
+  func mapping(map: Map) {
+    id      <- map["id"]
+    text    <- map["text"]
+    dueDate <- (map["dueDate"], DateTransform())
+    //map[dueDate]= Date(timeIntervalSince1970: date)
+    checked <- map["checked"]
+    deleted <- map["deleted"]
   }
 }

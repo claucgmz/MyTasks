@@ -261,7 +261,6 @@
 			children = (
 				5F9D3F812028E06B000FFA2B /* FacebookManager.swift */,
 				5FCC55752048AD4B00BB0D70 /* ImageManager.swift */,
-				5F12E3CB20598DB60065A965 /* AuthServer.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -299,6 +298,7 @@
 		5F9D3F682028D197000FFA2B /* MyTasks */ = {
 			isa = PBXGroup;
 			children = (
+				5FEFB232205F9838005AC807 /* Servers */,
 				5FF60E582051E8C800AA6B35 /* GoogleService-Info.plist */,
 				5F9D3F782028D197000FFA2B /* Info.plist */,
 				5F9D3F692028D197000FFA2B /* AppDelegate.swift */,
@@ -414,6 +414,14 @@
 				5FD23E12205C2C970083F65E /* LoginVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		5FEFB232205F9838005AC807 /* Servers */ = {
+			isa = PBXGroup;
+			children = (
+				5F12E3CB20598DB60065A965 /* AuthServer.swift */,
+			);
+			path = Servers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -536,6 +544,7 @@
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -555,6 +564,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",

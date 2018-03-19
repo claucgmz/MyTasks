@@ -25,4 +25,6 @@ target 'MyTasks' do
   pod 'DZNEmptyDataSet'
   #Snackbars provide brief feedback about an operation through a message at the bottom of the screen. Snackbars contain up to two lines of text directly related to the operation performed. They may contain a text action, but no icons.
   pod 'MaterialComponents/Snackbar'
+  #ObjectMapper is a framework written in Swift that makes it easy for you to convert your model objects (classes and structs) to and from JSON.
+  pod 'ObjectMapper', '~> 3.1'
 end

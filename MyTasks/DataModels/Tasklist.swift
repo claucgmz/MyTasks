@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class Tasklist: DataModel {
   enum TotalType {
@@ -30,30 +31,14 @@ class Tasklist: DataModel {
     return 0.0
   }
   
+  required init?(map: Map) {
+    
+  }
+  
   init(name: String, icon: CategoryIcon, color: UIColor) {
     self.name = name
     self.icon = icon
     self.color = color
-  }
-  
-  init(with data: [String: Any]) {
-    guard let id = data["id"] as? String else {
-      return
-    }
-    guard let name = data["name"] as? String else {
-      return
-    }
-    guard let icon = data["icon"] as? String else {
-      return
-    }
-    guard let hex = data["hex"] as? String else {
-      return
-    }
-    
-    self.id = id
-    self.name = name
-    self.icon = CategoryIcon(rawValue: icon)!
-    self.color = UIColor(hex: hex)
   }
   
   func toDictionary() -> [String: Any] {
@@ -108,5 +93,14 @@ class Tasklist: DataModel {
         return nil
     }
     return index
+  }
+}
+
+extension Tasklist: Mappable {
+  func mapping(map: Map) {
+    id    <- map["id"]
+    name  <- map["name"]
+    icon  <- (map["icon"], EnumTransform<CategoryIcon>())
+    color <- (map["hex"], HexColorTransform())
   }
 }

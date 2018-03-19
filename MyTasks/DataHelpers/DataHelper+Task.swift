@@ -7,27 +7,28 @@
 //
 
 import Foundation
+import ObjectMapper
 
 extension DataHelper {
   static func save(_ task: Task) {
-    databaseRef.child(task.mainPath).child(task.tasklistId).child(FirebasePath.added.rawValue)
+    taskRef.child(task.tasklistId).child(FirebasePath.added.rawValue)
       .child(task.id).setValue(task.toDictionary())
   }
   
   static func delete(_ task: Task) {
-    databaseRef.child(task.mainPath).child(task.tasklistId).child(FirebasePath.added.rawValue)
+    taskRef.child(task.tasklistId).child(FirebasePath.added.rawValue)
       .child(task.id).removeValue()
   }
   
   static func softDelete(_ task: Task) {
     task.deleted = true
     delete(task)
-    databaseRef.child(task.mainPath).child(task.tasklistId).child(FirebasePath.deleted.rawValue)
+    taskRef.child(task.tasklistId).child(FirebasePath.deleted.rawValue)
       .child(task.id).setValue(task.toDictionary())
   }
   
   static func getTasks(from tasklist: Tasklist, for dateType: DateType, completionHandler: @escaping ([Task]) -> Void) {
-    var dateRef = databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id)
+    var dateRef = taskRef.child(tasklist.id)
       .child(FirebasePath.added.rawValue).queryOrdered(byChild: FirebasePath.dueDate.rawValue)
     
     let today = Date().startOfDay, tomorrow = today.nextDay
@@ -46,15 +47,15 @@ extension DataHelper {
     }
     
     dateRef.observe(.value, with: { snapshot in
-      let data = snapshot.value as? [String: Any] ?? [:]
       var tasks = [Task]()
+      let data = snapshot.value as? [String: Any] ?? [:]
+      var taskDictArray: [[String: Any]] = []
       for snData in data {
         if let taskData = snData.value as? [String: Any] {
-          let task = Task(with: taskData)
-          task.tasklistId = tasklist.id
-          tasks.append(task)
+          taskDictArray.append(taskData)
         }
       }
+      tasks = Mapper<Task>().mapArray(JSONArray: taskDictArray)
       completionHandler(tasks)
     })
   }
@@ -62,14 +63,14 @@ extension DataHelper {
   static func getTotalTasks(from tasklist: Tasklist, totalType: Tasklist.TotalType, completionHandler: @escaping (Int) -> Void) {
     switch totalType {
     case .checked:
-      databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id).child(FirebasePath.added.rawValue)
+     taskRef.child(tasklist.id).child(FirebasePath.added.rawValue)
         .queryOrdered(byChild: FirebasePath.checked.rawValue)
         .queryEqual(toValue: true)
         .observe(.value, with: { snapshot in
           completionHandler(Int(snapshot.childrenCount))
         })
     default:
-      databaseRef.child(FirebasePath.tasks.rawValue).child(tasklist.id).child(FirebasePath.added.rawValue)
+     taskRef.child(tasklist.id).child(FirebasePath.added.rawValue)
         .observe(.value, with: { snapshot in
           completionHandler(Int(snapshot.childrenCount))
         })
